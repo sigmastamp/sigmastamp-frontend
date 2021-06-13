@@ -11,6 +11,9 @@ import { EthereumOracle } from './oracles/EthereumOracle';
 import { LitecoinOracle } from './oracles/LitecoinOracle';
 import { DateOracle } from './oracles/DateOracle';
 import { NytimesOracle } from './oracles/NytimesOracle';
+// @ts-ignore: no typings
+import html2pdf from 'html2pdf.js';
+import html2canvas from 'html2canvas';
 
 const ORACLES = [
     new BitcoinOracle(),
@@ -30,6 +33,14 @@ export function App() {
           Create document
         </button>*/}
             <h1>Sigmastamp</h1>
+
+            <button
+                onClick={() => {
+                    html2pdf().from(document.body).save();
+                }}
+            >
+                test
+            </button>
 
             <UploadZone
                 onFiles={async (files) => {
