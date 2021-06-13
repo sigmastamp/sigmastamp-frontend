@@ -10,8 +10,15 @@ import { blake2b256 } from './hash/blake2b256';
 import { EthereumOracle } from './oracles/EthereumOracle';
 import { LitecoinOracle } from './oracles/LitecoinOracle';
 import { DateOracle } from './oracles/DateOracle';
+import { NytimesOracle } from './oracles/NytimesOracle';
 
-const ORACLES = [new BitcoinOracle(), new EthereumOracle(), new LitecoinOracle(), new DateOracle()];
+const ORACLES = [
+    new BitcoinOracle(),
+    new EthereumOracle(),
+    new LitecoinOracle(),
+    new DateOracle(),
+    new NytimesOracle(),
+];
 
 export function App() {
     return (

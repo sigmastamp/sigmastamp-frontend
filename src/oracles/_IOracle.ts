@@ -23,6 +23,7 @@ export interface IOracle<TData> {
 
     /**
      * Title for web and certificate of each data key
+     * Theese will be prepended to main title
      */
     dataTitles: Record<keyof TData, string>;
 
