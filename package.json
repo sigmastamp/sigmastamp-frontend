@@ -29,7 +29,7 @@
     "test": "react-scripts test --watchAll=false",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "preversion": "npm run test",
+    "preversion": "",
     "postversion": "npm run deploy"
   },
   "eslintConfig": {
