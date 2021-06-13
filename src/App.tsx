@@ -6,8 +6,8 @@ import { BLAKE2s } from '@stablelib/blake2s';
 import { getAsByteArray } from './utils/getAsByteArray';
 import { uint8Array2hex } from './utils/uint8Array2hex';
 import { createCertificate } from './pdf/createCertificate';
-
-
+import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
 
 
 export function App() {
@@ -36,9 +36,18 @@ export function App() {
 
         console.log({ files, file, hash });
 
+        const certificateFilename = 'certificate.pdf';
+        const certificateFile = createCertificate({ certificateFilename, hash });
 
-        createCertificate({ hash });
+        var zip = new JSZip();
+        zip.file(file.name, file);
+        zip.file(certificateFilename, certificateFile);
 
+
+        zip.generateAsync({ type: "blob" })
+          .then(function (content) {
+            saveAs(content, "certificate.zip");
+          });
 
 
       }} clickable>Upload your file(s) here!</UploadZone>
