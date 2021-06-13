@@ -4,12 +4,13 @@ import styled from 'styled-components';
 //import sha256 from 'crypto-js/hmac-sha256';
 import { BLAKE2b } from '@stablelib/blake2b';
 import { getAsByteArray } from './utils/getAsByteArray';
-import { uint8Array2hex } from './utils/uint8Array2hex';
+import { uint8ArrayToHex } from './utils/uint8ArrayToHex';
 import { createCertificate } from './pdf/createCertificate';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import { AsyncContentComponent } from './components/AsyncContentComponent';
 import { BitcoinOracle } from './oracles/BitcoinOracle';
+import { blake2b256 } from './hash/blake2b256';
 
 
 export function App() {
@@ -28,14 +29,9 @@ export function App() {
 
 
         const file = files[0];
-        //const sha256hmac = sha256('aaa', 'aaa');
-
-        const blake2b = new BLAKE2b();
-        blake2b.digestLength = 32;
-        blake2b.update(await getAsByteArray(file)/* new Uint8Array(2); */);
 
 
-        const hash = uint8Array2hex(blake2b.digest());
+        const hash = await blake2b256(file);
 
 
         console.log({ files, file, hash });
