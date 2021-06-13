@@ -1,9 +1,11 @@
 import React from 'react';
-import { createCertificate } from './pdf/createCertificate';
 import { UploadZone } from './components/UploadZone';
 import styled from 'styled-components';
-import sha256 from 'crypto-js/hmac-sha256';
+//import sha256 from 'crypto-js/hmac-sha256';
 import { BLAKE2s } from '@stablelib/blake2s';
+import { getAsByteArray } from './utils/getAsByteArray';
+import { uint8Array2hex } from './utils/uint8Array2hex';
+import { createCertificate } from './pdf/createCertificate';
 
 
 
@@ -35,7 +37,7 @@ export function App() {
         console.log({ files, file, hash });
 
 
-
+        createCertificate({ hash });
 
 
 
@@ -55,24 +57,4 @@ const AppDiv = styled.div`
 
 
 
-function uint8Array2hex(uint8Array: Uint8Array) { // buffer is an ArrayBuffer
-  return [...uint8Array].map(x => x.toString(16).padStart(2, '0')).join('');
-}
 
-async function getAsByteArray(file: File): Promise<Uint8Array> {
-  return new Uint8Array(await readFile(file))
-}
-
-function readFile(file: File): Promise<ArrayBuffer> {
-  return new Promise((resolve, reject) => {
-    // Create file reader
-    let reader = new FileReader()
-
-    // Register event listeners
-    reader.addEventListener("loadend", event => resolve(event.target!.result as ArrayBuffer))
-    reader.addEventListener("error", reject)
-
-    // Read file
-    reader.readAsArrayBuffer(file)
-  })
-}
