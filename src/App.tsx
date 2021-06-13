@@ -8,6 +8,8 @@ import { uint8Array2hex } from './utils/uint8Array2hex';
 import { createCertificate } from './pdf/createCertificate';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
+import { AsyncContentComponent } from './components/AsyncContentComponent';
+import { BitcoinOracle } from './oracles/BitcoinOracle';
 
 
 export function App() {
@@ -29,6 +31,7 @@ export function App() {
         //const sha256hmac = sha256('aaa', 'aaa');
 
         const blake2b = new BLAKE2b();
+        blake2b.digestLength = 32;
         blake2b.update(await getAsByteArray(file)/* new Uint8Array(2); */);
 
 
@@ -49,6 +52,14 @@ export function App() {
 
 
       }} clickable>Upload your file(s) here!</UploadZone>
+
+      <AsyncContentComponent content={async () => {
+
+
+        const bitcoinOracle = new BitcoinOracle();
+        return <>{await bitcoinOracle.current()}</>;
+      }} />
+
 
     </AppDiv>
   );
