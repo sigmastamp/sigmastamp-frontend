@@ -20,6 +20,7 @@ export function App() {
         >
           Create document
         </button>*/}
+      <h1>Sigmastamp</h1>
 
       <UploadZone onFiles={async (files) => {
 
