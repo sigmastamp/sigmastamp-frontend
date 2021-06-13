@@ -63,13 +63,13 @@ export async function createSigmaStampNft({
 }
     `;
 
-    const body = JSON.stringify(sourceInScala.trim()).split('^\n').join('\n');
+    const body = JSON.stringify(sourceInScala.trim()).split('^\n').join('\n').split('\n\n').join('\n');
 
-    console.log(sourceInScala, body);
+    //console.log(sourceInScala, body, bodyx);
 
     const compilerResponse = await fetch(`http://assembler.sigmastamp.ml:14747/compile`, {
         method: 'POST',
-        body: body,
+        body,
         headers: {
             'Content-Type': 'application/json',
         },

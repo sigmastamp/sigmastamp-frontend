@@ -78,11 +78,11 @@ export function App() {
                                     onClick={async () => {
                                         const certificateFile = new File(
                                             [await createPdf()],
-                                            'certificate.pdf' /* TODO: Maybe add current {lastModified: 1534584790000}*/,
+                                            'certificate1.pdf' /* TODO: Maybe add current {lastModified: 1534584790000}*/,
                                         );
 
                                         // !!! Comment
-                                        saveAs(certificateFile);
+                                        //saveAs(certificateFile);
 
                                         const zip = new JSZip();
                                         for (const file of state.files) {
@@ -93,7 +93,7 @@ export function App() {
                                         const zipBlob = await zip.generateAsync({ type: 'blob' });
 
                                         const zipHash = await blake2b256(zipBlob);
-                                        saveAs(zipBlob, `certificate.${zipHash.substring(0, 5)}.zip`);
+                                        saveAs(zipBlob, `certificate1.${zipHash.substring(0, 5)}.zip`);
 
                                         const userAddress = prompt(
                                             'Please fill your Ergo address',
