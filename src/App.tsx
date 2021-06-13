@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { UploadZone } from './components/UploadZone';
 import styled from 'styled-components';
 import { createCertificate } from './pdf/createCertificate';
@@ -14,6 +14,7 @@ import { NytimesOracle } from './oracles/NytimesOracle';
 // @ts-ignore: no typings
 import html2pdf from 'html2pdf.js';
 import html2canvas from 'html2canvas';
+import { PdfPage } from './components/PdfPage';
 
 const ORACLES = [
     new BitcoinOracle(),
@@ -23,7 +24,13 @@ const ORACLES = [
     new NytimesOracle(),
 ];
 
+interface IAppState {
+    files: File[];
+}
+
 export function App() {
+    const [state, setState] = useState<IAppState>({ files: [] });
+
     return (
         <AppDiv>
             {/*
@@ -31,19 +38,14 @@ export function App() {
           onClick={() => { console.log('test'); createCertificate() }}
         >
           Create document
-        </button>*/}
-            <h1>Sigmastamp</h1>
+        </button>
+            <h1>Sigmastamp</h1>*/}
 
-            <button
-                onClick={() => {
-                    html2pdf().from(document.body).save();
-                }}
-            >
-                test
-            </button>
-
-            <UploadZone
-                onFiles={async (files) => {
+            {state.files.length === 0 ? (
+                <UploadZone
+                    onFiles={async (files) => {
+                        setState({ files });
+                        /*
                     const file = files[0];
 
                     const hash = await blake2b256(file);
@@ -58,35 +60,80 @@ export function App() {
 
                     const zipFile = await zip.generateAsync({ type: 'blob' });
                     saveAs(zipFile, 'certificate.zip');
-                }}
-                clickable
-            >
-                Upload your file(s) here!
-            </UploadZone>
+                    */
+                    }}
+                    clickable
+                >
+                    Upload your file(s) here!
+                </UploadZone>
+            ) : (
+                <PdfPage
+                    createUi={({ createPdf }) => {
+                        return (
+                            <button
+                                onClick={async () => {
+                                    const certificateFile = new File(
+                                        [await createPdf()],
+                                        'certificate.pdf' /* TODO: Maybe add current {lastModified: 1534584790000}*/,
+                                    );
 
-            {ORACLES.map((oracle) => (
-                <div key={oracle.name}>
-                    <AsyncContentComponent
-                        content={async () => {
-                            const data = await oracle.getData();
+                                    saveAs(certificateFile);
+                                    return;
 
-                            return (
-                                <>
-                                    {Object.entries(data).map(([key, value]) => (
-                                        <div key={key}>
-                                            <b>
-                                                {/* @ts-ignore: Object.entries is dummy and cannot pass propper index signature type */}
-                                                {oracle.title} {oracle.dataTitles[key]}:
-                                            </b>{' '}
-                                            {value}
-                                        </div>
-                                    ))}
-                                </>
-                            );
-                        }}
-                    />
-                </div>
-            ))}
+                                    const zip = new JSZip();
+                                    for (const file of state.files) {
+                                        zip.file(file.name, file);
+                                    }
+                                    zip.file(certificateFile.name, certificateFile);
+
+                                    const zipFile = await zip.generateAsync({ type: 'blob' });
+                                    saveAs(zipFile, 'certificate.zip');
+                                }}
+                            >
+                                Generate PDF
+                            </button>
+                        );
+                    }}
+                >
+                    {state.files.map((file) => (
+                        <AsyncContentComponent
+                            key={file.name}
+                            content={async () => {
+                                const hash = await blake2b256(file);
+                                return (
+                                    <>
+                                        <b>Hash of {file.name}</b> is {hash}
+                                    </>
+                                );
+                            }}
+                        />
+                    ))}
+
+                    {ORACLES.map((oracle) => (
+                        <div key={oracle.name}>
+                            <AsyncContentComponent
+                                content={async () => {
+                                    const data = await oracle.getData();
+
+                                    return (
+                                        <>
+                                            {Object.entries(data).map(([key, value]) => (
+                                                <div key={key}>
+                                                    <b>
+                                                        {/* @ts-ignore: Object.entries is dummy and cannot pass propper index signature type */}
+                                                        {oracle.title} {oracle.dataTitles[key]}:
+                                                    </b>{' '}
+                                                    {value}
+                                                </div>
+                                            ))}
+                                        </>
+                                    );
+                                }}
+                            />
+                        </div>
+                    ))}
+                </PdfPage>
+            )}
         </AppDiv>
     );
 }
