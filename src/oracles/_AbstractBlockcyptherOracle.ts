@@ -5,6 +5,7 @@ export abstract class AbstractBlockcyptherOracle implements IOracle<{ hash: stri
     public abstract title: string;
 
     public dataTitles = { hash: 'Current block hash' };
+    public ttl = -1;
 
     public async getData() {
         const response = await fetch(

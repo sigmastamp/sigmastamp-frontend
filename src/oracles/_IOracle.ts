@@ -1,4 +1,4 @@
-import { IAwaitable } from "../components/AsyncContentComponent";
+import { IAwaitable } from '../components/AsyncContentComponent';
 
 export interface IOracle<TData> {
     /**
@@ -13,6 +13,13 @@ export interface IOracle<TData> {
      */
     title: string;
 
+    /**
+     * Time to live in seconds
+     * When -1 provided, data will be valid until page is reloaded
+     *
+     * TODO: Enable to provide observable instead of data+ttl
+     */
+    ttl: number;
 
     /**
      * Title for web and certificate of each data key
