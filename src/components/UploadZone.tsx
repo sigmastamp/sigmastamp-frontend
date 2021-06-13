@@ -7,12 +7,10 @@ export type IUploadZoneProps = React.PropsWithChildren<{
     onFiles: (file: File[]) => void;
 }>;
 
-export interface IUploadZoneState { }
-
+export interface IUploadZoneState {}
 
 export class UploadZone extends React.Component<IUploadZoneProps, IUploadZoneState> {
     state: IUploadZoneState = { fileInputField: null };
-
 
     render() {
         const { children, onFiles: onFile, onFilesOver: onFileOver, clickable } = this.props;
@@ -81,14 +79,12 @@ export class UploadZone extends React.Component<IUploadZoneProps, IUploadZoneSta
 }
 
 const UploadZoneDiv = styled.div`
-
-    width: 200px;
-    height: 300px;
+    width: ${210}px;
+    height: ${297}px;
+    padding: 10px;
     border: 5px dashed #009edf;
 
-
-    input{
+    input {
         display: none;
     }
-
-`
+`;
