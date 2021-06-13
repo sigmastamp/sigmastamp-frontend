@@ -11,7 +11,7 @@ export async function createSigmaStampNft({
     userAddress,
     documentHashInBase64,
     documentHashInHex,
-}: ICreateSigmaStampNft): Promise<{ amount: number; address: string }> {
+}: ICreateSigmaStampNft) /*: Promise<{ amount: number; address: string }> */ {
     if (!isUserAddressCorrect(userAddress)) {
         throw new Error(`User address "${userAddress}" is not correct.`);
     }
@@ -26,46 +26,53 @@ export async function createSigmaStampNft({
     const refundHeightThreshold = (await getCurrentBlockchainHeight()) + 10;
 
     const sourceInScala = `
-    {
+{
 
-        val sigmaStampNftIssuanceOK = {
-            
-            val assetType = OUTPUTS(0).R7[Coll[Byte]].get
-            val stampedDocHash = OUTPUTS(0).R8[Coll[Byte]].get
-            val issued = OUTPUTS(0).tokens.getOrElse(0, (INPUTS(0).id, 0L))
-    
-            INPUTS(0).id == issued._1 && issued._2 == 1 &&
-            OUTPUTS(0).value == ${ergsSendTogetherWithNFT}L &&
-    
-            OUTPUTS(0).propositionBytes == PK("${userAddress}").propBytes &&
-            OUTPUTS(1).value == ${ergsFeeForSigmaStampService}L &&
-    
-            OUTPUTS(1).propositionBytes == PK("${sigmaStampProviderAddress}").propBytes &&
-            assetType == fromBase64(${assetTypeValue}) &&
-            stampedDocHash == fromBase64(${documentHashInBase64}) &&
-            OUTPUTS.size == 3
-    
-        }
-    
-        val returnFunds = {
-    
-            val total_without_fee = INPUTS.fold(0L, {(x:Long, b:Box) => x + b.value}) - ${returnTransactionFee}L
-    
-            OUTPUTS(0).value >= total_without_fee &&
-            OUTPUTS(0).propositionBytes == PK("${userAddress}").propBytes &&
-            (PK("${sigmaStampAssemblerNodeAddr}") || HEIGHT > ${refundHeightThreshold}) &&
-            OUTPUTS.size == 2
-    
-        }
-    
-        sigmaProp(sigmaStampNftIssuanceOK || returnFunds)
-    
+    val sigmaStampNftIssuanceOK = {
+        
+        val assetType = OUTPUTS(0).R7[Coll[Byte]].get
+        val stampedDocHash = OUTPUTS(0).R8[Coll[Byte]].get
+        val issued = OUTPUTS(0).tokens.getOrElse(0, (INPUTS(0).id, 0L))
+
+        INPUTS(0).id == issued._1 && issued._2 == 1 &&
+        OUTPUTS(0).value == ${ergsSendTogetherWithNFT}L &&
+
+        OUTPUTS(0).propositionBytes == PK("${userAddress}").propBytes &&
+        OUTPUTS(1).value == ${ergsFeeForSigmaStampService}L &&
+
+        OUTPUTS(1).propositionBytes == PK("${sigmaStampProviderAddress}").propBytes &&
+        assetType == fromBase64("${assetTypeValue}") &&
+        stampedDocHash == fromBase64("${documentHashInBase64}") &&
+        OUTPUTS.size == 3
+
     }
+
+    val returnFunds = {
+
+        val total_without_fee = INPUTS.fold(0L, {(x:Long, b:Box) => x + b.value}) - ${returnTransactionFee}L
+
+        OUTPUTS(0).value >= total_without_fee &&
+        OUTPUTS(0).propositionBytes == PK("${userAddress}").propBytes &&
+        (PK("${sigmaStampAssemblerNodeAddr}") || HEIGHT > ${refundHeightThreshold}) &&
+        OUTPUTS.size == 2
+
+    }
+
+    sigmaProp(sigmaStampNftIssuanceOK || returnFunds)
+
+}
     `;
+
+    const body = JSON.stringify(sourceInScala.trim()).split('^\n').join('\n');
+
+    console.log(sourceInScala, body);
 
     const compilerResponse = await fetch(`http://assembler.sigmastamp.ml:14747/compile`, {
         method: 'POST',
-        body: sourceInScala,
+        body: body,
+        headers: {
+            'Content-Type': 'application/json',
+        },
     });
     const compilerResponseBody = await compilerResponse.json();
 
@@ -108,19 +115,24 @@ export async function createSigmaStampNft({
     const followResponseBody = await followResponse.json();
     const { id, dueTime } = followResponseBody;
 
-    {
-        // Loop
-        const watchResponse = fetch(`http://assembler.sigmastamp.ml:14747/result/id`);
-        const watchResponseBody = await followResponse.json();
-        const { id, tx, detail /* pending, returning, mined, success, timeout, returnFailed */ } = followResponseBody;
-
-        if (detail === 'success') {
-            // !!! And now take tx and create big certificate
-        }
-    }
-
     return {
         amount: ergoAmountRequired / 1000000000,
         address: compilerResponseBody.address,
+        dueTime,
+        async getStatus() {
+            // Loop
+            const watchResponse = fetch(`http://assembler.sigmastamp.ml:14747/result/${id}`);
+            const watchResponseBody = await followResponse.json();
+            const { /*id,*/ tx, detail /* pending, returning, mined, success, timeout, returnFailed */ } =
+                followResponseBody;
+
+            if (detail === 'success') {
+                // !!! And now take tx and create big certificate
+
+                return true;
+            }
+
+            return false;
+        },
     };
 }

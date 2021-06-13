@@ -15,6 +15,8 @@ import { NytimesOracle } from './oracles/NytimesOracle';
 import html2pdf from 'html2pdf.js';
 import html2canvas from 'html2canvas';
 import { PdfPage } from './components/PdfPage';
+import { PaymentGate, IPaymentGateProps } from './components/PaymentGate';
+import { createSigmaStampNft } from './smartcontracts/createSigmaStampNft';
 
 const ORACLES = [
     new BitcoinOracle(),
@@ -30,10 +32,12 @@ interface IAppState {
 
 export function App() {
     const [state, setState] = useState<IAppState>({ files: [] });
+    const [payment, setPayment] = useState<null | IPaymentGateProps>(null);
 
-    return (
-        <AppDiv>
-            {/*
+    if (!payment) {
+        return (
+            <AppDiv>
+                {/*
         <button
           onClick={() => { console.log('test'); createCertificate() }}
         >
@@ -41,11 +45,11 @@ export function App() {
         </button>
             <h1>Sigmastamp</h1>*/}
 
-            {state.files.length === 0 ? (
-                <UploadZone
-                    onFiles={async (files) => {
-                        setState({ files });
-                        /*
+                {state.files.length === 0 ? (
+                    <UploadZone
+                        onFiles={async (files) => {
+                            setState({ files });
+                            /*
                     const file = files[0];
 
                     const hash = await blake2b256(file);
@@ -61,81 +65,102 @@ export function App() {
                     const zipFile = await zip.generateAsync({ type: 'blob' });
                     saveAs(zipFile, 'certificate.zip');
                     */
-                    }}
-                    clickable
-                >
-                    Upload your file(s) here!
-                </UploadZone>
-            ) : (
-                <PdfPage
-                    createUi={({ createPdf }) => {
-                        return (
-                            <button
-                                onClick={async () => {
-                                    const certificateFile = new File(
-                                        [await createPdf()],
-                                        'certificate.pdf' /* TODO: Maybe add current {lastModified: 1534584790000}*/,
-                                    );
+                        }}
+                        clickable
+                    >
+                        Upload your file(s) here!
+                    </UploadZone>
+                ) : (
+                    <PdfPage
+                        createUi={({ createPdf }) => {
+                            return (
+                                <button
+                                    onClick={async () => {
+                                        const certificateFile = new File(
+                                            [await createPdf()],
+                                            'certificate.pdf' /* TODO: Maybe add current {lastModified: 1534584790000}*/,
+                                        );
 
-                                    saveAs(certificateFile);
-                                    return;
+                                        // !!! Comment
+                                        saveAs(certificateFile);
 
-                                    const zip = new JSZip();
-                                    for (const file of state.files) {
-                                        zip.file(file.name, file);
-                                    }
-                                    zip.file(certificateFile.name, certificateFile);
+                                        const zip = new JSZip();
+                                        for (const file of state.files) {
+                                            zip.file(file.name, file);
+                                        }
+                                        zip.file(certificateFile.name, certificateFile);
 
-                                    const zipFile = await zip.generateAsync({ type: 'blob' });
-                                    saveAs(zipFile, 'certificate.zip');
-                                }}
-                            >
-                                Generate PDF
-                            </button>
-                        );
-                    }}
-                >
-                    {state.files.map((file) => (
-                        <AsyncContentComponent
-                            key={file.name}
-                            content={async () => {
-                                const hash = await blake2b256(file);
-                                return (
-                                    <>
-                                        <b>Hash of {file.name}</b> is {hash}
-                                    </>
-                                );
-                            }}
-                        />
-                    ))}
+                                        const zipBlob = await zip.generateAsync({ type: 'blob' });
 
-                    {ORACLES.map((oracle) => (
-                        <div key={oracle.name}>
+                                        const zipHash = await blake2b256(zipBlob);
+                                        saveAs(zipBlob, `certificate.${zipHash.substring(0, 5)}.zip`);
+
+                                        const userAddress = prompt(
+                                            'Please fill your Ergo address',
+                                            '3Ww7y6vi4NhFZ1ufsEF8vQNyGrvhNmeMmDWP9h3s4qSEFSMoGooV' /* !!! Unhardocde */,
+                                        );
+                                        if (!userAddress) {
+                                            return;
+                                        }
+
+                                        const payment = await createSigmaStampNft({
+                                            userAddress,
+                                            documentHashInBase64: zipHash,
+                                            documentHashInHex: zipHash,
+                                        });
+
+                                        setPayment(payment);
+                                    }}
+                                >
+                                    Create 1st certificate
+                                </button>
+                            );
+                        }}
+                    >
+                        {state.files.map((file) => (
                             <AsyncContentComponent
+                                key={file.name}
                                 content={async () => {
-                                    const data = await oracle.getData();
-
+                                    const hash = await blake2b256(file);
                                     return (
                                         <>
-                                            {Object.entries(data).map(([key, value]) => (
-                                                <div key={key}>
-                                                    <b>
-                                                        {/* @ts-ignore: Object.entries is dummy and cannot pass propper index signature type */}
-                                                        {oracle.title} {oracle.dataTitles[key]}:
-                                                    </b>{' '}
-                                                    {value}
-                                                </div>
-                                            ))}
+                                            <b>Hash of {file.name}</b> is {hash}
                                         </>
                                     );
                                 }}
                             />
-                        </div>
-                    ))}
-                </PdfPage>
-            )}
-        </AppDiv>
-    );
+                        ))}
+
+                        {ORACLES.map((oracle) => (
+                            <div key={oracle.name}>
+                                <AsyncContentComponent
+                                    content={async () => {
+                                        const data = await oracle.getData();
+
+                                        return (
+                                            <>
+                                                {Object.entries(data).map(([key, value]) => (
+                                                    <div key={key}>
+                                                        <b>
+                                                            {/* @ts-ignore: Object.entries is dummy and cannot pass propper index signature type */}
+                                                            {oracle.title} {oracle.dataTitles[key]}:
+                                                        </b>{' '}
+                                                        {value}
+                                                    </div>
+                                                ))}
+                                            </>
+                                        );
+                                    }}
+                                />
+                            </div>
+                        ))}
+                    </PdfPage>
+                )}
+            </AppDiv>
+        );
+    } else {
+        return <PaymentGate {...payment} />;
+    }
 }
 
 const AppDiv = styled.div``;
