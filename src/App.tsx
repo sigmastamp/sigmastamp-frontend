@@ -1,6 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { createCertificate } from './pdf/createCertificate';
+import { UploadZone } from './components/UploadZone';
 
 function App() {
   return (
@@ -10,14 +12,13 @@ function App() {
         <p>
           Edit <code>src/App.tsx</code> and save to reload.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+        <button
+          onClick={() => { console.log('test'); createCertificate() }}
         >
-          Learn React
-        </a>
+          Create document
+        </button>
+
+        <UploadZone onFiles={(files) => { console.log('files', files) }} >Upload your file(s) here!</UploadZone>
       </header>
     </div>
   );
