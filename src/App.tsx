@@ -57,7 +57,7 @@ export function App() {
 
 
         const bitcoinOracle = new BitcoinOracle();
-        return <>{await bitcoinOracle.current()}</>;
+        return <>Curent BTC hash:{await bitcoinOracle.current()}</>;
       }} />
 
 
