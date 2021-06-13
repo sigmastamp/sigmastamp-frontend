@@ -9,6 +9,7 @@ import {
 } from './smartcontracts/validateFirstCertificate';
 import { PdfPage } from './components/PdfPage';
 import JSZip from 'jszip';
+import { Link } from 'react-router-dom';
 
 export function VerifyApp() {
     const [files, setFiles] = useState<any>([]);
@@ -40,6 +41,9 @@ export function VerifyApp() {
                 >
                     Upload your 1st certificate.
                 </UploadZone>
+                <Link to="/" target={'_blank'}>
+                    Or create your 1st certificate.
+                </Link>
             </VerifyAppDiv>
         );
     } else {
@@ -85,4 +89,9 @@ export function VerifyApp() {
     }
 }
 
-const VerifyAppDiv = styled.div``;
+const VerifyAppDiv = styled.div`
+    a {
+        color: #555;
+        font-size: 0.7em;
+    }
+`;

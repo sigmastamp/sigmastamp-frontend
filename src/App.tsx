@@ -17,6 +17,7 @@ import html2canvas from 'html2canvas';
 import { PdfPage } from './components/PdfPage';
 import { PaymentGate, IPaymentGateProps } from './components/PaymentGate';
 import { createSigmaStampNft } from './smartcontracts/createSigmaStampNft';
+import { Link } from 'react-router-dom';
 
 const ORACLES = [
     new BitcoinOracle(),
@@ -81,7 +82,6 @@ export function App() {
                                             'certificate1.pdf' /* TODO: Maybe add current {lastModified: 1534584790000}*/,
                                         );
 
-                                   
                                         //saveAs(certificateFile);
 
                                         const zip = new JSZip();
@@ -156,6 +156,8 @@ export function App() {
                         ))}
                     </PdfPage>
                 )}
+
+                <Link to="/verify" target={"_blank"} >Or verify your 1st certificate.</Link>
             </AppDiv>
         );
     } else {
@@ -163,4 +165,9 @@ export function App() {
     }
 }
 
-const AppDiv = styled.div``;
+const AppDiv = styled.div`
+    a {
+        color: #555;
+        font-size: 0.7em;
+    }
+`;
