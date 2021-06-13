@@ -1,27 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 import { createCertificate } from './pdf/createCertificate';
 import { UploadZone } from './components/UploadZone';
+import styled from 'styled-components';
 
-function App() {
+
+export function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
+    <AppDiv>
+
+      {/*
         <button
           onClick={() => { console.log('test'); createCertificate() }}
         >
           Create document
-        </button>
+        </button>*/}
 
-        <UploadZone onFiles={(files) => { console.log('files', files) }} >Upload your file(s) here!</UploadZone>
-      </header>
-    </div>
+      <UploadZone onFiles={(files) => { console.log('files', files) }} clickable>Upload your file(s) here!</UploadZone>
+
+    </AppDiv>
   );
 }
 
-export default App;
+
+
+const AppDiv = styled.div`
+
+
+
+`
