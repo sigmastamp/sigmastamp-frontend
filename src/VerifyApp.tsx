@@ -54,7 +54,6 @@ export function VerifyApp() {
                                     'certificate2.pdf' /* TODO: Maybe add current {lastModified: 1534584790000}*/,
                                 );
 
-                                // !!! Comment
                                 //saveAs(certificateFile);
 
                                 const zip = new JSZip();
