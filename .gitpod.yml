@@ -5,3 +5,6 @@ ports:
 tasks:
   - init: npm install
   - command: npm start
+vscode:
+    extensions:
+        - esbenp.prettier-vscode

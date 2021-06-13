@@ -1,6 +1,6 @@
-import { AbstractBlockcyptherOracle } from "./AbstractBlockcyptherOracle";
-import { IOracle } from "./IOracle";
+import { AbstractBlockcyptherOracle } from "./_AbstractBlockcyptherOracle";
 
-export class BitcoinOracle extends AbstractBlockcyptherOracle implements IOracle {
-    protected coinBlockcypther = 'eth';
+export class EthereumOracle extends AbstractBlockcyptherOracle {
+    public name = 'ETH';
+    public title = 'Ethereum';
 }
