@@ -1,0 +1,7 @@
+ports:
+  # https://www.gitpod.io/docs/config-ports/#configure-the-opening-behavior
+  - port: 3000
+    onOpen: notify
+tasks:
+  - init: npm install
+  - command: npm start
