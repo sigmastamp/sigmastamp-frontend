@@ -48,6 +48,5 @@ const PdfPageDiv = styled.div`
     background-color: white;
     color: black;
 
-    button {
-    }
+  
 `;

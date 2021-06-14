@@ -112,7 +112,7 @@ export function App() {
                                         setPayment(payment);
                                     }}
                                 >
-                                    Create 1st certificate
+                                    Download 1st certificate
                                 </button>
                             );
                         }}
@@ -157,7 +157,9 @@ export function App() {
                     </PdfPage>
                 )}
 
-                <Link to="/verify" target={"_blank"} >Or verify your 1st certificate.</Link>
+                <Link to="/verify" target={'_blank'}>
+                    Or verify your 1st certificate.
+                </Link>
             </AppDiv>
         );
     } else {

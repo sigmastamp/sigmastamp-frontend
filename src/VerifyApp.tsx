@@ -72,7 +72,7 @@ export function VerifyApp() {
                                 saveAs(zipBlob, `certificate2.${zipHash.substring(0, 5)}.zip`);
                             }}
                         >
-                            Create 2nd certificate
+                            Download 2nd certificate
                         </button>
                     );
                 }}
