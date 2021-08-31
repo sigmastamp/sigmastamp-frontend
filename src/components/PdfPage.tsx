@@ -4,13 +4,13 @@ import styled from 'styled-components';
 import { IAwaitable } from './AsyncContentComponent';
 //import html2canvas from 'html2canvas';
 
-interface PdfPage extends React.PropsWithChildren<{}> {
+interface IPdfPageProps extends React.PropsWithChildren<{}> {
     createUi: (options: {
         createPdf: () => Promise<Blob>;
     }) => IAwaitable<JSX.Element | JSX.Element[]>;
 }
 
-export function PdfPage(props: PdfPage) {
+export function PdfPage(props: IPdfPageProps) {
     const pageRef = useRef(null);
 
     return (
