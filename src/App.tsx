@@ -1,23 +1,19 @@
-import React, { useState } from 'react';
-import { UploadZone } from './components/UploadZone';
-import styled from 'styled-components';
-import { createCertificate } from './pdf/createCertificate';
-import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
+import JSZip from 'jszip';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { AsyncContentComponent } from './components/AsyncContentComponent';
-import { BitcoinOracle } from './oracles/BitcoinOracle';
+import { IPaymentGateProps, PaymentGate } from './components/PaymentGate';
+import { PdfPage } from './components/PdfPage';
+import { UploadZone } from './components/UploadZone';
 import { blake2b256 } from './hash/blake2b256';
+import { BitcoinOracle } from './oracles/BitcoinOracle';
+import { DateOracle } from './oracles/DateOracle';
 import { EthereumOracle } from './oracles/EthereumOracle';
 import { LitecoinOracle } from './oracles/LitecoinOracle';
-import { DateOracle } from './oracles/DateOracle';
 import { NytimesOracle } from './oracles/NytimesOracle';
-// @ts-ignore: no typings
-import html2pdf from 'html2pdf.js';
-import html2canvas from 'html2canvas';
-import { PdfPage } from './components/PdfPage';
-import { PaymentGate, IPaymentGateProps } from './components/PaymentGate';
 import { createSigmaStampNft } from './smartcontracts/createSigmaStampNft';
-import { Link } from 'react-router-dom';
 
 const ORACLES = [
     new BitcoinOracle(),

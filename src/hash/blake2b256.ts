@@ -1,5 +1,5 @@
 // @ts-ignore: no typings
-import { blake2bInit, blake2bUpdate, blake2bFinal } from 'blakejs';
+import { blake2bFinal, blake2bInit, blake2bUpdate } from 'blakejs';
 import { getAsByteArray } from '../utils/getAsByteArray';
 import { uint8ArrayToHex } from '../utils/uint8ArrayToHex';
 

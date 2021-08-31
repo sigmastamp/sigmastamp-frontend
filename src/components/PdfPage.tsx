@@ -1,7 +1,7 @@
+import { jsPDF } from 'jspdf';
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { IAwaitable } from './AsyncContentComponent';
-import { jsPDF } from 'jspdf';
 //import html2canvas from 'html2canvas';
 
 interface PdfPage extends React.PropsWithChildren<{}> {

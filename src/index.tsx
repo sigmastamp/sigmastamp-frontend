@@ -1,9 +1,9 @@
+import { createHashHistory } from 'history';
+import React from 'react';
 import ReactDOM from 'react-dom';
+import { Route, Router, Switch } from 'react-router-dom';
 import { App } from './App';
 import './index.css';
-import { createHashHistory, History } from 'history';
-import { Route, Router, Switch } from 'react-router-dom';
-import React from 'react';
 import { VerifyApp } from './VerifyApp';
 
 const history = createHashHistory();

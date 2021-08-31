@@ -1,15 +1,15 @@
+import JSZip from 'jszip';
 import React, { useState } from 'react';
-import { UploadZone } from './components/UploadZone';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { PdfPage } from './components/PdfPage';
+import { UploadZone } from './components/UploadZone';
 import { blake2b256 } from './hash/blake2b256';
 import {
     getAssetHolders,
     getTransactionTime,
     validateFirstCertificate,
 } from './smartcontracts/validateFirstCertificate';
-import { PdfPage } from './components/PdfPage';
-import JSZip from 'jszip';
-import { Link } from 'react-router-dom';
 
 export function VerifyApp() {
     const [files, setFiles] = useState<any>([]);
