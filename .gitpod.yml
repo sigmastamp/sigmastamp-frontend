@@ -1,11 +1,11 @@
+# Learn more about this file at https://www.gitpod.io/docs/references/gitpod-yml
+tasks:
+    - init: npm i
+      command: npm start
 ports:
     # https://www.gitpod.io/docs/config-ports/#configure-the-opening-behavior
     - port: 3000
-      onOpen: notify
-# Learn more about this file at https://www.gitpod.io/docs/references/gitpod-yml
-tasks:
-    - init: yarn
-      command: yarn start
+      onOpen: open-preview
 github:
     prebuilds:
         # enable for the default branch (defaults to true)
