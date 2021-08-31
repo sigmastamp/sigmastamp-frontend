@@ -8,7 +8,11 @@ export interface IPaymentGateProps {
     //getStatus: () => Promise<boolean /* full status in future */>;
 }
 
-export function PaymentGate({ amount, address, dueTime /*, getStatus*/ }: IPaymentGateProps) {
+export function PaymentGate({
+    amount,
+    address,
+    dueTime /*, getStatus*/,
+}: IPaymentGateProps) {
     return (
         <PaymentGateDiv>
             Pay {amount} ERG to address {address} in ${dueTime} seconds.

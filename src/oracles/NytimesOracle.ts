@@ -10,7 +10,9 @@ export class NytimesOracle implements IOracle<{ firstTitle: string }> {
 
     public async getData() {
         const rssParser = new RssParser();
-        const feed = await rssParser.parseURL(`https://rss.nytimes.com/services/xml/rss/nyt/World.xml`);
+        const feed = await rssParser.parseURL(
+            `https://rss.nytimes.com/services/xml/rss/nyt/World.xml`,
+        );
 
         // console.log({ feed });
 

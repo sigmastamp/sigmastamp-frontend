@@ -12,6 +12,4 @@ export function Loader() {
     );
 }
 
-const LoaderDiv = styled.div`
-
-`;
+const LoaderDiv = styled.div``;

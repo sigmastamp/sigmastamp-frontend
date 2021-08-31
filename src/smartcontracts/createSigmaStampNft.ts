@@ -19,10 +19,12 @@ export async function createSigmaStampNft({
     const mintingFee = 20000000; /* TODO: User settable */
     const ergsSendTogetherWithNFT = 100000000; /* TODO: User settable */
     const ergsFeeForSigmaStampService = 100000000; /* Our fee */
-    const sigmaStampProviderAddress = '3Ww7y6vi4NhFZ1ufsEF8vQNyGrvhNmeMmDWP9h3s4qSEFSMoGooV';
+    const sigmaStampProviderAddress =
+        '3Ww7y6vi4NhFZ1ufsEF8vQNyGrvhNmeMmDWP9h3s4qSEFSMoGooV';
     const assetTypeValue = 'Ad4=';
     const returnTransactionFee = 10000000;
-    const sigmaStampAssemblerNodeAddr = '3Ww7y6vi4NhFZ1ufsEF8vQNyGrvhNmeMmDWP9h3s4qSEFSMoGooV';
+    const sigmaStampAssemblerNodeAddr =
+        '3Ww7y6vi4NhFZ1ufsEF8vQNyGrvhNmeMmDWP9h3s4qSEFSMoGooV';
     const refundHeightThreshold = (await getCurrentBlockchainHeight()) + 10;
 
     const sourceInScala = `
@@ -63,21 +65,29 @@ export async function createSigmaStampNft({
 }
     `;
 
-    const body = JSON.stringify(sourceInScala.trim()).split('^\n').join('\n').split('\n\n').join('\n');
+    const body = JSON.stringify(sourceInScala.trim())
+        .split('^\n')
+        .join('\n')
+        .split('\n\n')
+        .join('\n');
 
     //console.log(sourceInScala, body, bodyx);
 
-    const compilerResponse = await fetch(`http://assembler.sigmastamp.ml:14747/compile`, {
-        method: 'POST',
-        body,
-        headers: {
-            'Content-Type': 'application/json',
+    const compilerResponse = await fetch(
+        `http://assembler.sigmastamp.ml:14747/compile`,
+        {
+            method: 'POST',
+            body,
+            headers: {
+                'Content-Type': 'application/json',
+            },
         },
-    });
+    );
     const compilerResponseBody = await compilerResponse.json();
 
     const compiledSmartContractAddress = compilerResponseBody.address;
-    const ergoAmountRequired = ergsSendTogetherWithNFT + ergsFeeForSigmaStampService + mintingFee;
+    const ergoAmountRequired =
+        ergsSendTogetherWithNFT + ergsFeeForSigmaStampService + mintingFee;
     const documentHashInErgoFormat = `e20${documentHashInHex}`;
     const verifyLinkInErgoFormat = `0e61${
         /* !!! Convert to hex */ `http://sigmastamp.ml/verify?hash=a16d5705c031866f5c5dd1ba39e43538193b45718af5a50a115e1c8d67c209cd`
@@ -97,9 +107,16 @@ export async function createSigmaStampNft({
                     decimals: 0,
                     description:
                         'Proof of existence of document with Blake2b-256 hash specified in R8 register during minting of this NFT token.',
-                    registers: { R7: '0e0201de', R8: documentHashInErgoFormat, R9: verifyLinkInErgoFormat },
+                    registers: {
+                        R7: '0e0201de',
+                        R8: documentHashInErgoFormat,
+                        R9: verifyLinkInErgoFormat,
+                    },
                 },
-                { value: ergsFeeForSigmaStampService, address: sigmaStampProviderAddress },
+                {
+                    value: ergsFeeForSigmaStampService,
+                    address: sigmaStampProviderAddress,
+                },
             ],
             fee: mintingFee,
             inputs: ['$userIns'],
@@ -107,10 +124,13 @@ export async function createSigmaStampNft({
         },
     };
 
-    const followResponse = await fetch(`http://assembler.sigmastamp.ml:14747/follow`, {
-        method: 'POST',
-        body: JSON.stringify(requestBody),
-    });
+    const followResponse = await fetch(
+        `http://assembler.sigmastamp.ml:14747/follow`,
+        {
+            method: 'POST',
+            body: JSON.stringify(requestBody),
+        },
+    );
 
     const followResponseBody = await followResponse.json();
     const { id, dueTime } = followResponseBody;
@@ -121,10 +141,14 @@ export async function createSigmaStampNft({
         dueTime,
         async getStatus() {
             // Loop
-            const watchResponse = fetch(`http://assembler.sigmastamp.ml:14747/result/${id}`);
+            const watchResponse = fetch(
+                `http://assembler.sigmastamp.ml:14747/result/${id}`,
+            );
             const watchResponseBody = await followResponse.json();
-            const { /*id,*/ tx, detail /* pending, returning, mined, success, timeout, returnFailed */ } =
-                followResponseBody;
+            const {
+                /*id,*/ tx,
+                detail /* pending, returning, mined, success, timeout, returnFailed */,
+            } = followResponseBody;
 
             if (detail === 'success') {
                 // !!! And now take tx and create big certificate

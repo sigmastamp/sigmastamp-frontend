@@ -7,7 +7,6 @@ export type IFactory<T> = () => T;
 
 export type IFactorable<T> = T | IFactory<T>;
 
-
 export function factor<T>(factorable: IFactorable<T>): T {
     if (typeof factorable === 'function') {
         return (factorable as any)();
@@ -39,8 +38,13 @@ interface IAsyncContentComponentState {
  *
  * @collboard-modules-sdk
  */
-export function AsyncContentComponent({ loading, content }: IAsyncContentComponentProps) {
-    const [state, setState] = React.useState<IAsyncContentComponentState>({ content: loading || <Loader /> });
+export function AsyncContentComponent({
+    loading,
+    content,
+}: IAsyncContentComponentProps) {
+    const [state, setState] = React.useState<IAsyncContentComponentState>({
+        content: loading || <Loader />,
+    });
 
     React.useEffect(() => {
         (async () => {

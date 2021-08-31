@@ -5,7 +5,9 @@ import { jsPDF } from 'jspdf';
 //import html2canvas from 'html2canvas';
 
 interface PdfPage extends React.PropsWithChildren<{}> {
-    createUi: (options: { createPdf: () => Promise<Blob> }) => IAwaitable<JSX.Element | JSX.Element[]>;
+    createUi: (options: {
+        createPdf: () => Promise<Blob>;
+    }) => IAwaitable<JSX.Element | JSX.Element[]>;
 }
 
 export function PdfPage(props: PdfPage) {
@@ -47,6 +49,4 @@ const PdfPageDiv = styled.div`
 
     background-color: white;
     color: black;
-
-  
 `;

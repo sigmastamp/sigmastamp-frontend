@@ -1,4 +1,4 @@
-import { AbstractBlockcyptherOracle } from "./_AbstractBlockcyptherOracle";
+import { AbstractBlockcyptherOracle } from './_AbstractBlockcyptherOracle';
 
 export class BitcoinOracle extends AbstractBlockcyptherOracle {
     public name = 'BTC';

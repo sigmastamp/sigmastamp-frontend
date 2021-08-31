@@ -1,7 +1,9 @@
 import { blake2b256 } from '../hash/blake2b256';
 
 export async function validateFirstCertificate(firstCertificate: File) {
-    const response = await fetch(`https://api-testnet.ergoplatform.com/api/v0/assets/issuingBoxes`);
+    const response = await fetch(
+        `https://api-testnet.ergoplatform.com/api/v0/assets/issuingBoxes`,
+    );
     const body = await response.json();
 
     const hash = await blake2b256(firstCertificate);
@@ -17,17 +19,21 @@ export async function validateFirstCertificate(firstCertificate: File) {
 }
 
 export async function getTransactionTime(txId: string) {
-    const response = await fetch(`https://api-testnet.ergoplatform.com/api/v0/transactions/${txId}`);
+    const response = await fetch(
+        `https://api-testnet.ergoplatform.com/api/v0/transactions/${txId}`,
+    );
     const body = await response.json();
     console.log('getTransactionTime', body);
     const timestamp = body.summary.timestamp;
-    const tokenId = body.outputs[0].assets[0].tokenId
+    const tokenId = body.outputs[0].assets[0].tokenId;
 
-    return {timestamp,tokenId}
+    return { timestamp, tokenId };
 }
 
 export async function getAssetHolders(tokenId: string) {
-    const response = await fetch(`https://api-testnet.ergoplatform.com/api/v0/addresses/assetHolders/${tokenId}`);
+    const response = await fetch(
+        `https://api-testnet.ergoplatform.com/api/v0/addresses/assetHolders/${tokenId}`,
+    );
     const body = await response.json();
     console.log('getAssetHolders', body);
     return body;

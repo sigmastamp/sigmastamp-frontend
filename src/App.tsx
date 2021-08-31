@@ -88,12 +88,25 @@ export function App() {
                                         for (const file of state.files) {
                                             zip.file(file.name, file);
                                         }
-                                        zip.file(certificateFile.name, certificateFile);
+                                        zip.file(
+                                            certificateFile.name,
+                                            certificateFile,
+                                        );
 
-                                        const zipBlob = await zip.generateAsync({ type: 'blob' });
+                                        const zipBlob = await zip.generateAsync(
+                                            { type: 'blob' },
+                                        );
 
-                                        const zipHash = await blake2b256(zipBlob);
-                                        saveAs(zipBlob, `certificate1.${zipHash.substring(0, 5)}.zip`);
+                                        const zipHash = await blake2b256(
+                                            zipBlob,
+                                        );
+                                        saveAs(
+                                            zipBlob,
+                                            `certificate1.${zipHash.substring(
+                                                0,
+                                                5,
+                                            )}.zip`,
+                                        );
 
                                         const userAddress = prompt(
                                             'Please fill your Ergo address',
@@ -103,11 +116,12 @@ export function App() {
                                             return;
                                         }
 
-                                        const payment = await createSigmaStampNft({
-                                            userAddress,
-                                            documentHashInBase64: zipHash,
-                                            documentHashInHex: zipHash,
-                                        });
+                                        const payment =
+                                            await createSigmaStampNft({
+                                                userAddress,
+                                                documentHashInBase64: zipHash,
+                                                documentHashInHex: zipHash,
+                                            });
 
                                         setPayment(payment);
                                     }}
@@ -139,15 +153,26 @@ export function App() {
 
                                         return (
                                             <>
-                                                {Object.entries(data).map(([key, value]) => (
-                                                    <div key={key}>
-                                                        <b>
-                                                            {/* @ts-ignore: Object.entries is dummy and cannot pass propper index signature type */}
-                                                            {oracle.title} {oracle.dataTitles[key]}:
-                                                        </b>{' '}
-                                                        {value}
-                                                    </div>
-                                                ))}
+                                                {Object.entries(data).map(
+                                                    ([key, value]) => (
+                                                        <div key={key}>
+                                                            <b>
+                                                                {/* @ts-ignore: Object.entries is dummy and cannot pass propper index signature type */}
+                                                                {oracle.title}
+                                                                {
+                                                                    (
+                                                                        oracle as any
+                                                                    )
+                                                                        .dataTitles[
+                                                                        key
+                                                                    ]
+                                                                }
+                                                                :
+                                                            </b>
+                                                            {value}
+                                                        </div>
+                                                    ),
+                                                )}
                                             </>
                                         );
                                     }}

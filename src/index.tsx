@@ -10,6 +10,7 @@ const history = createHashHistory();
 
 ReactDOM.render(
     <React.StrictMode>
+        <h1>Sigmastamp</h1>
         <Router {...{ history: history }}>
             <Switch>
                 <Route exact path="/">

@@ -23,18 +23,29 @@ export function VerifyApp() {
                         const firstCertificate = files[0];
                         setFiles([files[0]]);
 
-                        const verification = await validateFirstCertificate(firstCertificate);
+                        const verification = await validateFirstCertificate(
+                            firstCertificate,
+                        );
 
                         if (!verification) {
-                            alert(`Your 1st certificate is still not validated through Ergo blockchain.`);
+                            alert(
+                                `Your 1st certificate is still not validated through Ergo blockchain.`,
+                            );
                         }
 
                         const { txId } = verification;
 
-                        const { timestamp, tokenId } = await getTransactionTime(txId);
+                        const { timestamp, tokenId } = await getTransactionTime(
+                            txId,
+                        );
                         const hodlers = await getAssetHolders(tokenId);
 
-                        setVerification({ ...verification, timestamp, tokenId, hodlers });
+                        setVerification({
+                            ...verification,
+                            timestamp,
+                            tokenId,
+                            hodlers,
+                        });
                         console.log(verification);
                     }}
                     clickable
@@ -66,10 +77,18 @@ export function VerifyApp() {
                                 }
                                 zip.file(certificateFile.name, certificateFile);
 
-                                const zipBlob = await zip.generateAsync({ type: 'blob' });
+                                const zipBlob = await zip.generateAsync({
+                                    type: 'blob',
+                                });
 
                                 const zipHash = await blake2b256(zipBlob);
-                                saveAs(zipBlob, `certificate2.${zipHash.substring(0, 5)}.zip`);
+                                saveAs(
+                                    zipBlob,
+                                    `certificate2.${zipHash.substring(
+                                        0,
+                                        5,
+                                    )}.zip`,
+                                );
                             }}
                         >
                             Download 2nd certificate

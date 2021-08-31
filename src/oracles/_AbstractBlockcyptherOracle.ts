@@ -1,6 +1,8 @@
 import { IOracle } from './_IOracle';
 
-export abstract class AbstractBlockcyptherOracle implements IOracle<{ hash: string }> {
+export abstract class AbstractBlockcyptherOracle
+    implements IOracle<{ hash: string }>
+{
     public abstract name: string;
     public abstract title: string;
 

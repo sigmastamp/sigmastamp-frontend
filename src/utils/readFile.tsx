@@ -4,7 +4,9 @@ export function readFile(file: File | Blob): Promise<ArrayBuffer> {
         let reader = new FileReader();
 
         // Register event listeners
-        reader.addEventListener('loadend', (event) => resolve(event.target!.result as ArrayBuffer));
+        reader.addEventListener('loadend', (event) =>
+            resolve(event.target!.result as ArrayBuffer),
+        );
         reader.addEventListener('error', reject);
 
         // Read file

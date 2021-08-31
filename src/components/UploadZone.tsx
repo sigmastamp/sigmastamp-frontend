@@ -9,11 +9,19 @@ export type IUploadZoneProps = React.PropsWithChildren<{
 
 export interface IUploadZoneState {}
 
-export class UploadZone extends React.Component<IUploadZoneProps, IUploadZoneState> {
+export class UploadZone extends React.Component<
+    IUploadZoneProps,
+    IUploadZoneState
+> {
     state: IUploadZoneState = { fileInputField: null };
 
     render() {
-        const { children, onFiles: onFile, onFilesOver: onFileOver, clickable } = this.props;
+        const {
+            children,
+            onFiles: onFile,
+            onFilesOver: onFileOver,
+            clickable,
+        } = this.props;
         const onFileOverMaybe = (isFileOver: boolean) => {
             if (onFileOver) {
                 onFileOver(isFileOver);
@@ -67,7 +75,8 @@ export class UploadZone extends React.Component<IUploadZoneProps, IUploadZoneSta
                         }
                     }}
                     onChange={(event) => {
-                        if (!event || !event.target || !event.target.files) return;
+                        if (!event || !event.target || !event.target.files)
+                            return;
                         onFile(Array.from(event.target.files));
                     }}
                 />
