@@ -150,6 +150,8 @@ export async function createSigmaStampNft({
                 detail /* pending, returning, mined, success, timeout, returnFailed */,
             } = followResponseBody;
 
+            console.log({ watchResponse, watchResponseBody, tx });
+
             if (detail === 'success') {
                 // !!! And now take tx and create big certificate
 
