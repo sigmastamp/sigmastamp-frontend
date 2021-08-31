@@ -2,15 +2,24 @@ import { createHashHistory } from 'history';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, Router, Switch } from 'react-router-dom';
+import styled from 'styled-components';
 import { App } from './App';
 import './index.css';
 import { VerifyApp } from './VerifyApp';
 
 const history = createHashHistory();
 
+const HeaderElement = styled.header`
+    h1 {
+        font-size: 1em;
+    }
+`;
+
 ReactDOM.render(
     <React.StrictMode>
-        <h1>Sigmastamp</h1>
+        <HeaderElement>
+            <h1>📜 Sigmastamp</h1>
+        </HeaderElement>
         <Router {...{ history: history }}>
             <Switch>
                 <Route exact path="/">
