@@ -7,6 +7,10 @@ interface ICreateSigmaStampNft {
     userAddress: string;
 }
 
+/**
+ * 
+ * TODO: !!! Split into more granular pieces
+ */
 export async function createSigmaStampNft({
     userAddress,
     documentHashInBase64,
@@ -73,6 +77,7 @@ export async function createSigmaStampNft({
 
     //console.log(sourceInScala, body, bodyx);
 
+    // TODO: !!! Not working compilation
     const compilerResponse = await fetch(
         `http://assembler.sigmastamp.ml:14747/compile`,
         {
