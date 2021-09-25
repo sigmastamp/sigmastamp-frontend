@@ -14,7 +14,7 @@ export abstract class AbstractBlockcyptherOracle
             `https://api.blockcypher.com/v1/${this.name.toLowerCase()}/main` /*`https://blockchain.info/latestblock`*/,
             /*{ mode: 'no-cors' }*/
         );
-        console.log({ response });
+        // console.log({ response });
         const body = await response.json();
 
         if (body.error) {
