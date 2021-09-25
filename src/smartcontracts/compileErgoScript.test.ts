@@ -58,4 +58,15 @@ describe('how compiling of ergo script works', () => {
             }).then((compiled) => compileErgoScript(compiled)),
         ).resolves.toEqual('');
     });
+
+    it('can compile mocked ergo script', () => {
+        return expect(
+            createScript({
+                script: `http://localhost:${PORT}/scripts/sigmastamp-nft.mocked.scala`,
+            }).then((compiled) => compileErgoScript(compiled)),
+        ).resolves.toEqual({
+            address:
+                '4ruzmKDpE1xpztdbZRxJsYUTfkeJwZjuxVTmJTstxGj4qo3kfSHCUZx9tgVcGtqQPC4P6oC46LPxTCBmZAYV4kdsgkBYa58ZawR29PdxPDjgio5cAANo5wQuDwh6q5LAzHJMwTwBCg3eh6YuoPp9ZxECxBjsSmS3XqdfAXQPR8HrPdc2txXbA2whma18Lw8vkkE7QizVwiyC1Lj5Xe3yLE3V3oE1wqdeafPA9YqDi14R7Hekn8LXHZgqgrb6Z6fxb4dFJzoT4x6UfGPstGjvtqcJkUYgJzxVYyshVUWApzEwfbcDkaS9QSH3bcTE3f7y2zussGG3u19HHMv39j9HH8hmPNmPmpMwwZMjWZWFUBNVnh1MHBTAXUD7gfeBpWJ1BsqnKrHARQk2pimiXFCgmAd8sHyUUxonf3MAqYi32bCvz8wrkVGNbw6PkC6EXShfwFe6Wc7Q4cdAnK7iCmx3ehCR2pj6gGbEZETkZNKrhv63fhaxprQ7iGcNHYN6nzAdwLh1VGfHnxVWVSBqnkHtJC',
+        });
+    });
 });
