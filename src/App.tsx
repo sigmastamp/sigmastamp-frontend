@@ -104,6 +104,7 @@ export function App() {
                                             )}.zip`,
                                         );
 
+                                        // TODO: !!! Nicer usir input than prompt
                                         const userAddress = prompt(
                                             'Please fill your Ergo address',
                                             '3Ww7y6vi4NhFZ1ufsEF8vQNyGrvhNmeMmDWP9h3s4qSEFSMoGooV' /* !!! Unhardocde */,
