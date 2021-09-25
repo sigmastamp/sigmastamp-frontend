@@ -50,13 +50,16 @@ describe('how compiling of ergo script works', () => {
                     '3Ww7y6vi4NhFZ1ufsEF8vQNyGrvhNmeMmDWP9h3s4qSEFSMoGooV',
                 assetTypeValue: 'Ad4=',
                 documentHashInBase64:
-                    'bfcd486994cb8bc0a3e618924137ef4a848ebc5aa98e0c1d5661325e0849e432',
+                    'oW1XBcAxhm9cXdG6OeQ1OBk7RXGK9aUKEV4cjWfCCc0',
                 returnTransactionFee: 10000000,
                 sigmaStampAssemblerNodeAddr:
                     '3Ww7y6vi4NhFZ1ufsEF8vQNyGrvhNmeMmDWP9h3s4qSEFSMoGooV',
                 refundHeightThreshold: 10,
             }).then((compiled) => compileErgoScript(compiled)),
-        ).resolves.toEqual('');
+        ).resolves.toEqual({
+            address:
+                'sjNF7r85JtcoCFBYpLnHSFqBbMgryMbeww6WLELvktfw6uHEhAZWMc9p44JxiCRL5KSQ4fkkMFiZfnVDj39dCFFCixQTyfsRuf4tHunB25EXmRc9scJEomPFiPgPDmDgiJXaBdk6N5gMQuzjEKqcZT6t25GxgX9H3rzasqoK9uJXxRFUdba7aX4oMAYa4f3fTZRZZd8vBR4QBp9H1EpCc8Mra8Urag7hhsLHtcr6fXgStockJXFZkf2Wsf5tE4qqxCPGroKbRia14VHy2JRu5DXkqP8YigJoDS5eFSq6NeYHqU9h3CwcnyQW22UjXuhX89RG3cygyQJZKBtouVcu4Cizg1Exj4ywG4uutg9aBroZRBtnEHmCa8A7ZrxGeV8VcuxGQnyjyinyDqstkEt7FNrR8jvnFrz9s62m8jGZko5ML18sTDeV6YauFgeCB58NpvWTidTLTUUN5zJzuKrsTkTNGB7epbjyKS5Jn2NaUFhoCQSjq1rw2LgXsHy9c2LcrACy5zv5haVVW5u7cQAT',
+        });
     });
 
     it('can compile mocked ergo script', () => {
