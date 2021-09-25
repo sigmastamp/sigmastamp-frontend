@@ -67,7 +67,7 @@ export async function createSigmaStampNft({
         refundHeightThreshold,
     });
 
-    console.log(script);
+    // console.log(script);
     const { address: compiledSmartContractAddress } = await compileErgoScript({
         script,
     });
@@ -79,6 +79,7 @@ export async function createSigmaStampNft({
         /* !!! Convert to hex */ `http://sigmastamp.ml/verify?hash=a16d5705c031866f5c5dd1ba39e43538193b45718af5a50a115e1c8d67c209cd`
     }`;
 
+    // TODO: !!! Separate function for follow
     const requestBody = {
         address: compiledSmartContractAddress,
         returnTo: userAddress,
@@ -114,6 +115,9 @@ export async function createSigmaStampNft({
         `http://assembler.sigmastamp.ml:14747/follow`,
         {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
             body: JSON.stringify(requestBody),
         },
     );
