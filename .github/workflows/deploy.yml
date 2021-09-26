@@ -19,7 +19,7 @@ jobs:
               run: npm install --no-fund
 
             - name: Lint
-              run: npm run test
+              run: npm run lint
 
             - name: Test
               run: npm run test
