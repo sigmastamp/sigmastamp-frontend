@@ -20,12 +20,15 @@ export async function compileErgoScript({
         .split('\n\n')
         .join('\n');
 
-    const compilerResponse = await fetch(`${ERGO_ASSEMBLER_URL.href}compile`, {
+    const url = `${ERGO_ASSEMBLER_URL.href}compile`;
+    const compilerResponse = await fetch(url, {
         method: 'POST',
         body,
         headers: {
             'Content-Type': 'application/json',
         },
+    }).catch(() => {
+        throw new Error(`Failed to fetch compile service on "${url}".`);
     });
 
     const compilerResponseBody = await compilerResponse.json();
