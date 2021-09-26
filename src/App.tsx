@@ -8,6 +8,7 @@ import { IPaymentGateProps, PaymentGate } from './components/PaymentGate';
 import { PdfPage } from './components/PdfPage';
 import { UploadZone } from './components/UploadZone';
 import { blake2b256 } from './hash/blake2b256';
+import { string_base64 } from './interfaces/stringTypes';
 import { BitcoinOracle } from './oracles/BitcoinOracle';
 import { DateOracle } from './oracles/DateOracle';
 import { EthereumOracle } from './oracles/EthereumOracle';
@@ -93,9 +94,8 @@ export function App() {
                                             { type: 'blob' },
                                         );
 
-                                        const zipHash = await blake2b256(
-                                            zipBlob,
-                                        );
+                                        const zipHash: string_base64 =
+                                            await blake2b256(zipBlob);
                                         saveAs(
                                             zipBlob,
                                             `certificate1.${zipHash.substring(

@@ -5,7 +5,9 @@ export type ergo_scala_script = string;
 export type ergo_format = string;
 
 export type string_href = string;
-export type string_hex = string
+
+export type string_hex = string;
+export type string_base64 = string;
 
 export type seconds = number;
 
