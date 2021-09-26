@@ -4,7 +4,7 @@ on:
     workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
 
 jobs:
-    deploy:
+    www.sigmastamp.ml:
         runs-on: ubuntu-latest
         env:
             REACT_APP_ERGO_ASSEMBLER_URL: http://assembler.sigmastamp.ml:14747
