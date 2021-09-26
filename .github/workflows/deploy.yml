@@ -1,16 +1,13 @@
-name: github-pages
 on:
     push:
         branches: [main]
     workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
-jobs:
-    github-pages:
-        runs-on: ubuntu-latest
-        env: github-pages
-        environment:
-            name: github-pages
-            url: https://www.sigmastamp.ml/
 
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        env:
+            REACT_APP_ERGO_ASSEMBLER_URL: http://assembler.sigmastamp.ml:14747
         steps:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v2
@@ -18,14 +15,11 @@ jobs:
                   # TODO: Update in future to 16 + make workflow how to update this dependency
                   node-version: '14'
 
-            - name: x!!!
-              run: echo $REACT_APP_ERGO_ASSEMBLER_URL
-
             - name: Install dependencies
               run: npm install --no-fund
 
             - name: Lint
-              run: npm run lint
+              run: npm run test
 
             - name: Test
               run: npm run test
