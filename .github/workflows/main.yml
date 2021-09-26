@@ -9,6 +9,7 @@ jobs:
         environment:
             name: github-pages
             url: https://www.sigmastamp.ml/
+            REACT_APP_ERGO_ASSEMBLER_URL: http://assembler.sigmastamp.ml:14747
         steps:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v2
