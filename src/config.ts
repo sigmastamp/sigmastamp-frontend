@@ -17,6 +17,15 @@ export const ERGO_ASSEMBLER_URL = config
     // TODO: universal .check() in configchecker
     .required().value!;
 
+export const BUILD_DETAILS_URL = config
+    .get(
+        'REACT_APP_BUILD_DETAILS_URL' /* TODO: configchecker can ignore prefxes in ConfigChecker.from */,
+    )
+    .url().value;
+
+/**
+ * TODO: This is not working with GitHub actions.
+ */
 export const BUILD_DATE = config
     .get(
         'REACT_APP_BUILD_DATE' /* TODO: configchecker can ignore prefxes in ConfigChecker.from */,
