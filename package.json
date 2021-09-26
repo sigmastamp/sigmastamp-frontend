@@ -8,7 +8,7 @@
     ],
     "scripts": {
         "start": "react-scripts start",
-        "build": "react-scripts build && echo \"www.sigmastamp.ml\" > ./build/CNAME",
+        "build": "rm -rf ./build && npx cross-env REACT_APP_BUILD_DATE=$(date --iso-8601=seconds) && react-scripts build && echo \"www.sigmastamp.ml\" > ./build/CNAME",
         "test": "react-scripts test --watchAll=false",
         "lint": "tslint -p tsconfig.json",
         "preversion": "npm run lint && npm test",
@@ -72,6 +72,7 @@
         "@types/react-router-dom": "^5.1.7",
         "@types/serve-static": "^1.13.10",
         "@types/styled-components": "^5.1.10",
+        "cross-env": "^7.0.3",
         "express": "^4.17.1",
         "gh-pages": "^3.2.0",
         "serve-static": "^1.14.1",

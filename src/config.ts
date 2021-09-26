@@ -5,8 +5,6 @@ import { version } from '../package.json';
 
 export const VERSION = version;
 
-console.log(process.env);
-console.log(process.env.ERGO_ASSEMBLER_URL);
 const config = ConfigChecker.from(process.env);
 
 export const ERGO_ASSEMBLER_URL = config
@@ -18,3 +16,9 @@ export const ERGO_ASSEMBLER_URL = config
     // TODO: .checkNativePort()
     // TODO: universal .check() in configchecker
     .required().value!;
+
+export const BUILD_DATE = config
+    .get(
+        'REACT_APP_BUILD_DATE' /* TODO: configchecker can ignore prefxes in ConfigChecker.from */,
+    )
+    .date().value;
