@@ -73,3 +73,17 @@ describe('how compiling of ergo script works', () => {
         });
     });
 });
+
+/*
+TODO: There is an error in output which is not fatal but maybe worth investigating:
+
+ console.error
+      Error: Cross origin http://localhost forbidden
+          at dispatchError (/home/runner/work/sigmastamp-frontend/sigmastamp-frontend/node_modules/jsdom/lib/jsdom/living/xhr/xhr-utils.js:63:19)
+          at Object.validCORSHeaders (/home/runner/work/sigmastamp-frontend/sigmastamp-frontend/node_modules/jsdom/lib/jsdom/living/xhr/xhr-utils.js:75:5)
+          at receiveResponse (/home/runner/work/sigmastamp-frontend/sigmastamp-frontend/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:794:19)
+          at Request.<anonymous> (/home/runner/work/sigmastamp-frontend/sigmastamp-frontend/node_modules/jsdom/lib/jsdom/living/xhr/XMLHttpRequest-impl.js:658:43)
+          at Request.emit (events.js:400:28)
+          at Request._processResponse (/home/runner/work/sigmastamp-frontend/sigmastamp-frontend/node_modules/jsdom/lib/jsdom/living/helpers/http-request.js:228:12)
+          at ClientRequest.<anonymous> (/home/runner/work/sigmastamp-frontend/sigmastamp-frontend/node_modules/jsdom/lib/jsdom/living/helpers/http-request.js:101:12)
+ */
