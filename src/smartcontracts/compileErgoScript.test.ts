@@ -1,37 +1,7 @@
-import express from 'express';
-import { Server } from 'http';
-import path from 'path';
-import serveStatic from 'serve-static';
-import { randomPort } from '../utils/randomPort';
 import { compileErgoScript } from './compileErgoScript';
 import { createScript } from './createScript';
 
 describe('how compiling of ergo script works', () => {
-    // TODO: DRY beforeEach+afterEach
-    const PORT = randomPort();
-    let server: Server;
-
-    beforeEach(() => {
-        server = express()
-            .use(
-                serveStatic(path.join(__dirname, '../../public'), {
-                    index: false,
-                    cacheControl: false,
-                    setHeaders: (response) => {
-                        response.setHeader('Cache-Control', 'no-cache');
-                        response.setHeader('Access-Control-Allow-Origin', '*');
-                        response.setHeader('Content-disposition', 'inline');
-                    },
-                }),
-            )
-            .listen(PORT);
-        // console.info(`http://localhost:${PORT}`);
-    });
-
-    afterEach(() => {
-        server.close();
-    });
-
     it('can will fail compiling broken script', () => {
         return expect(
             compileErgoScript({ script: `broken script -/*-/*+-*/*-/` }),
@@ -41,7 +11,7 @@ describe('how compiling of ergo script works', () => {
     it('can compile ergo script', () => {
         return expect(
             createScript({
-                script: `http://localhost:${PORT}/scripts/sigmastamp-nft.scala`,
+                script: `http://localhost:10340/scripts/sigmastamp-nft.scala`,
                 ergsSendTogetherWithNFT: 100000000,
                 userAddress:
                     '3Ww7y6vi4NhFZ1ufsEF8vQNyGrvhNmeMmDWP9h3s4qSEFSMoGooV',
@@ -65,7 +35,7 @@ describe('how compiling of ergo script works', () => {
     it('can compile mocked ergo script', () => {
         return expect(
             createScript({
-                script: `http://localhost:${PORT}/scripts/sigmastamp-nft.mocked.scala`,
+                script: `http://localhost:10340/scripts/sigmastamp-nft.mocked.scala`,
             }).then((compiled) => compileErgoScript(compiled)),
         ).resolves.toEqual({
             address:

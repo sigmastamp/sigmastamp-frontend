@@ -1,42 +1,12 @@
-import express from 'express';
-import { Server } from 'http';
-import path from 'path';
-import serveStatic from 'serve-static';
-import { randomPort } from '../utils/randomPort';
 import { spaceTrim } from '../utils/spaceTrim';
 import { createScript } from './createScript';
 
 // tslint:disable:no-trailing-whitespace
 describe('how creating script works', () => {
-    // TODO: DRY beforeEach+afterEach
-    const PORT = randomPort();
-    let server: Server;
-
-    beforeEach(() => {
-        server = express()
-            .use(
-                serveStatic(path.join(__dirname, '../../public'), {
-                    index: false,
-                    cacheControl: false,
-                    setHeaders: (response) => {
-                        response.setHeader('Cache-Control', 'no-cache');
-                        response.setHeader('Access-Control-Allow-Origin', '*');
-                        response.setHeader('Content-disposition', 'inline');
-                    },
-                }),
-            )
-            .listen(PORT);
-        // console.info(`http://localhost:${PORT}`);
-    });
-
-    afterEach(() => {
-        server.close();
-    });
-
     it('will fail with non-existing script', () => {
         return expect(
             createScript({
-                script: `http://localhost:${PORT}/scripts/not-existing-script.scala`,
+                script: `http://localhost:10340/scripts/not-existing-script.scala`,
             }),
         ).rejects.toThrowError();
     });
@@ -44,7 +14,7 @@ describe('how creating script works', () => {
     it('will fail when there is missing param', () => {
         return expect(
             createScript({
-                script: `http://localhost:${PORT}/scripts/sigmastamp-nft.scala`,
+                script: `http://localhost:10340/scripts/sigmastamp-nft.scala`,
             }),
         ).rejects.toThrowError();
     });
@@ -52,7 +22,7 @@ describe('how creating script works', () => {
     it('will fail when there is extra param', () => {
         return expect(
             createScript({
-                script: `http://localhost:${PORT}/scripts/sigmastamp-nft.scala`,
+                script: `http://localhost:10340/scripts/sigmastamp-nft.scala`,
                 someExtraParam: 'foo',
             }),
         ).rejects.toThrowError();
@@ -61,7 +31,7 @@ describe('how creating script works', () => {
     it('can create sigma_stamp_nft.scale', () => {
         return expect(
             createScript({
-                script: `http://localhost:${PORT}/scripts/sigmastamp-nft.scala`,
+                script: `http://localhost:10340/scripts/sigmastamp-nft.scala`,
                 ergsSendTogetherWithNFT: 100000000,
                 userAddress:
                     '3Ww7y6vi4NhFZ1ufsEF8vQNyGrvhNmeMmDWP9h3s4qSEFSMoGooV',
