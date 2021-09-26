@@ -10,6 +10,8 @@
         "start": "react-scripts start",
         "build": "react-scripts build && echo \"www.sigmastamp.ml\" > ./build/CNAME",
         "test": "react-scripts test --watchAll=false",
+        "lint": "tslint -p tsconfig.json",
+        "preversion": "npm run lint && npm test",
         "postversion": "git push"
     },
     "eslintConfig": {
@@ -69,6 +71,7 @@
         "@types/styled-components": "^5.1.10",
         "express": "^4.17.1",
         "gh-pages": "^3.2.0",
-        "serve-static": "^1.14.1"
+        "serve-static": "^1.14.1",
+        "tslint": "^6.1.3"
     }
 }
