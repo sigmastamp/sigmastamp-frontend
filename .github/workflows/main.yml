@@ -17,6 +17,9 @@ jobs:
                   # TODO: Update in future to 16 + make workflow how to update this dependency
                   node-version: '14'
 
+            - name: x!!!
+              run: echo $REACT_APP_ERGO_ASSEMBLER_URL
+
             - name: Install dependencies
               run: npm install --no-fund
 
