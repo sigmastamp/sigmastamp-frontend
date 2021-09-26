@@ -1,4 +1,4 @@
-name: CI
+name: Deploy on GitHub pages
 on:
     push:
         branches: [main]
@@ -6,6 +6,8 @@ on:
     workflow_dispatch:
 
 jobs:
+    environment:
+        name: github-pages
     deploy:
         runs-on: ubuntu-latest
         steps:
