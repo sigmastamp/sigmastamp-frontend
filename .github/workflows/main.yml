@@ -6,10 +6,10 @@ on:
     workflow_dispatch:
 
 jobs:
-    environment:
-        name: github-pages
     deploy:
         runs-on: ubuntu-latest
+        environment:
+            name: github-pages
         steps:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v2
