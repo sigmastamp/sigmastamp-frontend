@@ -1,15 +1,14 @@
-name: Deploy on GitHub pages
+name: github-pages
 on:
     push:
         branches: [main]
-    # Allows you to run this workflow manually from the Actions tab
-    workflow_dispatch:
-
+    workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
 jobs:
     github-pages:
         runs-on: ubuntu-latest
         environment:
             name: github-pages
+            url: https://www.sigmastamp.ml/
         steps:
             - uses: actions/checkout@v2
             - uses: actions/setup-node@v2
