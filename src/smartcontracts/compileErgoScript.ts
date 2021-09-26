@@ -20,7 +20,7 @@ export async function compileErgoScript({
         .split('\n\n')
         .join('\n');
 
-    const compilerResponse = await fetch(`${ERGO_ASSEMBLER_URL.href}/compile`, {
+    const compilerResponse = await fetch(`${ERGO_ASSEMBLER_URL.href}compile`, {
         method: 'POST',
         body,
         headers: {

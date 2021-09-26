@@ -113,7 +113,7 @@ export async function createSigmaStampNft({
         },
     };
 
-    const followResponse = await fetch(`${ERGO_ASSEMBLER_URL.href}/follow`, {
+    const followResponse = await fetch(`${ERGO_ASSEMBLER_URL.href}follow`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -131,7 +131,7 @@ export async function createSigmaStampNft({
         async getStatus() {
             // Loop
             const watchResponse = fetch(
-                `${ERGO_ASSEMBLER_URL.href}/result/${id}`,
+                `${ERGO_ASSEMBLER_URL.href}result/${id}`,
             );
             const watchResponseBody = await followResponse.json();
             const {
