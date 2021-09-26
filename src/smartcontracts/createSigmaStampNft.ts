@@ -1,3 +1,4 @@
+import { ERGO_ASSEMBLER_URL } from '../config';
 import { ergo_wallet_address } from '../interfaces/stringTypes';
 import { compileErgoScript } from './compileErgoScript';
 import { createScript } from './createScript';
@@ -111,16 +112,13 @@ export async function createSigmaStampNft({
         },
     };
 
-    const followResponse = await fetch(
-        `http://assembler.sigmastamp.ml:14747/follow`,
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestBody),
+    const followResponse = await fetch(`${ERGO_ASSEMBLER_URL.href}/follow`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
         },
-    );
+        body: JSON.stringify(requestBody),
+    });
 
     const followResponseBody = await followResponse.json();
     const { id, dueTime } = followResponseBody;
@@ -132,7 +130,7 @@ export async function createSigmaStampNft({
         async getStatus() {
             // Loop
             const watchResponse = fetch(
-                `http://assembler.sigmastamp.ml:14747/result/${id}`,
+                `${ERGO_ASSEMBLER_URL.href}/result/${id}`,
             );
             const watchResponseBody = await followResponse.json();
             const {
