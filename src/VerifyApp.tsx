@@ -19,21 +19,21 @@ export function VerifyApp() {
         return (
             <VerifyAppDiv>
                 <UploadZone
-                    onFiles={async (files) => {
-                        const firstCertificate = files[0];
-                        setFiles([files[0]]);
+                    onFiles={async (droppedFiles) => {
+                        const firstCertificate = droppedFiles[0];
+                        setFiles([droppedFiles[0]]);
 
-                        const verification = await validateFirstCertificate(
+                        const droppedFileVerification = await validateFirstCertificate(
                             firstCertificate,
                         );
 
-                        if (!verification) {
+                        if (!droppedFileVerification) {
                             alert(
                                 `Your 1st certificate is still not validated through Ergo blockchain.`,
                             );
                         }
 
-                        const { txId } = verification;
+                        const { txId } = droppedFileVerification;
 
                         const { timestamp, tokenId } = await getTransactionTime(
                             txId,
@@ -41,12 +41,12 @@ export function VerifyApp() {
                         const hodlers = await getAssetHolders(tokenId);
 
                         setVerification({
-                            ...verification,
+                            ...droppedFileVerification,
                             timestamp,
                             tokenId,
                             hodlers,
                         });
-                        console.log(verification);
+                        console.log(droppedFileVerification);
                     }}
                     clickable
                 >

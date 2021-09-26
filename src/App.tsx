@@ -113,14 +113,13 @@ export function App() {
                                             return;
                                         }
 
-                                        const payment =
+                                        setPayment(
                                             await createSigmaStampNft({
                                                 userAddress,
                                                 documentHashInBase64: zipHash,
                                                 documentHashInHex: zipHash,
-                                            });
-
-                                        setPayment(payment);
+                                            }),
+                                        );
                                     }}
                                 >
                                     Download 1st certificate

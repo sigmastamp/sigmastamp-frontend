@@ -1,5 +1,6 @@
 import { spaceTrim } from './spaceTrim';
 
+// tslint:disable:no-trailing-whitespace
 describe('how space trim works', () => {
     it('can trim from begining and end', () => {
         expect(spaceTrim(`  foo      `)).toBe('foo');

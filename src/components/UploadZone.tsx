@@ -4,17 +4,12 @@ import styled from 'styled-components';
 export type IUploadZoneProps = React.PropsWithChildren<{
     clickable?: boolean;
     onFilesOver?: (isFileOver: boolean) => void;
-    onFiles: (file: File[]) => void;
+    onFiles: (droppedFiles: File[]) => void;
 }>;
 
-export interface IUploadZoneState {}
+// TODO: !!! Use hooks and functional coponent ONLY in whole project
 
-export class UploadZone extends React.Component<
-    IUploadZoneProps,
-    IUploadZoneState
-> {
-    state: IUploadZoneState = { fileInputField: null };
-
+export class UploadZone extends React.Component<IUploadZoneProps> {
     render() {
         const {
             children,

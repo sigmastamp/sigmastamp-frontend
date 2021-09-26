@@ -9,6 +9,7 @@ export async function createScript<T extends { script: string_href }>(
     // console.log({ script });
 
     for (const [key, value] of Object.entries(options).filter(
+        // tslint:disable-next-line:no-shadowed-variable
         ([key]) => key !== 'script',
     )) {
         const scriptArray = script.split(`$${key}`);

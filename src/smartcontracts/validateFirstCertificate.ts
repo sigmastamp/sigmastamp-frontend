@@ -9,7 +9,7 @@ export async function validateFirstCertificate(firstCertificate: File) {
     const hash = await blake2b256(firstCertificate);
 
     for (const item of body.items) {
-        if (item.additionalRegisters['R8'] === `0e20${hash}`) {
+        if (item.additionalRegisters.R8 === `0e20${hash}`) {
             return item;
             // TODO: probbably last not first
         }

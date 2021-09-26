@@ -6,10 +6,8 @@ import { randomPort } from '../utils/randomPort';
 import { spaceTrim } from '../utils/spaceTrim';
 import { createScript } from './createScript';
 
-
-
+// tslint:disable:no-trailing-whitespace
 describe('how creating script works', () => {
-
     // TODO: DRY beforeEach+afterEach
     const PORT = randomPort();
     let server: Server;

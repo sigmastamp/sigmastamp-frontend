@@ -20,7 +20,7 @@ ReactDOM.render(
         <HeaderElement>
             <h1>📜 Sigmastamp</h1>
         </HeaderElement>
-        <Router {...{ history: history }}>
+        <Router {...{ history }}>
             <Switch>
                 <Route exact path="/">
                     <App />
