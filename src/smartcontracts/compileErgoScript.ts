@@ -1,3 +1,4 @@
+import { ERGO_ASSEMBLER_URL } from '../config';
 import {
     ergo_scala_script,
     ergo_script_address,
@@ -19,20 +20,13 @@ export async function compileErgoScript({
         .split('\n\n')
         .join('\n');
 
-    // TODO: !!! Not working compilation
-    const compilerResponse = await fetch(
-        // TODO: !!! http://assembler.sigmastamp.ml:14747 into config
-        // TODO: !!! Running on native port
-        // TODO: !!! HTTPs
-        `http://assembler.sigmastamp.ml:14747/compile`,
-        {
-            method: 'POST',
-            body,
-            headers: {
-                'Content-Type': 'application/json',
-            },
+    const compilerResponse = await fetch(`${ERGO_ASSEMBLER_URL.href}/compile`, {
+        method: 'POST',
+        body,
+        headers: {
+            'Content-Type': 'application/json',
         },
-    );
+    });
 
     const compilerResponseBody = await compilerResponse.json();
 

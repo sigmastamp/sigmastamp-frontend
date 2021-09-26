@@ -1,3 +1,4 @@
+import { ERGO_ASSEMBLER_URL } from '../config';
 import { ergo_wallet_address } from '../interfaces/stringTypes';
 import { compileErgoScript } from './compileErgoScript';
 import { createScript } from './createScript';
@@ -76,6 +77,7 @@ export async function createSigmaStampNft({
         ergsSendTogetherWithNFT + ergsFeeForSigmaStampService + mintingFee;
     const documentHashInErgoFormat = `e20${documentHashInHex}`;
     const verifyLinkInErgoFormat = `0e61${
+        // TODO: !!! unhardcode address
         /* !!! Convert to hex */ `http://sigmastamp.ml/verify?hash=a16d5705c031866f5c5dd1ba39e43538193b45718af5a50a115e1c8d67c209cd`
     }`;
 
@@ -111,16 +113,13 @@ export async function createSigmaStampNft({
         },
     };
 
-    const followResponse = await fetch(
-        `http://assembler.sigmastamp.ml:14747/follow`,
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestBody),
+    const followResponse = await fetch(`${ERGO_ASSEMBLER_URL.href}/follow`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
         },
-    );
+        body: JSON.stringify(requestBody),
+    });
 
     const followResponseBody = await followResponse.json();
     const { id, dueTime } = followResponseBody;
@@ -132,7 +131,7 @@ export async function createSigmaStampNft({
         async getStatus() {
             // Loop
             const watchResponse = fetch(
-                `http://assembler.sigmastamp.ml:14747/result/${id}`,
+                `${ERGO_ASSEMBLER_URL.href}/result/${id}`,
             );
             const watchResponseBody = await followResponse.json();
             const {
