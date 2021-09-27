@@ -2,7 +2,6 @@ import { urlToErgoFormat } from './urlToErgoFormat';
 
 describe('how conversion of url to ergo fromat works', () => {
     it('can convert simple url to ergo fromat for R9', () => {
-        // TODO: !!!
         expect(urlToErgoFormat('https://www.sigmastamp.ml/verify/foo')).toBe(
             '0e2468747470733a2f2f7777772e7369676d617374616d702e6d6c2f7665726966792f666f6f',
         );
