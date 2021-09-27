@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
 
 import sys
-import base58
-import hashlib
 
 def print_usage(binary_name):
 	print("python ./" + binary_name + " todo")
