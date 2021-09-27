@@ -1,4 +1,4 @@
-import { ergo_format, string_hex } from '../../interfaces/stringTypes';
+import { ergo_format, string_hex } from '../../../interfaces/stringTypes';
 
 /**
  *

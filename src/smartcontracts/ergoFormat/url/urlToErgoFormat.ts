@@ -1,4 +1,4 @@
-import { ergo_format, string_url } from '../../interfaces/stringTypes';
+import { ergo_format, string_url } from '../../../interfaces/stringTypes';
 
 /**
  *

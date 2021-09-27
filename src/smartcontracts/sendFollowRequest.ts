@@ -6,8 +6,8 @@ import {
     seconds,
     string_hex,
 } from '../interfaces/stringTypes';
-import { hexToErgoFormat } from './ergoFormat/hexToErgoFormat';
-import { urlToErgoFormat } from './ergoFormat/urlToErgoFormat';
+import { hexToErgoFormat } from './ergoFormat/hex/hexToErgoFormat';
+import { urlToErgoFormat } from './ergoFormat/url/urlToErgoFormat';
 
 /**
  * TODO: !!! Probbably rename to something like followPaymentRequest

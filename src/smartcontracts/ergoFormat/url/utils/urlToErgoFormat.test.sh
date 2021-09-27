@@ -1,0 +1,1 @@
+python ./urlToErgoFormat.py "https://www.sigmastamp.ml/verify/foo"
