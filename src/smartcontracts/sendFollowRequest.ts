@@ -115,3 +115,69 @@ export async function sendFollowRequest({
         },
     };
 }
+
+/*
+TODO:
+
+
+R9 nema vyzera tak ako vyzera
+Ani R8
+
+
+Majme Blake2b-256 bitovy hash v HEX formate napriklad:
+4d1a7eb6b84817769808c9a8a15ac240470d21b3b6f20e93795c2e2c6bae92be
+
+R8 bude obsahovat TYP_DAT---DLZKU_DAT_V_HEX---DATA_V_HEX (pricom miesto --- tam nie je nic, len to ide za sebou)
+Typ dat je 0e
+Dlzka dat je 20 [hexa] (kedze to je 20hex == 32 dec -> 32 * 8 (pretoze 1byte = 8bit) = 256 a nas hash je prave 256bitovy)
+No a samotne data budu ten hash cize: 4d1a7eb6b84817769808c9a8a15ac240470d21b3b6f20e93795c2e2c6bae92be
+
+Cize v R8 bude:
+"R8": "0e204d1a7eb6b84817769808c9a8a15ac240470d21b3b6f20e93795c2e2c6bae92be"
+Kedze je dlzka hashu stabilna a aj typ dat tak to mozes zobrat jednoducho tak ze pred hex prezentaciu hashu tj napr "4d1a7eb6b84817769808c9a8a15ac240470d21b3b6f20e93795c2e2c6bae92be" vlozis "0e20"
+Cize to tam hardcodnes
+R9 bude obsahovat rovnakym sposobom encodovane data v ktorych bude URL
+Cize 0e na zaciatok ako typ
+Potom XY kde XY je hexa hodnota urcuju kolko bytov dat bude nasledovat
+A nasledne ascii znaky url prevedene na hexa
+Na to som si vtedy pre seba napisal jednoduchy skript s nazvom "string_to_ergobytes.py"
+
+```
+#!/usr/bin/env python3
+
+import sys
+import base58
+import hashlib
+
+def print_usage(binary_name):
+	print("python ./" + binary_name + " todo")
+	print("\tWhere todo")
+
+if len(sys.argv) != 2:
+	print_usage(sys.argv[0])
+	sys.exit(1)
+
+input = sys.argv[1]
+
+
+input_len = len(input)
+
+result = "0e" + '{:02x}'.format(input_len) + input.encode("utf-8").hex()
+
+print(result)
+
+sys.exit(0)
+```
+
+
+tie includes na base58 a aj hashlib mozes vyhodit, tie mi tam ostali z ineho ergopython toolu, ktory som vyrabal...
+
+a spustis to len ako
+
+python ./string_to_ergobytes.py "https://www.sigmastamp.ml/verify/blabla..."
+
+Tym si odskusat ako ma ta url vyzerat encodovana aby si mohol napisal JS ekvivalent toho
+
+Potom by to uz vsetko malo ist :)
+
+*/
