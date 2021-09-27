@@ -123,6 +123,7 @@ TODO:
 R9 nema vyzera tak ako vyzera
 Ani R8
 
+---
 
 Majme Blake2b-256 bitovy hash v HEX formate napriklad:
 4d1a7eb6b84817769808c9a8a15ac240470d21b3b6f20e93795c2e2c6bae92be
@@ -136,6 +137,9 @@ Cize v R8 bude:
 "R8": "0e204d1a7eb6b84817769808c9a8a15ac240470d21b3b6f20e93795c2e2c6bae92be"
 Kedze je dlzka hashu stabilna a aj typ dat tak to mozes zobrat jednoducho tak ze pred hex prezentaciu hashu tj napr "4d1a7eb6b84817769808c9a8a15ac240470d21b3b6f20e93795c2e2c6bae92be" vlozis "0e20"
 Cize to tam hardcodnes
+
+----
+
 R9 bude obsahovat rovnakym sposobom encodovane data v ktorych bude URL
 Cize 0e na zaciatok ako typ
 Potom XY kde XY je hexa hodnota urcuju kolko bytov dat bude nasledovat
