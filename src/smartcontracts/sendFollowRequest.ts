@@ -117,7 +117,7 @@ export async function sendFollowRequest({
 }
 
 /*
-TODO:
+TODO: Instructions from Martin how to fix a follow request
 
 
 R9 nema vyzera tak ako vyzera
