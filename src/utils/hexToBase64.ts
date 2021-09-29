@@ -1,4 +1,6 @@
-export function hexToBase64(str: string) {
+import { string_base64, string_hex } from '../interfaces/stringTypes';
+
+export function hexToBase64(str: string_hex): string_base64 {
     return btoa(
         String.fromCharCode.apply(
             null,

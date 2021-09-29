@@ -181,6 +181,10 @@ export function App() {
                 <Link to="/verify" target={'_blank'}>
                     Or verify your 1st certificate.
                 </Link>
+
+                <Link to="/about">
+                    TODO: !!! Short information about Sigmastamp, version and the build (leading to the more detailed information)
+                </Link>
             </AppDiv>
         );
     } else {
