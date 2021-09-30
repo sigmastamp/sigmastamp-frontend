@@ -4,9 +4,9 @@ export type ergo_transaction_id = string;
 export type ergo_scala_script = string;
 
 /**
- *  TODO: !!! TYP_DAT---DLZKU_DAT_V_HEX---DATA_V_HEX
+ * String in format "{TYPE}{LENGTH}{DATA}" in hex;
  */
-export type ergo_format = string;
+export type ergo_format = string_hex;
 
 export type string_href = string;
 export type string_url = string;
