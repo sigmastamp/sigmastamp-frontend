@@ -8,13 +8,14 @@ import { IPaymentGateProps, PaymentGate } from './components/PaymentGate';
 import { PdfPage } from './components/PdfPage';
 import { UploadZone } from './components/UploadZone';
 import { blake2b256 } from './hash/blake2b256';
-import { string_base64 } from './interfaces/stringTypes';
+import { string_base64, string_hex } from './interfaces/stringTypes';
 import { BitcoinOracle } from './oracles/BitcoinOracle';
 import { DateOracle } from './oracles/DateOracle';
 import { EthereumOracle } from './oracles/EthereumOracle';
 import { LitecoinOracle } from './oracles/LitecoinOracle';
 import { NytimesOracle } from './oracles/NytimesOracle';
 import { createSigmaStampNft } from './smartcontracts/createSigmaStampNft';
+import { hexToBase64 } from './utils/hexToBase64';
 
 const ORACLES = [
     new BitcoinOracle(),
@@ -94,8 +95,12 @@ export function App() {
                                             { type: 'blob' },
                                         );
 
-                                        const zipHash: string_base64 =
+                                        const zipHash: string_hex =
                                             await blake2b256(zipBlob);
+
+                                        const zipHashBase64: string_base64 = 
+                                            await hexToBase64(zipHash);
+
                                         saveAs(
                                             zipBlob,
                                             `certificate1.${zipHash.substring(
@@ -116,7 +121,7 @@ export function App() {
                                         setPayment(
                                             await createSigmaStampNft({
                                                 userAddress,
-                                                documentHashInBase64: zipHash,
+                                                documentHashInBase64: zipHashBase64,
                                                 documentHashInHex: zipHash,
                                             }),
                                         );
