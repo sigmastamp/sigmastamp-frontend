@@ -30,3 +30,12 @@ button {
     display: inline-block;
     text-decoration: none;
 }
+
+#sigmastamp_heading_div{
+    display: flex;
+}
+
+.logo_img{
+    width: 4rem;
+    filter: invert(1);
+}

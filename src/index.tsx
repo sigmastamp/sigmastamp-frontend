@@ -28,7 +28,10 @@ const HeaderElement = styled.header`
 ReactDOM.render(
     <React.StrictMode>
         <HeaderElement>
-            <h1>📜 Sigmastamp</h1>
+            <div id="sigmastamp_heading_div">
+                <img className="logo_img" src="sigmastamp_logo.svg"/>
+                <h1>SigmaStamp</h1>
+            </div>
         </HeaderElement>
         <Router {...{ history }}>
             <Switch>
