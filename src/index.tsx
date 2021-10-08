@@ -29,7 +29,7 @@ ReactDOM.render(
     <React.StrictMode>
         <HeaderElement>
             <div id="sigmastamp_heading_div">
-                <img className="logo_img" src="sigmastamp_logo.svg"/>
+                <img className="logo_img" alt="sigmastamp logo" src="sigmastamp_logo.svg"/>
                 <h1>SigmaStamp</h1>
             </div>
         </HeaderElement>
