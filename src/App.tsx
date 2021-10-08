@@ -98,7 +98,7 @@ export function App() {
                                         const zipHash: string_hex =
                                             await blake2b256(zipBlob);
 
-                                        const zipHashBase64: string_base64 = 
+                                        const zipHashBase64: string_base64 =
                                             await hexToBase64(zipHash);
 
                                         saveAs(
