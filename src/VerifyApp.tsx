@@ -31,14 +31,14 @@ export function VerifyApp() {
                             alert(
                                 `Your 1st certificate is still not validated through Ergo blockchain.`,
                             );
-                            // TODO - consider skipping the rest because extraction of txId from null in
+                            // TODO - consider skipping the rest because extraction of transactionId from null in
                             // the following statements will result in error
                         }
 
-                        const { txId } = droppedFileVerification;
+                        const { transactionId } = droppedFileVerification;
 
                         const { timestamp, tokenId } = await getTransactionTime(
-                            txId,
+                            transactionId,
                         );
                         const currentHolder = await getAssetHolders(tokenId);
 
@@ -98,7 +98,7 @@ export function VerifyApp() {
                     );
                 }}
             >
-                <b>txId:</b> {verification.txId}
+                <b>transactionId:</b> {verification.transactionId}
                 <br />
                 <b>timestamp:</b> {verification.timestamp}
                 <br />
