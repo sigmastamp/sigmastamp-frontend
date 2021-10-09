@@ -61,8 +61,8 @@ export async function sendFollowRequest({
                         R7: '0e0201de',
                         R8: hexToErgoFormat(documentHashInHex),
                         R9: urlToErgoFormat(
-                            // TODO: !!! unhardcode address (What hash there should be Is it documentHashInHex)
-                            `http://sigmastamp.ml/verify?hash=a16d5705c031866f5c5dd1ba39e43538193b45718af5a50a115e1c8d67c209cd`,
+                            // TODO: decide about address format + move it into config ???
+                            `http://sigmastamp.ml/#/verify?hash=${documentHashInHex}`,
                         ),
                     },
                 },
