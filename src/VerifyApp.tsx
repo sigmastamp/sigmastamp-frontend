@@ -31,6 +31,8 @@ export function VerifyApp() {
                             alert(
                                 `Your 1st certificate is still not validated through Ergo blockchain.`,
                             );
+                            // TODO - consider skipping the rest because extraction of txId from null in
+                            // the following statements will result in error
                         }
 
                         const { txId } = droppedFileVerification;

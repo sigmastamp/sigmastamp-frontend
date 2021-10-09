@@ -7,6 +7,9 @@ export const VERSION = version;
 
 const config = ConfigChecker.from(process.env);
 
+// TODO - add testnet/mainnet switch
+// TODO - add config for ergo explorer url and subdomains for testnet/mainnet variant
+
 export const ERGO_ASSEMBLER_URL = config
     .get(
         'REACT_APP_ERGO_ASSEMBLER_URL' /* TODO: configchecker can ignore prefxes in ConfigChecker.from */,
