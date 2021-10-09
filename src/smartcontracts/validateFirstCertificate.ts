@@ -19,6 +19,8 @@ export async function validateFirstCertificate(firstCertificate: File) {
     //(this would mean that we had to ensure for example by asking explorer devs on discord or checking explorer code, that the first tokens/search endpoint is returning data ordered from oldest to newest)
     //otherwise skip this box and continue searching
     //be aware that transaction id property name has changed in the api v1 result compared to v0 result !!!
+    //
+    // TODO also check emissionAmount == 1 (so we take into consideration only NFT tokens)
     const response = await fetch(
         `https://api-testnet.ergoplatform.com/api/v0/assets/issuingBoxes`,
     );
@@ -38,6 +40,8 @@ export async function validateFirstCertificate(firstCertificate: File) {
 
 export async function getTransactionTime(txId: string) {
     // TODO FIXME!!! find api v1 equivalent !!!
+    // switch to (https://api-testnet.ergoplatform.com/api/v1/transactions/txId)
+    // summary is ommited and timestamp is in json root
     const response = await fetch(
         `https://api-testnet.ergoplatform.com/api/v0/transactions/${txId}`,
     );
@@ -51,6 +55,14 @@ export async function getTransactionTime(txId: string) {
 
 export async function getAssetHolders(tokenId: string) {
     // TODO FIXME!!! find api v1 equivalent !!!
+    // possible replacement is to use:
+    // (https://api-testnet.ergoplatform.com/api/v1/assets/search/byTokenId?query=tokenId)
+    // this will return all boxes (even spent ones) which has holded or still hold tokenId
+    // because we use NFT it means that the last box will be box of current holder
+    // than use this api endpoint:
+    // (https://api-testnet.ergoplatform.com/api/v1/boxes/boxId)
+    // to retrieve address of current NFT holder
+    // todo - ask on discord whether there is a better way or we can stay with v0 endpoint
     const response = await fetch(
         `https://api-testnet.ergoplatform.com/api/v0/addresses/assetHolders/${tokenId}`,
     );
