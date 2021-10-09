@@ -40,13 +40,13 @@ export function VerifyApp() {
                         const { timestamp, tokenId } = await getTransactionTime(
                             txId,
                         );
-                        const hodlers = await getAssetHolders(tokenId);
+                        const currentHolder = await getAssetHolders(tokenId);
 
                         setVerification({
                             ...droppedFileVerification,
                             timestamp,
                             tokenId,
-                            hodlers,
+                            currentHolder,
                         });
                         console.log(droppedFileVerification);
                     }}
@@ -104,7 +104,7 @@ export function VerifyApp() {
                 <br />
                 <b>tokenId:</b> {verification.tokenId}
                 <br />
-                <b>hodlers:</b> {verification.hodlers.join(', ')}
+                <b>current holder:</b> {verification.currentHolder.join(', ')}
             </PdfPage>
         );
     }

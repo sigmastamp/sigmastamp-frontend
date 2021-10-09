@@ -39,15 +39,13 @@ export async function validateFirstCertificate(firstCertificate: File) {
 }
 
 export async function getTransactionTime(txId: string) {
-    // TODO FIXME!!! find api v1 equivalent !!!
-    // switch to (https://api-testnet.ergoplatform.com/api/v1/transactions/txId)
-    // summary is ommited and timestamp is in json root
+
     const response = await fetch(
-        `https://api-testnet.ergoplatform.com/api/v0/transactions/${txId}`,
+        `https://api-testnet.ergoplatform.com/api/v1/transactions/${txId}`,
     );
     const body = await response.json();
     console.log('getTransactionTime', body);
-    const timestamp = body.summary.timestamp;
+    const timestamp = body.timestamp;
     const tokenId = body.outputs[0].assets[0].tokenId;
 
     return { timestamp, tokenId };
