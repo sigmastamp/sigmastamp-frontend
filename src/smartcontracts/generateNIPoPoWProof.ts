@@ -22,3 +22,4 @@
 // only to generate them but not to verify them, this should be solved in future
 // we can also show how much hashrate has the potential attacker have to generate fake proof
 //
+export {}
