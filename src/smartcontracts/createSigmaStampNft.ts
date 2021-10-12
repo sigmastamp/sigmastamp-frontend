@@ -6,7 +6,7 @@ import {
 } from '../interfaces/stringTypes';
 import { compileErgoScript } from './compileErgoScript';
 import { createScript } from './createScript';
-import { getCurrentBlockchainHeight } from './getCurrentBlockchainHeight';
+import { getCurrentBlockchainHeight } from './getCurrentBlockchainInfo';
 import { isUserAddressCorrect } from './isUserAddressCorrect';
 import { sendFollowRequest } from './sendFollowRequest';
 
@@ -30,9 +30,12 @@ export async function createSigmaStampNft({
         throw new Error(`User address "${userAddress}" is not correct.`);
     }
 
+    //TODO use getCurrentBlockchainMinFeeRequired to get current min fee assetTypeValue
+    //allow user to set multiples of this value to increase/decrease minting priority
     const mintingFee = 20000000; /* TODO: User settable */
     const ergsSendTogetherWithNFT = 100000000; /* TODO: User settable */
     const ergsFeeForSigmaStampService = 100000000; /* Our fee */
+    //TODO move harcoded values into some config file
     const sigmaStampProviderAddress =
         '3Ww7y6vi4NhFZ1ufsEF8vQNyGrvhNmeMmDWP9h3s4qSEFSMoGooV';
     const assetTypeValue = 'Ad4=';

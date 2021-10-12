@@ -1,7 +1,6 @@
 import { blake2b256 } from '../hash/blake2b256';
 
 export async function validateFirstCertificate(firstCertificate: File) {
-    //TODO implement also assetType validation
     const hash = await blake2b256(firstCertificate);
 
     const tokensResponse = await fetch(
