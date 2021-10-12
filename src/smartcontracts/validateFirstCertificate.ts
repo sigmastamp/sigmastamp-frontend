@@ -1,7 +1,7 @@
 import { blake2b256 } from '../hash/blake2b256';
 
 export async function validateFirstCertificate(firstCertificate: File) {
-
+    //TODO implement also assetType validation
     const hash = await blake2b256(firstCertificate);
 
     const tokensResponse = await fetch(
@@ -21,6 +21,11 @@ export async function validateFirstCertificate(firstCertificate: File) {
         );
 
         const boxesBody = await boxesResponse.json();
+
+        //skip non-SigmaStampNFT types
+        //(0x01 specifies NFT category, 0xde specifies SigmaStampNFT subcategory)
+        //see (https://github.com/ergoplatform/eips/blob/master/eip-0004.md) for more info
+        if(boxesBody.additionalRegisters.R7.renderedValue !== `01de`) continue;
 
         if(boxesBody.additionalRegisters.R8.renderedValue === `${hash}`){
             return boxesBody;
