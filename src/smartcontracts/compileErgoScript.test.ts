@@ -8,6 +8,9 @@ import { compileErgoScript } from './compileErgoScript';
 import { createScript } from './createScript';
 import { isUserAddressCorrect } from './isUserAddressCorrect';
 
+//fix proposed by (https://github.com/facebook/jest/issues/11607)
+jest.useRealTimers();
+
 describe('how compiling of ergo script works', () => {
     // TODO: DRY beforeEach+afterEach
     const PORT = randomPort();
@@ -35,12 +38,14 @@ describe('how compiling of ergo script works', () => {
     });
 
     it('can will fail compiling broken script', () => {
+        jest.setTimeout(10000);
         return expect(
             compileErgoScript({ script: `broken script -/*-/*+-*/*-/` }),
         ).rejects.toThrowError();
     });
 
     it('can compile ergo script', () => {
+        jest.setTimeout(10000);
         return expect(
             createScript({
                 script: `http://localhost:${PORT}/scripts/sigmastamp-nft.scala`,
@@ -64,6 +69,7 @@ describe('how compiling of ergo script works', () => {
     });
 
     it('can compile mocked ergo script', () => {
+        jest.setTimeout(10000);
         return expect(
             createScript({
                 script: `http://localhost:${PORT}/scripts/sigmastamp-nft.mocked.scala`,
@@ -74,6 +80,7 @@ describe('how compiling of ergo script works', () => {
     });
 
     it('can compile mocked hardcoded ergo script', () => {
+        jest.setTimeout(10000);
         return expect(
             compileErgoScript({
                 script: fs.readFileSync(
