@@ -30,7 +30,7 @@ export async function createSigmaStampNft({
         throw new Error(`User address "${userAddress}" is not correct.`);
     }
 
-    //TODO use getCurrentBlockchainMinFeeRequired to get current min fee assetTypeValue
+    //TODO use getCurrentBlockchainMinFeeRequired to get current min fee
     //allow user to set multiples of this value to increase/decrease minting priority
     const mintingFee = 20000000; /* TODO: User settable */
     const ergsSendTogetherWithNFT = 100000000; /* TODO: User settable */
