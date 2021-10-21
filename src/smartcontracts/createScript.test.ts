@@ -2,8 +2,8 @@ import express from 'express';
 import { Server } from 'http';
 import path from 'path';
 import serveStatic from 'serve-static';
+import { spaceTrim } from 'spacetrim';
 import { randomPort } from '../utils/randomPort';
-import { spaceTrim } from '../utils/spaceTrim';
 import { createScript } from './createScript';
 
 // tslint:disable:no-trailing-whitespace
