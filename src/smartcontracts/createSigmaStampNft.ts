@@ -32,20 +32,30 @@ export async function createSigmaStampNft({
 
     //TODO use getCurrentBlockchainMinFeeRequired to get current min fee
     //allow user to set multiples of this value to increase/decrease minting priority
+    //TODO @hejny - design custom form in which user will setup:
+    // 1.) user's address
+    // 2.) how fast he want to have his NFT to be minted (in multiples of minimum fee - see comment above)
+    // 3.) user could show hidden advanced setting which will include:
+    //     a.) setup of custom amount of ERG to send together with NFT token (so user will be able to transfer NFT in future ERG amount sent together with NFT will be used to cover transaction fees on ergo network)
+    //         there should be also tooltip (like question mark icon) which will include explanation text (which will explain what this ERG amount mean...)
+    //TODO @hejny @nitram147 - think about stamping service fee... (whether to make it stable or based on current erg price etc.)
     const mintingFee = 20000000; /* TODO: User settable */
     const ergsSendTogetherWithNFT = 100000000; /* TODO: User settable */
     const ergsFeeForSigmaStampService = 100000000; /* Our fee */
-    //TODO move harcoded values into some config file
+    //TODO @hejny - move harcoded values into some config file
     const sigmaStampProviderAddress =
         '3Ww7y6vi4NhFZ1ufsEF8vQNyGrvhNmeMmDWP9h3s4qSEFSMoGooV';
     const assetTypeValue = 'Ad4=';
+    //TODO @nitram147 - redesign this fee also to use getCurrentBlockchainMinFeeRequired function...
     const returnTransactionFee = 10000000;
 
     /**
      * TODO: !!! unhardcode address
      */
+    // TODO @hejny - move it also to some configuration...
     const sigmaStampAssemblerNodeAddr =
         '3Ww7y6vi4NhFZ1ufsEF8vQNyGrvhNmeMmDWP9h3s4qSEFSMoGooV';
+    // TODO @hejny - same - move the value of "10" bellow to the config file
     const refundHeightThreshold = (await getCurrentBlockchainHeight()) + 10;
 
     console.log(

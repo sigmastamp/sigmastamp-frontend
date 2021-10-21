@@ -7,6 +7,7 @@ export const VERSION = version;
 
 const config = ConfigChecker.from(process.env);
 
+// TODO @hejny - see comments bellow
 // TODO - add testnet/mainnet switch
 // TODO - add config for ergo explorer url and subdomains for testnet/mainnet variant
 
