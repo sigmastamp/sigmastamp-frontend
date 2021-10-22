@@ -62,6 +62,7 @@ export async function sendFollowRequest({
                         R8: hexToErgoFormat(documentHashInHex),
                         R9: urlToErgoFormat(
                             // TODO: decide about address format + move it into config ???
+                            // @hejny @nitram147 - decide about URL path to use
                             `http://sigmastamp.ml/#/verify?hash=${documentHashInHex}`,
                         ),
                     },
@@ -87,6 +88,9 @@ export async function sendFollowRequest({
 
     const followResponseBody = await followResponse.json();
     const { id: transactionId, dueTime } = followResponseBody;
+
+    //TODO @hejny - implement or fix the implementation of heart-beat for follower request state retrieval...
+    //TODO @hejny - also start counting down time limit for user payment - once the 180 seconds elapsed since follower request registration, ergo assembler will stop following proxy-smartcontract address !!!
 
     return {
         amount,

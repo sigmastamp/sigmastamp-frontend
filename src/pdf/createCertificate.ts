@@ -5,6 +5,10 @@ interface ICreateCertificateOptions {
     hash: string;
 }
 
+// TODO @hejny - design some better looking PDF format
+// TODO @hejny & @nitram147 - decide about graphical hash representation
+// TODO @hejny & @nitram147 - decide what to include in certificates...
+
 // TODO: Maybe should return Blob
 export function createCertificate({
     certificateFilename,

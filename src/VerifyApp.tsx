@@ -31,6 +31,7 @@ export function VerifyApp() {
                             alert(
                                 `Your 1st certificate is still not validated through Ergo blockchain.`,
                             );
+                            // TODO @hejny - see comments bellow
                             // TODO - consider skipping the rest because extraction of transactionId from null in
                             // the following statements will result in error
                         }
@@ -73,6 +74,10 @@ export function VerifyApp() {
 
                                 //saveAs(certificateFile);
 
+                                //TODO @hejny @nitram147 - design output format of verify PDF
+                                // also show somehow to user what amount of GPUs will be required to remine the chain to make
+                                // false proofs - this will be based on the block difficulty since the NFT mining block up to today
+                                // TODO @nitram147 - ask on discord whether there's some function on full node to find this difficulty value...
                                 const zip = new JSZip();
                                 for (const file of files) {
                                     zip.file(file.name, file);

@@ -23,3 +23,4 @@
 // we can also show how much hashrate has the potential attacker have to generate fake proof
 //
 export {}
+//TODO @hejny @nitram147 - decide what format to use to export NIPoPoW proofs...

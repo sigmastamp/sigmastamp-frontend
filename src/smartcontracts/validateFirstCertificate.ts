@@ -48,7 +48,7 @@ export async function getTransactionTime(txId: string) {
 }
 
 export async function getAssetHolders(tokenId: string) {
-    // TODO FIXME!!! find api v1 equivalent !!!
+    // TODO FIXME!!! find api v1 equivalent !!! (@nitram147)
     // possible replacement is to use:
     // (https://api-testnet.ergoplatform.com/api/v1/assets/search/byTokenId?query=tokenId)
     // this will return all boxes (even spent ones) which has holded or still hold tokenId

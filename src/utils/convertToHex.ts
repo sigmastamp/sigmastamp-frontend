@@ -1,6 +1,5 @@
 import { string_hex } from "../interfaces/stringTypes";
 
-
 export function convertToHex(str: string): string_hex {
     let hex = '';
     for (let i = 0; i < str.length; i++) {
