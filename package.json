@@ -33,6 +33,7 @@
         ]
     },
     "dependencies": {
+        "@coinbarn/ergo-ts": "^0.3.0",
         "@stablelib/blake2b": "^1.0.1",
         "@stablelib/blake2s": "^1.0.1",
         "@testing-library/jest-dom": "^5.11.4",
