@@ -64,7 +64,7 @@ describe('how compiling of ergo script works', () => {
                 refundHeightThreshold: 10,
             })
                 .then((compiled) => compileErgoScript(compiled))
-                .then(({ address }) => isProxyContractAddressCorrect(address)),
+                .then(({ address }) => isProxyContractAddressValid(address)),
         ).resolves.toBe(true);
     });
 
@@ -75,7 +75,7 @@ describe('how compiling of ergo script works', () => {
                 script: `http://localhost:${PORT}/scripts/sigmastamp-nft.mocked.scala`,
             })
                 .then((compiled) => compileErgoScript(compiled))
-                .then(({ address }) => isProxyContractAddressCorrect(address)),
+                .then(({ address }) => isProxyContractAddressValid(address)),
         ).resolves.toBe(true);
     });
 
@@ -90,7 +90,7 @@ describe('how compiling of ergo script works', () => {
                     ),
                     'utf8',
                 ),
-            }).then(({ address }) => isProxyContractAddressCorrect(address)),
+            }).then(({ address }) => isProxyContractAddressValid(address)),
         ).resolves.toBe(true);
     });
 });
