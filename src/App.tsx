@@ -14,7 +14,7 @@ import { DateOracle } from './oracles/DateOracle';
 import { EthereumOracle } from './oracles/EthereumOracle';
 import { LitecoinOracle } from './oracles/LitecoinOracle';
 import { NytimesOracle } from './oracles/NytimesOracle';
-import { createSigmaStampNft } from './smartcontracts/createSigmaStampNft';
+import { createSigmaStampNFT } from './smartcontracts/createSigmaStampNFT';
 import { hexToBase64 } from './utils/hexToBase64';
 
 const ORACLES = [
@@ -110,7 +110,7 @@ export function App() {
                                         );
 
                                         // TODO: !!! Nicer user input than prompt
-                                        // TODO @hejny - replace this with custom form (details mentioned in createSigmaStampNft.ts)
+                                        // TODO @hejny - replace this with custom form (details mentioned in createSigmaStampNFT.ts)
                                         // TODO @hejny - also move proof of today function away, so user will be able to decide whether he want to stamp file or he will make special version of file via proof of today page and then he will stamp this proof of today generated zip file (certificate)
                                         // but it should be always opt-in, not opt-out !!!
                                         const userAddress = prompt(
@@ -124,7 +124,7 @@ export function App() {
                                         //TODO @hejny - include also page for "return" - this page will be used in case that ergo-assembler failed and users funds got stucked on proxy-smartcontract, see https://sigmausd.io/#/refund <-- we need to implement something like this or the exact "clone" of this...
 
                                         setPayment(
-                                            await createSigmaStampNft({
+                                            await createSigmaStampNFT({
                                                 userAddress,
                                                 documentHashInBase64: zipHashBase64,
                                                 documentHashInHex: zipHash,
