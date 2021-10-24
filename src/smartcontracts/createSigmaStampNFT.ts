@@ -10,7 +10,7 @@ import { getCurrentBlockchainHeight } from './getCurrentBlockchainInfo';
 import { isUserAddressValid } from './addressValidator';
 import { sendFollowRequest } from './sendFollowRequest';
 
-interface ICreateSigmaStampNft {
+interface ICreateSigmaStampNFT {
     documentHashInBase64: string;
     documentHashInHex: string;
     userAddress: ergo_wallet_address;
@@ -20,7 +20,7 @@ export async function createSigmaStampNFT({
     userAddress,
     documentHashInBase64,
     documentHashInHex,
-}: ICreateSigmaStampNft): Promise<{
+}: ICreateSigmaStampNFT): Promise<{
     amount: nanoerg;
     address: ergo_script_address;
     dueTime: seconds;
