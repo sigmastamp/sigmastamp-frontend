@@ -6,7 +6,7 @@ import { PdfPage } from './components/PdfPage';
 import { UploadZone } from './components/UploadZone';
 import { blake2b256 } from './hash/blake2b256';
 import {
-    getAssetHolders,
+    getNFTHolderAddress,
     getTransactionTime,
     validateFirstCertificate,
 } from './smartcontracts/validateFirstCertificate';
@@ -41,7 +41,11 @@ export function VerifyApp() {
                         const { timestamp, tokenId } = await getTransactionTime(
                             transactionId,
                         );
-                        const currentHolder = await getAssetHolders(tokenId);
+                        //TODO @hejny @nitram147 - handle null in case that there isn't asset holder
+                        //this could happen when somebody burned NFT token
+                        //(we know that the corresponding NFT has already existed based on validateFirstCertificate function)
+                        //(but we don't know whether it still exists...)
+                        const currentHolder = await getNFTHolderAddress(tokenId);
 
                         setVerification({
                             ...droppedFileVerification,
@@ -109,7 +113,7 @@ export function VerifyApp() {
                 <br />
                 <b>tokenId:</b> {verification.tokenId}
                 <br />
-                <b>current holder:</b> {verification.currentHolder.join(', ')}
+                <b>current holder:</b> {verification.currentHolder}
             </PdfPage>
         );
     }

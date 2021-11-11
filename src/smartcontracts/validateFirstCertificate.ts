@@ -2,6 +2,7 @@ import { blake2b256 } from '../hash/blake2b256';
 
 //TODO rename function below
 export async function validateFirstCertificate(firstCertificate: File) {
+
     const hash = await blake2b256(firstCertificate);
 
     const tokensResponse = await fetch(
@@ -45,33 +46,26 @@ export async function getTransactionTime(txId: string) {
         `https://api-testnet.ergoplatform.com/api/v1/transactions/${txId}`,
     );
     const body = await response.json();
+
     console.log('getTransactionTime', body);
+
     const timestamp = body.timestamp;
     const tokenId = body.outputs[0].assets[0].tokenId;
 
     return { timestamp, tokenId };
 }
 
-export async function getAssetHolders(tokenId: string) {
-    // TODO FIXME!!! find api v1 equivalent !!! (@nitram147)
-    // possible replacement is to use:
-    // (https://api-testnet.ergoplatform.com/api/v1/assets/search/byTokenId?query=tokenId)
-    // this will return all boxes (even spent ones) which has holded or still hold tokenId
-    // because we use NFT it means that the last box will be box of current holder
-    // than use this api endpoint:
-    // (https://api-testnet.ergoplatform.com/api/v1/boxes/boxId)
-    // to retrieve address of current NFT holder
-    // todo - ask on discord whether there is a better way or we can stay with v0 endpoint
+export async function getNFTHolderAddress(tokenId: string) {
 
-    //UPDATE: maybe it would be better to use just this api endpoint:
-    //https://api-testnet.ergoplatform.com/api/v1/boxes/unspent/byTokenId/id
-    //because NFT is unique there should be only one UTXO (endpoint parameter unspent) containing
-    //this NFT, api response also contains address, so it probably could be done with single api call
-    //TODO @nitram147 - play with it to find whether this endpoint work as expected
     const response = await fetch(
-        `https://api-testnet.ergoplatform.com/api/v0/addresses/assetHolders/${tokenId}`,
+        `https://api-testnet.ergoplatform.com/api/v1/boxes/unspent/byTokenId/${tokenId}`,
     );
     const body = await response.json();
-    console.log('getAssetHolders', body);
-    return body;
+
+    console.log('getNFTHolderAddress', body);
+
+    //check that there is only one holder (it means that it is NFT and also that it exists)
+    if(body.total !== 1) return null;
+
+    return body.items[0].address;
 }
