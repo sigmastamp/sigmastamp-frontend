@@ -30,6 +30,11 @@ export async function createSigmaStampNFT({
         throw new Error(`User address "${userAddress}" is not correct.`);
     }
 
+    //TODO @nitram147 @hejny validate whether hash already exists in blockchain (same way as in the verification phase)
+    //if hash exists there, show user warning that this file was already stamped via sigmastamp and cannot be done more times
+    //[of couse somebody can stamp this file again on its own, however will we be taking into account only the first occurence of this hash in blockchain - so the guy who stamped it first is the original owner of the file]
+
+
     //TODO use getCurrentBlockchainMinFeeRequired to get current min fee
     //allow user to set multiples of this value to increase/decrease minting priority
     //TODO @hejny - design custom form in which user will setup:

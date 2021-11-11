@@ -1,5 +1,6 @@
 import { blake2b256 } from '../hash/blake2b256';
 
+//TODO rename function below
 export async function validateFirstCertificate(firstCertificate: File) {
     const hash = await blake2b256(firstCertificate);
 
@@ -34,6 +35,10 @@ export async function validateFirstCertificate(firstCertificate: File) {
     return null;
 }
 
+//TODO @nitram147 - function to check whether is hash already in blockchain
+//it would be similar to validateFirstCertificate function
+//maybe it would be great to extract the core functionality into one function and then only make wrapper for it (so validateFirstCertificate will be only a wrapper)
+
 export async function getTransactionTime(txId: string) {
 
     const response = await fetch(
@@ -57,6 +62,12 @@ export async function getAssetHolders(tokenId: string) {
     // (https://api-testnet.ergoplatform.com/api/v1/boxes/boxId)
     // to retrieve address of current NFT holder
     // todo - ask on discord whether there is a better way or we can stay with v0 endpoint
+
+    //UPDATE: maybe it would be better to use just this api endpoint:
+    //https://api-testnet.ergoplatform.com/api/v1/boxes/unspent/byTokenId/id
+    //because NFT is unique there should be only one UTXO (endpoint parameter unspent) containing
+    //this NFT, api response also contains address, so it probably could be done with single api call
+    //TODO @nitram147 - play with it to find whether this endpoint work as expected
     const response = await fetch(
         `https://api-testnet.ergoplatform.com/api/v0/addresses/assetHolders/${tokenId}`,
     );
