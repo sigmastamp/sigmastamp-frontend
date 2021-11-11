@@ -6,7 +6,7 @@ import serveStatic from 'serve-static';
 import { randomPort } from '../utils/randomPort';
 import { compileErgoScript } from './compileErgoScript';
 import { createScript } from './createScript';
-import { isUserAddressCorrect } from './isUserAddressCorrect';
+import { isProxyContractAddressValid } from './addressValidator';
 
 //fix proposed by (https://github.com/facebook/jest/issues/11607)
 jest.useRealTimers();
@@ -64,7 +64,7 @@ describe('how compiling of ergo script works', () => {
                 refundHeightThreshold: 10,
             })
                 .then((compiled) => compileErgoScript(compiled))
-                .then(({ address }) => isUserAddressCorrect(address)),
+                .then(({ address }) => isProxyContractAddressValid(address)),
         ).resolves.toBe(true);
     });
 
@@ -75,7 +75,7 @@ describe('how compiling of ergo script works', () => {
                 script: `http://localhost:${PORT}/scripts/sigmastamp-nft.mocked.scala`,
             })
                 .then((compiled) => compileErgoScript(compiled))
-                .then(({ address }) => isUserAddressCorrect(address)),
+                .then(({ address }) => isProxyContractAddressValid(address)),
         ).resolves.toBe(true);
     });
 
@@ -90,7 +90,7 @@ describe('how compiling of ergo script works', () => {
                     ),
                     'utf8',
                 ),
-            }).then(({ address }) => isUserAddressCorrect(address)),
+            }).then(({ address }) => isProxyContractAddressValid(address)),
         ).resolves.toBe(true);
     });
 });
