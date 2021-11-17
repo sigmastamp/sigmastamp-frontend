@@ -1,8 +1,9 @@
+name: Deploy the page
+
 on:
     push:
-        branches: [main]
-    workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
-
+        tags:
+            - 'v*'
 jobs:
     deploy:
         runs-on: ubuntu-latest

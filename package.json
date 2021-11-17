@@ -12,7 +12,7 @@
         "test": "react-scripts test --watchAll=false",
         "lint": "tslint -p tsconfig.json",
         "preversion": "npm run lint && npm test",
-        "postversion": "git push"
+        "postversion": "git push && git push --tags"
     },
     "eslintConfig": {
         "extends": [
