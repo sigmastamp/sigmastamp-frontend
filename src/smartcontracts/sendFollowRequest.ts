@@ -106,6 +106,19 @@ export async function sendFollowRequest({
         while (true) {
             await forTimeSynced(1000);
 
+            if (
+                new Date(/* TODO: Taking user date can be dangerous, use some remote time. */).getTime() >
+                dueDate.getTime()
+            ) {
+                paymentStatus.error(
+                    new Error(
+                        'Timeout' /* TODO: TimeoutError class + better message */,
+                    ),
+                );
+                paymentStatus.complete(/* TODO: Should be this there after error?! */);
+                return;
+            }
+
             // Loop
             const watchResponse = await fetch(
                 `${ERGO_ASSEMBLER_URL.href}result/${transactionId}`,
@@ -135,8 +148,6 @@ export async function sendFollowRequest({
                     new Date(/* TODO: Taking user date can be dangerous, use some remote time. */),
                 isPayed: false,
             });
-
-            // TODO: paymentStatus.error( new Error('Timeout') ); if dueTime is expired
         }
     })();
 

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Countdown from 'react-countdown';
-import { map } from 'rxjs';
+import { catchError, map, of } from 'rxjs';
 import styled from 'styled-components';
 import { IPaymentStatus } from '../interfaces/IPaymentStatus';
 import { ergo_wallet_address, nanoerg } from '../interfaces/stringTypes';
@@ -32,51 +32,55 @@ export function PaymentGate({
     return (
         <PaymentGateDiv>
             <ObservableContentComponent
-                content={paymentStatus.pipe(
-                    map(({ checkedDate, isPayed }) =>
-                        !isPayed ? (
-                            <>
-                                <QRCode {...{ link }} />
-                                Pay {amount / 1000000000} ERG to address{' '}
-                                <a
-                                    href={link.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    {address}
-                                </a>
-                                <br />
-                                In{' '}
-                                <Countdown
-                                    date={dueDate}
-                                    overtime={false}
-                                    renderer={({ minutes, seconds }) => (
-                                        <>
-                                            {minutes}:{seconds}
-                                        </>
-                                    )}
-                                />
-                                <br />
-                                until{' '}
-                                {
-                                    dueDate.toUTCString() /* TODO: Some smarter component to show date and time - maybe use moment.js */
-                                }
-                                <hr />
-                                <Loader /> Waiting for payment
-                                <br />
-                                Last checked at{' '}
-                                {
-                                    checkedDate.toUTCString() /* TODO: Some smarter component to show date and time - maybe use moment.js */
-                                }
-                            </>
-                        ) : (
-                            <>
-                                Succesfully payed!
-                                {/* TODO: !!! Place here a link or redirection */}
-                            </>
+                content={paymentStatus
+                    .pipe(
+                        map(({ checkedDate, isPayed }) =>
+                            !isPayed ? (
+                                <>
+                                    <QRCode {...{ link }} />
+                                    Pay {amount / 1000000000} ERG to address{' '}
+                                    <a
+                                        href={link.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        {address}
+                                    </a>
+                                    <br />
+                                    In{' '}
+                                    <Countdown
+                                        date={dueDate}
+                                        overtime={false}
+                                        renderer={({ minutes, seconds }) => (
+                                            <>
+                                                {minutes}:{seconds}
+                                            </>
+                                        )}
+                                    />
+                                    <br />
+                                    until{' '}
+                                    {
+                                        dueDate.toUTCString() /* TODO: Some smarter component to show date and time - maybe use moment.js */
+                                    }
+                                    <hr />
+                                    <Loader /> Waiting for payment
+                                    <br />
+                                    Last checked at{' '}
+                                    {
+                                        checkedDate.toUTCString() /* TODO: Some smarter component to show date and time - maybe use moment.js */
+                                    }
+                                </>
+                            ) : (
+                                <>
+                                    Succesfully payed!
+                                    {/* TODO: !!! Place here a link or redirection */}
+                                </>
+                            ),
                         ),
-                    ),
-                )}
+                    )
+                    .pipe(
+                        catchError((error: Error) => of(<>{error.message}</>)),
+                    )}
             />
         </PaymentGateDiv>
     );
