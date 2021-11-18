@@ -1,12 +1,9 @@
 import * as React from 'react';
+import Countdown from 'react-countdown';
 import { map } from 'rxjs';
 import styled from 'styled-components';
 import { IPaymentStatus } from '../interfaces/IPaymentStatus';
-import {
-    ergo_wallet_address,
-    nanoerg,
-    seconds,
-} from '../interfaces/stringTypes';
+import { ergo_wallet_address, nanoerg } from '../interfaces/stringTypes';
 import { Loader } from './Loader';
 import { ObservableContentComponent } from './ObservableContentComponent';
 import { QRCode } from './QRCode';
@@ -14,14 +11,14 @@ import { QRCode } from './QRCode';
 export interface IPaymentGateProps {
     amount: nanoerg;
     address: ergo_wallet_address;
-    dueTime: seconds /* TODO: Make it absolute by Date */;
+    dueDate: Date;
     paymentStatus: IPaymentStatus;
 }
 
 export function PaymentGate({
     amount,
     address,
-    dueTime,
+    dueDate,
     paymentStatus,
 }: IPaymentGateProps) {
     // TODO: !!! Deal up in design in superlong addreses like UegztxGAXchyKXtaZYFkGWxDnCpMD329qSNk4YVrc8wrwitM58WVocMT59rPSasNZJwezshytQ74pq9JF8uUGGYHJW64hbooxY54dDCRZnFVqFvXGcj1jUhkXpuYuVaDY1b6LcXq9zRCZCiXZ36Gswg2TqcgZRE1B5ZxUrKSd19XykEfsgx5eWW3k7MDiLxvisPqMxqpZtP8UHvgwucJxZ4Bg86xWC3v4kXVC6o9mkg7z64MqiQy1FrqHvY65mr7UgG1vK8q37mDcgZPkDc7BKmsKSLynXgDNsqT8yirvxmsCU9o5wMsF8BoFPxUnjPGLAp7yBwnqtvXowq3o4pYnc4h93irPEHqbTySBgLSEwFzgRgbVrXtE8FaL1q2LVyg7rbHJHzvjVfJMyQDSGQwecG6iWybNUv9sP7SKanHegS4wn8xKaBGrSmqTNk4aPpRXvGTr6rikYxmTYDmQru6tJSebRUf7mhsbtp3xTngEgFtPVCMQTnuuNtszbtHnMHGxfPntz8gEqfKFjHrM1LSCkWxuiYx92Nj7EHFY5vnM7
@@ -36,7 +33,7 @@ export function PaymentGate({
         <PaymentGateDiv>
             <ObservableContentComponent
                 content={paymentStatus.pipe(
-                    map(({ date, isPayed }) =>
+                    map(({ checkedDate, isPayed }) =>
                         !isPayed ? (
                             <>
                                 <QRCode {...{ link }} />
@@ -48,14 +45,28 @@ export function PaymentGate({
                                 >
                                     {address}
                                 </a>
-                                {/* TODO: !!! Make absolute Countdown AFTER making dueTime absolute by Date */}
-                                in {dueTime} seconds.
+                                <br />
+                                In{' '}
+                                <Countdown
+                                    date={dueDate}
+                                    overtime={false}
+                                    renderer={({ minutes, seconds }) => (
+                                        <>
+                                            {minutes}:{seconds}
+                                        </>
+                                    )}
+                                />
+                                <br />
+                                until{' '}
+                                {
+                                    dueDate.toUTCString() /* TODO: Some smarter component to show date and time - maybe use moment.js */
+                                }
                                 <hr />
                                 <Loader /> Waiting for payment
                                 <br />
                                 Last checked at{' '}
                                 {
-                                    date.toUTCString() /* TODO: Some smarter component to show date and time - maybe use moment.js */
+                                    checkedDate.toUTCString() /* TODO: Some smarter component to show date and time - maybe use moment.js */
                                 }
                             </>
                         ) : (

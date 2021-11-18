@@ -6,7 +6,6 @@ import {
     ergo_script_address,
     ergo_wallet_address,
     nanoerg,
-    seconds,
     string_hex,
 } from '../interfaces/stringTypes';
 import { hexToErgoFormat } from './ergoFormat/hex/hexToErgoFormat';
@@ -41,7 +40,7 @@ export async function sendFollowRequest({
      * TODO: is it really in seconds?!
      * TODO: Make it absolute by Date
      */
-    dueTime: seconds;
+    dueDate: Date;
     paymentStatus: IPaymentStatus;
 }> {
     const amount: nanoerg =
@@ -93,12 +92,12 @@ export async function sendFollowRequest({
     const followResponseBody = await followResponse.json();
     const { id: transactionId, dueTime } = followResponseBody;
 
-    //TODO @hejny - implement or fix the implementation of heartbeat for follower request state retrieval...
-    //TODO @hejny - also start counting down time limit for user payment - once the 180 seconds elapsed since follower request registration, ergo assembler will stop following proxy-smartcontract address !!!
+    const dueDate = new Date(new Date().getTime() + dueTime * 1000);
 
     // TODO: Probbably split creation of paymentStatus into new function
     const paymentStatus = new BehaviorSubject({
-        date: new Date(/* TODO: Taking user date can be dangerous, use some remote time. */),
+        checkedDate:
+            new Date(/* TODO: Taking user date can be dangerous, use some remote time. */),
         isPayed: false,
     }) as IPaymentStatus;
 
@@ -123,7 +122,8 @@ export async function sendFollowRequest({
                 // TODO: !!! And now take tx and create big certificate
 
                 paymentStatus.next({
-                    date: new Date(/* TODO: Taking user date can be dangerous, use some remote time. */),
+                    checkedDate:
+                        new Date(/* TODO: Taking user date can be dangerous, use some remote time. */),
                     isPayed: true,
                 });
                 paymentStatus.complete();
@@ -131,7 +131,8 @@ export async function sendFollowRequest({
             }
 
             paymentStatus.next({
-                date: new Date(/* TODO: Taking user date can be dangerous, use some remote time. */),
+                checkedDate:
+                    new Date(/* TODO: Taking user date can be dangerous, use some remote time. */),
                 isPayed: false,
             });
 
@@ -141,7 +142,7 @@ export async function sendFollowRequest({
 
     return {
         amount,
-        dueTime /* TODO: Make it absolute by Date */,
+        dueDate,
         paymentStatus,
     };
 }

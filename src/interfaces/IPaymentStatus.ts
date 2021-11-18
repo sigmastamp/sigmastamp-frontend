@@ -1,6 +1,6 @@
 import { BehaviorSubject } from 'rxjs';
 
 export type IPaymentStatus = BehaviorSubject<{
-    date: Date;
+    checkedDate: Date;
     isPayed: boolean;
 }>;
