@@ -9,6 +9,7 @@ import { createScript } from './createScript';
 import { getCurrentBlockchainHeight } from './getCurrentBlockchainInfo';
 import { isUserAddressValid } from './addressValidator';
 import { sendFollowRequest } from './sendFollowRequest';
+import { IPaymentStatus } from '../interfaces/IPaymentStatus';
 
 interface ICreateSigmaStampNFT {
     documentHashInBase64: string;
@@ -24,7 +25,7 @@ export async function createSigmaStampNFT({
     amount: nanoerg;
     address: ergo_script_address;
     dueTime: seconds;
-    isPayed(): Promise<boolean>;
+    paymentStatus: IPaymentStatus;
 }> {
     if (!(await isUserAddressValid(userAddress))) {
         throw new Error(`User address "${userAddress}" is not correct.`);
@@ -96,7 +97,7 @@ export async function createSigmaStampNFT({
         script,
     });
 
-    const { amount, dueTime, isPayed } = await sendFollowRequest({
+    const { amount, dueTime, paymentStatus } = await sendFollowRequest({
         compiledSmartContractAddress,
         userAddress,
         sigmaStampProviderAddress,
@@ -110,6 +111,6 @@ export async function createSigmaStampNFT({
         amount,
         address: compiledSmartContractAddress,
         dueTime,
-        isPayed,
+        paymentStatus,
     };
 }

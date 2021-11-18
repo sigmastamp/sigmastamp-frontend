@@ -1,13 +1,13 @@
 import { jsPDF } from 'jspdf';
 import React, { useRef } from 'react';
 import styled from 'styled-components';
-import { IAwaitable } from './AsyncContentComponent';
+import { Promisable } from 'type-fest';
 //import html2canvas from 'html2canvas';
 
 interface IPdfPageProps extends React.PropsWithChildren<{}> {
     createUi: (options: {
         createPdf: () => Promise<Blob>;
-    }) => IAwaitable<JSX.Element | JSX.Element[]>;
+    }) => Promisable<JSX.Element | JSX.Element[]>;
 }
 
 export function PdfPage(props: IPdfPageProps) {

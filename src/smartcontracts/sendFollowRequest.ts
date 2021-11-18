@@ -1,4 +1,7 @@
+import { BehaviorSubject } from 'rxjs';
+import { forTimeSynced } from 'waitasecond';
 import { ERGO_ASSEMBLER_URL } from '../config';
+import { IPaymentStatus } from '../interfaces/IPaymentStatus';
 import {
     ergo_script_address,
     ergo_wallet_address,
@@ -33,12 +36,13 @@ export async function sendFollowRequest({
     mintingFee: nanoerg;
 }): Promise<{
     amount: nanoerg;
-    dueTime: seconds /* TODO: is it really seconds */;
 
     /**
-     * TODO: !!! Probbably do with some RxJS array to the consumer
+     * TODO: is it really in seconds?!
+     * TODO: Make it absolute by Date
      */
-    isPayed(): Promise<boolean>;
+    dueTime: seconds;
+    paymentStatus: IPaymentStatus;
 }> {
     const amount: nanoerg =
         ergsSendTogetherWithNFT + ergsFeeForSigmaStampService + mintingFee;
@@ -92,15 +96,22 @@ export async function sendFollowRequest({
     //TODO @hejny - implement or fix the implementation of heartbeat for follower request state retrieval...
     //TODO @hejny - also start counting down time limit for user payment - once the 180 seconds elapsed since follower request registration, ergo assembler will stop following proxy-smartcontract address !!!
 
-    return {
-        amount,
-        dueTime,
-        async isPayed() {
+    // TODO: Probbably split creation of paymentStatus into new function
+    const paymentStatus = new BehaviorSubject({
+        date: new Date(),
+        isPayed: false,
+    }) as IPaymentStatus;
+
+    (async () => {
+        // TODO: Do this by a Destroyable Registration without [IIFE with side-effects]
+        while (true) {
+            await forTimeSynced(1000);
+
             // Loop
-            const watchResponse = fetch(
+            const watchResponse = await fetch(
                 `${ERGO_ASSEMBLER_URL.href}result/${transactionId}`,
             );
-            const watchResponseBody = await followResponse.json();
+            const watchResponseBody = await watchResponse.json();
             const {
                 /*id,*/ tx,
                 detail /* pending, returning, mined, success, timeout, returnFailed */,
@@ -109,13 +120,29 @@ export async function sendFollowRequest({
             console.log({ watchResponse, watchResponseBody, tx });
 
             if (detail === 'success') {
-                // !!! And now take tx and create big certificate
+                // TODO: !!! And now take tx and create big certificate
 
-                return true;
+                paymentStatus.next({
+                    date: new Date(),
+                    isPayed: true,
+                });
+                paymentStatus.complete();
+                return;
             }
 
-            return false;
-        },
+            paymentStatus.next({
+                date: new Date(),
+                isPayed: false,
+            });
+
+            // TODO: paymentStatus.error( new Error('Timeout') ); if dueTime is expired
+        }
+    })();
+
+    return {
+        amount,
+        dueTime /* TODO: Make it absolute by Date */,
+        paymentStatus,
     };
 }
 

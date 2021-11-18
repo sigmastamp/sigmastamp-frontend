@@ -126,7 +126,8 @@ export function App() {
                                         setPayment(
                                             await createSigmaStampNFT({
                                                 userAddress,
-                                                documentHashInBase64: zipHashBase64,
+                                                documentHashInBase64:
+                                                    zipHashBase64,
                                                 documentHashInHex: zipHash,
                                             }),
                                         );
@@ -188,13 +189,20 @@ export function App() {
                     </PdfPage>
                 )}
 
-                <Link to="/verify" target={'_blank'}>
-                    Or verify your 1st certificate.
-                </Link>
-
-                <Link to="/about">
-                    TODO: !!! Short information about Sigmastamp, version and the build (leading to the more detailed information)
-                </Link>
+                <ul>
+                    <li>
+                        <Link to="/verify" target={'_blank'}>
+                            Or verify your 1st certificate.
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/about">
+                            TODO: !!! Short information about Sigmastamp,
+                            version and the build (leading to the more detailed
+                            information)
+                        </Link>
+                    </li>
+                </ul>
             </AppDiv>
         );
     } else {
