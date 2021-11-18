@@ -98,7 +98,7 @@ export async function sendFollowRequest({
 
     // TODO: Probbably split creation of paymentStatus into new function
     const paymentStatus = new BehaviorSubject({
-        date: new Date(),
+        date: new Date(/* TODO: Taking user date can be dangerous, use some remote time. */),
         isPayed: false,
     }) as IPaymentStatus;
 
@@ -123,7 +123,7 @@ export async function sendFollowRequest({
                 // TODO: !!! And now take tx and create big certificate
 
                 paymentStatus.next({
-                    date: new Date(),
+                    date: new Date(/* TODO: Taking user date can be dangerous, use some remote time. */),
                     isPayed: true,
                 });
                 paymentStatus.complete();
@@ -131,7 +131,7 @@ export async function sendFollowRequest({
             }
 
             paymentStatus.next({
-                date: new Date(),
+                date: new Date(/* TODO: Taking user date can be dangerous, use some remote time. */),
                 isPayed: false,
             });
 

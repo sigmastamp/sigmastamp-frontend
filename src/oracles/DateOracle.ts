@@ -8,7 +8,7 @@ export class DateOracle implements IOracle<{ date: string; time: string }> {
     public dataTitles = { date: 'date', time: 'time' };
 
     public getData() {
-        const date = new Date();
+        const date = new Date(/* TODO: Taking user date can be dangerous, use some remote time. */);
         return {
             date: `${date.getUTCFullYear()}-${('0' + date.getUTCMonth()).slice(
                 -2,
