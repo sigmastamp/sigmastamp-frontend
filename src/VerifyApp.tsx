@@ -10,6 +10,7 @@ import {
     getTransactionTime,
     validateFirstCertificate,
 } from './smartcontracts/validateFirstCertificate';
+import { saveAs } from 'file-saver';
 
 export function VerifyApp() {
     const [files, setFiles] = useState<any>([]);

@@ -6,7 +6,7 @@ import { uint8ArrayToHex } from '../utils/uint8ArrayToHex';
 export async function blake2b256(input: File | Blob): Promise<string> {
     const KEY = null; // optional key
     const OUTPUT_LENGTH = 32; // bytes
-    const context = blake2bInit(OUTPUT_LENGTH, KEY);
+    const context = blake2bInit(OUTPUT_LENGTH, KEY || undefined);
 
     // each time you get a byte array from the stream:
     blake2bUpdate(context, await getAsByteArray(input));
