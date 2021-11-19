@@ -126,7 +126,7 @@ export async function sendFollowRequest({
             const watchResponseBody = await watchResponse.json();
             const {
                 /*id, */tx,
-                detail /* pending, returning, mined, success, timeout, returnFailed */,
+                detail /* "pending", "returning", "mined", "success", "timeout", "return failed" */,
             } = watchResponseBody;
 
             console.log({ watchResponse, watchResponseBody, tx, detail });
