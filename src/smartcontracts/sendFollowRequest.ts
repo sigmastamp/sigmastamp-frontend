@@ -125,11 +125,11 @@ export async function sendFollowRequest({
             );
             const watchResponseBody = await watchResponse.json();
             const {
-                /*id,*/ tx,
+                /*id, */tx,
                 detail /* pending, returning, mined, success, timeout, returnFailed */,
-            } = followResponseBody;
+            } = watchResponseBody;
 
-            console.log({ watchResponse, watchResponseBody, tx });
+            console.log({ watchResponse, watchResponseBody, tx, detail });
 
             if (detail === 'success') {
                 // TODO: !!! And now take tx and create big certificate
