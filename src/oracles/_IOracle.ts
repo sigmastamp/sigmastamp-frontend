@@ -1,4 +1,4 @@
-import { IAwaitable } from '../components/AsyncContentComponent';
+import { Promisable } from 'type-fest';
 
 export interface IOracle<TData> {
     /**
@@ -30,7 +30,7 @@ export interface IOracle<TData> {
     /**
      * Gets current state of oracles domain
      */
-    getData(): IAwaitable<TData>;
+    getData(): Promisable<TData>;
 }
 
 // @see https://medium.com/rakuten-rapidapi/top-10-best-news-apis-google-news-bloomberg-bing-news-and-more-bbf3e6e46af6

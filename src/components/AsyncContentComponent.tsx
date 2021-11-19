@@ -1,7 +1,6 @@
 import * as React from 'react';
+import { Promisable } from 'type-fest';
 import { Loader } from './Loader';
-
-export type IAwaitable<T> = T | Promise<T>;
 
 export type IFactory<T> = () => T;
 
@@ -26,7 +25,7 @@ interface IAsyncContentComponentProps {
     /**
      * The async content to be rendered
      */
-    content: IFactorable<IAwaitable<JSX.Element>>;
+    content: IFactorable<Promisable<JSX.Element>>;
 }
 
 interface IAsyncContentComponentState {

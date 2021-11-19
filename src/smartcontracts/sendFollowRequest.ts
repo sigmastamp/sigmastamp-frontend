@@ -1,9 +1,11 @@
+import { BehaviorSubject } from 'rxjs';
+import { forTimeSynced } from 'waitasecond';
 import { ERGO_ASSEMBLER_URL } from '../config';
+import { IPaymentStatus } from '../interfaces/IPaymentStatus';
 import {
     ergo_script_address,
     ergo_wallet_address,
     nanoerg,
-    seconds,
     string_hex,
 } from '../interfaces/stringTypes';
 import { hexToErgoFormat } from './ergoFormat/hex/hexToErgoFormat';
@@ -33,12 +35,13 @@ export async function sendFollowRequest({
     mintingFee: nanoerg;
 }): Promise<{
     amount: nanoerg;
-    dueTime: seconds /* TODO: is it really seconds */;
 
     /**
-     * TODO: !!! Probbably do with some RxJS array to the consumer
+     * TODO: is it really in seconds?!
+     * TODO: Make it absolute by Date
      */
-    isPayed(): Promise<boolean>;
+    dueDate: Date;
+    paymentStatus: IPaymentStatus;
 }> {
     const amount: nanoerg =
         ergsSendTogetherWithNFT + ergsFeeForSigmaStampService + mintingFee;
@@ -89,33 +92,69 @@ export async function sendFollowRequest({
     const followResponseBody = await followResponse.json();
     const { id: transactionId, dueTime } = followResponseBody;
 
-    //TODO @hejny - implement or fix the implementation of heartbeat for follower request state retrieval...
-    //TODO @hejny - also start counting down time limit for user payment - once the 180 seconds elapsed since follower request registration, ergo assembler will stop following proxy-smartcontract address !!!
+    const dueDate = new Date(new Date().getTime() + dueTime * 1000);
+
+    // TODO: Probbably split creation of paymentStatus into new function
+    const paymentStatus = new BehaviorSubject({
+        checkedDate:
+            new Date(/* TODO: Taking user date can be dangerous, use some remote time. */),
+        isPayed: false,
+    }) as IPaymentStatus;
+
+    (async () => {
+        // TODO: Do this by a Destroyable Registration without [IIFE with side-effects]
+        while (true) {
+            await forTimeSynced(1000);
+
+            if (
+                new Date(/* TODO: Taking user date can be dangerous, use some remote time. */).getTime() >
+                dueDate.getTime()
+            ) {
+                paymentStatus.error(
+                    new Error(
+                        'Timeout' /* TODO: TimeoutError class + better message */,
+                    ),
+                );
+                paymentStatus.complete(/* TODO: Should be this there after error?! */);
+                return;
+            }
+
+            // Loop
+            const watchResponse = await fetch(
+                `${ERGO_ASSEMBLER_URL.href}result/${transactionId}`,
+            );
+            const watchResponseBody = await watchResponse.json();
+            const {
+                /*id, */tx,
+                detail /* pending, returning, mined, success, timeout, returnFailed */,
+            } = watchResponseBody;
+
+            console.log({ watchResponse, watchResponseBody, tx, detail });
+
+            if (detail === 'success') {
+                // TODO: !!! And now take tx and create big certificate
+
+                paymentStatus.next({
+                    checkedDate:
+                        new Date(/* TODO: Taking user date can be dangerous, use some remote time. */),
+                    isPayed: true,
+                });
+                paymentStatus.complete();
+                return;
+            }
+
+            paymentStatus.next({
+                checkedDate:
+                    new Date(/* TODO: Taking user date can be dangerous, use some remote time. */),
+                isPayed: false,
+            });
+        }
+    })();
 
     return {
         amount,
-        dueTime,
-        async isPayed() {
-            // Loop
-            const watchResponse = fetch(
-                `${ERGO_ASSEMBLER_URL.href}result/${transactionId}`,
-            );
-            const watchResponseBody = await followResponse.json();
-            const {
-                /*id,*/ tx,
-                detail /* pending, returning, mined, success, timeout, returnFailed */,
-            } = followResponseBody;
-
-            console.log({ watchResponse, watchResponseBody, tx });
-
-            if (detail === 'success') {
-                // !!! And now take tx and create big certificate
-
-                return true;
-            }
-
-            return false;
-        },
+        dueDate,
+        paymentStatus,
     };
 }
 
