@@ -27,9 +27,6 @@ export const BUILD_DETAILS_URL = config
     )
     .url().value;
 
-/**
- * TODO: This is not working with GitHub actions.
- */
 export const BUILD_DATE = config
     .get(
         'REACT_APP_BUILD_DATE' /* TODO: configchecker can ignore prefxes in ConfigChecker.from */,

@@ -9,10 +9,10 @@ import { VerifyApp } from './VerifyApp';
 
 console.info(
     `%c📜 Sigmastamp version ${VERSION}` +
-        (!BUILD_DATE ? `` : ` build at ${BUILD_DATE.toISOString()}`) +
+        (!BUILD_DATE ? `` : `\nBuild at ${BUILD_DATE.toLocaleString()}`) +
         (!BUILD_DETAILS_URL
             ? ``
-            : ` view build details ${BUILD_DETAILS_URL.href}`),
+            : `\nView build details ${BUILD_DETAILS_URL.href}`),
     `background: #009EDD; color: white; font-size: 1.1em; font-weight: bold; padding: 5px; border-radius: 3px;`,
 );
 
