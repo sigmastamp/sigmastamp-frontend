@@ -1,6 +1,7 @@
 import React from 'react';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
+import { AboutPage } from '../About/AboutPage';
 import { FirstCertificatePage } from '../FirstCertificate/FirstCertificatePage';
 import { SecondCertificatePage } from '../SecondCertificate/SecondCertificatePage';
 import { HeaderComponent } from './HeaderComponent';
@@ -19,6 +20,7 @@ export function App() {
                             path="/verify"
                             element={<SecondCertificatePage />}
                         />
+                        <Route path="/about" element={<AboutPage />} />
                     </Routes>
                 </MainElement>
             </HashRouter>

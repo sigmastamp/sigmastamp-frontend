@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BUILD_DATE, BUILD_DETAILS_URL, VERSION } from './config';
 import './index.css';
-import { App } from './pages/App/App';
+import { App } from './pages/0-App/App';
 
 console.info(
     `%c📜 Sigmastamp version ${VERSION}` +
