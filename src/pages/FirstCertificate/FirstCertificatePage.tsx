@@ -7,23 +7,11 @@ import { AsyncContentComponent } from '../../components/AsyncContentComponent';
 import { IPaymentGateProps, PaymentGate } from '../../components/PaymentGate';
 import { PdfPage } from '../../components/PdfPage';
 import { UploadZone } from '../../components/UploadZone';
+import { ORACLES } from '../../config';
 import { blake2b256 } from '../../hash/blake2b256';
 import { string_base64, string_hex } from '../../interfaces/stringTypes';
-import { BitcoinOracle } from '../../oracles/BitcoinOracle';
-import { DateOracle } from '../../oracles/DateOracle';
-import { EthereumOracle } from '../../oracles/EthereumOracle';
-import { LitecoinOracle } from '../../oracles/LitecoinOracle';
-import { NytimesOracle } from '../../oracles/NytimesOracle';
 import { createSigmaStampNFT } from '../../smartcontracts/createSigmaStampNFT';
 import { hexToBase64 } from '../../utils/hexToBase64';
-
-const ORACLES = [
-    new BitcoinOracle(),
-    new EthereumOracle(),
-    new LitecoinOracle(),
-    new DateOracle(),
-    new NytimesOracle(),
-];
 
 interface IAppState {
     files: File[];
@@ -189,9 +177,7 @@ export function FirstCertificatePage() {
                     </PdfPage>
                 )}
 
-                <Link to="/verify">
-                    Or verify your 1st certificate.
-                </Link>
+                <Link to="/verify">Or verify your 1st certificate.</Link>
             </FirstCertificatePageDiv>
         );
     } else {
@@ -199,6 +185,4 @@ export function FirstCertificatePage() {
     }
 }
 
-const FirstCertificatePageDiv = styled.div`
- 
-`;
+const FirstCertificatePageDiv = styled.div``;

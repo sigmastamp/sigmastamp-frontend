@@ -2,8 +2,21 @@ import { ConfigChecker } from 'configchecker';
 ///* tslint:disable:no-var-requires */
 //const packageJson = require('../package.json');
 import { version } from '../package.json';
+import { BitcoinOracle } from './oracles/BitcoinOracle';
+import { DateOracle } from './oracles/DateOracle';
+import { EthereumOracle } from './oracles/EthereumOracle';
+import { LitecoinOracle } from './oracles/LitecoinOracle';
+import { NytimesOracle } from './oracles/NytimesOracle';
 
 export const VERSION = version;
+
+export const ORACLES = [
+    new BitcoinOracle(),
+    new EthereumOracle(),
+    new LitecoinOracle(),
+    new DateOracle(),
+    new NytimesOracle(),
+];
 
 const config = ConfigChecker.from(process.env);
 
