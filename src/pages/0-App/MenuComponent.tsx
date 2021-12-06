@@ -18,6 +18,9 @@ export function MenuComponent() {
                     </NavLink>
                 </li>
                 <li>
+                    <NavLink to={ROUTES.Oracles}>Oracles</NavLink>
+                </li>
+                <li>
                     <NavLink to={ROUTES.About}>About</NavLink>
                 </li>
             </ul>

@@ -13,6 +13,7 @@ export const VERSION = version;
 export enum ROUTES {
     FirstCertificate = '/',
     SecondCertificate = '/verify',
+    Oracles = '/oracles',
     About = '/about',
 }
 

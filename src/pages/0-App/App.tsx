@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { ROUTES } from '../../config';
 import { AboutPage } from '../About/AboutPage';
 import { FirstCertificatePage } from '../FirstCertificate/FirstCertificatePage';
+import { OraclesPage } from '../Oracles/OraclesPage';
 import { SecondCertificatePage } from '../SecondCertificate/SecondCertificatePage';
 import { HeaderComponent } from './HeaderComponent';
 import { MenuComponent } from './MenuComponent';
@@ -24,6 +25,7 @@ export function App() {
                             path={ROUTES.SecondCertificate}
                             element={<SecondCertificatePage />}
                         />
+                         <Route path={ROUTES.Oracles} element={<OraclesPage />} />
                         <Route path={ROUTES.About} element={<AboutPage />} />
                     </Routes>
                 </MainElement>
