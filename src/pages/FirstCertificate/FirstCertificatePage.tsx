@@ -189,20 +189,9 @@ export function FirstCertificatePage() {
                     </PdfPage>
                 )}
 
-                <ul>
-                    <li>
-                        <Link to="/verify" target={'_blank'}>
-                            Or verify your 1st certificate.
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/about">
-                            TODO: !!! Short information about Sigmastamp,
-                            version and the build (leading to the more detailed
-                            information)
-                        </Link>
-                    </li>
-                </ul>
+                <Link to="/verify">
+                    Or verify your 1st certificate.
+                </Link>
             </FirstCertificatePageDiv>
         );
     } else {
@@ -211,8 +200,5 @@ export function FirstCertificatePage() {
 }
 
 const FirstCertificatePageDiv = styled.div`
-    a {
-        color: #555;
-        font-size: 0.7em;
-    }
+ 
 `;

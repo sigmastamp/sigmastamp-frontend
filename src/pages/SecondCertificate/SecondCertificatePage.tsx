@@ -1,3 +1,4 @@
+import { saveAs } from 'file-saver';
 import JSZip from 'jszip';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -10,7 +11,6 @@ import {
     getTransactionTime,
     validateFirstCertificate,
 } from '../../smartcontracts/validateFirstCertificate';
-import { saveAs } from 'file-saver';
 
 export function SecondCertificatePage() {
     const [files, setFiles] = useState<any>([]);
@@ -24,9 +24,8 @@ export function SecondCertificatePage() {
                         const firstCertificate = droppedFiles[0];
                         setFiles([droppedFiles[0]]);
 
-                        const droppedFileVerification = await validateFirstCertificate(
-                            firstCertificate,
-                        );
+                        const droppedFileVerification =
+                            await validateFirstCertificate(firstCertificate);
 
                         if (!droppedFileVerification) {
                             alert(
@@ -46,7 +45,9 @@ export function SecondCertificatePage() {
                         //this could happen when somebody burned NFT token
                         //(we know that the corresponding NFT has already existed based on validateFirstCertificate function)
                         //(but we don't know whether it still exists...)
-                        const currentHolder = await getNFTHolderAddress(tokenId);
+                        const currentHolder = await getNFTHolderAddress(
+                            tokenId,
+                        );
 
                         setVerification({
                             ...droppedFileVerification,
@@ -60,9 +61,7 @@ export function SecondCertificatePage() {
                 >
                     Upload your 1st certificate.
                 </UploadZone>
-                <Link to="/" target={'_blank'}>
-                    Or create your 1st certificate.
-                </Link>
+                <Link to="/">Or create your 1st certificate.</Link>
             </SecondCertificatePageDiv>
         );
     } else {
@@ -120,9 +119,4 @@ export function SecondCertificatePage() {
     }
 }
 
-const SecondCertificatePageDiv = styled.div`
-    a {
-        color: #555;
-        font-size: 0.7em;
-    }
-`;
+const SecondCertificatePageDiv = styled.div``;
