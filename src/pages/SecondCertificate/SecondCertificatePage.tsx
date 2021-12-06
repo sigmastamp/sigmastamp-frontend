@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { PdfPage } from '../../components/PdfPage';
 import { UploadZone } from '../../components/UploadZone';
+import { ROUTES } from '../../config';
 import { blake2b256 } from '../../hash/blake2b256';
 import {
     getNFTHolderAddress,
@@ -61,7 +62,9 @@ export function SecondCertificatePage() {
                 >
                     Upload your 1st certificate.
                 </UploadZone>
-                <Link to="/">Or create your 1st certificate.</Link>
+                <Link to={ROUTES.FirstCertificate}>
+                    Or create your 1st certificate.
+                </Link>
             </SecondCertificatePageDiv>
         );
     } else {

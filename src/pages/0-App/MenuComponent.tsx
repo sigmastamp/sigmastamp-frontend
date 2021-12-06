@@ -1,19 +1,24 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import { ROUTES } from '../../config';
 
 export function MenuComponent() {
     return (
         <MenuElement>
             <ul>
                 <li>
-                    <NavLink to="/">First certificate</NavLink>
+                    <NavLink to={ROUTES.FirstCertificate}>
+                        First certificate
+                    </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/verify">Second certificate</NavLink>
+                    <NavLink to={ROUTES.SecondCertificate}>
+                        Second certificate
+                    </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/about">About</NavLink>
+                    <NavLink to={ROUTES.About}>About</NavLink>
                 </li>
             </ul>
         </MenuElement>

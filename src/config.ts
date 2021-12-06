@@ -10,6 +10,12 @@ import { NytimesOracle } from './oracles/NytimesOracle';
 
 export const VERSION = version;
 
+export enum ROUTES {
+    FirstCertificate = '/',
+    SecondCertificate = '/verify',
+    About = '/about',
+}
+
 export const ORACLES = [
     new BitcoinOracle(),
     new EthereumOracle(),

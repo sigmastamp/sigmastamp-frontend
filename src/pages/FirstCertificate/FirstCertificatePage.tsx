@@ -7,7 +7,7 @@ import { AsyncContentComponent } from '../../components/AsyncContentComponent';
 import { IPaymentGateProps, PaymentGate } from '../../components/PaymentGate';
 import { PdfPage } from '../../components/PdfPage';
 import { UploadZone } from '../../components/UploadZone';
-import { ORACLES } from '../../config';
+import { ORACLES, ROUTES } from '../../config';
 import { blake2b256 } from '../../hash/blake2b256';
 import { string_base64, string_hex } from '../../interfaces/stringTypes';
 import { createSigmaStampNFT } from '../../smartcontracts/createSigmaStampNFT';
@@ -177,7 +177,9 @@ export function FirstCertificatePage() {
                     </PdfPage>
                 )}
 
-                <Link to="/verify">Or verify your 1st certificate.</Link>
+                <Link to={ROUTES.SecondCertificate}>
+                    Or verify your 1st certificate.
+                </Link>
             </FirstCertificatePageDiv>
         );
     } else {

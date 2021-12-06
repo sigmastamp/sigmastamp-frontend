@@ -1,6 +1,7 @@
 import React from 'react';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
+import { ROUTES } from '../../config';
 import { AboutPage } from '../About/AboutPage';
 import { FirstCertificatePage } from '../FirstCertificate/FirstCertificatePage';
 import { SecondCertificatePage } from '../SecondCertificate/SecondCertificatePage';
@@ -15,12 +16,15 @@ export function App() {
                 <MenuComponent />
                 <MainElement>
                     <Routes>
-                        <Route path="/" element={<FirstCertificatePage />} />
                         <Route
-                            path="/verify"
+                            path={ROUTES.FirstCertificate}
+                            element={<FirstCertificatePage />}
+                        />
+                        <Route
+                            path={ROUTES.SecondCertificate}
                             element={<SecondCertificatePage />}
                         />
-                        <Route path="/about" element={<AboutPage />} />
+                        <Route path={ROUTES.About} element={<AboutPage />} />
                     </Routes>
                 </MainElement>
             </HashRouter>
