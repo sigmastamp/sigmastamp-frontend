@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { AsyncContentComponent } from '../../components/AsyncContentComponent';
 import { FirstCertificatePdfPage } from '../10-FirstCertificate/FirstCertificatePdfPage';
+import { fetchAsFile } from '../../utils/fetchAsFile';
 
 export function SampleCertificatesPage() {
     return (
@@ -8,14 +10,17 @@ export function SampleCertificatesPage() {
             <h1>Sample certificates</h1>
             <p>Here are samples how will your certificates look like:</p>
             <h2>First certificate</h2>
-            <FirstCertificatePdfPage
-                files={
-                    [
-                        /* TODO: !!! Put here some sample image */
-                    ]
-                }
-                setPayment={() => {}}
+            <AsyncContentComponent
+                content={fetchAsFile(
+                    process.env.PUBLIC_URL + '/assets/samples/DevConf2018.jpg',
+                ).then((file) => (
+                    <FirstCertificatePdfPage
+                        files={[file]}
+                        setPayment={() => {}}
+                    />
+                ))}
             />
+
             {/* TODO: <h2>Second certificate</h2> */}
             {/* TODO: !!! */}
         </SampleCertificatesDiv>
@@ -23,3 +28,5 @@ export function SampleCertificatesPage() {
 }
 
 const SampleCertificatesDiv = styled.div``;
+
+

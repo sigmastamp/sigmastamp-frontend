@@ -51,6 +51,7 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
 
                             saveAs(
                                 zipBlob,
+                                // TODO: Encorporate filename into certificate filename
                                 `certificate1.${zipHash.substring(0, 5)}.zip`,
                             );
 
