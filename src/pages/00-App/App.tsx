@@ -2,10 +2,10 @@ import React from 'react';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import { ROUTES } from '../../config';
-import { AboutPage } from '../About/AboutPage';
-import { FirstCertificatePage } from '../FirstCertificate/FirstCertificatePage';
-import { OraclesPage } from '../Oracles/OraclesPage';
-import { SecondCertificatePage } from '../SecondCertificate/SecondCertificatePage';
+import { AboutPage } from '../90-About/AboutPage';
+import { FirstCertificatePage } from '../10-FirstCertificate/FirstCertificatePage';
+import { OraclesPage } from '../50-Oracles/OraclesPage';
+import { SecondCertificatePage } from '../20-SecondCertificate/SecondCertificatePage';
 import { HeaderComponent } from './HeaderComponent';
 import { MenuComponent } from './MenuComponent';
 
