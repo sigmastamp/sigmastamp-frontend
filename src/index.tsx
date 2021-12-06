@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
-import { App } from './App';
+import { FirstCertificatePage } from './pages/FirstCertificate/FirstCertificatePage';
 import { BUILD_DATE, BUILD_DETAILS_URL, VERSION } from './config';
 import './index.css';
-import { VerifyApp } from './VerifyApp';
+import { SecondCertificatePage } from './pages/SecondCertificate/SecondCertificatePage';
 
 console.info(
     `%c📜 Sigmastamp version ${VERSION}` +
@@ -37,8 +37,8 @@ ReactDOM.render(
 
         <HashRouter>
             <Routes>
-                <Route path="/" element={<App />} />
-                <Route path="/verify" element={<VerifyApp />} />
+                <Route path="/" element={<FirstCertificatePage />} />
+                <Route path="/verify" element={<SecondCertificatePage />} />
             </Routes>
         </HashRouter>
     </React.StrictMode>,

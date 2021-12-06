@@ -3,19 +3,19 @@ import JSZip from 'jszip';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { AsyncContentComponent } from './components/AsyncContentComponent';
-import { IPaymentGateProps, PaymentGate } from './components/PaymentGate';
-import { PdfPage } from './components/PdfPage';
-import { UploadZone } from './components/UploadZone';
-import { blake2b256 } from './hash/blake2b256';
-import { string_base64, string_hex } from './interfaces/stringTypes';
-import { BitcoinOracle } from './oracles/BitcoinOracle';
-import { DateOracle } from './oracles/DateOracle';
-import { EthereumOracle } from './oracles/EthereumOracle';
-import { LitecoinOracle } from './oracles/LitecoinOracle';
-import { NytimesOracle } from './oracles/NytimesOracle';
-import { createSigmaStampNFT } from './smartcontracts/createSigmaStampNFT';
-import { hexToBase64 } from './utils/hexToBase64';
+import { AsyncContentComponent } from '../../components/AsyncContentComponent';
+import { IPaymentGateProps, PaymentGate } from '../../components/PaymentGate';
+import { PdfPage } from '../../components/PdfPage';
+import { UploadZone } from '../../components/UploadZone';
+import { blake2b256 } from '../../hash/blake2b256';
+import { string_base64, string_hex } from '../../interfaces/stringTypes';
+import { BitcoinOracle } from '../../oracles/BitcoinOracle';
+import { DateOracle } from '../../oracles/DateOracle';
+import { EthereumOracle } from '../../oracles/EthereumOracle';
+import { LitecoinOracle } from '../../oracles/LitecoinOracle';
+import { NytimesOracle } from '../../oracles/NytimesOracle';
+import { createSigmaStampNFT } from '../../smartcontracts/createSigmaStampNFT';
+import { hexToBase64 } from '../../utils/hexToBase64';
 
 const ORACLES = [
     new BitcoinOracle(),
@@ -29,13 +29,13 @@ interface IAppState {
     files: File[];
 }
 
-export function App() {
+export function FirstCertificatePage() {
     const [state, setState] = useState<IAppState>({ files: [] });
     const [payment, setPayment] = useState<null | IPaymentGateProps>(null);
 
     if (!payment) {
         return (
-            <AppDiv>
+            <FirstCertificatePageDiv>
                 {/*
         <button
           onClick={() => { console.log('test'); createCertificate() }}
@@ -203,14 +203,14 @@ export function App() {
                         </Link>
                     </li>
                 </ul>
-            </AppDiv>
+            </FirstCertificatePageDiv>
         );
     } else {
         return <PaymentGate {...payment} />;
     }
 }
 
-const AppDiv = styled.div`
+const FirstCertificatePageDiv = styled.div`
     a {
         color: #555;
         font-size: 0.7em;

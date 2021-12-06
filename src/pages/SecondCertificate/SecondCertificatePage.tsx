@@ -2,23 +2,23 @@ import JSZip from 'jszip';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { PdfPage } from './components/PdfPage';
-import { UploadZone } from './components/UploadZone';
-import { blake2b256 } from './hash/blake2b256';
+import { PdfPage } from '../../components/PdfPage';
+import { UploadZone } from '../../components/UploadZone';
+import { blake2b256 } from '../../hash/blake2b256';
 import {
     getNFTHolderAddress,
     getTransactionTime,
     validateFirstCertificate,
-} from './smartcontracts/validateFirstCertificate';
+} from '../../smartcontracts/validateFirstCertificate';
 import { saveAs } from 'file-saver';
 
-export function VerifyApp() {
+export function SecondCertificatePage() {
     const [files, setFiles] = useState<any>([]);
     const [verification, setVerification] = useState<any>(null);
 
     if (!verification) {
         return (
-            <VerifyAppDiv>
+            <SecondCertificatePageDiv>
                 <UploadZone
                     onFiles={async (droppedFiles) => {
                         const firstCertificate = droppedFiles[0];
@@ -63,7 +63,7 @@ export function VerifyApp() {
                 <Link to="/" target={'_blank'}>
                     Or create your 1st certificate.
                 </Link>
-            </VerifyAppDiv>
+            </SecondCertificatePageDiv>
         );
     } else {
         return (
@@ -120,7 +120,7 @@ export function VerifyApp() {
     }
 }
 
-const VerifyAppDiv = styled.div`
+const SecondCertificatePageDiv = styled.div`
     a {
         color: #555;
         font-size: 0.7em;

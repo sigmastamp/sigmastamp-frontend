@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-import { App } from './App';
+import { FirstCertificatePage } from './FirstCertificatePage';
 
 test('renders name of the project', () => {
-    render(<App />);
+    render(<FirstCertificatePage />);
     const linkElement = screen.getByText(/Sigmastamp/i);
     expect(linkElement).toBeInTheDocument();
 });
