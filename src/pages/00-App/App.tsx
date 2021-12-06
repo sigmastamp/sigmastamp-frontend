@@ -8,6 +8,7 @@ import { OraclesPage } from '../50-Oracles/OraclesPage';
 import { SecondCertificatePage } from '../20-SecondCertificate/SecondCertificatePage';
 import { HeaderComponent } from './HeaderComponent';
 import { MenuComponent } from './MenuComponent';
+import { SampleCertificatesPage } from '../55-SampleCertificates/SampleCertificatesPage';
 
 export function App() {
     return (
@@ -26,6 +27,8 @@ export function App() {
                             element={<SecondCertificatePage />}
                         />
                          <Route path={ROUTES.Oracles} element={<OraclesPage />} />
+                         <Route path={ROUTES.SampleCertificates} element={<SampleCertificatesPage />} />
+                         
                         <Route path={ROUTES.About} element={<AboutPage />} />
                     </Routes>
                 </MainElement>

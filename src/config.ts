@@ -14,6 +14,7 @@ export enum ROUTES {
     FirstCertificate = '/',
     SecondCertificate = '/verify',
     Oracles = '/oracles',
+    SampleCertificates = '/sample-certificates',
     About = '/about',
 }
 

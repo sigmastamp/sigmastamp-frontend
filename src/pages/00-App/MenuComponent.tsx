@@ -21,6 +21,11 @@ export function MenuComponent() {
                     <NavLink to={ROUTES.Oracles}>Oracles</NavLink>
                 </li>
                 <li>
+                    <NavLink to={ROUTES.SampleCertificates}>
+                        Sample certificates
+                    </NavLink>
+                </li>
+                <li>
                     <NavLink to={ROUTES.About}>About</NavLink>
                 </li>
             </ul>
