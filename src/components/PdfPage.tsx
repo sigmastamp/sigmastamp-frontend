@@ -45,7 +45,7 @@ export function PdfPage(props: IPdfPageProps) {
 const PdfPageDiv = styled.div`
     width: ${210 * 2}px;
     height: ${297 * 2}px;
-    border: 2px solid #009edf;
+    box-shadow: #5e97ccb7 0px 0px 50px;
 
     background-color: white;
     color: black;

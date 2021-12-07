@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BUILD_DATE, BUILD_DETAILS_URL, VERSION } from './config';
-import './index.css';
+import { GlobalStyle } from './globalStyle';
 import { App } from './pages/00-App/App';
 
 console.info(
@@ -15,6 +15,7 @@ console.info(
 
 ReactDOM.render(
     <React.StrictMode>
+        <GlobalStyle />
         <App />
     </React.StrictMode>,
     document.getElementById('root'),

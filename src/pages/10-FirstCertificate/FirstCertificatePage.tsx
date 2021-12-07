@@ -18,11 +18,11 @@ export function FirstCertificatePage() {
         return (
             <FirstCertificatePageDiv>
                 {/*
-        <button
+        <Button
           onClick={() => { console.log('test'); createCertificate() }}
         >
           Create document
-        </button>
+        </Button>
             <h1>Sigmastamp</h1>*/}
 
                 {state.files.length === 0 ? (

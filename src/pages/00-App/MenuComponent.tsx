@@ -33,13 +33,30 @@ export function MenuComponent() {
     );
 }
 const MenuElement = styled.menu`
+    /*/
+    border: 1px dashed red; /**/
+
+    padding-left: 0px;
+    padding-left: 10px;
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    li {
+        margin: 0;
+        font-size: 1.5em;
+    }
+
     a {
-        color: #555;
+        color: #7e7d7d;
         font-size: 0.7em;
+        text-decoration: none;
     }
 
     a.active {
-        color: #7e7d7d;
+        color: #d3d3d3;
         font-size: 0.7em;
     }
 `;

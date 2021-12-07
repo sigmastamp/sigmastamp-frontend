@@ -11,6 +11,7 @@ export type ergo_format = string_hex;
 export type string_href = string;
 export type string_url = string;
 export type string_uri = string;
+export type string_data_url = string;
 
 export type string_hex = string;
 export type string_base64 = string;

@@ -46,3 +46,8 @@ export function OraclesPage() {
 }
 
 const OraclesDiv = styled.div``;
+
+/**
+ * TODO:
+ * - Information how to add oracles (link to github)
+ */

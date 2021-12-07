@@ -1,6 +1,6 @@
 // @ts-ignore: no typings
 import { blake2bFinal, blake2bInit, blake2bUpdate } from 'blakejs';
-import { getAsByteArray } from '../utils/getAsByteArray';
+import { readFileAsByteArray } from '../utils/readFileAsByteArray';
 import { uint8ArrayToHex } from '../utils/uint8ArrayToHex';
 
 export async function blake2b256(input: File | Blob): Promise<string> {
@@ -9,7 +9,7 @@ export async function blake2b256(input: File | Blob): Promise<string> {
     const context = blake2bInit(OUTPUT_LENGTH, KEY || undefined);
 
     // each time you get a byte array from the stream:
-    blake2bUpdate(context, await getAsByteArray(input));
+    blake2bUpdate(context, await readFileAsByteArray(input));
 
     // finally, once the stream has been exhausted
     const hashUint8Array = blake2bFinal(context);

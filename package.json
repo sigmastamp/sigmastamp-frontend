@@ -79,6 +79,8 @@
         "type-fest": "^2.5.4",
         "typescript": "^4.4.4",
         "waitasecond": "^1.8.10",
-        "web-vitals": "^2.1.2"
+        "web-vitals": "^2.1.2",
+        "react-lorem-ipsum": "^1.4.9",
+        "react-textfit": "^1.1.1"
     }
 }

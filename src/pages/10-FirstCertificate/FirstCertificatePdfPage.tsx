@@ -1,14 +1,20 @@
 import { saveAs } from 'file-saver';
 import JSZip from 'jszip';
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
+import { Textfit } from 'react-textfit';
+import styled from 'styled-components';
 import { AsyncContentComponent } from '../../components/AsyncContentComponent';
+import { Button } from '../../components/Button';
 import { IPaymentGateProps } from '../../components/PaymentGate';
 import { PdfPage } from '../../components/PdfPage';
 import { ORACLES } from '../../config';
 import { blake2b256 } from '../../hash/blake2b256';
 import { string_base64, string_hex } from '../../interfaces/stringTypes';
+import { IOracle } from '../../oracles/_IOracle';
 import { createSigmaStampNFT } from '../../smartcontracts/createSigmaStampNFT';
 import { hexToBase64 } from '../../utils/hexToBase64';
+import { promptAsync } from '../../utils/promptAsync';
+import { readFileAsDataUrl } from '../../utils/readFileAsDataUri';
 
 interface IFirstCertificatePdfPageProps {
     files: File[];
@@ -22,7 +28,7 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
         <PdfPage
             createUi={({ createPdf }) => {
                 return (
-                    <button
+                    <Button
                         onClick={async () => {
                             // TODO: !!! Download logic into separate util + setPayment should not be in IFirstCertificatePdfPageProps
 
@@ -55,11 +61,10 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                                 `certificate1.${zipHash.substring(0, 5)}.zip`,
                             );
 
-                            // TODO: !!! Nicer user input than prompt
                             // TODO @hejny - replace this with custom form (details mentioned in createSigmaStampNFT.ts)
                             // TODO @hejny - also move proof of today function away, so user will be able to decide whether he want to stamp file or he will make special version of file via proof of today page and then he will stamp this proof of today generated zip file (certificate)
                             // but it should be always opt-in, not opt-out !!!
-                            const userAddress = prompt(
+                            const userAddress = await promptAsync(
                                 'Please fill your Ergo address',
                                 '3Ww7y6vi4NhFZ1ufsEF8vQNyGrvhNmeMmDWP9h3s4qSEFSMoGooV' /* !!! Unhardocde */,
                             );
@@ -78,19 +83,30 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                         }}
                     >
                         Download 1st certificate
-                    </button>
+                    </Button>
                 );
             }}
         >
+            {files.map((file) => (
+                <Preview key={file.name}>
+                    <AsyncContentComponent
+                        content={readFileAsDataUrl(file).then((data) => (
+                            <img src={data} alt={`Preview of ${file.name}`} />
+                        ))}
+                    />
+                </Preview>
+            ))}
+
             {files.map((file) => (
                 <AsyncContentComponent
                     key={file.name}
                     content={async () => {
                         const hash = await blake2b256(file);
                         return (
-                            <>
-                                <b>Hash of {file.name}</b> is {hash}
-                            </>
+                            <Pair>
+                                <Key>{`Hash of ${file.name}: `}</Key>
+                                <Value>{hash}</Value>
+                            </Pair>
                         );
                     }}
                 />
@@ -106,18 +122,15 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                                 <>
                                     {Object.entries(data).map(
                                         ([key, value]) => (
-                                            <div key={key}>
-                                                <b>
-                                                    {/* @ts-ignore: Object.entries is dummy and cannot pass propper index signature type */}
-                                                    {oracle.title}
-                                                    {
-                                                        (oracle as any)
+                                            <Pair key={key}>
+                                                <Key>
+                                                    {`${oracle.title} ${
+                                                        (oracle as IOracle<any>)
                                                             .dataTitles[key]
-                                                    }
-                                                    :
-                                                </b>
-                                                {value}
-                                            </div>
+                                                    }: `}
+                                                </Key>
+                                                <Value>{value}</Value>
+                                            </Pair>
                                         ),
                                     )}
                                 </>
@@ -127,5 +140,24 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                 </div>
             ))}
         </PdfPage>
+    );
+}
+
+const Preview = styled.div`
+    img {
+        max-width: 100%;
+        max-height: 300px;
+    }
+`;
+
+const Pair = styled.div``;
+
+const Key = styled.b``;
+
+function Value(props: PropsWithChildren<{}>) {
+    return (
+        <Textfit mode="single" max={20}>
+            {props.children}
+        </Textfit>
     );
 }

@@ -10,18 +10,24 @@ export abstract class AbstractBlockcyptherOracle
     public ttl = -1;
 
     public async getData() {
-        const response = await fetch(
-            `https://api.blockcypher.com/v1/${this.name.toLowerCase()}/main` /*`https://blockchain.info/latestblock`*/,
-            /*{ mode: 'no-cors' }*/
-        );
-        // console.log({ response });
-        const body = await response.json();
+        try {
+            const response = await fetch(
+                `https://api.blockcypher.com/v1/${this.name.toLowerCase()}/main` /*`https://blockchain.info/latestblock`*/,
+                /*{ mode: 'no-cors' }*/
+            );
+            // console.log({ response });
+            const body = await response.json();
 
-        if (body.error) {
-            throw new Error(body.error);
+            if (body.error) {
+                throw new Error(body.error);
+            }
+
+            const { hash } = body;
+            return { hash };
+        } catch (error) {
+            // TODO: !!! How to handle problems with external providers?
+            console.error(error);
+            return { hash: null };
         }
-
-        const { hash } = body;
-        return { hash };
     }
 }
