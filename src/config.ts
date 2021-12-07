@@ -27,9 +27,10 @@ export const ORACLES = [
     new NytimesOracle(),
 ];
 
-// TODO: Maybe in second stage USA format of papers - Letter / B type
+export const PAGE_DEBUG = true;
 export const PAGE_CM_TO_PX_RATIO = 2;
 export const PAGE_SIZE = new Vector(210, 297);
+// TODO: Maybe in second stage USA format of papers - Letter / B type
 
 const config = ConfigChecker.from(process.env);
 

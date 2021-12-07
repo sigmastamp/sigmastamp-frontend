@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Promisable } from 'type-fest';
 import { forEver } from 'waitasecond';
 import { Vector } from 'xyzt';
-import { PAGE_CM_TO_PX_RATIO, PAGE_SIZE } from '../config';
+import { PAGE_CM_TO_PX_RATIO, PAGE_DEBUG, PAGE_SIZE } from '../config';
 
 interface IPdfPageProps extends React.PropsWithChildren<{}> {
     renderUi: (options: {
@@ -20,7 +20,13 @@ export function PdfPage(props: IPdfPageProps) {
         <div>
             {props.renderUi({
                 createPdf: async () => {
-                    const pdfDocument = new jsPDF();
+                    const pdfDocument = new jsPDF(
+                        'p',
+                        'mm',
+                        PAGE_SIZE.toArray2D(),
+                    );
+
+                    // TODO: !!! Add metadata to PDF
 
                     const containerElement = pageRef.current;
 
@@ -32,18 +38,25 @@ export function PdfPage(props: IPdfPageProps) {
                         backgroundColor: 'trasparent',
                         //foreignObjectRendering: true,
                         allowTaint: true,
+                        ignoreElements: (element) => {
+                            if (PAGE_DEBUG) {
+                                return false;
+                            } else {
+                                return element.classList.contains(
+                                    'render-as-text',
+                                );
+                            }
+                        },
                     });
                     const image = canvas.toDataURL();
 
-                    /*
-                    // !!! Turn on/off in debuging
-                    canvas.style.border = '1px solid red';
-                    canvas.style.position = 'fixed';
-                    canvas.style.bottom = '20px';
-                    canvas.style.right = '20px';
-                    document.body.appendChild(canvas);
-                    //await forEver();
-                    */
+                    if (PAGE_DEBUG) {
+                        canvas.style.border = '1px solid red';
+                        canvas.style.position = 'fixed';
+                        canvas.style.bottom = '20px';
+                        canvas.style.right = '20px';
+                        document.body.appendChild(canvas);
+                    }
 
                     pdfDocument.addImage(
                         image,
@@ -95,13 +108,10 @@ export function PdfPage(props: IPdfPageProps) {
 
                         const fontStyle = fontWeight > 400 ? 'bold' : 'normal';
 
-                        console.log(fontStyle);
-
                         const fontSizeInPdf =
                             fontSize *
                             (PAGE_SIZE.y / containerSize.y) *
                             2.83464566929;
-                        //fontSize * (containerSize.y / PAGE_SIZE.y) * 0.715;
 
                         pdfDocument.setFontSize(fontSizeInPdf);
                         pdfDocument.setFont('Times New Roman', fontStyle);
@@ -110,7 +120,6 @@ export function PdfPage(props: IPdfPageProps) {
                             ...positionInPdf.toArray2D(),
                             {
                                 baseline: 'top',
-                                // !!! Turn on/off in debuging renderingMode: 'invisible',
                             },
                         );
 
