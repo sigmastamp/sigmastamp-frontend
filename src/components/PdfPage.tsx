@@ -1,40 +1,145 @@
+import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { Promisable } from 'type-fest';
-//import html2canvas from 'html2canvas';
+import { forEver } from 'waitasecond';
+import { Vector } from 'xyzt';
+import { PAGE_CM_TO_PX_RATIO, PAGE_SIZE } from '../config';
 
 interface IPdfPageProps extends React.PropsWithChildren<{}> {
-    createUi: (options: {
+    renderUi: (options: {
         createPdf: () => Promise<Blob>;
     }) => Promisable<JSX.Element | JSX.Element[]>;
 }
 
 export function PdfPage(props: IPdfPageProps) {
-    const pageRef = useRef(null);
+    const pageRef = useRef<HTMLDivElement>(null);
 
     return (
         <div>
-            {props.createUi({
+            {props.renderUi({
                 createPdf: async () => {
-                    const doc = new jsPDF();
+                    const pdfDocument = new jsPDF();
 
-                    // TODO: !!! Through nice html2canvas
+                    const containerElement = pageRef.current;
 
-                    //const canvas = await html2canvas(pageRef!.current!);
-                    //const image = canvas.toDataURL();
+                    if (!containerElement) {
+                        throw new Error('Problem with rendering to PDF.');
+                    }
 
-                    // !!! document.body.appendChild(canvas);
+                    const canvas = await html2canvas(containerElement, {
+                        backgroundColor: 'trasparent',
+                        //foreignObjectRendering: true,
+                        allowTaint: true,
+                    });
+                    const image = canvas.toDataURL();
 
-                    //doc.addImage(image, 'JPEG', 0, 0, 210, 297);
-                    //doc.html((pageRef!.current as any).innerHTML, { x: 10, y: 10 });
+                    /*
+                    // !!! Turn on/off in debuging
+                    canvas.style.border = '1px solid red';
+                    canvas.style.position = 'fixed';
+                    canvas.style.bottom = '20px';
+                    canvas.style.right = '20px';
+                    document.body.appendChild(canvas);
+                    //await forEver();
+                    */
 
-                    //console.log(pageRef!.current as any);
-                    //console.log((pageRef!.current as any).innerText);
-                    //doc.html((pageRef!.current as any).innerHTML, { x: 10, y: 10 });
+                    pdfDocument.addImage(
+                        image,
+                        'JPEG',
+                        0,
+                        0,
+                        ...PAGE_SIZE.toArray2D(),
+                    );
+
+                    const containerBoundingBox =
+                        containerElement.getBoundingClientRect();
+                    const originPosition = Vector.fromObject(
+                        containerBoundingBox,
+                        ['left', 'top'],
+                    );
+                    const containerSize = Vector.fromObject(
+                        containerBoundingBox,
+                        ['width', 'height'],
+                    );
+
+                    pdfDocument.addFont('Times New Roman', 'Times', 'serif');
+
+                    for (const textElement of Array.from(
+                        containerElement.querySelectorAll('.render-as-text'),
+                    ) as HTMLElement[]) {
+                        const positionInPdf = Vector.fromObject(
+                            textElement.getBoundingClientRect(),
+                            ['left', 'top'],
+                        )
+                            .subtract(originPosition)
+                            .divide(containerSize)
+                            .multiply(PAGE_SIZE)
+                            .add(new Vector(0, 0.5));
+
+                        const textElementDeepestChild =
+                            textElement.children[0]!;
+
+                        const fontSize = parseFloat(
+                            window
+                                .getComputedStyle(textElementDeepestChild, null)
+                                .getPropertyValue('font-size'),
+                        );
+
+                        const fontWeight = parseFloat(
+                            window
+                                .getComputedStyle(textElementDeepestChild, null)
+                                .getPropertyValue('font-weight'),
+                        );
+
+                        const fontStyle = fontWeight > 400 ? 'bold' : 'normal';
+
+                        console.log(fontStyle);
+
+                        const fontSizeInPdf =
+                            fontSize *
+                            (PAGE_SIZE.y / containerSize.y) *
+                            2.83464566929;
+                        //fontSize * (containerSize.y / PAGE_SIZE.y) * 0.715;
+
+                        pdfDocument.setFontSize(fontSizeInPdf);
+                        pdfDocument.setFont('Times New Roman', fontStyle);
+                        pdfDocument.text(
+                            textElement.innerText,
+                            ...positionInPdf.toArray2D(),
+                            {
+                                baseline: 'top',
+                                // !!! Turn on/off in debuging renderingMode: 'invisible',
+                            },
+                        );
+
+                        console.log(
+                            textElement.innerText,
+                            ...positionInPdf.toArray2D(),
+                        );
+                    }
+
+                    /*
+                    doc.html((pageRef!.current as any).innerHTML, {
+                        x: 10,
+                        y: 10,
+                    });
+
+                    console.log(pageRef!.current as any);
+                    console.log((pageRef!.current as any).innerText);
+                    doc.html((pageRef!.current as any).innerHTML, {
+                        x: 10,
+                        y: 10,
+                    });
                     doc.text((pageRef!.current as any).innerText, 10, 10);
+                    */
 
-                    return doc.output('blob');
+                    // TODO: !! Toggle PDF dev testing
+                    pdfDocument.save('test.pdf');
+                    await forEver();
+
+                    return pdfDocument.output('blob');
                 },
             })}
             <PdfPageDiv ref={pageRef}>{props.children}</PdfPageDiv>
@@ -43,8 +148,11 @@ export function PdfPage(props: IPdfPageProps) {
 }
 
 const PdfPageDiv = styled.div`
-    width: ${210 * 2}px;
-    height: ${297 * 2}px;
+    // Note: !!!
+    font-family: 'Times New Roman', Times, serif;
+
+    width: ${PAGE_SIZE.x * PAGE_CM_TO_PX_RATIO}px;
+    height: ${PAGE_SIZE.y * PAGE_CM_TO_PX_RATIO}px;
     box-shadow: #5e97ccb7 0px 0px 50px;
 
     background-color: white;

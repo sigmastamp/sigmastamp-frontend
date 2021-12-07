@@ -3,7 +3,6 @@ import JSZip from 'jszip';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { Button } from '../../components/Button';
 import { PdfPage } from '../../components/PdfPage';
 import { UploadZone } from '../../components/UploadZone';
 import { ROUTES } from '../../config';
@@ -73,7 +72,7 @@ export function SecondCertificatePage() {
             <PdfPage
                 renderUi={({ createPdf }) => {
                     return (
-                        <Button
+                        <button
                             onClick={async () => {
                                 const certificateFile = new File(
                                     [await createPdf()],
@@ -107,7 +106,7 @@ export function SecondCertificatePage() {
                             }}
                         >
                             Download 2nd certificate
-                        </Button>
+                        </button>
                     );
                 }}
             >

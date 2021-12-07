@@ -7,7 +7,7 @@ import { AsyncContentComponent } from '../../components/AsyncContentComponent';
 import { Button } from '../../components/Button';
 import { IPaymentGateProps } from '../../components/PaymentGate';
 import { PdfPage } from '../../components/PdfPage';
-import { ORACLES } from '../../config';
+import { ORACLES, PAGE_CM_TO_PX_RATIO } from '../../config';
 import { blake2b256 } from '../../hash/blake2b256';
 import { string_base64, string_hex } from '../../interfaces/stringTypes';
 import { IOracle } from '../../oracles/_IOracle';
@@ -26,7 +26,7 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
 
     return (
         <PdfPage
-            createUi={({ createPdf }) => {
+            renderUi={({ createPdf }) => {
                 return (
                     <Button
                         onClick={async () => {
@@ -34,8 +34,11 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
 
                             const certificateFile = new File(
                                 [await createPdf()],
+                                // TODO: Encorporate filename into certificate filename
                                 'certificate1.pdf' /* TODO: Maybe add current {lastModified: 1534584790000}*/,
                             );
+
+                            // TODO: !!! Add files into certificate
 
                             //saveAs(certificateFile);
                             const zip = new JSZip();
@@ -146,18 +149,26 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
 const Preview = styled.div`
     img {
         max-width: 100%;
-        max-height: 300px;
+        max-height: ${300 * PAGE_CM_TO_PX_RATIO}px;
     }
 `;
 
 const Pair = styled.div``;
 
-const Key = styled.b``;
+function Key(props: PropsWithChildren<{}>) {
+    return (
+        <div className="render-as-text">
+            <b>{props.children}</b>
+        </div>
+    );
+}
 
 function Value(props: PropsWithChildren<{}>) {
     return (
-        <Textfit mode="single" max={20}>
-            {props.children}
-        </Textfit>
+        <div className="render-as-text">
+            <Textfit mode="single" max={20}>
+                {props.children}
+            </Textfit>
+        </div>
     );
 }

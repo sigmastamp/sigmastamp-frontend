@@ -1,4 +1,5 @@
 import { ConfigChecker } from 'configchecker';
+import { Vector } from 'xyzt';
 ///* tslint:disable:no-var-requires */
 //const packageJson = require('../package.json');
 import { version } from '../package.json';
@@ -25,6 +26,10 @@ export const ORACLES = [
     new DateOracle(),
     new NytimesOracle(),
 ];
+
+// TODO: Maybe in second stage USA format of papers - Letter / B type
+export const PAGE_CM_TO_PX_RATIO = 2;
+export const PAGE_SIZE = new Vector(210, 297);
 
 const config = ConfigChecker.from(process.env);
 

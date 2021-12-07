@@ -82,5 +82,8 @@
         "web-vitals": "^2.1.2",
         "react-lorem-ipsum": "^1.4.9",
         "react-textfit": "^1.1.1"
+    },
+    "dependencies": {
+        "xyzt": "^4.7.0"
     }
 }
