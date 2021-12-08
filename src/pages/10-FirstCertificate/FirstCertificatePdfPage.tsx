@@ -170,7 +170,7 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                 {/* TODO: Here is weird space between preview and data */}
                 <Data>
                     {data.map(
-                        ({ title, value, format, source, getCompactValue }) => (
+                        ({ title, value, format, source, getShortenValue: getCompactValue }) => (
                             <div
                                 className="datacell"
                                 key={title}

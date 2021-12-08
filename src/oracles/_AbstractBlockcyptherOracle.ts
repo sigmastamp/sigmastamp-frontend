@@ -1,3 +1,4 @@
+import { shortenHexValue } from '../utils/shortenHexValue';
 import { IOracle } from './_IOracle';
 
 export abstract class AbstractBlockcyptherOracle implements IOracle {
@@ -9,6 +10,7 @@ export abstract class AbstractBlockcyptherOracle implements IOracle {
     public async getData() {
         const apiUrl = new URL(
             `https://api.blockcypher.com/v1/${this.name.toLowerCase()}/main`,
+            // TODO: !!! Wouldn't there be a problem with limits;= is referrer in the request?
         );
 
         try {
@@ -31,11 +33,11 @@ export abstract class AbstractBlockcyptherOracle implements IOracle {
                     format: 'SHA256 Hash',
                     value: hash,
                     source: new URL(
-                        `https://live.blockcypher.com/btc/block/000000000000000000059d1fe00282a7272ac4d421614be9bae31e35ac5ae3ce/`,
+                        `https://live.blockcypher.com/${this.name.toLowerCase()}/block/${hash}`,
                         // `https://www.blockchain.com/${this.name.toLowerCase()}/block/${hash}`,
                     ),
                     getCompactValue(length: number) {
-                        return hash.substr(0, length /* TODO: !!! Better */);
+                        return shortenHexValue(hash, length);
                     },
                 },
             ];

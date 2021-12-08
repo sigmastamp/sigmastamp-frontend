@@ -53,7 +53,7 @@ export interface IOracleData {
      *
      * @example "00…ae3ce"
      */
-    getCompactValue?: (length: number) => string;
+    getShortenValue?: (length: number) => string;
 }
 
 /**
