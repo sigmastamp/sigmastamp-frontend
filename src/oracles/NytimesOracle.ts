@@ -16,17 +16,29 @@ export class NytimesOracle implements IOracle {
 
         // console.log({ feed });
 
-        const firstTitle = feed.items[0].title as string;
+        const firstItem = feed.items[0] as {
+            content: 'Chancellor Olaf Scholz and his new cabinet were sworn in, beginning a new chapter for Europe’s largest democracy. Angela Merkel wished him well and called the chancellorship “one of the most beautiful duties there are.”';
+            contentSnippet: 'Chancellor Olaf Scholz and his new cabinet were sworn in, beginning a new chapter for Europe’s largest democracy. Angela Merkel wished him well and called the chancellorship “one of the most beautiful duties there are.”';
+            creator: 'The New York Times';
+            'dc:creator': 'The New York Times';
+            guid: 'https://www.nytimes.com/live/2021/12/08/world/germany-scholz-merkel';
+            isoDate: '2021-12-08T18:38:54.000Z';
+            link: 'https://www.nytimes.com/live/2021/12/08/world/germany-scholz-merkel';
+            pubDate: 'Wed, 08 Dec 2021 18:38:54 +0000';
+            title: 'Germany’s Merkel Hands Over Chancellor’s Office to Scholz';
+        };
 
         return [
             {
                 title: 'first title',
-                value: firstTitle,
-                // !!! URL From the feed source:
-
+                value: firstItem.title,
+                source: new URL(firstItem.link),
+                /* 
+                TODO: Maybe implement this:
                 getCompactValue(length: number) {
-                    return firstTitle.substr(0, length /* TODO: !!! Better */);
+                    return firstTitle.substr(0, length);
                 },
+                */
             },
         ];
     }
