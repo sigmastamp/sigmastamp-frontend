@@ -169,15 +169,14 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                                 {source && (
                                     <QRCodeLink link={source} margin={0} />
                                 )}
-                                <div>
-                                    <b className="key render-as-text">{`${title}: `}</b>
-                                    <br />
-                                    <span className="value render-as-text">
-                                        {getCompactValue
-                                            ? getCompactValue(16)
-                                            : value}
-                                    </span>
-                                </div>
+
+                                <b className="key render-as-text">{`${title}: `}</b>
+                                <br />
+                                <span className="value render-as-text">
+                                    {getCompactValue
+                                        ? getCompactValue(16)
+                                        : value}
+                                </span>
                             </div>
                         ),
                     )}
@@ -207,7 +206,7 @@ const Data = styled.div`
     border: 3px dotted #906090; /**/
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: flex-start;
@@ -217,9 +216,14 @@ const Data = styled.div`
         /**/
         border: 1px dashed red; /**/
 
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
         width: 100px;
         height: 100px;
-        overflow: hidden;
+
         padding: 10px;
 
         .qrcode {
