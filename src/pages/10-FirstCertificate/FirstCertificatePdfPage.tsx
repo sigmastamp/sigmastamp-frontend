@@ -47,7 +47,7 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
             ).map(async (oracle) => {
                 try {
                     return {
-                        data: await oracle.getData(/* TODO: Make some transformer util from oracle.getData+ttl to observable stream > connectOracle(oracle): Observable<IOracleData>  */),
+                        data: await oracle.getData(/* TODO: Auto refresh */),
                         error: null,
                     };
                 } catch (error) {
@@ -170,7 +170,13 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                 {/* TODO: Here is weird space between preview and data */}
                 <Data>
                     {data.map(
-                        ({ title, value, format, source, getShortenValue: getCompactValue }) => (
+                        ({
+                            title,
+                            value,
+                            format,
+                            source,
+                            getShortenValue: getCompactValue,
+                        }) => (
                             <div
                                 className="datacell"
                                 key={title}

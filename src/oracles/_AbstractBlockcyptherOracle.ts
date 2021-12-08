@@ -1,11 +1,11 @@
+import { fetchWithCache } from '../utils/fetchWithCache';
 import { shortenHexValue } from '../utils/shortenHexValue';
 import { IOracle } from './_IOracle';
 
 export abstract class AbstractBlockcyptherOracle implements IOracle {
     public abstract name: string;
     protected abstract titleOfCoin: string;
-
-    public ttl = -1;
+    protected abstract ttl: number;
 
     public async getData() {
         const apiUrl = new URL(
@@ -14,19 +14,13 @@ export abstract class AbstractBlockcyptherOracle implements IOracle {
         );
 
         try {
-            const response = await fetch(
-                apiUrl.href,
+            const { hash } = await fetchWithCache(
                 /*`https://blockchain.info/latestblock`*/
                 /*{ mode: 'no-cors' }*/
+                apiUrl,
+                this.ttl,
             );
-            // console.log({ response });
-            const body = await response.json();
 
-            if (body.error) {
-                throw new Error(body.error);
-            }
-
-            const { hash } = body;
             return [
                 {
                     title: `${this.titleOfCoin} current block`,

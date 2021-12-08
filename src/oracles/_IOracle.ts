@@ -8,14 +8,6 @@ export interface IOracle {
     name: string;
 
     /**
-     * Time to live in seconds
-     * When -1 provided, data will be valid until page is reloaded
-     *
-     * TODO: Enable to provide observable instead of data+ttl
-     */
-    ttl: number;
-
-    /**
      * Gets current state of oracles domain
      * ⚠️ Warning: Getting the data can fail (it is typically request to external sources) so it is recommended to handle errors
      */

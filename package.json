@@ -54,6 +54,7 @@
         "blakejs": "^1.1.1",
         "configchecker": "^1.5.1",
         "crypto-js": "^4.1.1",
+        "everstorage": "^1.10.1",
         "express": "^4.17.1",
         "file-saver": "^2.0.5",
         "gh-pages": "^3.2.3",
@@ -68,8 +69,10 @@
         "react": "^17.0.2",
         "react-countdown": "^2.3.2",
         "react-dom": "^17.0.2",
+        "react-lorem-ipsum": "^1.4.9",
         "react-router-dom": "^6.0.2",
         "react-scripts": "4.0.3",
+        "react-textfit": "^1.1.1",
         "rss-parser": "^3.12.0",
         "rxjs": "^7.4.0",
         "serve-static": "^1.14.1",
@@ -80,10 +83,7 @@
         "typescript": "^4.4.4",
         "waitasecond": "^1.8.10",
         "web-vitals": "^2.1.2",
-        "react-lorem-ipsum": "^1.4.9",
-        "react-textfit": "^1.1.1"
-    },
-    "dependencies": {
         "xyzt": "^4.7.0"
-    }
+    },
+    "dependencies": {}
 }

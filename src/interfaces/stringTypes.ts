@@ -16,6 +16,7 @@ export type string_data_url = string;
 export type string_hex = string;
 export type string_base64 = string;
 
+export type string_date = string;
 export type seconds = number;
 
 export type nanoerg = number;
