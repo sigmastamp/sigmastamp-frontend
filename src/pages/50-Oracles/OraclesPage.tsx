@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { AsyncContentComponent } from '../../components/AsyncContentComponent';
+import { ErrorComponent } from '../../components/ErrorComponent';
 import { ORACLES } from '../../config';
 
 export function OraclesPage() {
@@ -15,29 +16,48 @@ export function OraclesPage() {
                 <div key={oracle.name}>
                     <AsyncContentComponent
                         content={async () => {
-                            const data =
-                                await oracle.getData(/* !!! Handle errors */);
+                            try {
+                                const data =
+                                    await oracle.getData(/* !!! Handle errors */);
 
-                            return (
-                                <>
-                                    {data.map(
-                                        ({ title, value, format, source }) => (
-                                            <div
-                                                key={title}
-                                                title={`${oracle.title} ${title} [${format}]`}
-                                            >
-                                                <b>
-                                                    {`${oracle.title} ${title}: `}
-                                                </b>
+                                return (
+                                    <>
+                                        {data.map(
+                                            ({
+                                                title,
+                                                value,
+                                                format,
+                                                source,
+                                            }) => (
+                                                <div
+                                                    key={title}
+                                                    title={`${oracle.title} ${title} [${format}]`}
+                                                >
+                                                    <b>
+                                                        {`${oracle.title} ${title}: `}
+                                                    </b>
 
-                                                <a href={source?.href}>
-                                                    {value}
-                                                </a>
-                                            </div>
-                                        ),
-                                    )}
-                                </>
-                            );
+                                                    <a href={source?.href}>
+                                                        {value}
+                                                    </a>
+                                                </div>
+                                            ),
+                                        )}
+                                    </>
+                                );
+                            } catch (error) {
+                                if (error instanceof Error) {
+                                    return (
+                                        <ErrorComponent>
+                                            Error occured when getting data from{' '}
+                                            {oracle.title}:<br />
+                                            {error.message}
+                                        </ErrorComponent>
+                                    );
+                                } else {
+                                    throw error;
+                                }
+                            }
                         }}
                     />
                 </div>

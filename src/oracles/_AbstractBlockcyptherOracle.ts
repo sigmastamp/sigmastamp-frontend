@@ -13,32 +13,40 @@ export abstract class AbstractBlockcyptherOracle implements IOracle {
             `https://api.blockcypher.com/v1/${this.name.toLowerCase()}/main`,
         );
 
-        const response = await fetch(
-            apiUrl.href,
-            /*`https://blockchain.info/latestblock`*/
-            /*{ mode: 'no-cors' }*/
-        );
-        // console.log({ response });
-        const body = await response.json();
+        try {
+            const response = await fetch(
+                apiUrl.href,
+                /*`https://blockchain.info/latestblock`*/
+                /*{ mode: 'no-cors' }*/
+            );
+            // console.log({ response });
+            const body = await response.json();
 
-        if (body.error) {
-            throw new Error(body.error);
-        }
+            if (body.error) {
+                throw new Error(body.error);
+            }
 
-        const { hash } = body;
-        return [
-            {
-                title: 'Current block hash',
-                format: 'SHA256 Hash',
-                value: hash,
-                source: new URL(
-                    `https://live.blockcypher.com/btc/block/000000000000000000059d1fe00282a7272ac4d421614be9bae31e35ac5ae3ce/`,
-                    // `https://www.blockchain.com/${this.name.toLowerCase()}/block/${hash}`,
-                ),
-                getCompactValue(length: number) {
-                    return hash.substr(0, length /* TODO: !!! Better */);
+            const { hash } = body;
+            return [
+                {
+                    title: 'Current block hash',
+                    format: 'SHA256 Hash',
+                    value: hash,
+                    source: new URL(
+                        `https://live.blockcypher.com/btc/block/000000000000000000059d1fe00282a7272ac4d421614be9bae31e35ac5ae3ce/`,
+                        // `https://www.blockchain.com/${this.name.toLowerCase()}/block/${hash}`,
+                    ),
+                    getCompactValue(length: number) {
+                        return hash.substr(0, length /* TODO: !!! Better */);
+                    },
                 },
-            },
-        ];
+            ];
+        } catch (error) {
+            if (error instanceof Error && error.message === 'Failed to fetch') {
+                throw new Error(`Failed to fetch ${apiUrl.href}`);
+            } else {
+                throw error;
+            }
+        }
     }
 }
