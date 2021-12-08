@@ -8,6 +8,7 @@ import { DateOracle } from './oracles/DateOracle';
 import { EthereumOracle } from './oracles/EthereumOracle';
 import { LitecoinOracle } from './oracles/LitecoinOracle';
 import { NytimesOracle } from './oracles/NytimesOracle';
+import { IOracle } from './oracles/_IOracle';
 
 export const VERSION = version;
 
@@ -19,7 +20,7 @@ export enum ROUTES {
     About = '/about',
 }
 
-export const ORACLES = [
+export const ORACLES: IOracle[] = [
     new BitcoinOracle(),
     new EthereumOracle(),
     new LitecoinOracle(),

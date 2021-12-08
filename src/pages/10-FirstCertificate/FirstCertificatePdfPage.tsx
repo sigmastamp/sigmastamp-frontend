@@ -7,7 +7,7 @@ import { AsyncContentComponent } from '../../components/AsyncContentComponent';
 import { Button } from '../../components/Button';
 import { IPaymentGateProps } from '../../components/PaymentGate';
 import { PdfPage } from '../../components/PdfPage';
-import { QRCode } from '../../components/QRCode';
+import { QRCodeLink } from '../../components/QRCodeLink';
 import { ORACLES, PAGE_CM_TO_PX_RATIO_FOR_PREVIEW } from '../../config';
 import { blake2b256 } from '../../hash/blake2b256';
 import { string_base64, string_hex } from '../../interfaces/stringTypes';
@@ -114,35 +114,49 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
             </PreviewWithLogo>
 
             <Data>
-                {[
-                    ...files.map((file) => new FakeFileOracle(file)),
-                    ...ORACLES,
-                ].map((oracle) => (
+                {(
+                    [
+                        ...files.map((file) => new FakeFileOracle(file)),
+                        ...ORACLES,
+                    ] as IOracle[]
+                ).map((oracle) => (
                     <div key={oracle.name}>
                         <AsyncContentComponent
                             content={async () => {
-                                const data = await oracle.getData();
+                                const data =
+                                    await oracle.getData(/* !!! Handle errors - Move oracles to state  */);
 
                                 return (
                                     <>
-                                        {Object.entries(data).map(
-                                            ([key, value]) => (
-                                                <Pair key={key}>
-                                                    <QRCode
-                                                        text={value}
-                                                        margin={0}
-                                                    />
+                                        {data.map(
+                                            ({
+                                                title,
+                                                value,
+                                                format,
+                                                source,
+                                                getCompactValue,
+                                            }) => (
+                                                <Pair
+                                                    key={title}
+                                                    title={`${oracle.title} ${title} [${format}]`}
+                                                >
+                                                    {source && (
+                                                        <QRCodeLink
+                                                            link={source}
+                                                            margin={0}
+                                                        />
+                                                    )}
                                                     <div>
                                                         <Key>
-                                                            {`${oracle.title} ${
-                                                                (
-                                                                    oracle as IOracle<any>
-                                                                ).dataTitles[
-                                                                    key
-                                                                ]
-                                                            }: `}
+                                                            {`${oracle.title} ${title}: `}
                                                         </Key>
-                                                        <Value>{value}</Value>
+                                                        <Value>
+                                                            {getCompactValue
+                                                                ? getCompactValue(
+                                                                      16,
+                                                                  )
+                                                                : value}
+                                                        </Value>
                                                     </div>
                                                 </Pair>
                                             ),

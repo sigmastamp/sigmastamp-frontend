@@ -15,23 +15,24 @@ export function OraclesPage() {
                 <div key={oracle.name}>
                     <AsyncContentComponent
                         content={async () => {
-                            const data = await oracle.getData();
+                            const data =
+                                await oracle.getData(/* !!! Handle errors */);
 
                             return (
                                 <>
-                                    {Object.entries(data).map(
-                                        ([key, value]) => (
-                                            <div key={key}>
+                                    {data.map(
+                                        ({ title, value, format, source }) => (
+                                            <div
+                                                key={title}
+                                                title={`${oracle.title} ${title} [${format}]`}
+                                            >
                                                 <b>
-                                                    {/* @ts-ignore: Object.entries is dummy and cannot pass propper index signature type */}
-                                                    {oracle.title}
-                                                    {
-                                                        (oracle as any)
-                                                            .dataTitles[key]
-                                                    }
-                                                    :
+                                                    {`${oracle.title} ${title}: `}
                                                 </b>
-                                                {value}
+
+                                                <a href={source?.href}>
+                                                    {value}
+                                                </a>
                                             </div>
                                         ),
                                     )}
