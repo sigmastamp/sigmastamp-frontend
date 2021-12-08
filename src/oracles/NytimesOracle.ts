@@ -27,7 +27,7 @@ export class NytimesOracle implements IOracle {
 
         return [
             {
-                title: 'The New York Times',
+                title: 'The\nNew York Times',
                 format: 'Front page title',
                 value: firstItem.title,
                 source: new URL(firstItem.link),

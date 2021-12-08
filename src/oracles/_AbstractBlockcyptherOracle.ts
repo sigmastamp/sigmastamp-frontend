@@ -23,7 +23,7 @@ export abstract class AbstractBlockcyptherOracle implements IOracle {
 
             return [
                 {
-                    title: `${this.titleOfCoin} current block`,
+                    title: `${this.titleOfCoin}\ncurrent block`,
                     format: 'SHA256 Hash',
                     value: hash,
                     source: new URL(

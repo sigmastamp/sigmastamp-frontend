@@ -7,6 +7,7 @@ import { Vector } from 'xyzt';
 import { AsyncContentComponent } from '../../components/AsyncContentComponent';
 import { Button } from '../../components/Button';
 import { ErrorComponent } from '../../components/ErrorComponent';
+import { Nl2br } from '../../components/Nl2br';
 import { IPaymentGateProps } from '../../components/PaymentGate';
 import { PdfPage } from '../../components/PdfPage';
 import { QRCode } from '../../components/QRCode';
@@ -199,7 +200,7 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                                 )}
 
                                 <div className="key render-as-text">
-                                    {title}
+                                    <Nl2br>{title}</Nl2br>
                                 </div>
                                 <div className="value render-as-text">
                                     {getShortenValue
