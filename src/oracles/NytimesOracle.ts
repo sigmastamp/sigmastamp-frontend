@@ -33,7 +33,7 @@ export class NytimesOracle implements IOracle {
                 source: new URL(firstItem.link),
                 /* 
                 TODO: Maybe implement this:
-                getCompactValue(length: number) {
+                getShortenValue(length: number) {
                     return firstTitle.substr(0, length);
                 },
                 */

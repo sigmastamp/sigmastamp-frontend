@@ -11,7 +11,7 @@ export function QRCodeLink(props: IQRCodeLinkProps) {
 
     return (
         <a {...{ href }} target="_blank" rel="noopener noreferrer">
-            <QRCode text={href} />
+            <QRCode text={href} {...props} />
         </a>
     );
 }

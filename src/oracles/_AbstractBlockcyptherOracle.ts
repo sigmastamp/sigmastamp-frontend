@@ -30,7 +30,7 @@ export abstract class AbstractBlockcyptherOracle implements IOracle {
                         `https://live.blockcypher.com/${this.name.toLowerCase()}/block/${hash}`,
                         // `https://www.blockchain.com/${this.name.toLowerCase()}/block/${hash}`,
                     ),
-                    getCompactValue(length: number) {
+                    getShortenValue(length: number) {
                         return shortenHexValue(hash, length);
                     },
                 },

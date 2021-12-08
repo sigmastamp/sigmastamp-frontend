@@ -63,7 +63,7 @@ const PdfPageDivRender = styled.div`
     overflow: hidden;
     position: fixed;
     top: 0;
-    left: 333vw;
+    left: 200vw;
 
     width: ${PAGE_SIZE.x * PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}px;
     height: ${PAGE_SIZE.y * PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}px;

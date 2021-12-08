@@ -1,4 +1,5 @@
 import { blake2b256 } from '../hash/blake2b256';
+import { shortenHexValue } from '../utils/shortenHexValue';
 import { IOracle } from './_IOracle';
 
 export class FakeFileOracle implements IOracle {
@@ -17,8 +18,8 @@ export class FakeFileOracle implements IOracle {
                 title: this.file.name,
                 format: 'Blake2b256 hash',
                 value: hash,
-                getCompactValue(length: number) {
-                    return hash.substr(0, length /* TODO: !!! Better */);
+                getShortenValue(length: number) {
+                    return shortenHexValue(hash, length);
                 },
             },
         ];

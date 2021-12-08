@@ -3,11 +3,12 @@ import { jsPDF } from 'jspdf';
 import { forAllImagesInElement, forEver } from 'waitasecond';
 import { Vector } from 'xyzt';
 import {
+    PAGE_DEBUG,
     PAGE_MM_TO_PX_RATIO_FOR_PREVIEW,
     PAGE_MM_TO_PX_RATIO_FOR_RENDER,
-    PAGE_DEBUG,
     PAGE_SIZE,
 } from '../config';
+import { findDeepestChild } from '../utils/findDeepestChild';
 
 export async function createPdf(containerElement: HTMLElement): Promise<Blob> {
     const pdfDocument = new jsPDF('p', 'mm', PAGE_SIZE.toArray2D());
@@ -77,7 +78,7 @@ export async function createPdf(containerElement: HTMLElement): Promise<Blob> {
             .multiply(PAGE_SIZE)
             .add(new Vector(0, 0.5));
 
-        const textElementDeepestChild = textElement.children[0]!;
+        const textElementDeepestChild = findDeepestChild(textElement);
 
         const fontSize = parseFloat(
             window

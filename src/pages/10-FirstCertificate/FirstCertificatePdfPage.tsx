@@ -170,31 +170,42 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                 {/* TODO: Here is weird space between preview and data */}
                 <Data>
                     {data.map(
-                        ({
-                            title,
-                            value,
-                            format,
-                            source,
-                            getShortenValue: getCompactValue,
-                        }) => (
+                        ({ title, value, format, source, getShortenValue }) => (
                             <div
                                 className="datacell"
                                 key={title}
                                 title={`${title} [${format}]`}
                             >
                                 {source ? (
-                                    <QRCodeLink link={source} margin={0} />
+                                    <QRCodeLink
+                                        link={source}
+                                        margin={0}
+                                        color={{
+                                            dark: '#000000',
+                                            light: '#ffffff00',
+                                        }}
+                                    />
+                                ) : value.length < 16 ? (
+                                    <></>
                                 ) : (
-                                    <QRCode text={value} margin={0} />
+                                    <QRCode
+                                        text={value}
+                                        margin={0}
+                                        color={{
+                                            dark: '#000000',
+                                            light: '#ffffff00',
+                                        }}
+                                    />
                                 )}
 
-                                <b className="key render-as-text">{`${title}: `}</b>
-                                <br />
-                                <span className="value render-as-text">
-                                    {getCompactValue
-                                        ? getCompactValue(16)
+                                <div className="key render-as-text">
+                                    {title}
+                                </div>
+                                <div className="value render-as-text">
+                                    {getShortenValue
+                                        ? getShortenValue(16)
                                         : value}
-                                </span>
+                                </div>
                             </div>
                         ),
                     )}
@@ -220,7 +231,7 @@ const PreviewWithLogo = styled.div`
     }
 `;
 
-const CARD_SIZE = new Vector(PAGE_SIZE.x / 4, 50);
+const CARD_SIZE = new Vector(PAGE_SIZE.x / 4, 70);
 const CARD_PADDING = 7;
 
 const Data = styled.div`
@@ -230,25 +241,63 @@ const Data = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: flex-start;
+    align-items: stretch;
     justify-content: flex-start;
     align-content: stretch;
 
     .datacell {
         /*/
-        border: 1px dashed red; /**/
+        border: 1px dotted red; /**/
+
+        //box-shadow: #5e97ccb7 0px 0px 50px;
+
+        /*/
+        &:nth-child(3n + 0) {
+            background-color: #5e97ccb7;
+        }
+
+        &:nth-child(3n + 1) {
+            background-color: #855eccb7;
+        }
+
+        &:nth-child(3n + 2) {
+            background-color: #5ecc9eb7;
+        }
+        /**/
 
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
 
         width: ${(CARD_SIZE.x - 2 * CARD_PADDING) *
         PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}px;
+
+        /*
         height: ${(CARD_SIZE.y - 2 * CARD_PADDING) *
-        PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}px;
+        PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}px;*/
 
         padding: ${CARD_PADDING * PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}px;
+
+        .key,
+        .value {
+            display: block;
+        }
+
+        .key {
+            font-weight: bold;
+            text-decoration: underline;
+            font-size: ${5 * PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}px;
+            // white-space: nowrap;
+
+            &::after {
+                content: ':';
+            }
+        }
+
+        .value {
+            font-size: ${4 * PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}px;
+        }
 
         .qrcode {
             width: 50px !important;
