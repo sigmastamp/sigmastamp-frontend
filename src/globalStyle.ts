@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 // Note: Do not use this file for local components and all CSS logic put into styled components
 
 export const GlobalStyle = createGlobalStyle`
+
     body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
             'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',

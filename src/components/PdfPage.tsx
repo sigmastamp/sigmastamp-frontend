@@ -47,25 +47,23 @@ export function PdfPage(props: IPdfPageProps) {
 }
 
 const PdfPageDivPreview = styled.div`
-    // Note: !!!
-    font-family: 'Times New Roman', Times, serif;
-
+    overflow: hidden;
     width: ${PAGE_SIZE.x * PAGE_CM_TO_PX_RATIO_FOR_PREVIEW}px;
     height: ${PAGE_SIZE.y * PAGE_CM_TO_PX_RATIO_FOR_PREVIEW}px;
     box-shadow: #5e97ccb7 0px 0px 50px;
 
     background-color: white;
     color: black;
+
+    // Note: !!!
+    font-family: 'Times New Roman', Times, serif;
 `;
 
 const PdfPageDivRender = styled.div`
-    // Note: !!!
-
+    overflow: hidden;
     position: fixed;
     top: 0;
     left: 333vw;
-
-    font-family: 'Times New Roman', Times, serif;
 
     width: ${PAGE_SIZE.x * PAGE_CM_TO_PX_RATIO_FOR_PREVIEW}px;
     height: ${PAGE_SIZE.y * PAGE_CM_TO_PX_RATIO_FOR_PREVIEW}px;
@@ -76,4 +74,7 @@ const PdfPageDivRender = styled.div`
 
     background-color: white;
     color: black;
+
+    // Note: !!!
+    font-family: 'Times New Roman', Times, serif;
 `;

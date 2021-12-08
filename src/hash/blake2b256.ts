@@ -1,9 +1,10 @@
 // @ts-ignore: no typings
 import { blake2bFinal, blake2bInit, blake2bUpdate } from 'blakejs';
+import { string_hex } from '../interfaces/stringTypes';
 import { readFileAsByteArray } from '../utils/readFileAsByteArray';
 import { uint8ArrayToHex } from '../utils/uint8ArrayToHex';
 
-export async function blake2b256(input: File | Blob): Promise<string> {
+export async function blake2b256(input: File | Blob): Promise<string_hex> {
     const KEY = null; // optional key
     const OUTPUT_LENGTH = 32; // bytes
     const context = blake2bInit(OUTPUT_LENGTH, KEY || undefined);

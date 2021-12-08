@@ -1,7 +1,8 @@
+import { string_hex } from '../interfaces/stringTypes';
 import { IOracle } from './_IOracle';
 
 export abstract class AbstractBlockcyptherOracle
-    implements IOracle<{ hash: string }>
+    implements IOracle<{ hash: string_hex }>
 {
     public abstract name: string;
     public abstract title: string;

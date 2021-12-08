@@ -6,7 +6,7 @@ import { IPaymentStatus } from '../interfaces/IPaymentStatus';
 import { ergo_wallet_address, nanoerg } from '../interfaces/stringTypes';
 import { Loader } from './Loader';
 import { ObservableContentComponent } from './ObservableContentComponent';
-import { QRCode } from './QRCode';
+import { QRCodeLink } from './QRCodeLink';
 
 export interface IPaymentGateProps {
     amount: nanoerg;
@@ -37,7 +37,7 @@ export function PaymentGate({
                         map(({ checkedDate, isPayed }) =>
                             !isPayed ? (
                                 <>
-                                    <QRCode {...{ link }} />
+                                    <QRCodeLink {...{ link }} />
                                     Pay {amount / 1000000000} ERG to address{' '}
                                     <a
                                         href={link.href}

@@ -2,38 +2,36 @@ import QRCodeGenerator, { QRCodeRenderersOptions } from 'qrcode';
 import * as React from 'react';
 
 interface IQRCodeProps extends QRCodeRenderersOptions {
-    link: URL;
+    text: string;
 }
 
 export function QRCode(props: IQRCodeProps) {
-    const href = props.link.href;
-
+    const { text } = props;
     return (
-        <a {...{ href }} target="_blank" rel="noopener noreferrer">
-            <canvas
-                ref={(canvasElement) => {
-                    if (!canvasElement) {
-                        return;
-                    }
+        <canvas
+            className="qrcode"
+            ref={(canvasElement) => {
+                if (!canvasElement) {
+                    return;
+                }
 
-                    // Note: Making some manipulation (probbably) due to internal errors of qrcode library
-                    const options: QRCodeRenderersOptions = { ...props };
-                    delete (options as any).href;
-                    options.color = options.color || {};
+                // Note: Making some manipulation (probbably) due to internal errors of qrcode library
+                const options: QRCodeRenderersOptions = { ...props };
+                delete (options as any).href;
+                options.color = options.color || {};
 
-                    QRCodeGenerator.toCanvas(
-                        canvasElement,
-                        href,
-                        options,
-                        (error) => {
-                            if (error) {
-                                console.error(error);
-                            }
-                            // console.log('success!');
-                        },
-                    );
-                }}
-            />
-        </a>
+                QRCodeGenerator.toCanvas(
+                    canvasElement,
+                    text,
+                    options,
+                    (error) => {
+                        if (error) {
+                            console.error(error);
+                        }
+                        // console.log('success!');
+                    },
+                );
+            }}
+        />
     );
 }
