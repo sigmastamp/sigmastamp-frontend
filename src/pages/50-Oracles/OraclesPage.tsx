@@ -18,7 +18,7 @@ export function OraclesPage() {
                         content={async () => {
                             try {
                                 const data =
-                                    await oracle.getData(/* !!! Handle errors */);
+                                    await oracle.getData(/* TODO: Make some transformer util from oracle.getData+ttl to observable stream > connectOracle(oracle): Observable<IOracleData>  */);
 
                                 return (
                                     <>

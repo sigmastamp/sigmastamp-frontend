@@ -3,13 +3,20 @@ import JSZip from 'jszip';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { Vector } from 'xyzt';
 import { AsyncContentComponent } from '../../components/AsyncContentComponent';
 import { Button } from '../../components/Button';
 import { ErrorComponent } from '../../components/ErrorComponent';
 import { IPaymentGateProps } from '../../components/PaymentGate';
 import { PdfPage } from '../../components/PdfPage';
+import { QRCode } from '../../components/QRCode';
 import { QRCodeLink } from '../../components/QRCodeLink';
-import { ORACLES, PAGE_CM_TO_PX_RATIO_FOR_PREVIEW, ROUTES } from '../../config';
+import {
+    ORACLES,
+    PAGE_MM_TO_PX_RATIO_FOR_PREVIEW,
+    PAGE_SIZE,
+    ROUTES,
+} from '../../config';
 import { blake2b256 } from '../../hash/blake2b256';
 import { string_base64, string_hex } from '../../interfaces/stringTypes';
 import { FakeFileOracle } from '../../oracles/FakeFileOracle';
@@ -39,7 +46,10 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                 ] as IOracle[]
             ).map(async (oracle) => {
                 try {
-                    return { data: await oracle.getData(), error: null };
+                    return {
+                        data: await oracle.getData(/* TODO: Make some transformer util from oracle.getData+ttl to observable stream > connectOracle(oracle): Observable<IOracleData>  */),
+                        error: null,
+                    };
                 } catch (error) {
                     if (error instanceof Error) {
                         return { data: [], error };
@@ -166,8 +176,10 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                                 key={title}
                                 title={`${title} [${format}]`}
                             >
-                                {source && (
+                                {source ? (
                                     <QRCodeLink link={source} margin={0} />
+                                ) : (
+                                    <QRCode text={value} margin={0} />
                                 )}
 
                                 <b className="key render-as-text">{`${title}: `}</b>
@@ -197,12 +209,16 @@ const PreviewWithLogo = styled.div`
 
     img.file {
         max-width: 100%;
-        max-height: ${300 * PAGE_CM_TO_PX_RATIO_FOR_PREVIEW}px;
+        max-height: ${(PAGE_SIZE.y - 50 * 3) *
+        PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}px;
     }
 `;
 
+const CARD_SIZE = new Vector(PAGE_SIZE.x / 4, 50);
+const CARD_PADDING = 7;
+
 const Data = styled.div`
-    /**/
+    /*/
     border: 3px dotted #906090; /**/
 
     display: flex;
@@ -213,7 +229,7 @@ const Data = styled.div`
     align-content: stretch;
 
     .datacell {
-        /**/
+        /*/
         border: 1px dashed red; /**/
 
         display: flex;
@@ -221,10 +237,12 @@ const Data = styled.div`
         align-items: center;
         justify-content: center;
 
-        width: 100px;
-        height: 100px;
+        width: ${(CARD_SIZE.x - 2 * CARD_PADDING) *
+        PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}px;
+        height: ${(CARD_SIZE.y - 2 * CARD_PADDING) *
+        PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}px;
 
-        padding: 10px;
+        padding: ${CARD_PADDING * PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}px;
 
         .qrcode {
             width: 50px !important;

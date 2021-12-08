@@ -3,8 +3,8 @@ import { jsPDF } from 'jspdf';
 import { forAllImagesInElement, forEver } from 'waitasecond';
 import { Vector } from 'xyzt';
 import {
-    PAGE_CM_TO_PX_RATIO_FOR_PREVIEW,
-    PAGE_CM_TO_PX_RATIO_FOR_RENDER,
+    PAGE_MM_TO_PX_RATIO_FOR_PREVIEW,
+    PAGE_MM_TO_PX_RATIO_FOR_RENDER,
     PAGE_DEBUG,
     PAGE_SIZE,
 } from '../config';
@@ -32,9 +32,9 @@ export async function createPdf(containerElement: HTMLElement): Promise<Blob> {
 
     if (PAGE_DEBUG) {
         canvas.style.width =
-            PAGE_SIZE.x * PAGE_CM_TO_PX_RATIO_FOR_PREVIEW + 'px';
+            PAGE_SIZE.x * PAGE_MM_TO_PX_RATIO_FOR_PREVIEW + 'px';
         canvas.style.height =
-            PAGE_SIZE.y * PAGE_CM_TO_PX_RATIO_FOR_PREVIEW + 'px';
+            PAGE_SIZE.y * PAGE_MM_TO_PX_RATIO_FOR_PREVIEW + 'px';
         canvas.style.border = '1px solid red';
         canvas.style.position = 'fixed';
         canvas.style.bottom = '20px';
@@ -96,7 +96,7 @@ export async function createPdf(containerElement: HTMLElement): Promise<Blob> {
         const fontSizeInPdf =
             fontSize *
             (PAGE_SIZE.y / containerSize.y) *
-            (PAGE_CM_TO_PX_RATIO_FOR_RENDER / PAGE_CM_TO_PX_RATIO_FOR_PREVIEW) *
+            (PAGE_MM_TO_PX_RATIO_FOR_RENDER / PAGE_MM_TO_PX_RATIO_FOR_PREVIEW) *
             2.83464566929;
 
         pdfDocument.setFontSize(fontSizeInPdf);
