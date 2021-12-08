@@ -5,8 +5,6 @@ export class DateOracle implements IOracle {
     public title = 'Current';
     public ttl = 1;
 
-    public dataTitles = { date: 'date', time: 'time' };
-
     public getData() {
         const date =
             new Date(/* TODO: Taking user date can be dangerous, use some remote time. */);

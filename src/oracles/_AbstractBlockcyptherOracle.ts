@@ -2,10 +2,8 @@ import { IOracle } from './_IOracle';
 
 export abstract class AbstractBlockcyptherOracle implements IOracle {
     public abstract name: string;
-    public abstract title: string;
+    protected abstract titleOfCoin: string;
 
-    // TODO: !!! Remove dataTitles globally
-    public dataTitles = { hash: 'Current block hash' };
     public ttl = -1;
 
     public async getData() {
@@ -29,7 +27,7 @@ export abstract class AbstractBlockcyptherOracle implements IOracle {
             const { hash } = body;
             return [
                 {
-                    title: 'Current block hash',
+                    title: `${this.titleOfCoin} current block`,
                     format: 'SHA256 Hash',
                     value: hash,
                     source: new URL(

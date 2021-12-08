@@ -47,7 +47,7 @@ export function PdfPage(props: IPdfPageProps) {
 }
 
 const PdfPageDivPreview = styled.div`
-    overflow: hidden;
+    //overflow: hidden;
     width: ${PAGE_SIZE.x * PAGE_CM_TO_PX_RATIO_FOR_PREVIEW}px;
     height: ${PAGE_SIZE.y * PAGE_CM_TO_PX_RATIO_FOR_PREVIEW}px;
     box-shadow: #5e97ccb7 0px 0px 50px;

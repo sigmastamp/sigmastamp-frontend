@@ -31,11 +31,9 @@ export function OraclesPage() {
                                             }) => (
                                                 <div
                                                     key={title}
-                                                    title={`${oracle.title} ${title} [${format}]`}
+                                                    title={`${title} [${format}]`}
                                                 >
-                                                    <b>
-                                                        {`${oracle.title} ${title}: `}
-                                                    </b>
+                                                    <b>{`${title}: `}</b>
 
                                                     <a href={source?.href}>
                                                         {value}
@@ -50,8 +48,9 @@ export function OraclesPage() {
                                     return (
                                         <ErrorComponent>
                                             Error occured when getting data from{' '}
-                                            {oracle.title}:<br />
+                                            {oracle.constructor.name}:<br />
                                             {error.message}
+                                            {/* TODO: !!! Link to GitHub */}
                                         </ErrorComponent>
                                     );
                                 } else {

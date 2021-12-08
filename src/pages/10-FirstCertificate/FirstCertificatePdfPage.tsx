@@ -1,8 +1,7 @@
 import { saveAs } from 'file-saver';
 import JSZip from 'jszip';
-import React, { PropsWithChildren, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Textfit } from 'react-textfit';
 import styled from 'styled-components';
 import { AsyncContentComponent } from '../../components/AsyncContentComponent';
 import { Button } from '../../components/Button';
@@ -162,19 +161,24 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                 <Data>
                     {data.map(
                         ({ title, value, format, source, getCompactValue }) => (
-                            <Pair key={title} title={`${title} [${format}]`}>
+                            <div
+                                className="datacell"
+                                key={title}
+                                title={`${title} [${format}]`}
+                            >
                                 {source && (
                                     <QRCodeLink link={source} margin={0} />
                                 )}
                                 <div>
-                                    <Key>{`${title}: `}</Key>
-                                    <Value>
+                                    <b className="key render-as-text">{`${title}: `}</b>
+                                    <br />
+                                    <span className="value render-as-text">
                                         {getCompactValue
                                             ? getCompactValue(16)
                                             : value}
-                                    </Value>
+                                    </span>
                                 </div>
-                            </Pair>
+                            </div>
                         ),
                     )}
                 </Data>
@@ -200,47 +204,32 @@ const PreviewWithLogo = styled.div`
 
 const Data = styled.div`
     /**/
-    border: 1px dashed red; /**/
+    border: 3px dotted #906090; /**/
 
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
-`;
+    align-items: flex-start;
+    justify-content: flex-start;
+    align-content: stretch;
 
-const Pair = styled.div`
-    /**/
-    border: 1px dashed red; /**/
+    .datacell {
+        /**/
+        border: 1px dashed red; /**/
 
-    display: flex;
+        width: 100px;
+        height: 100px;
+        overflow: hidden;
+        padding: 10px;
 
-    width: 50%;
-    margin: 10px;
-    padding: 10px;
-
-    .qrcode {
-        width: 50px !important;
-        height: 50px !important;
+        .qrcode {
+            width: 50px !important;
+            height: 50px !important;
+        }
     }
 `;
 
-function Key(props: PropsWithChildren<{}>) {
-    return (
-        <div className="render-as-text">
-            <b>{props.children}</b>
-        </div>
-    );
-}
-
-function Value(props: PropsWithChildren<{}>) {
-    return (
-        <div className="render-as-text">
-            <Textfit mode="single" max={20}>
-                {props.children}
-            </Textfit>
-        </div>
-    );
-}
-
 /**
  * TODO:
- * - Multiple file previews
+ * - Multiple file previews !!! Warn when more dropped
  */

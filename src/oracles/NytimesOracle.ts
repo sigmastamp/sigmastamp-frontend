@@ -3,10 +3,7 @@ import { IOracle } from './_IOracle';
 
 export class NytimesOracle implements IOracle {
     public name = 'NYTIMES';
-    public title = 'The New York Times';
     public ttl = -1;
-
-    public dataTitles = { firstTitle: 'first title' };
 
     public async getData() {
         const rssParser = new RssParser();
@@ -30,7 +27,8 @@ export class NytimesOracle implements IOracle {
 
         return [
             {
-                title: 'first title',
+                title: 'The New York Times',
+                format: 'Front page title',
                 value: firstItem.title,
                 source: new URL(firstItem.link),
                 /* 

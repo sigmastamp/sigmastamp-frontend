@@ -8,14 +8,6 @@ export interface IOracle {
     name: string;
 
     /**
-     * Title for web and certificate
-     * @example "Bitcoin"
-     *
-     * // TODO: !!! Remove dataTitles IOracle title and encorporate it in data
-     */
-    title: string;
-
-    /**
      * Time to live in seconds
      * When -1 provided, data will be valid until page is reloaded
      *
