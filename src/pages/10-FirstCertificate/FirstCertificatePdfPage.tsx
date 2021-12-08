@@ -7,7 +7,7 @@ import { AsyncContentComponent } from '../../components/AsyncContentComponent';
 import { Button } from '../../components/Button';
 import { IPaymentGateProps } from '../../components/PaymentGate';
 import { PdfPage } from '../../components/PdfPage';
-import { ORACLES, PAGE_CM_TO_PX_RATIO } from '../../config';
+import { ORACLES, PAGE_CM_TO_PX_RATIO_FOR_PREVIEW } from '../../config';
 import { blake2b256 } from '../../hash/blake2b256';
 import { string_base64, string_hex } from '../../interfaces/stringTypes';
 import { IOracle } from '../../oracles/_IOracle';
@@ -149,7 +149,7 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
 const Preview = styled.div`
     img {
         max-width: 100%;
-        max-height: ${300 * PAGE_CM_TO_PX_RATIO}px;
+        max-height: ${300 * PAGE_CM_TO_PX_RATIO_FOR_PREVIEW}px;
     }
 `;
 

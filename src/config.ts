@@ -28,7 +28,8 @@ export const ORACLES = [
 ];
 
 export const PAGE_DEBUG = true;
-export const PAGE_CM_TO_PX_RATIO = 2;
+export const PAGE_CM_TO_PX_RATIO_FOR_PREVIEW = 2;
+export const PAGE_CM_TO_PX_RATIO_FOR_RENDER = 7;
 export const PAGE_SIZE = new Vector(210, 297);
 // TODO: Maybe in second stage USA format of papers - Letter / B type
 
