@@ -1,11 +1,7 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { Promisable } from 'type-fest';
-import {
-    PAGE_MM_TO_PX_RATIO,
-
-    PAGE_SIZE,
-} from '../config';
+import { PAGE_MM_TO_PX_RATIO, PAGE_SIZE } from '../config';
 import { createPdf } from '../pdf/createPdf';
 
 interface IPdfPageProps extends React.PropsWithChildren<{}> {
@@ -15,7 +11,6 @@ interface IPdfPageProps extends React.PropsWithChildren<{}> {
 }
 
 export function PdfPage(props: IPdfPageProps) {
-    const [isRendering, setIsRendering] = useState<boolean>(false);
     const pageRef = useRef<HTMLDivElement>(null);
 
     return (
@@ -28,20 +23,14 @@ export function PdfPage(props: IPdfPageProps) {
                         throw new Error('Problem with rendering to PDF.');
                     }
 
-                    setIsRendering(true);
                     const pdfBlob = await createPdf(containerElement);
-                    setIsRendering(false);
 
                     return pdfBlob;
                 },
             })}
-            <PdfPageDivPreview>{props.children}</PdfPageDivPreview>
-            <PdfPageDivRender
-                ref={pageRef}
-                style={{ display: isRendering ? 'block' : 'none' }}
-            >
+            <PdfPageDivPreview ref={pageRef}>
                 {props.children}
-            </PdfPageDivRender>
+            </PdfPageDivPreview>
         </div>
     );
 }
@@ -51,23 +40,6 @@ const PdfPageDivPreview = styled.div`
     width: ${PAGE_SIZE.x * PAGE_MM_TO_PX_RATIO}px;
     height: ${PAGE_SIZE.y * PAGE_MM_TO_PX_RATIO}px;
     box-shadow: #5e97ccb7 0px 0px 50px;
-
-    background-color: white;
-    color: black;
-
-    // Note: !!!
-    font-family: 'Times New Roman', Times, serif;
-`;
-
-const PdfPageDivRender = styled.div`
-    overflow: hidden;
-    position: fixed;
-    top: 0;
-    left: 100vw;
-
-    width: ${PAGE_SIZE.x * PAGE_MM_TO_PX_RATIO}px;
-    height: ${PAGE_SIZE.y * PAGE_MM_TO_PX_RATIO}px;
-
 
     background-color: white;
     color: black;
