@@ -2,8 +2,8 @@ import React, { useRef, useState } from 'react';
 import styled from 'styled-components';
 import { Promisable } from 'type-fest';
 import {
-    PAGE_MM_TO_PX_RATIO_FOR_PREVIEW,
-    PAGE_MM_TO_PX_RATIO_FOR_RENDER,
+    PAGE_MM_TO_PX_RATIO,
+
     PAGE_SIZE,
 } from '../config';
 import { createPdf } from '../pdf/createPdf';
@@ -48,8 +48,8 @@ export function PdfPage(props: IPdfPageProps) {
 
 const PdfPageDivPreview = styled.div`
     //overflow: hidden;
-    width: ${PAGE_SIZE.x * PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}px;
-    height: ${PAGE_SIZE.y * PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}px;
+    width: ${PAGE_SIZE.x * PAGE_MM_TO_PX_RATIO}px;
+    height: ${PAGE_SIZE.y * PAGE_MM_TO_PX_RATIO}px;
     box-shadow: #5e97ccb7 0px 0px 50px;
 
     background-color: white;
@@ -63,14 +63,11 @@ const PdfPageDivRender = styled.div`
     overflow: hidden;
     position: fixed;
     top: 0;
-    left: 200vw;
+    left: 100vw;
 
-    width: ${PAGE_SIZE.x * PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}px;
-    height: ${PAGE_SIZE.y * PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}px;
+    width: ${PAGE_SIZE.x * PAGE_MM_TO_PX_RATIO}px;
+    height: ${PAGE_SIZE.y * PAGE_MM_TO_PX_RATIO}px;
 
-    transform: scale(
-        ${PAGE_MM_TO_PX_RATIO_FOR_RENDER / PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}
-    );
 
     background-color: white;
     color: black;

@@ -2,12 +2,7 @@ import html2canvas from 'html2canvas';
 import { jsPDF } from 'jspdf';
 import { forAllImagesInElement, forEver } from 'waitasecond';
 import { Vector } from 'xyzt';
-import {
-    PAGE_DEBUG,
-    PAGE_MM_TO_PX_RATIO_FOR_PREVIEW,
-    PAGE_MM_TO_PX_RATIO_FOR_RENDER,
-    PAGE_SIZE,
-} from '../config';
+import { PAGE_DEBUG, PAGE_MM_TO_PX_RATIO, PAGE_SIZE } from '../config';
 import { findDeepestChild } from '../utils/findDeepestChild';
 
 export async function createPdf(containerElement: HTMLElement): Promise<Blob> {
@@ -17,6 +12,7 @@ export async function createPdf(containerElement: HTMLElement): Promise<Blob> {
     await forAllImagesInElement(containerElement);
 
     const canvas = await html2canvas(containerElement, {
+        scale: 3 /* TODO: What is the ideal quality */,
         backgroundColor: 'trasparent',
         allowTaint: true,
         // removeContainer: true,
@@ -32,10 +28,8 @@ export async function createPdf(containerElement: HTMLElement): Promise<Blob> {
     const image = canvas.toDataURL('image/png' /* TODO: Configure quality */);
 
     if (PAGE_DEBUG) {
-        canvas.style.width =
-            PAGE_SIZE.x * PAGE_MM_TO_PX_RATIO_FOR_PREVIEW + 'px';
-        canvas.style.height =
-            PAGE_SIZE.y * PAGE_MM_TO_PX_RATIO_FOR_PREVIEW + 'px';
+        canvas.style.width = PAGE_SIZE.x * PAGE_MM_TO_PX_RATIO + 'px';
+        canvas.style.height = PAGE_SIZE.y * PAGE_MM_TO_PX_RATIO + 'px';
         canvas.style.border = '1px solid red';
         canvas.style.position = 'fixed';
         canvas.style.bottom = '20px';
@@ -95,10 +89,7 @@ export async function createPdf(containerElement: HTMLElement): Promise<Blob> {
         const fontStyle = fontWeight > 400 ? 'bold' : 'normal';
 
         const fontSizeInPdf =
-            fontSize *
-            (PAGE_SIZE.y / containerSize.y) *
-            (PAGE_MM_TO_PX_RATIO_FOR_RENDER / PAGE_MM_TO_PX_RATIO_FOR_PREVIEW) *
-            2.83464566929;
+            fontSize * (PAGE_SIZE.y / containerSize.y) * 2.83464566929;
 
         pdfDocument.setFontSize(fontSizeInPdf);
 

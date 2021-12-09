@@ -14,7 +14,7 @@ import { QRCode } from '../../components/QRCode';
 import { QRCodeLink } from '../../components/QRCodeLink';
 import {
     ORACLES,
-    PAGE_MM_TO_PX_RATIO_FOR_PREVIEW,
+    PAGE_MM_TO_PX_RATIO,
     PAGE_SIZE,
     ROUTES,
 } from '../../config';
@@ -239,7 +239,7 @@ const PreviewWithLogo = styled.div`
     img.file {
         max-width: 100%;
         max-height: ${(PAGE_SIZE.y - 50 * 3) *
-        PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}px;
+        PAGE_MM_TO_PX_RATIO}px;
     }
 `;
 
@@ -283,13 +283,13 @@ const Data = styled.div`
         justify-content: flex-start;
 
         width: ${(CARD_SIZE.x - 2 * CARD_PADDING) *
-        PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}px;
+        PAGE_MM_TO_PX_RATIO}px;
 
         /*
         height: ${(CARD_SIZE.y - 2 * CARD_PADDING) *
-        PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}px;*/
+        PAGE_MM_TO_PX_RATIO}px;*/
 
-        padding: ${CARD_PADDING * PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}px;
+        padding: ${CARD_PADDING * PAGE_MM_TO_PX_RATIO}px;
 
         .data-cell-group {
             /*/
@@ -304,7 +304,7 @@ const Data = styled.div`
         .key {
             font-weight: bold;
             text-decoration: underline;
-            font-size: ${5 * PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}px;
+            font-size: ${5 * PAGE_MM_TO_PX_RATIO}px;
             // white-space: nowrap;
 
             &::after {
@@ -313,7 +313,7 @@ const Data = styled.div`
         }
 
         .value {
-            font-size: ${4 * PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}px;
+            font-size: ${4 * PAGE_MM_TO_PX_RATIO}px;
         }
 
         .qrcode {
