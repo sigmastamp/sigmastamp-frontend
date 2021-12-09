@@ -5,6 +5,7 @@ export function LogoComponent() {
     return (
         <LogoElement>
             <div className="sigmastamp_heading_div">
+                {/* TODO: !!! Logo should be ONLY vectorized SVG/PNG image */}
                 <img
                     className="logo_img"
                     alt="sigmastamp logo"

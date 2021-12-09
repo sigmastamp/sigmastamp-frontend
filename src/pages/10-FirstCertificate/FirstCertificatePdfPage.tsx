@@ -35,7 +35,7 @@ interface IFirstCertificatePdfPageProps {
 
 export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
     const { files, setPayment } = props;
-    const [data, setData] = useState<IOracleData[]>([]);
+    const [data, setData] = useState<IOracleData[][]>([]);
     const [errors, setErrors] = useState<Error[]>([]);
 
     useEffect(() => {
@@ -60,7 +60,7 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                 }
             }),
         ).then((dataAndErrors) => {
-            setData(dataAndErrors.map(({ data }) => data).flat());
+            setData(dataAndErrors.map(({ data }) => data));
             setErrors(
                 dataAndErrors
                     .map(({ error }) => error)
@@ -152,6 +152,7 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                 <PreviewWithLogo>
                     <div className={`logo outer`}>
                         <div className={`logo inner`}>
+                            {/* TODO: !!! Logo should be ONLY vectorized SVG/PNG image */}
                             <LogoComponent />
                         </div>
                     </div>
@@ -170,46 +171,56 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                 </PreviewWithLogo>
                 {/* TODO: Here is weird space between preview and data */}
                 <Data>
-                    {data.map(
-                        ({ title, value, format, source, getShortenValue }) => (
-                            <div
-                                className="datacell"
-                                key={title}
-                                title={`${title} [${format}]`}
-                            >
-                                {source ? (
-                                    <QRCodeLink
-                                        link={source}
-                                        margin={0}
-                                        color={{
-                                            dark: '#000000',
-                                            light: '#ffffff00',
-                                        }}
-                                    />
-                                ) : value.length < 16 ? (
-                                    <></>
-                                ) : (
-                                    <QRCode
-                                        text={value}
-                                        margin={0}
-                                        color={{
-                                            dark: '#000000',
-                                            light: '#ffffff00',
-                                        }}
-                                    />
-                                )}
+                    {data.map((dataGroup, index) => (
+                        <div className="data-cell" key={index}>
+                            {dataGroup.map(
+                                ({
+                                    title,
+                                    value,
+                                    format,
+                                    source,
+                                    getShortenValue,
+                                }) => (
+                                    <div
+                                        className="data-cell-group"
+                                        key={title}
+                                        title={`${title} [${format}]`}
+                                    >
+                                        {source ? (
+                                            <QRCodeLink
+                                                link={source}
+                                                margin={0}
+                                                color={{
+                                                    dark: '#000000',
+                                                    light: '#ffffff00',
+                                                }}
+                                            />
+                                        ) : value.length < 16 ? (
+                                            <></>
+                                        ) : (
+                                            <QRCode
+                                                text={value}
+                                                margin={0}
+                                                color={{
+                                                    dark: '#000000',
+                                                    light: '#ffffff00',
+                                                }}
+                                            />
+                                        )}
 
-                                <div className="key render-as-text">
-                                    <Nl2br>{title}</Nl2br>
-                                </div>
-                                <div className="value render-as-text">
-                                    {getShortenValue
-                                        ? getShortenValue(16)
-                                        : value}
-                                </div>
-                            </div>
-                        ),
-                    )}
+                                        <div className="key render-as-text">
+                                            <Nl2br>{title}</Nl2br>
+                                        </div>
+                                        <div className="value render-as-text">
+                                            {getShortenValue
+                                                ? getShortenValue(16)
+                                                : value}
+                                        </div>
+                                    </div>
+                                ),
+                            )}
+                        </div>
+                    ))}
                 </Data>
             </PdfPage>
         </>
@@ -246,7 +257,7 @@ const Data = styled.div`
     justify-content: flex-start;
     align-content: stretch;
 
-    .datacell {
+    .data-cell {
         /*/
         border: 1px dotted red; /**/
 
@@ -279,6 +290,11 @@ const Data = styled.div`
         PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}px;*/
 
         padding: ${CARD_PADDING * PAGE_MM_TO_PX_RATIO_FOR_PREVIEW}px;
+
+        .data-cell-group {
+            /*/
+            border: 1px dotted red; /**/
+        }
 
         .key,
         .value {
