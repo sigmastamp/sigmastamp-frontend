@@ -55,7 +55,7 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                 }
             }),
         ).then((dataAndErrors) => {
-            // @ts-ignore: no-shadowed-variable
+            // tslint:disable-next-line: no-shadowed-variable
             setData(dataAndErrors.map(({ data }) => data));
             setErrors(
                 dataAndErrors
@@ -155,7 +155,7 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                     {files.map((file) => (
                         <AsyncContentComponent
                             key={file.name}
-                            // @ts-ignore: no-shadowed-variable
+                            // tslint:disable-next-line: no-shadowed-variable
                             content={readFileAsDataUrl(file).then((data) => (
                                 <img
                                     src={data}
