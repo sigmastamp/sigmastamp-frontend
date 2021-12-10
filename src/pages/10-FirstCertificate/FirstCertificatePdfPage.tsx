@@ -12,12 +12,7 @@ import { IPaymentGateProps } from '../../components/PaymentGate';
 import { PdfPage } from '../../components/PdfPage';
 import { QRCode } from '../../components/QRCode';
 import { QRCodeLink } from '../../components/QRCodeLink';
-import {
-    ORACLES,
-    PAGE_MM_TO_PX_RATIO,
-    PAGE_SIZE,
-    ROUTES,
-} from '../../config';
+import { ORACLES, PAGE_MM_TO_PX_RATIO, PAGE_SIZE, ROUTES } from '../../config';
 import { blake2b256 } from '../../hash/blake2b256';
 import { string_base64, string_hex } from '../../interfaces/stringTypes';
 import { FakeFileOracle } from '../../oracles/FakeFileOracle';
@@ -60,6 +55,7 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                 }
             }),
         ).then((dataAndErrors) => {
+            // @ts-ignore-line: no-shadowed-variable
             setData(dataAndErrors.map(({ data }) => data));
             setErrors(
                 dataAndErrors
@@ -159,6 +155,7 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                     {files.map((file) => (
                         <AsyncContentComponent
                             key={file.name}
+                            // @ts-ignore-line: no-shadowed-variable
                             content={readFileAsDataUrl(file).then((data) => (
                                 <img
                                     src={data}
@@ -238,8 +235,7 @@ const PreviewWithLogo = styled.div`
 
     img.file {
         max-width: 100%;
-        max-height: ${(PAGE_SIZE.y - 50 * 3) *
-        PAGE_MM_TO_PX_RATIO}px;
+        max-height: ${(PAGE_SIZE.y - 50 * 3) * PAGE_MM_TO_PX_RATIO}px;
     }
 `;
 
@@ -282,12 +278,10 @@ const Data = styled.div`
         align-items: center;
         justify-content: flex-start;
 
-        width: ${(CARD_SIZE.x - 2 * CARD_PADDING) *
-        PAGE_MM_TO_PX_RATIO}px;
+        width: ${(CARD_SIZE.x - 2 * CARD_PADDING) * PAGE_MM_TO_PX_RATIO}px;
 
         /*
-        height: ${(CARD_SIZE.y - 2 * CARD_PADDING) *
-        PAGE_MM_TO_PX_RATIO}px;*/
+        height: ${(CARD_SIZE.y - 2 * CARD_PADDING) * PAGE_MM_TO_PX_RATIO}px;*/
 
         padding: ${CARD_PADDING * PAGE_MM_TO_PX_RATIO}px;
 

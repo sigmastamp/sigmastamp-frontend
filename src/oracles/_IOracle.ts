@@ -11,7 +11,7 @@ export interface IOracle {
      * Gets current state of oracles domain
      * ⚠️ Warning: Getting the data can fail (it is typically request to external sources) so it is recommended to handle errors
      */
-    getData(): Promisable<Array<IOracleData>>;
+    getData(): Promisable<IOracleData[]>;
 }
 
 export interface IOracleData {

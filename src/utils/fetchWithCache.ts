@@ -38,7 +38,7 @@ export async function fetchWithCache<T>(
     if (ttl !== -1) {
         await cache.setItem(url.href, {
             validTo: new Date(Date.now() + ttl * 1000).toISOString(),
-            data: data,
+            data,
         });
     }
 

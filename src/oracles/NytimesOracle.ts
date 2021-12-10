@@ -31,7 +31,7 @@ export class NytimesOracle implements IOracle {
                 format: 'Front page title',
                 value: firstItem.title,
                 source: new URL(firstItem.link),
-                /* 
+                /*
                 TODO: Maybe implement this:
                 getShortenValue(length: number) {
                     return firstTitle.substr(0, length);
