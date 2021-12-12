@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { Promisable } from 'type-fest';
 import { PAGE_MM_TO_PX_RATIO, PAGE_SIZE } from '../config';
-import { createPdf } from '../pdf/createPdf';
+import { createPdf, IPdfTextMode } from '../pdf/createPdf';
 
 interface IPdfPageProps extends React.PropsWithChildren<{}> {
     renderUi: (options: {
@@ -23,7 +23,10 @@ export function PdfPage(props: IPdfPageProps) {
                         throw new Error('Problem with rendering to PDF.');
                     }
 
-                    const pdfBlob = await createPdf(containerElement);
+                    const pdfBlob = await createPdf({
+                        containerElement,
+                        textMode: IPdfTextMode.SELECTABLE_OVERLAY,
+                    });
 
                     return pdfBlob;
                 },
