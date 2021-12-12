@@ -26,6 +26,7 @@ export function PdfPage(props: IPdfPageProps) {
                     const pdfBlob = await createPdf({
                         containerElement,
                         textMode: IPdfTextMode.SELECTABLE_OVERLAY,
+                        includeFullTextValue: true,
                     });
 
                     return pdfBlob;

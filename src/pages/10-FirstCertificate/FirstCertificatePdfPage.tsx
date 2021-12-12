@@ -216,7 +216,10 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                                         <div className="key render-as-text">
                                             <Nl2br>{title}</Nl2br>
                                         </div>
-                                        <div className="value render-as-text">
+                                        <div
+                                            className="value render-as-text"
+                                            data-full-text-value={value}
+                                        >
                                             {getShortenValue
                                                 ? getShortenValue(16)
                                                 : value}

@@ -8,6 +8,12 @@ import { findDeepestChild } from '../utils/findDeepestChild';
 interface IPdfOptions {
     containerElement: HTMLElement;
     textMode: IPdfTextMode;
+
+    /**
+     * Add full text value which can be dispayed in short form.
+     * If you set this to `true` then the text will be aviable on Ctrl+A & Ctrl+C in full form.
+     */
+    includeFullTextValue: boolean;
 }
 
 export enum IPdfTextMode {
@@ -36,6 +42,7 @@ export enum IPdfTextMode {
 export async function createPdf({
     containerElement,
     textMode,
+    includeFullTextValue,
 }: IPdfOptions): Promise<Blob> {
     const pdfDocument = new jsPDF('p', 'mm', PAGE_SIZE.toArray2D());
     // TODO: !!! Add metadata to PDF
@@ -134,24 +141,39 @@ export async function createPdf({
 
             const fontStyle = fontWeight > 400 ? 'bold' : 'normal';
 
+            const textValue = textElement.innerText;
+            const fullTextValue = textElement.dataset.fullTextValue;
+
             const fontSizeInPdf =
                 fontSize * (PAGE_SIZE.y / containerSize.y) * 2.83464566929;
 
             pdfDocument.setFontSize(fontSizeInPdf);
-
             pdfDocument.setFont('Times', fontStyle);
-            pdfDocument.text(
-                textElement.innerText,
-                ...positionInPdf.toArray2D(),
-                {
-                    baseline: 'top',
-                    renderingMode:
-                        textMode === IPdfTextMode.SELECTABLE_OVERLAY
-                            ? 'addToPathForClipping'
-                            : 'fill',
-                },
-            );
+
+            pdfDocument.text(textValue, ...positionInPdf.toArray2D(), {
+                baseline: 'top',
+                renderingMode:
+                    textMode === IPdfTextMode.SELECTABLE_OVERLAY
+                        ? 'addToPathForClipping'
+                        : 'fill',
+            });
             // console.log(textElement.innerText, ...positionInPdf.toArray2D());
+
+            if (
+                includeFullTextValue &&
+                fullTextValue &&
+                fullTextValue !== textValue
+            ) {
+                pdfDocument.setFontSize(1);
+                pdfDocument.text(
+                    fullTextValue,
+                    ...positionInPdf.add({ x: 2 }).toArray2D(),
+                    {
+                        baseline: 'top',
+                        renderingMode: 'addToPathForClipping',
+                    },
+                );
+            }
         }
     }
 
