@@ -7,11 +7,13 @@ import { Vector } from 'xyzt';
 import { AsyncContentComponent } from '../../components/AsyncContentComponent';
 import { Button } from '../../components/Button';
 import { ErrorComponent } from '../../components/ErrorComponent';
+import { Float } from '../../components/Float';
 import { Nl2br } from '../../components/Nl2br';
 import { IPaymentGateProps } from '../../components/PaymentGate';
 import { PdfPage } from '../../components/PdfPage';
 import { QRCode } from '../../components/QRCode';
 import { QRCodeLink } from '../../components/QRCodeLink';
+import { SignatureComponent } from '../../components/SignatureComponent';
 import { ORACLES, PAGE_MM_TO_PX_RATIO, PAGE_SIZE, ROUTES } from '../../config';
 import { blake2b256 } from '../../hash/blake2b256';
 import { string_base64, string_hex } from '../../interfaces/stringTypes';
@@ -146,12 +148,10 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                 }}
             >
                 <PreviewWithLogo>
-                    <div className={`logo outer`}>
-                        <div className={`logo inner`}>
-                            {/* TODO: !!! Logo should be ONLY vectorized SVG/PNG image */}
-                            <LogoComponent />
-                        </div>
-                    </div>
+                    <Float>
+                        {/* TODO: !!! Logo should be ONLY vectorized SVG/PNG image */}
+                        <LogoComponent />
+                    </Float>
                     {files.map((file) => (
                         <AsyncContentComponent
                             key={file.name}
@@ -170,6 +170,13 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                 <Data>
                     {data.map((dataGroup, index) => (
                         <div className="data-cell" key={index}>
+                            <Float>
+                                <SignatureComponent
+                                    width={100}
+                                    height={50}
+                                    data={'!!!'}
+                                />
+                            </Float>
                             {dataGroup.map(
                                 ({
                                     title,
@@ -208,7 +215,10 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                                         <div className="key render-as-text">
                                             <Nl2br>{title}</Nl2br>
                                         </div>
-                                        <div className="value render-as-text">
+                                        <div
+                                            className="value render-as-text"
+                                            data-full-text-value={value}
+                                        >
                                             {getShortenValue
                                                 ? getShortenValue(16)
                                                 : value}
@@ -225,14 +235,6 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
 }
 
 const PreviewWithLogo = styled.div`
-    .logo.outer {
-        position: absolute;
-    }
-
-    .logo.inner {
-        position: relative;
-    }
-
     img.file {
         max-width: 100%;
         max-height: ${(PAGE_SIZE.y - 50 * 3) * PAGE_MM_TO_PX_RATIO}px;

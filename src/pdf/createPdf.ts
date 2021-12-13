@@ -5,25 +5,79 @@ import { Vector } from 'xyzt';
 import { PAGE_DEBUG, PAGE_MM_TO_PX_RATIO, PAGE_SIZE } from '../config';
 import { findDeepestChild } from '../utils/findDeepestChild';
 
-export async function createPdf(containerElement: HTMLElement): Promise<Blob> {
+interface IPdfOptions {
+    containerElement: HTMLElement;
+    textMode: IPdfTextMode;
+
+    /**
+     * Add full text value which can be dispayed in short form.
+     * If you set this to `true` then the text will be aviable on Ctrl+A & Ctrl+C in full form.
+     */
+    includeFullTextValue: boolean;
+}
+
+export enum IPdfTextMode {
+    /**
+     * Text is rendered into image and it IS NOT selectable.
+     */
+    NO_TEXT,
+
+    /**
+     * Text is rendered into image and also there is selectable overlay to allow text selection.
+     */
+    SELECTABLE_OVERLAY,
+
+    /**
+     * Text is NOT rendered into image and it is replaced by same text in the PDF.
+     */
+    REPLACE_BY_TEXT,
+
+    /**
+     * Text is rendered BOTH into image and PDF.
+     * Note: Use this only for testing purposes because texts could have some small ugly looking offset.
+     */
+    DEBUG_BOTH,
+}
+
+export async function createPdf({
+    containerElement,
+    textMode,
+    includeFullTextValue,
+}: IPdfOptions): Promise<Blob> {
     const pdfDocument = new jsPDF('p', 'mm', PAGE_SIZE.toArray2D());
     // TODO: !!! Add metadata to PDF
 
     await forAllImagesInElement(containerElement);
+
+    const textElements = Array.from(
+        containerElement.querySelectorAll('.render-as-text'),
+    ) as HTMLElement[];
+
+    if (textMode === IPdfTextMode.REPLACE_BY_TEXT) {
+        for (const textElement of textElements) {
+            textElement.style.visibility = 'hidden';
+        }
+    }
 
     const canvas = await html2canvas(containerElement, {
         scale: 3 /* TODO: What is the ideal quality */,
         backgroundColor: 'trasparent',
         allowTaint: true,
         // removeContainer: true,
-        ignoreElements: (element) => {
+        /*ignoreElements: (element) => {
             if (PAGE_DEBUG) {
                 return false;
             } else {
                 return element.classList.contains('render-as-text');
             }
-        },
+        },*/
     });
+
+    if (textMode === IPdfTextMode.REPLACE_BY_TEXT) {
+        for (const textElement of textElements) {
+            textElement.style.visibility = 'visible';
+        }
+    }
 
     const image = canvas.toDataURL('image/png' /* TODO: Configure quality */);
 
@@ -56,52 +110,72 @@ export async function createPdf(containerElement: HTMLElement): Promise<Blob> {
         'height',
     ]);
 
-    pdfDocument.addFont('Times New Roman', 'Times', 'serif');
-    // TODO: Remove unnessesary fonts from the document
-    //   console.log(pdfDocument.getFontList());
+    if (textMode !== IPdfTextMode.NO_TEXT) {
+        pdfDocument.addFont('Times New Roman', 'Times', 'serif');
+        // TODO: Remove unnessesary fonts from the document
+        //   console.log(pdfDocument.getFontList());
 
-    for (const textElement of Array.from(
-        containerElement.querySelectorAll('.render-as-text'),
-    ) as HTMLElement[]) {
-        const positionInPdf = Vector.fromObject(
-            textElement.getBoundingClientRect(),
-            ['left', 'top'],
-        )
-            .subtract(originPosition)
-            .divide(containerSize)
-            .multiply(PAGE_SIZE)
-            .add(new Vector(0, 0.5));
+        for (const textElement of textElements) {
+            const positionInPdf = Vector.fromObject(
+                textElement.getBoundingClientRect(),
+                ['left', 'top'],
+            )
+                .subtract(originPosition)
+                .divide(containerSize)
+                .multiply(PAGE_SIZE)
+                .add(new Vector(0, 0.5));
 
-        const textElementDeepestChild = findDeepestChild(textElement);
+            const textElementDeepestChild = findDeepestChild(textElement);
 
-        const fontSize = parseFloat(
-            window
-                .getComputedStyle(textElementDeepestChild, null)
-                .getPropertyValue('font-size'),
-        );
+            const fontSize = parseFloat(
+                window
+                    .getComputedStyle(textElementDeepestChild, null)
+                    .getPropertyValue('font-size'),
+            );
 
-        const fontWeight = parseFloat(
-            window
-                .getComputedStyle(textElementDeepestChild, null)
-                .getPropertyValue('font-weight'),
-        );
+            const fontWeight = parseFloat(
+                window
+                    .getComputedStyle(textElementDeepestChild, null)
+                    .getPropertyValue('font-weight'),
+            );
 
-        const fontStyle = fontWeight > 400 ? 'bold' : 'normal';
+            const fontStyle = fontWeight > 400 ? 'bold' : 'normal';
 
-        const fontSizeInPdf =
-            fontSize * (PAGE_SIZE.y / containerSize.y) * 2.83464566929;
+            const textValue = textElement.innerText;
+            const fullTextValue = textElement.dataset.fullTextValue;
 
-        pdfDocument.setFontSize(fontSizeInPdf);
+            const fontSizeInPdf =
+                fontSize * (PAGE_SIZE.y / containerSize.y) * 2.83464566929;
 
-        pdfDocument.setFont('Times', fontStyle);
-        pdfDocument.text(textElement.innerText, ...positionInPdf.toArray2D(), {
-            baseline: 'top',
-        });
+            pdfDocument.setFontSize(fontSizeInPdf);
+            pdfDocument.setFont('Times', fontStyle);
 
-        // console.log(textElement.innerText, ...positionInPdf.toArray2D());
+            pdfDocument.text(textValue, ...positionInPdf.toArray2D(), {
+                baseline: 'top',
+                renderingMode:
+                    textMode === IPdfTextMode.SELECTABLE_OVERLAY
+                        ? 'addToPathForClipping'
+                        : 'fill',
+            });
+            // console.log(textElement.innerText, ...positionInPdf.toArray2D());
+
+            if (
+                includeFullTextValue &&
+                fullTextValue &&
+                fullTextValue !== textValue
+            ) {
+                pdfDocument.setFontSize(1);
+                pdfDocument.text(
+                    fullTextValue,
+                    ...positionInPdf.add({ x: 2 }).toArray2D(),
+                    {
+                        baseline: 'top',
+                        renderingMode: 'addToPathForClipping',
+                    },
+                );
+            }
+        }
     }
-
-    // containerElement.style.display = 'none';
 
     if (PAGE_DEBUG) {
         pdfDocument.save('test.pdf');
