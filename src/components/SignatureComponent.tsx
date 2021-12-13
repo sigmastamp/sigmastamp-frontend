@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Vector } from 'xyzt';
 import { string_hex } from '../interfaces/stringTypes';
 
 interface ISignatureComponentProps {
@@ -12,8 +13,25 @@ export function SignatureComponent(props: ISignatureComponentProps) {
     return (
         <svg {...{ width, height }} xmlns="http://www.w3.org/2000/svg">
             <path
-                d="M 10 10 C 20 20, 40 20, 50 10"
-                stroke="red"
+                d={Array.from(Array(width))
+                    .map((_, i) => {
+                        const point = new Vector(
+                            i,
+                            ((Math.sin(i / 5) + 1) / 2) * height,
+                        );
+
+                        if (i === 0) {
+                            return `M ${point.toArray2D().join(',')}`;
+                        } else {
+                            return `Q ${point.toArray2D().join(',')} ${point
+                                .add(new Vector(50, 10))
+                                .toArray2D()
+                                .join(',')}`;
+                            //return `L ${point.toArray2D().join(',')}`;
+                        }
+                    })
+                    .join(' ')}
+                stroke="black"
                 fill="transparent"
             />
         </svg>

@@ -170,6 +170,13 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                 <Data>
                     {data.map((dataGroup, index) => (
                         <div className="data-cell" key={index}>
+                            <Float>
+                                <SignatureComponent
+                                    width={100}
+                                    height={50}
+                                    data={'!!!'}
+                                />
+                            </Float>
                             {dataGroup.map(
                                 ({
                                     title,
@@ -204,14 +211,6 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                                                 }}
                                             />
                                         )}
-
-                                        <Float>
-                                            <SignatureComponent
-                                                width={100}
-                                                height={50}
-                                                data={value}
-                                            />
-                                        </Float>
 
                                         <div className="key render-as-text">
                                             <Nl2br>{title}</Nl2br>
