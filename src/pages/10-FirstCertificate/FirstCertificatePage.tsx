@@ -68,3 +68,7 @@ export function FirstCertificatePage() {
         return <PaymentGate {...payment} />;
     }
 }
+
+/**
+ * TODO: When the user is in the middle of the process, prevent unloading of the page (or the component) by "unsubmitted form" feature of the browser
+ */

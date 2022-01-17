@@ -18,12 +18,12 @@ export function UploadZoneSigmastampContent({
 
 const UploadZoneContentDiv = styled.div`
     font-size: 1.5em;
-    color: #cccccc;
+    opacity: 0.5;
     text-align: center;
 
     img.logo {
         display: block;
         width: 230px;
-        opacity: 0.5;
+        transform: translateX(8%);
     }
 `;

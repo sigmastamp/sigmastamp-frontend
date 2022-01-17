@@ -4,10 +4,15 @@ import styled from 'styled-components';
 export function Center({
     children,
     isFlexed,
-}: React.PropsWithChildren<{ isFlexed?: boolean }>) {
+    className,
+}: React.PropsWithChildren<{ isFlexed?: boolean; className?: string }>) {
     return (
-        <CenterDiv className={`outer`}>
-            {isFlexed ? children : <div className={`inner`}>{children}</div>}
+        <CenterDiv className={`outer ${className}`}>
+            {isFlexed ? (
+                children
+            ) : (
+                <div className={`inner ${className}`}>{children}</div>
+            )}
         </CenterDiv>
     );
 }

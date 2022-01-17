@@ -127,3 +127,7 @@ export function SecondCertificatePage() {
 }
 
 const SecondCertificatePageDiv = styled.div``;
+
+/**
+ * TODO: When the user is in the middle of the process, prevent unloading of the page (or the component) by "unsubmitted form" feature of the browser
+ */

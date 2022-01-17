@@ -9,78 +9,83 @@ export type IUploadZoneProps = React.PropsWithChildren<{
     onFiles: (droppedFiles: File[]) => void;
 }>;
 
-// TODO: !!! Use hooks and functional coponent ONLY in whole project
+export function UploadZone({
+    children,
+    clickable,
+    onFilesOver,
+    onFiles,
+}: IUploadZoneProps) {
+    const [isFilesOver, setFilesOver] = React.useState(false);
 
-export class UploadZone extends React.Component<IUploadZoneProps> {
-    render() {
-        const {
-            children,
-            onFiles: onFile,
-            onFilesOver: onFileOver,
-            clickable,
-        } = this.props;
-        const onFileOverMaybe = (isFileOver: boolean) => {
-            if (onFileOver) {
-                onFileOver(isFileOver);
-            }
-        };
+    const onFileOverWrapper = (isFileOver: boolean) => {
+        setFilesOver(isFileOver);
 
-        let uploadClick: () => void;
+        if (onFilesOver) {
+            onFilesOver(isFileOver);
+        }
+    };
 
-        return (
-            <UploadZoneDiv
-                onClick={() => {
-                    if (clickable) {
-                        uploadClick();
+    let uploadClick: () => void;
+
+    return (
+        <UploadZoneDiv
+            className={isFilesOver ? 'files-over' : ''}
+            onClick={() => {
+                if (clickable) {
+                    uploadClick();
+                }
+            }}
+            onDragEnter={(event) => {
+                event.stopPropagation();
+                event.preventDefault();
+            }}
+            onDragOver={(event) => {
+                event.stopPropagation();
+                event.preventDefault();
+                onFileOverWrapper(true);
+            }}
+            onDragExit={(event) => {
+                event.stopPropagation();
+                event.preventDefault();
+                onFileOverWrapper(false);
+            }}
+            onDragEnd={(event) => {
+                event.stopPropagation();
+                event.preventDefault();
+                onFileOverWrapper(false);
+            }}
+            onDragEndCapture={(event) => {
+                event.stopPropagation();
+                event.preventDefault();
+                onFileOverWrapper(false);
+            }}
+            onDrop={(event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                onFileOverWrapper(false);
+
+                const files = Array.from(event.dataTransfer.files); // TODO: Maybe there should be event.dataTransfer.items handler
+                onFiles(files);
+            }}
+        >
+            <input
+                type="file"
+                ref={(element) => {
+                    if (element) {
+                        uploadClick = () => {
+                            onFileOverWrapper(true);
+                            (element as HTMLInputElement).click();
+                        };
                     }
                 }}
-                onDragEnter={(event) => {
-                    event.stopPropagation();
-                    event.preventDefault();
+                onChange={(event) => {
+                    if (!event || !event.target || !event.target.files) return;
+                    onFiles(Array.from(event.target.files));
                 }}
-                onDragOver={(event) => {
-                    event.stopPropagation();
-                    event.preventDefault();
-                    onFileOverMaybe(true);
-                }}
-                onDragExit={(event) => {
-                    event.stopPropagation();
-                    event.preventDefault();
-                    onFileOverMaybe(false);
-                }}
-                onDragEnd={(event) => {
-                    event.stopPropagation();
-                    event.preventDefault();
-                }}
-                onDrop={(event) => {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    onFileOverMaybe(false);
-
-                    const files = Array.from(event.dataTransfer.files); // TODO: Maybe there should be event.dataTransfer.items handler
-                    onFile(files);
-                }}
-            >
-                <input
-                    type="file"
-                    ref={(element) => {
-                        if (element) {
-                            uploadClick = () => {
-                                onFileOverMaybe(true);
-                                (element as HTMLInputElement).click();
-                            };
-                        }
-                    }}
-                    onChange={(event) => {
-                        if (!event || !event.target || !event.target.files)
-                            return;
-                        onFile(Array.from(event.target.files));
-                    }}
-                />
-                <Center>{children}</Center>
-            </UploadZoneDiv>
-        );
-    }
+            />
+            <Center className={'upload-inner'}>{children}</Center>
+        </UploadZoneDiv>
+    );
 }
 
 const PADDING = 100;
@@ -88,10 +93,29 @@ const UploadZoneDiv = styled.div`
     width: ${210 * PAGE_MM_TO_PX_RATIO - 2 * PADDING}px;
     height: ${297 * PAGE_MM_TO_PX_RATIO - 2 * PADDING}px;
     padding: ${PADDING}px;
-    border: 5px dashed #009edf;
+    border: 5px dashed #cccccc;
     border-radius: 5px;
 
     input {
         display: none;
     }
+
+    transition: border-color 0.2s ease;
+    .upload-inner {
+        transition: transform 0.2s ease;
+    }
+
+    &.files-over {
+        border-color: #009edf;
+    }
+
+    &.files-over .upload-inner {
+        transform: scale(105%);
+        
+    }
 `;
+
+/**
+ * TODO: Probbably when there is only one UploadZone rendered on entire page, expand invisible dropzone to full page
+ * TODO: Do not allow to drop placeholder of sigmastamp logo
+ */
