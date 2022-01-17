@@ -3,16 +3,17 @@ import styled from 'styled-components';
 
 interface ILogoComponentProps {
     isWatermark?: boolean;
+    isDark?: boolean;
 }
 
-export function LogoComponent({ isWatermark }: ILogoComponentProps) {
+export function LogoComponent({ isWatermark, isDark }: ILogoComponentProps) {
     return (
         <LogoElement>
             {/* TODO: !!! Logo should be ONLY vectorized SVG/PNG image */}
             <img
                 className="logo"
                 alt="sigmastamp logo"
-                src="./sigmastamp-logo.white.svg"
+                src={`./sigmastamp-logo.${isDark ? 'black' : 'white'}.svg`}
             />
 
             {!isWatermark && (
@@ -48,3 +49,7 @@ const LogoElement = styled.div`
         margin: 0;
     }
 `;
+
+/**
+ * TODO: Text reacting to isDark property
+ */

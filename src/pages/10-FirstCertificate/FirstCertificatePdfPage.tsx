@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { Vector } from 'xyzt';
 import { Button } from '../../components/Button';
 import { ErrorComponent } from '../../components/ErrorComponent';
+import { Float } from '../../components/Float';
 import { LogoComponent } from '../../components/LogoComponent';
 import { Nl2br } from '../../components/Nl2br';
 import { IPaymentGateProps } from '../../components/PaymentGate';
@@ -145,12 +146,10 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                 }}
             >
                 <PreviewWithLogo>
-                    {/* TODO: Use here float component + blur under the logo */}
-                    <div className={`logo outer`}>
-                        <div className={`logo inner`}>
-                            <LogoComponent isWatermark />
-                        </div>
-                    </div>
+                    {/* TODO: Analyze topleft side of the preview and choose light or dark logo according to it */}
+                    <Float>
+                        <LogoComponent isWatermark />
+                    </Float>
                     <MultipleFilesPreview {...{ files }} />
                 </PreviewWithLogo>
                 {/* TODO: Here is weird space between preview and data */}
@@ -214,14 +213,6 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
 const PreviewWithLogo = styled.div`
     background-color: #cccccc;
     height: ${(PAGE_SIZE.y / 2) * PAGE_MM_TO_PX_RATIO}px;
-
-    .logo.outer {
-        position: absolute;
-    }
-
-    .logo.inner {
-        position: relative;
-    }
 `;
 
 const CARD_SIZE = new Vector(PAGE_SIZE.x / 4, 70);
