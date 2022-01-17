@@ -3,7 +3,6 @@ import React from 'react';
 export function TechnicalStatusPageBadges() {
     return (
         <>
-      
             <a
                 href="https://raw.githubusercontent.com/sigmastamp/sigmastamp-frontend/master/LICENSE"
                 rel="nofollow"
