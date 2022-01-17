@@ -9,6 +9,8 @@ export function SampleCertificatesPage() {
         <SampleCertificatesDiv>
             <h1>Sample certificates</h1>
             <p>Here are samples how will your certificates look like:</p>
+
+            {/*
             <h2>First certificate with image</h2>
             <AsyncContentComponent
                 content={async () => (
@@ -53,6 +55,7 @@ export function SampleCertificatesPage() {
                     />
                 )}
             />
+            */}
 
             <h2>Multiple files</h2>
             <AsyncContentComponent
@@ -69,7 +72,7 @@ export function SampleCertificatesPage() {
                             ),
                             await fetchAsFile(
                                 process.env.PUBLIC_URL +
-                                    '/samples-to-sign/sample1.mp3',
+                                    '/samples-to-sign/sample1.c',
                             ),
                         ]}
                         setPayment={() => {}}

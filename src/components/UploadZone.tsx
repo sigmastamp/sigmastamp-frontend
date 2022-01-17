@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { PAGE_MM_TO_PX_RATIO } from '../config';
 import { Center } from './Center';

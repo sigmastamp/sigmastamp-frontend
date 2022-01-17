@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 export function Nl2br(props: { children: string }) {
     const lines = props.children.split('\n');

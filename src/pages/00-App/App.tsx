@@ -134,4 +134,5 @@ const AppDiv = styled.div`
 /**
  * TODO: !!! Is mobile design layout needed in the first stage ?
  * TODO: Document title should be set according to current page
+ * TODO: Use hashless routing
  */

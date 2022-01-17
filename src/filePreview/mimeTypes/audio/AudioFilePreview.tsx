@@ -1,5 +1,6 @@
 import React from 'react';
 import { IFilePreviewer } from '../../IFilePreviewerProps';
+import { ImageFilePreviewDiv } from '../image/ImageFilePreview';
 
 export class AudioFilePreview implements IFilePreviewer {
     public isSupporting(file: File): boolean {
@@ -7,11 +8,13 @@ export class AudioFilePreview implements IFilePreviewer {
     }
     public async render(file: File) {
         return (
-            <img
-                src={'./non-image-previews/audio.jpg'}
-                alt={`Preview of ${file.name}`}
-                className={`file`}
-            />
+            // Note: Not using <img> because it doesn't stretch image propperly
+            <ImageFilePreviewDiv fileData="./non-image-previews/audio.jpg" />
         );
     }
 }
+
+
+/**
+ * TODO: Generate better preview for audio files
+ */

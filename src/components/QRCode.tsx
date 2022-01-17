@@ -1,5 +1,5 @@
 import QRCodeGenerator, { QRCodeRenderersOptions } from 'qrcode';
-import * as React from 'react';
+import React from 'react';
 
 interface IQRCodeProps extends QRCodeRenderersOptions {
     text: string;

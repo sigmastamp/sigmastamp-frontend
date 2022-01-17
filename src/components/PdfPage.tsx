@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Promisable } from 'type-fest';
 import { PAGE_MM_TO_PX_RATIO, PAGE_SIZE } from '../config';
@@ -11,7 +11,7 @@ interface IPdfPageProps extends React.PropsWithChildren<{}> {
 }
 
 export function PdfPage(props: IPdfPageProps) {
-    const pageRef = useRef<HTMLDivElement>(null);
+    const pageRef = React.useRef<HTMLDivElement>(null);
 
     return (
         <div>

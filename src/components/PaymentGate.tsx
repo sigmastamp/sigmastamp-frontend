@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Countdown from 'react-countdown';
 import { catchError, map, of } from 'rxjs';
 import styled from 'styled-components';

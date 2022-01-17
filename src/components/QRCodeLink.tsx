@@ -1,5 +1,5 @@
 import { QRCodeRenderersOptions } from 'qrcode';
-import * as React from 'react';
+import React from 'react';
 import { QRCode } from './QRCode';
 
 interface IQRCodeLinkProps extends QRCodeRenderersOptions {

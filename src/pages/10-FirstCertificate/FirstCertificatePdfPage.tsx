@@ -1,6 +1,6 @@
 import { saveAs } from 'file-saver';
 import JSZip from 'jszip';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Vector } from 'xyzt';
@@ -13,7 +13,7 @@ import { PdfPage } from '../../components/PdfPage';
 import { QRCode } from '../../components/QRCode';
 import { QRCodeLink } from '../../components/QRCodeLink';
 import { ORACLES, PAGE_MM_TO_PX_RATIO, PAGE_SIZE, ROUTES } from '../../config';
-import { FilesPreview } from '../../filePreview/FilesPreview';
+import { MultipleFilesPreview } from '../../filePreview/MultipleFilesPreview';
 import { blake2b256 } from '../../hash/blake2b256';
 import { string_base64, string_hex } from '../../interfaces/stringTypes';
 import { FakeFileOracle } from '../../oracles/FakeFileOracle';
@@ -29,10 +29,10 @@ interface IFirstCertificatePdfPageProps {
 
 export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
     const { files, setPayment } = props;
-    const [data, setData] = useState<IOracleData[][]>([]);
-    const [errors, setErrors] = useState<Error[]>([]);
+    const [data, setData] = React.useState<IOracleData[][]>([]);
+    const [errors, setErrors] = React.useState<Error[]>([]);
 
-    useEffect(() => {
+    React.useEffect(() => {
         Promise.all(
             (
                 [
@@ -145,12 +145,13 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                 }}
             >
                 <PreviewWithLogo>
+                    {/* TODO: Use here float component + blur under the logo */}
                     <div className={`logo outer`}>
                         <div className={`logo inner`}>
                             <LogoComponent isWatermark />
                         </div>
                     </div>
-                    <FilesPreview {...{ files }} />
+                    <MultipleFilesPreview {...{ files }} />
                 </PreviewWithLogo>
                 {/* TODO: Here is weird space between preview and data */}
                 <Data>
@@ -211,17 +212,15 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
 }
 
 const PreviewWithLogo = styled.div`
+    background-color: #cccccc;
+    height: ${(PAGE_SIZE.y / 2) * PAGE_MM_TO_PX_RATIO}px;
+
     .logo.outer {
         position: absolute;
     }
 
     .logo.inner {
         position: relative;
-    }
-
-    img.file {
-        max-width: 100%;
-        max-height: ${(PAGE_SIZE.y - 50 * 3) * PAGE_MM_TO_PX_RATIO}px;
     }
 `;
 

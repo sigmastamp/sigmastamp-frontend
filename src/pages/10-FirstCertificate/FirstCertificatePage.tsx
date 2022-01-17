@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { IPaymentGateProps, PaymentGate } from '../../components/PaymentGate';
 import { UploadZone } from '../../components/UploadZone';
@@ -11,8 +11,8 @@ interface IAppState {
 }
 
 export function FirstCertificatePage() {
-    const [state, setState] = useState<IAppState>({ files: [] });
-    const [payment, setPayment] = useState<null | IPaymentGateProps>(null);
+    const [state, setState] = React.useState<IAppState>({ files: [] });
+    const [payment, setPayment] = React.useState<null | IPaymentGateProps>(null);
 
     if (!payment) {
         return (

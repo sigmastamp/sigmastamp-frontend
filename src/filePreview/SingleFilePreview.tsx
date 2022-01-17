@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import { AsyncContentComponent } from '../components/AsyncContentComponent';
 import { FILE_PREVIEWERS } from '../config';
 
-interface FilePreviewProps {
+interface ISingleFilePreviewProps {
     file: File;
 }
 
-export function FilePreview({ file }: FilePreviewProps) {
+export function SingleFilePreview({ file }: ISingleFilePreviewProps) {
     return (
-        <FilePreviewDiv>
+        <SingleFilePreviewDiv>
             <AsyncContentComponent
                 key={file.name}
                 content={async () => {
@@ -23,12 +23,11 @@ export function FilePreview({ file }: FilePreviewProps) {
                     return <>No preview available</>;
                 }}
             />
-        </FilePreviewDiv>
+        </SingleFilePreviewDiv>
     );
 }
 
-const FilePreviewDiv = styled.div`
-    img {
-        width: 100%;
-    }
+const SingleFilePreviewDiv = styled.div`
+    width: 100%;
+    height: 100%;
 `;

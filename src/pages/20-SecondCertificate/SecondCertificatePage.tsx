@@ -1,6 +1,6 @@
 import { saveAs } from 'file-saver';
 import JSZip from 'jszip';
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Button } from '../../components/Button';
@@ -16,8 +16,8 @@ import {
 } from '../../smartcontracts/validateFirstCertificate';
 
 export function SecondCertificatePage() {
-    const [files, setFiles] = useState<any>([]);
-    const [verification, setVerification] = useState<any>(null);
+    const [files, setFiles] = React.useState<any>([]);
+    const [verification, setVerification] = React.useState<any>(null);
 
     if (!verification) {
         return (

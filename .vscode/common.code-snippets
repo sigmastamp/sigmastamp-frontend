@@ -24,7 +24,7 @@
         "prefix": "Functional React component",
         "description": "Functional React component",
         "body": [
-            " import * as React from 'react';",
+            " import React from 'react';",
             "",
             " interface I$1ComponentProps {}",
             "",
