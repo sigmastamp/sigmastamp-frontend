@@ -66,20 +66,20 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
     }, [files]);
 
     return (
-        <>
-            {errors.length > 0 && (
-                <ErrorComponent>
-                    There occured some errors in getting oracle data You can
-                    still download the certificate but some data from external
-                    world may be missing
-                    <br />
-                    See more details on{' '}
-                    <Link to={ROUTES.Oracles}>oracles page</Link>.
-                </ErrorComponent>
-            )}
-            <PdfPage
-                renderUi={({ createPdf }) => {
-                    return (
+        <PdfPage
+            renderUi={({ createPdf }) => {
+                return (
+                    <>
+                        {errors.length > 0 && (
+                            <ErrorComponent>
+                                There occured some errors in getting oracle data
+                                You can still download the certificate but some
+                                data from external world may be missing
+                                <br />
+                                See more details on{' '}
+                                <Link to={ROUTES.Oracles}>oracles page</Link>.
+                            </ErrorComponent>
+                        )}
                         <Button
                             onClick={async () => {
                                 // TODO: !!! Download logic into separate util + setPayment should not be in IFirstCertificatePdfPageProps
@@ -142,71 +142,71 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                         >
                             Download 1st certificate
                         </Button>
-                    );
-                }}
-            >
-                <PreviewWithLogo>
-                    {/* TODO: Analyze topleft side of the preview and choose light or dark logo according to it */}
-                    <Float>
-                        <LogoComponent isWatermark />
-                    </Float>
-                    <MultipleFilesPreview {...{ files }} />
-                </PreviewWithLogo>
-                {/* TODO: Here is weird space between preview and data */}
-                <Data>
-                    {data.map((dataGroup, index) => (
-                        <div className="data-cell" key={index}>
-                            {dataGroup.map(
-                                ({
-                                    title,
-                                    value,
-                                    format,
-                                    source,
-                                    getShortenValue,
-                                }) => (
-                                    <div
-                                        className="data-cell-group"
-                                        key={title}
-                                        title={`${title} [${format}]`}
-                                    >
-                                        {source ? (
-                                            <QRCodeLink
-                                                link={source}
-                                                margin={0}
-                                                color={{
-                                                    dark: '#000000',
-                                                    light: '#ffffff00',
-                                                }}
-                                            />
-                                        ) : value.length < 16 ? (
-                                            <></>
-                                        ) : (
-                                            <QRCode
-                                                text={value}
-                                                margin={0}
-                                                color={{
-                                                    dark: '#000000',
-                                                    light: '#ffffff00',
-                                                }}
-                                            />
-                                        )}
+                    </>
+                );
+            }}
+        >
+            <PreviewWithLogo>
+                {/* TODO: Analyze topleft side of the preview and choose light or dark logo according to it */}
+                <Float>
+                    <LogoComponent isWatermark />
+                </Float>
+                <MultipleFilesPreview {...{ files }} />
+            </PreviewWithLogo>
+            {/* TODO: Here is weird space between preview and data */}
+            <Data>
+                {data.map((dataGroup, index) => (
+                    <div className="data-cell" key={index}>
+                        {dataGroup.map(
+                            ({
+                                title,
+                                value,
+                                format,
+                                source,
+                                getShortenValue,
+                            }) => (
+                                <div
+                                    className="data-cell-group"
+                                    key={title}
+                                    title={`${title} [${format}]`}
+                                >
+                                    {source ? (
+                                        <QRCodeLink
+                                            link={source}
+                                            margin={0}
+                                            color={{
+                                                dark: '#000000',
+                                                light: '#ffffff00',
+                                            }}
+                                        />
+                                    ) : value.length < 16 ? (
+                                        <></>
+                                    ) : (
+                                        <QRCode
+                                            text={value}
+                                            margin={0}
+                                            color={{
+                                                dark: '#000000',
+                                                light: '#ffffff00',
+                                            }}
+                                        />
+                                    )}
 
-                                        <div className="key render-as-text">
-                                            <Nl2br>{title}</Nl2br>
-                                        </div>
-                                        <div className="value render-as-text">
-                                            {getShortenValue
-                                                ? getShortenValue(16)
-                                                : value}
-                                        </div>
+                                    <div className="key render-as-text">
+                                        <Nl2br>{title}</Nl2br>
                                     </div>
-                                ),
-                            )}
-                        </div>
-                    ))}
-                </Data>
-            </PdfPage>
-        </>
+                                    <div className="value render-as-text">
+                                        {getShortenValue
+                                            ? getShortenValue(16)
+                                            : value}
+                                    </div>
+                                </div>
+                            ),
+                        )}
+                    </div>
+                ))}
+            </Data>
+        </PdfPage>
     );
 }
 

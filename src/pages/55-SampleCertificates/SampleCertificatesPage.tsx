@@ -10,80 +10,98 @@ export function SampleCertificatesPage() {
             <h1>Sample certificates</h1>
             <p>Here are samples how will your certificates look like:</p>
 
-            {/*
-            <h2>First certificate with image</h2>
-            <AsyncContentComponent
-                content={async () => (
-                    <FirstCertificatePdfPage
-                        files={[
-                            await fetchAsFile(
-                                process.env.PUBLIC_URL +
-                                    '/samples-to-sign/sample1.jpg',
-                            ),
-                        ]}
-                        setPayment={() => {}}
+            <div className="samples">
+                <div className="sample">
+                    <h2>Multiple files</h2>
+                    <AsyncContentComponent
+                        content={async () => (
+                            <FirstCertificatePdfPage
+                                files={[
+                                    await fetchAsFile(
+                                        process.env.PUBLIC_URL +
+                                            '/samples-to-sign/sample1.jpg',
+                                    ),
+                                    await fetchAsFile(
+                                        process.env.PUBLIC_URL +
+                                            '/samples-to-sign/sample1.mp3',
+                                    ),
+                                    await fetchAsFile(
+                                        process.env.PUBLIC_URL +
+                                            '/samples-to-sign/sample1.c',
+                                    ),
+                                ]}
+                                setPayment={() => {}}
+                            />
+                        )}
                     />
-                )}
-            />
+                </div>
 
-            <h2>First certificate with code</h2>
-            <AsyncContentComponent
-                content={async () => (
-                    <FirstCertificatePdfPage
-                        files={[
-                            await fetchAsFile(
-                                process.env.PUBLIC_URL +
-                                    '/samples-to-sign/sample1.c',
-                            ),
-                        ]}
-                        setPayment={() => {}}
+                <div className="sample">
+                    <h2>First certificate with image</h2>
+                    <AsyncContentComponent
+                        content={async () => (
+                            <FirstCertificatePdfPage
+                                files={[
+                                    await fetchAsFile(
+                                        process.env.PUBLIC_URL +
+                                            '/samples-to-sign/sample1.jpg',
+                                    ),
+                                ]}
+                                setPayment={() => {}}
+                            />
+                        )}
                     />
-                )}
-            />
+                </div>
 
-            <h2>First certificate with sound in mp3</h2>
-            <AsyncContentComponent
-                content={async () => (
-                    <FirstCertificatePdfPage
-                        files={[
-                            await fetchAsFile(
-                                process.env.PUBLIC_URL +
-                                    '/samples-to-sign/sample1.mp3',
-                            ),
-                        ]}
-                        setPayment={() => {}}
+                <div className="sample">
+                    <h2>First certificate with code</h2>
+                    <AsyncContentComponent
+                        content={async () => (
+                            <FirstCertificatePdfPage
+                                files={[
+                                    await fetchAsFile(
+                                        process.env.PUBLIC_URL +
+                                            '/samples-to-sign/sample1.c',
+                                    ),
+                                ]}
+                                setPayment={() => {}}
+                            />
+                        )}
                     />
-                )}
-            />
-            */}
+                </div>
 
-            <h2>Multiple files</h2>
-            <AsyncContentComponent
-                content={async () => (
-                    <FirstCertificatePdfPage
-                        files={[
-                            await fetchAsFile(
-                                process.env.PUBLIC_URL +
-                                    '/samples-to-sign/sample1.jpg',
-                            ),
-                            await fetchAsFile(
-                                process.env.PUBLIC_URL +
-                                    '/samples-to-sign/sample1.mp3',
-                            ),
-                            await fetchAsFile(
-                                process.env.PUBLIC_URL +
-                                    '/samples-to-sign/sample1.c',
-                            ),
-                        ]}
-                        setPayment={() => {}}
+                <div className="sample">
+                    <h2>First certificate with sound in mp3</h2>
+                    <AsyncContentComponent
+                        content={async () => (
+                            <FirstCertificatePdfPage
+                                files={[
+                                    await fetchAsFile(
+                                        process.env.PUBLIC_URL +
+                                            '/samples-to-sign/sample1.mp3',
+                                    ),
+                                ]}
+                                setPayment={() => {}}
+                            />
+                        )}
                     />
-                )}
-            />
-
+                </div>
+            </div>
             {/* TODO: <h2>Second certificate</h2> */}
             {/* TODO: !!! */}
         </SampleCertificatesDiv>
     );
 }
 
-const SampleCertificatesDiv = styled.div``;
+const SampleCertificatesDiv = styled.div`
+    .samples {
+        display: flex;
+        flex-wrap: wrap;
+        align-content: flex-start;
+        justify-content: center;
+    }
+
+    .sample {
+        margin: 10px;
+    }
+`;

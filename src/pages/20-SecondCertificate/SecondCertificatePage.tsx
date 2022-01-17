@@ -14,6 +14,7 @@ import {
     getTransactionTime,
     validateFirstCertificate,
 } from '../../smartcontracts/validateFirstCertificate';
+import { FirstAndSecondCertificatePageDiv } from '../10-FirstCertificate/FirstCertificatePage';
 
 export function SecondCertificatePage() {
     const [files, setFiles] = React.useState<any>([]);
@@ -21,7 +22,7 @@ export function SecondCertificatePage() {
 
     if (!verification) {
         return (
-            <SecondCertificatePageDiv>
+            <FirstAndSecondCertificatePageDiv>
                 <UploadZone
                     onFiles={async (droppedFiles) => {
                         const firstCertificate = droppedFiles[0];
@@ -69,7 +70,7 @@ export function SecondCertificatePage() {
                 <Link to={ROUTES.FirstCertificate}>
                     Or create your 1st certificate.
                 </Link>
-            </SecondCertificatePageDiv>
+            </FirstAndSecondCertificatePageDiv>
         );
     } else {
         return (
@@ -126,7 +127,7 @@ export function SecondCertificatePage() {
     }
 }
 
-const SecondCertificatePageDiv = styled.div``;
+
 
 /**
  * TODO: When the user is in the middle of the process, prevent unloading of the page (or the component) by "unsubmitted form" feature of the browser

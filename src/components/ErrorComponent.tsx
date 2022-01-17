@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const ErrorComponent = styled.div`
+    display: block;
     background-color: #bb2b2b;
     color: white;
     padding: 5px;

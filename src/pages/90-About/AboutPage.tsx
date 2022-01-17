@@ -7,19 +7,28 @@ export function AboutPage() {
             <h1>About sigmastamp</h1>
             <p>Verify the time origin of your documents</p>
 
-            <h2>How it started</h2>
+            <h2>How it started?</h2>
 
-            <h2>Who is behing SigmaStamp</h2>
+            <h2>People behing SigmaStamp?</h2>
 
-            {/* TODO: @nitram147 Please write basic information about yourself */}
+            <div className="authors">
+                <div className="author">
+                    {/* TODO: @nitram147 Please write basic information about yourself */}
+                    <a href="https://www.pavolhejny.com/">
+                        <img alt="Pavol Hejný" src="./team/pavol-hejny.png" />
+                    </a>
+                    <div className="name">Nitram Martin</div>
+                    <div className="role">Blockchain</div>
+                </div>
 
-            <a href="https://www.pavolhejny.com/">
-                <img
-                    className="author"
-                    alt="Pavol Hejný"
-                    src="./team/pavol-hejny.png"
-                />
-            </a>
+                <div className="author">
+                    <a href="https://www.pavolhejny.com/">
+                        <img alt="Pavol Hejný" src="./team/pavol-hejny.png" />
+                    </a>
+                    <div className="name">Pavol Hejný</div>
+                    <div className="role"> Frontend</div>
+                </div>
+            </div>
 
             <h2>Logo</h2>
             <img
@@ -40,8 +49,24 @@ const AboutPageDiv = styled.div`
     /*/
     border: 1px dashed red; /**/
 
-    img.author {
+    .authors {
+        display: flex;
+    }
+
+    .author {
+        text-align: center;
+    }
+
+    .author img {
         width: 300px;
+    }
+
+    .author .name {
+        font-size: 1.5em;
+    }
+
+    .author .role {
+        font-size: 1.1em;
     }
 
     img.logo {

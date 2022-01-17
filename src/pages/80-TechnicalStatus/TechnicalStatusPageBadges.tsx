@@ -2,7 +2,7 @@ import React from 'react';
 
 export function TechnicalStatusPageBadges() {
     return (
-        <>
+        <p>
             <a
                 href="https://raw.githubusercontent.com/sigmastamp/sigmastamp-frontend/master/LICENSE"
                 rel="nofollow"
@@ -42,6 +42,6 @@ export function TechnicalStatusPageBadges() {
                     data-canonical-src="https://img.shields.io/github/issues/sigmastamp/sigmastamp-frontend.svg?style=flat"
                 />
             </a>
-        </>
+        </p>
     );
 }

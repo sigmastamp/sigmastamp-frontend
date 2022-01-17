@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { IPaymentGateProps, PaymentGate } from '../../components/PaymentGate';
 import { UploadZone } from '../../components/UploadZone';
 import { UploadZoneSigmastampContent } from '../../components/UploadZoneSigmastampContent';
@@ -12,11 +13,13 @@ interface IAppState {
 
 export function FirstCertificatePage() {
     const [state, setState] = React.useState<IAppState>({ files: [] });
-    const [payment, setPayment] = React.useState<null | IPaymentGateProps>(null);
+    const [payment, setPayment] = React.useState<null | IPaymentGateProps>(
+        null,
+    );
 
     if (!payment) {
         return (
-            <>
+            <FirstAndSecondCertificatePageDiv>
                 {/*
                 <Button
                 onClick={() => { console.log('test'); createCertificate() }}
@@ -62,12 +65,19 @@ export function FirstCertificatePage() {
                 <Link to={ROUTES.SecondCertificate}>
                     Or verify your 1st certificate.
                 </Link>
-            </>
+            </FirstAndSecondCertificatePageDiv>
         );
     } else {
         return <PaymentGate {...payment} />;
     }
 }
+
+export const FirstAndSecondCertificatePageDiv = styled.div`
+    a {
+        color: #555 !important;
+        font-size: 0.7em;
+    }
+`;
 
 /**
  * TODO: When the user is in the middle of the process, prevent unloading of the page (or the component) by "unsubmitted form" feature of the browser

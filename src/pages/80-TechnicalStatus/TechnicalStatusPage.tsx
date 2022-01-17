@@ -1,4 +1,5 @@
 import React from 'react';
+import { BUILD_DATE, BUILD_DETAILS_URL, VERSION } from '../../config';
 import { TechnicalStatusPageBadges } from './TechnicalStatusPageBadges';
 
 export function TechnicalStatusPage() {
@@ -7,15 +8,46 @@ export function TechnicalStatusPage() {
             <h1>Technical status</h1>
 
             <TechnicalStatusPageBadges />
+
+            <b>
+                {' '}
+                <a
+                    href={`https://github.com/sigmastamp/sigmastamp-frontend/`}
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    GitHub repository
+                </a>
+            </b>
+            <div>
+                <b>Version: </b>
+                <a
+                    href={`https://github.com/sigmastamp/sigmastamp-frontend/tree/v${VERSION}`}
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    {VERSION}
+                </a>
+            </div>
+            {BUILD_DETAILS_URL && (
+                <div>
+                    <b> Build date: </b>
+                    <a
+                        href={BUILD_DETAILS_URL?.href}
+                        target="_blank"
+                        rel="noreferrer"
+                    >
+                        {BUILD_DATE}
+                    </a>
+                </div>
+            )}
         </>
     );
 }
 
 /**
  *
- * TODO: version and the build (leading to the more detailed information as in the console - make it to some sharable util + pass it into the Collboard)
  * TODO: Link to source code
- * TODO: @nitram147 There should be some way how to determine if the server is workinh;
+ * TODO: @nitram147 There should be some way how to determine if the server is working propperly
  *       Server + services status (+ !!! do not allow to send payment if the server is not synced)
- * TODO: Status badges should be also part of the repository readme
  */

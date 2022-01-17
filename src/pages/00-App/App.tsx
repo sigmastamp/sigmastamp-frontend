@@ -107,10 +107,18 @@ const AppDiv = styled.div`
         padding-left: 50px;
     }
 
-    /* TODO: Maybe put somewhere else */
-    a {
-        color: #555;
-        font-size: 0.7em;
+    .content-column a {
+        color: #eee;
+    }
+
+    .content-column h1,
+    .content-column h2,
+    .content-column h3,
+    .content-column h4,
+    .content-column h5,
+    .content-column h6 {
+        margin-top: 40px;
+        border-bottom: 1px solid #444;
     }
 
     @media (max-width: 850px) {

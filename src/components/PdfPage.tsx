@@ -14,7 +14,7 @@ export function PdfPage(props: IPdfPageProps) {
     const pageRef = React.useRef<HTMLDivElement>(null);
 
     return (
-        <div>
+        <PdfPageDiv>
             {props.renderUi({
                 createPdf: async () => {
                     const containerElement = pageRef.current;
@@ -28,26 +28,30 @@ export function PdfPage(props: IPdfPageProps) {
                     return pdfBlob;
                 },
             })}
-            <PdfPageDivPreview ref={pageRef}>
+            <div className="preview" ref={pageRef}>
                 {props.children}
-            </PdfPageDivPreview>
-        </div>
+            </div>
+        </PdfPageDiv>
     );
 }
 
-const PdfPageDivPreview = styled.div`
-    //overflow: hidden;
+const PdfPageDiv = styled.div`
     width: ${PAGE_SIZE.x * PAGE_MM_TO_PX_RATIO}px;
-    height: ${PAGE_SIZE.y * PAGE_MM_TO_PX_RATIO}px;
-    box-shadow: #5e97ccb7 0px 0px 50px;
 
-    background-color: white;
-    color: black;
+    .preview {
+        //overflow: hidden;
+        width: ${PAGE_SIZE.x * PAGE_MM_TO_PX_RATIO}px;
+        height: ${PAGE_SIZE.y * PAGE_MM_TO_PX_RATIO}px;
+        //box-shadow: #5e97ccb7 0px 0px 50px;
 
-    // Note: !!!
-    font-family: 'Times New Roman', Times, serif;
+        background-color: white;
+        color: black;
 
-    img.logo {
+        // Note: !!!
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    .preview img.logo {
         width: 50px;
         opacity: 0.5;
     }
