@@ -13,7 +13,7 @@ export function AboutPage() {
 }
 
 /**
- * TODO:
+ * TODO: @nitram147 Please write a description how the sigmastamp works
  * - !!! Short information about Sigmastamp
  * - !!! About Us
  * - version and the build (leading to the more detailed information)

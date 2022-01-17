@@ -1,6 +1,7 @@
 import React from 'react';
 import { HashRouter, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
+import { Center } from '../../components/Center';
 import { ROUTES } from '../../config';
 import { FirstCertificatePage } from '../10-FirstCertificate/FirstCertificatePage';
 import { SecondCertificatePage } from '../20-SecondCertificate/SecondCertificatePage';
@@ -22,11 +23,19 @@ export function App() {
                         <Routes>
                             <Route
                                 path={ROUTES.FirstCertificate}
-                                element={<FirstCertificatePage />}
+                                element={
+                                    <Center>
+                                        <FirstCertificatePage />
+                                    </Center>
+                                }
                             />
                             <Route
                                 path={ROUTES.SecondCertificate}
-                                element={<SecondCertificatePage />}
+                                element={
+                                    <Center>
+                                        <SecondCertificatePage />
+                                    </Center>
+                                }
                             />
                             <Route
                                 path={ROUTES.Oracles}

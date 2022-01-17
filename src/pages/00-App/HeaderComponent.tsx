@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { LogoComponent } from './LogoComponent';
+import { LogoComponent } from '../../components/LogoComponent';
 import { MenuComponent } from './MenuComponent';
 
 export function HeaderComponent() {

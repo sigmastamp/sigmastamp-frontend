@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { Button } from '../../components/Button';
 import { PdfPage } from '../../components/PdfPage';
 import { UploadZone } from '../../components/UploadZone';
+import { UploadZoneSigmastampContent } from '../../components/UploadZoneSigmastampContent';
 import { ROUTES } from '../../config';
 import { blake2b256 } from '../../hash/blake2b256';
 import {
@@ -61,7 +62,9 @@ export function SecondCertificatePage() {
                     }}
                     clickable
                 >
-                    Upload your 1st certificate.
+                    <UploadZoneSigmastampContent>
+                        Drop your 1st certificate here.
+                    </UploadZoneSigmastampContent>
                 </UploadZone>
                 <Link to={ROUTES.FirstCertificate}>
                     Or create your 1st certificate.

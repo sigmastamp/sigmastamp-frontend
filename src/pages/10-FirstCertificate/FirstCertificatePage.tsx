@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import { IPaymentGateProps, PaymentGate } from '../../components/PaymentGate';
 import { UploadZone } from '../../components/UploadZone';
+import { UploadZoneSigmastampContent } from '../../components/UploadZoneSigmastampContent';
 import { ROUTES } from '../../config';
 import { FirstCertificatePdfPage } from './FirstCertificatePdfPage';
 
@@ -16,14 +16,14 @@ export function FirstCertificatePage() {
 
     if (!payment) {
         return (
-            <FirstCertificatePageDiv>
+            <>
                 {/*
-        <Button
-          onClick={() => { console.log('test'); createCertificate() }}
-        >
-          Create document
-        </Button>
-            <h1>Sigmastamp</h1>*/}
+                <Button
+                onClick={() => { console.log('test'); createCertificate() }}
+                >
+                Create document
+                </Button>
+                    <h1>Sigmastamp</h1>*/}
 
                 {state.files.length === 0 ? (
                     <UploadZone
@@ -48,7 +48,9 @@ export function FirstCertificatePage() {
                         }}
                         clickable
                     >
-                        Upload your file(s) here!
+                        <UploadZoneSigmastampContent>
+                            Drop the files you want to timestamp here!
+                        </UploadZoneSigmastampContent>
                     </UploadZone>
                 ) : (
                     <FirstCertificatePdfPage
@@ -60,11 +62,9 @@ export function FirstCertificatePage() {
                 <Link to={ROUTES.SecondCertificate}>
                     Or verify your 1st certificate.
                 </Link>
-            </FirstCertificatePageDiv>
+            </>
         );
     } else {
         return <PaymentGate {...payment} />;
     }
 }
-
-const FirstCertificatePageDiv = styled.div``;

@@ -46,4 +46,9 @@ const PdfPageDivPreview = styled.div`
 
     // Note: !!!
     font-family: 'Times New Roman', Times, serif;
+
+    img.logo {
+        width: 50px;
+        opacity: 0.5;
+    }
 `;

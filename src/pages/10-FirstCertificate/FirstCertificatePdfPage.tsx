@@ -7,6 +7,7 @@ import { Vector } from 'xyzt';
 import { AsyncContentComponent } from '../../components/AsyncContentComponent';
 import { Button } from '../../components/Button';
 import { ErrorComponent } from '../../components/ErrorComponent';
+import { LogoComponent } from '../../components/LogoComponent';
 import { Nl2br } from '../../components/Nl2br';
 import { IPaymentGateProps } from '../../components/PaymentGate';
 import { PdfPage } from '../../components/PdfPage';
@@ -21,7 +22,6 @@ import { createSigmaStampNFT } from '../../smartcontracts/createSigmaStampNFT';
 import { hexToBase64 } from '../../utils/hexToBase64';
 import { promptAsync } from '../../utils/promptAsync';
 import { readFileAsDataUrl } from '../../utils/readFileAsDataUri';
-import { LogoComponent } from '../00-App/LogoComponent';
 
 interface IFirstCertificatePdfPageProps {
     files: File[];
@@ -148,8 +148,7 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                 <PreviewWithLogo>
                     <div className={`logo outer`}>
                         <div className={`logo inner`}>
-                            {/* TODO: !!! Logo should be ONLY vectorized SVG/PNG image */}
-                            <LogoComponent />
+                            <LogoComponent isWatermark />
                         </div>
                     </div>
                     {files.map((file) => (
@@ -252,6 +251,7 @@ const Data = styled.div`
     align-items: stretch;
     justify-content: flex-start;
     align-content: stretch;
+    
 
     .data-cell {
         /*/

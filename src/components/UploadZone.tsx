@@ -1,5 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import { PAGE_MM_TO_PX_RATIO } from '../config';
+import { Center } from './Center';
 
 export type IUploadZoneProps = React.PropsWithChildren<{
     clickable?: boolean;
@@ -75,18 +77,19 @@ export class UploadZone extends React.Component<IUploadZoneProps> {
                         onFile(Array.from(event.target.files));
                     }}
                 />
-
-                {children}
+                <Center>{children}</Center>
             </UploadZoneDiv>
         );
     }
 }
 
+const PADDING = 100;
 const UploadZoneDiv = styled.div`
-    width: ${210}px;
-    height: ${297}px;
-    padding: 10px;
+    width: ${210 * PAGE_MM_TO_PX_RATIO - 2 * PADDING}px;
+    height: ${297 * PAGE_MM_TO_PX_RATIO - 2 * PADDING}px;
+    padding: ${PADDING}px;
     border: 5px dashed #009edf;
+    border-radius: 5px;
 
     input {
         display: none;
