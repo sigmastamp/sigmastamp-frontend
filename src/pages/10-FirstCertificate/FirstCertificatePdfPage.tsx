@@ -304,6 +304,6 @@ const Data = styled.div`
 `;
 
 /**
- * TODO:
- * - Multiple file previews !!! Warn when more dropped
+ * TODO: GET param for passing file
+ * TODO: Integration with Collboard
  */
