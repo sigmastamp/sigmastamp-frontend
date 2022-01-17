@@ -7,11 +7,13 @@ export function BlockchainsPage() {
             <h1>BlockchainsPage</h1>
             <p>SigmaStamp is working on theese blockchains:</p>
 
-            <img
-                className="logo"
-                alt="sigmastamp logo"
-                src="./blockchains/ergo.svg"
-            />
+            <a href="https://ergoplatform.org/">
+                <img
+                    className="logo"
+                    alt="sigmastamp logo"
+                    src="./blockchains/ergo.svg"
+                />
+            </a>
         </OraclesDiv>
     );
 }

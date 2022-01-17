@@ -23,53 +23,50 @@ export function App() {
                 </div>
 
                 <div className="content-column">
-                    <MainElement>
-                        <Routes>
-                            <Route
-                                path={ROUTES.FirstCertificate}
-                                element={
-                                    <Center>
-                                        <FirstCertificatePage />
-                                    </Center>
-                                }
-                            />
-                            <Route
-                                path={ROUTES.SecondCertificate}
-                                element={
-                                    <Center>
-                                        <SecondCertificatePage />
-                                    </Center>
-                                }
-                            />
+                    <main>
+                        <Center>
+                            <Routes>
+                                <Route
+                                    path={ROUTES.FirstCertificate}
+                                    element={<FirstCertificatePage />}
+                                />
+                                <Route
+                                    path={ROUTES.SecondCertificate}
+                                    element={<SecondCertificatePage />}
+                                />
 
-                            <Route
-                                path={ROUTES.Blockchains}
-                                element={<BlockchainsPage />}
-                            />
-                            <Route
-                                path={ROUTES.Oracles}
-                                element={<OraclesPage />}
-                            />
-                            <Route
-                                path={ROUTES.SampleCertificates}
-                                element={<SampleCertificatesPage />}
-                            />
-                            <Route
-                                path={ROUTES.HowItWorks}
-                                element={<HowItWorksPage />}
-                            />
-                            <Route path={ROUTES.Faq} element={<FaqPage />} />
-                            <Route
-                                path={ROUTES.TechnicalStatus}
-                                element={<TechnicalStatusPage />}
-                            />
+                                <Route
+                                    path={ROUTES.Blockchains}
+                                    element={<BlockchainsPage />}
+                                />
+                                <Route
+                                    path={ROUTES.Oracles}
+                                    element={<OraclesPage />}
+                                />
+                                <Route
+                                    path={ROUTES.SampleCertificates}
+                                    element={<SampleCertificatesPage />}
+                                />
+                                <Route
+                                    path={ROUTES.HowItWorks}
+                                    element={<HowItWorksPage />}
+                                />
+                                <Route
+                                    path={ROUTES.Faq}
+                                    element={<FaqPage />}
+                                />
+                                <Route
+                                    path={ROUTES.TechnicalStatus}
+                                    element={<TechnicalStatusPage />}
+                                />
 
-                            <Route
-                                path={ROUTES.About}
-                                element={<AboutPage />}
-                            />
-                        </Routes>
-                    </MainElement>
+                                <Route
+                                    path={ROUTES.About}
+                                    element={<AboutPage />}
+                                />
+                            </Routes>
+                        </Center>
+                    </main>
                 </div>
             </HashRouter>
         </AppDiv>
@@ -93,7 +90,7 @@ const AppDiv = styled.div`
         width: calc(var(--menu-width) - 20px - 20px);
         padding: 20px;
 
-        background-color: #0000001f;
+        background-color: hsl(224, 15%, 15%);
         box-shadow: #00000047 0px 0px 10px;
         overflow: hidden;
     }
@@ -110,16 +107,31 @@ const AppDiv = styled.div`
         padding-left: 50px;
     }
 
-    // TODO: Maybe put somewhere else
+    /* TODO: Maybe put somewhere else */
     a {
         color: #555;
         font-size: 0.7em;
     }
+
+    @media (max-width: 850px) {
+        .menu-column {
+            position: block;
+            z-index: 1;
+
+            width: 100%;
+            height: 100px;
+            padding: 20px;
+        }
+
+        .content-column {
+            position: block;
+            margin-left: 0;
+            padding-top: 200px;
+        }
+    }
 `;
 
-const MainElement = styled.header``;
-
 /**
- * TODO:
- * - !!! Is mobile design layout needed in the first stage ?
+ * TODO: !!! Is mobile design layout needed in the first stage ?
+ * TODO: Document title should be set according to current page
  */

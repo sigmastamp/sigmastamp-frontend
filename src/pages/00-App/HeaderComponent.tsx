@@ -14,4 +14,24 @@ export function HeaderComponent() {
 const HeaderElement = styled.header`
     /*/
     border: 1px dashed red; /**/
+
+    @media (max-width: 850px) {
+        display: flex;
+        align-items: flex-start;
+        align-content: flex-start;
+
+        & > * {
+            border: 1px dashed transparent;
+        }
+
+        ul {
+            margin: 0;
+            display: flex;
+        }
+
+        ul li {
+            border-right: 1px solid #ccc;
+            padding: 10px;
+        }
+    }
 `;

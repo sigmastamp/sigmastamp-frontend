@@ -11,6 +11,16 @@ export function AboutPage() {
 
             <h2>Who is behing SigmaStamp</h2>
 
+            {/* TODO: @nitram147 Please write basic information about yourself */}
+
+            <a href="https://www.pavolhejny.com/">
+                <img
+                    className="author"
+                    alt="Pavol Hejný"
+                    src="./team/pavol-hejny.png"
+                />
+            </a>
+
             <h2>Logo</h2>
             <img
                 className="logo"
@@ -30,6 +40,10 @@ const AboutPageDiv = styled.div`
     /*/
     border: 1px dashed red; /**/
 
+    img.author {
+        width: 300px;
+    }
+
     img.logo {
         width: 200px;
     }
@@ -37,6 +51,5 @@ const AboutPageDiv = styled.div`
 
 /**
  * TODO: @nitram147 Please write basic information about the sigmastamp
- * TODO: @nitram147 Please write basic information about yourself
  * TODO: This info should be also part of repository readme
  */

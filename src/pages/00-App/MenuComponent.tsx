@@ -37,7 +37,7 @@ export function MenuComponent() {
                 </li> */}
                 <li>
                     <NavLink to={ROUTES.TechnicalStatus}>
-                        TechnicalStatus
+                        Technical status
                     </NavLink>
                 </li>
                 <li>
@@ -73,5 +73,8 @@ const MenuElement = styled.menu`
     a.active {
         color: #d3d3d3;
         font-size: 0.7em;
+    }
+
+    @media (max-width: 850px) {
     }
 `;

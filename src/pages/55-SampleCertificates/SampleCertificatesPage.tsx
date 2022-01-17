@@ -16,7 +16,7 @@ export function SampleCertificatesPage() {
                         files={[
                             await fetchAsFile(
                                 process.env.PUBLIC_URL +
-                                    '/assets/samples/DevConf2018.jpg',
+                                    '/samples-to-sign/sample1.jpg',
                             ),
                         ]}
                         setPayment={() => {}}
@@ -24,14 +24,29 @@ export function SampleCertificatesPage() {
                 )}
             />
 
-            <h2>First certificate with image</h2>
+            <h2>First certificate with code</h2>
             <AsyncContentComponent
                 content={async () => (
                     <FirstCertificatePdfPage
                         files={[
                             await fetchAsFile(
                                 process.env.PUBLIC_URL +
-                                    '/assets/samples/DevConf2018.jpg',
+                                    '/samples-to-sign/sample1.c',
+                            ),
+                        ]}
+                        setPayment={() => {}}
+                    />
+                )}
+            />
+
+            <h2>First certificate with sound in mp3</h2>
+            <AsyncContentComponent
+                content={async () => (
+                    <FirstCertificatePdfPage
+                        files={[
+                            await fetchAsFile(
+                                process.env.PUBLIC_URL +
+                                    '/samples-to-sign/sample1.mp3',
                             ),
                         ]}
                         setPayment={() => {}}
