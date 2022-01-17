@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { IPaymentGateProps, PaymentGate } from '../../components/PaymentGate';
 import { UploadZone } from '../../components/UploadZone';
 import { UploadZoneSigmastampContent } from '../../components/UploadZoneSigmastampContent';
-import { ROUTES } from '../../config';
+import { ROUTES } from '../../routes';
 import { FirstCertificatePdfPage } from './FirstCertificatePdfPage';
 
 interface IAppState {

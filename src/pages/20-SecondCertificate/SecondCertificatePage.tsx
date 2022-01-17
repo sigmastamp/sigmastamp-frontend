@@ -2,13 +2,12 @@ import { saveAs } from 'file-saver';
 import JSZip from 'jszip';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import { Button } from '../../components/Button';
 import { PdfPage } from '../../components/PdfPage';
 import { UploadZone } from '../../components/UploadZone';
 import { UploadZoneSigmastampContent } from '../../components/UploadZoneSigmastampContent';
-import { ROUTES } from '../../config';
 import { blake2b256 } from '../../hash/blake2b256';
+import { ROUTES } from '../../routes';
 import {
     getNFTHolderAddress,
     getTransactionTime,
@@ -126,8 +125,6 @@ export function SecondCertificatePage() {
         );
     }
 }
-
-
 
 /**
  * TODO: When the user is in the middle of the process, prevent unloading of the page (or the component) by "unsubmitted form" feature of the browser

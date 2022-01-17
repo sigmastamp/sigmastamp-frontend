@@ -28,6 +28,7 @@ jobs:
             - name: Prepare environment
               # TODO: Can be this done better?
               run: |
+                  echo >> .env
                   echo REACT_APP_BUILD_DATE=$(date --iso-8601=seconds) >> .env
                   echo "REACT_APP_BUILD_DETAILS_URL=$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" >> .env
 

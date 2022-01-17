@@ -1,8 +1,8 @@
 import React from 'react';
-import { HashRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import { Center } from '../../components/Center';
-import { ROUTES } from '../../config';
+import { ROUTES } from '../../routes';
 import { FirstCertificatePage } from '../10-FirstCertificate/FirstCertificatePage';
 import { SecondCertificatePage } from '../20-SecondCertificate/SecondCertificatePage';
 import { BlockchainsPage } from '../50-Blockchains/BlockchainsPage';
@@ -17,7 +17,7 @@ import { HeaderComponent } from './HeaderComponent';
 export function App() {
     return (
         <AppDiv>
-            <HashRouter>
+            <BrowserRouter>
                 <div className="menu-column">
                     <HeaderComponent />
                 </div>
@@ -68,7 +68,7 @@ export function App() {
                         </Center>
                     </main>
                 </div>
-            </HashRouter>
+            </BrowserRouter>
         </AppDiv>
     );
 }
@@ -140,7 +140,5 @@ const AppDiv = styled.div`
 `;
 
 /**
- * TODO: !!! Is mobile design layout needed in the first stage ?
  * TODO: Document title should be set according to current page
- * TODO: Use hashless routing
  */
