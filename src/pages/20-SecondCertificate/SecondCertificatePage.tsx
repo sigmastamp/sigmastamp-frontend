@@ -63,7 +63,7 @@ export function SecondCertificatePage() {
                     clickable
                 >
                     <UploadZoneSigmastampContent>
-                        Drop your 1st certificate here.
+                        Drop your 1st certificate here!
                     </UploadZoneSigmastampContent>
                 </UploadZone>
                 <Link to={ROUTES.FirstCertificate}>

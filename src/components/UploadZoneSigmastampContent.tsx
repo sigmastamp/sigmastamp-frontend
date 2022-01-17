@@ -19,6 +19,7 @@ export function UploadZoneSigmastampContent({
 const UploadZoneContentDiv = styled.div`
     font-size: 1.5em;
     color: #cccccc;
+    text-align: center;
 
     img.logo {
         display: block;

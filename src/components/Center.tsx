@@ -14,7 +14,14 @@ export function Center({
 
 const CenterDiv = styled.div`
     /*/
-    border: 1px dashed red; /**/
+
+    border: 1px dashed red;
+
+    & > * {
+        border: 1px dashed yellow;
+    }
+
+    /**/
 
     position: flex;
     flex-direction: column;
