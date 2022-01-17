@@ -3,6 +3,11 @@ import { Vector } from 'xyzt';
 ///* tslint:disable:no-var-requires */
 //const packageJson = require('../package.json');
 import { version } from '../package.json';
+import { IFilePreviewer } from './filePreview/IFilePreviewerProps';
+import { AudioFilePreview } from './filePreview/mimeTypes/audio/AudioFilePreview';
+import { ImageFilePreview } from './filePreview/mimeTypes/image/ImageFilePreview';
+import { CodeFilePreview } from './filePreview/mimeTypes/misc/CodeFilePreview';
+import { UnknownFilePreview } from './filePreview/mimeTypes/misc/UnknownFilePreview';
 import { BitcoinOracle } from './oracles/BitcoinOracle';
 import { DateOracle } from './oracles/DateOracle';
 import { EthereumOracle } from './oracles/EthereumOracle';
@@ -30,6 +35,13 @@ export const ORACLES: IOracle[] = [
     new LitecoinOracle(),
     new DateOracle(),
     new NytimesOracle(),
+];
+
+export const FILE_PREVIEWERS: IFilePreviewer[] = [
+    new ImageFilePreview(),
+    new AudioFilePreview(),
+    new CodeFilePreview(),
+    new UnknownFilePreview(),
 ];
 
 export const PAGE_DEBUG = false;

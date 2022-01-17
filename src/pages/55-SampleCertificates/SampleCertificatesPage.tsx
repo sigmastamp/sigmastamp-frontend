@@ -54,6 +54,29 @@ export function SampleCertificatesPage() {
                 )}
             />
 
+            <h2>Multiple files</h2>
+            <AsyncContentComponent
+                content={async () => (
+                    <FirstCertificatePdfPage
+                        files={[
+                            await fetchAsFile(
+                                process.env.PUBLIC_URL +
+                                    '/samples-to-sign/sample1.jpg',
+                            ),
+                            await fetchAsFile(
+                                process.env.PUBLIC_URL +
+                                    '/samples-to-sign/sample1.mp3',
+                            ),
+                            await fetchAsFile(
+                                process.env.PUBLIC_URL +
+                                    '/samples-to-sign/sample1.mp3',
+                            ),
+                        ]}
+                        setPayment={() => {}}
+                    />
+                )}
+            />
+
             {/* TODO: <h2>Second certificate</h2> */}
             {/* TODO: !!! */}
         </SampleCertificatesDiv>
