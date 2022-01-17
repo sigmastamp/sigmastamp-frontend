@@ -4,9 +4,9 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { Vector } from 'xyzt';
-import { AsyncContentComponent } from '../../components/AsyncContentComponent';
 import { Button } from '../../components/Button';
 import { ErrorComponent } from '../../components/ErrorComponent';
+import { FilesPreview } from '../../components/FilesPreview';
 import { LogoComponent } from '../../components/LogoComponent';
 import { Nl2br } from '../../components/Nl2br';
 import { IPaymentGateProps } from '../../components/PaymentGate';
@@ -21,7 +21,6 @@ import { IOracle, IOracleData } from '../../oracles/_IOracle';
 import { createSigmaStampNFT } from '../../smartcontracts/createSigmaStampNFT';
 import { hexToBase64 } from '../../utils/hexToBase64';
 import { promptAsync } from '../../utils/promptAsync';
-import { readFileAsDataUrl } from '../../utils/readFileAsDataUri';
 
 interface IFirstCertificatePdfPageProps {
     files: File[];
@@ -151,19 +150,7 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                             <LogoComponent isWatermark />
                         </div>
                     </div>
-                    {files.map((file) => (
-                        <AsyncContentComponent
-                            key={file.name}
-                            // tslint:disable-next-line: no-shadowed-variable
-                            content={readFileAsDataUrl(file).then((data) => (
-                                <img
-                                    src={data}
-                                    alt={`Preview of ${file.name}`}
-                                    className={`file`}
-                                />
-                            ))}
-                        />
-                    ))}
+                    <FilesPreview {...{ files }} />
                 </PreviewWithLogo>
                 {/* TODO: Here is weird space between preview and data */}
                 <Data>
@@ -251,7 +238,6 @@ const Data = styled.div`
     align-items: stretch;
     justify-content: flex-start;
     align-content: stretch;
-    
 
     .data-cell {
         /*/

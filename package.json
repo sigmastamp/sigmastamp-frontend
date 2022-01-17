@@ -86,5 +86,8 @@
         "web-vitals": "^2.1.2",
         "xyzt": "^4.7.0"
     },
-    "dependencies": {}
+    "dependencies": {
+        "@types/mime-types": "^2.1.1",
+        "mime-types": "^2.1.34"
+    }
 }
