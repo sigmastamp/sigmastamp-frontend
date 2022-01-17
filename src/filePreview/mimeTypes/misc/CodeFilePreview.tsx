@@ -1,6 +1,9 @@
 import React from 'react';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import styled from 'styled-components';
+import { readFileAsText } from '../../../utils/readFileAsText';
 import { IFilePreviewer } from '../../IFilePreviewerProps';
-import { ImageFilePreviewDiv } from '../image/ImageFilePreview';
 
 export class CodeFilePreview implements IFilePreviewer {
     public isSupporting(file: File): boolean {
@@ -8,13 +11,39 @@ export class CodeFilePreview implements IFilePreviewer {
     }
 
     public async render(file: File) {
+        const fileData = await readFileAsText(file);
         return (
-            // Note: Not using <img> because it doesn't stretch image propperly
-            <ImageFilePreviewDiv fileData="./non-image-previews/code.jpg" />
+            <CodeFilePreviewDiv>
+                <SyntaxHighlighter
+                    language="javascript"
+                    style={dark}
+                    showLineNumbers={true}
+                >
+                    {fileData}
+                </SyntaxHighlighter>
+            </CodeFilePreviewDiv>
         );
     }
 }
 
+const CodeFilePreviewDiv = styled.div`
+
+    height: 100%;
+
+    pre {
+        height: 100%;
+        margin: 0!important;
+        padding: 0.2em;!important;
+        border: none!important;
+        box-shadow:none !important;
+        border-radius: 0 !important;
+    }
+
+    .linenumber {
+        min-width: 0 !important;
+    }
+`;
+
 /**
- * TODO: Generate better preview for code/text files
+ * TODO: Dynamically choose language
  */
