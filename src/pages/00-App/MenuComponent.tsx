@@ -18,11 +18,26 @@ export function MenuComponent() {
                     </NavLink>
                 </li>
                 <li>
+                    <NavLink to={ROUTES.Blockchains}>Blockchains</NavLink>
+                </li>
+                <li>
                     <NavLink to={ROUTES.Oracles}>Oracles</NavLink>
                 </li>
                 <li>
                     <NavLink to={ROUTES.SampleCertificates}>
                         Sample certificates
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to={ROUTES.HowItWorks}>How it works?</NavLink>
+                </li>
+                {/* Note: This page is prepared for the future.                
+                <li>
+                    <NavLink to={ROUTES.Faq}>FAQ</NavLink>
+                </li> */}
+                <li>
+                    <NavLink to={ROUTES.TechnicalStatus}>
+                        TechnicalStatus
                     </NavLink>
                 </li>
                 <li>

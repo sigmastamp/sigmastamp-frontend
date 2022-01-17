@@ -35,6 +35,12 @@ export function UploadZone({
                     uploadClick();
                 }
             }}
+            onMouseEnter={() => {
+                onFileOverWrapper(true);
+            }}
+            onMouseLeave={() => {
+                onFileOverWrapper(false);
+            }}
             onDragEnter={(event) => {
                 event.stopPropagation();
                 event.preventDefault();
@@ -102,7 +108,7 @@ const UploadZoneDiv = styled.div`
 
     transition: border-color 0.2s ease;
     .upload-inner {
-        transition: transform 0.2s ease;
+        transition: transform 0.1s ease;
     }
 
     &.files-over {
@@ -111,7 +117,6 @@ const UploadZoneDiv = styled.div`
 
     &.files-over .upload-inner {
         transform: scale(105%);
-        
     }
 `;
 

@@ -5,8 +5,12 @@ import { Center } from '../../components/Center';
 import { ROUTES } from '../../config';
 import { FirstCertificatePage } from '../10-FirstCertificate/FirstCertificatePage';
 import { SecondCertificatePage } from '../20-SecondCertificate/SecondCertificatePage';
-import { OraclesPage } from '../50-Oracles/OraclesPage';
+import { BlockchainsPage } from '../50-Blockchains/BlockchainsPage';
+import { OraclesPage } from '../53-Oracles/OraclesPage';
 import { SampleCertificatesPage } from '../55-SampleCertificates/SampleCertificatesPage';
+import { HowItWorksPage } from '../70-HowItWorks/HowItWorksPage';
+import { FaqPage } from '../75-Faq/FaqPage';
+import { TechnicalStatusPage } from '../80-TechnicalStatus/TechnicalStatusPage';
 import { AboutPage } from '../90-About/AboutPage';
 import { HeaderComponent } from './HeaderComponent';
 
@@ -37,6 +41,11 @@ export function App() {
                                     </Center>
                                 }
                             />
+
+                            <Route
+                                path={ROUTES.Blockchains}
+                                element={<BlockchainsPage />}
+                            />
                             <Route
                                 path={ROUTES.Oracles}
                                 element={<OraclesPage />}
@@ -44,6 +53,15 @@ export function App() {
                             <Route
                                 path={ROUTES.SampleCertificates}
                                 element={<SampleCertificatesPage />}
+                            />
+                            <Route
+                                path={ROUTES.HowItWorks}
+                                element={<HowItWorksPage />}
+                            />
+                            <Route path={ROUTES.Faq} element={<FaqPage />} />
+                            <Route
+                                path={ROUTES.TechnicalStatus}
+                                element={<TechnicalStatusPage />}
                             />
 
                             <Route
