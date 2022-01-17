@@ -29,7 +29,7 @@ export function TechnicalStatusPage() {
                     {VERSION}
                 </a>
             </div>
-            {BUILD_DETAILS_URL && (
+            {BUILD_DETAILS_URL && BUILD_DATE && (
                 <div>
                     <b> Build date: </b>
                     <a
@@ -37,7 +37,7 @@ export function TechnicalStatusPage() {
                         target="_blank"
                         rel="noreferrer"
                     >
-                        {BUILD_DATE}
+                        {BUILD_DATE.toUTCString()}
                     </a>
                 </div>
             )}
