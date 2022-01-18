@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Promisable } from 'type-fest';
 import { Loader } from './Loader';
 /**
- * TODO: Make from this some microlibrary
+ * TODO: @hejny Make from this some microlibrary
  */
 
 interface IObservableContentComponentProps {

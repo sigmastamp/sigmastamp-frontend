@@ -43,8 +43,8 @@ export async function createSigmaStampNFT({
     //     a.) setup of custom amount of ERG to send together with NFT token (so user will be able to transfer NFT in future ERG amount sent together with NFT will be used to cover transaction fees on ergo network)
     //         there should be also tooltip (like question mark icon) which will include explanation text (which will explain what this ERG amount mean...)
     //TODO: @nitram147 -> @nitram147 -> @hejny think about stamping service fee... (whether to make it stable or based on current erg price etc.)
-    const mintingFee = 20000000; /* TODO: User settable */
-    const ergsSendTogetherWithNFT = 100000000; /* TODO: User settable */
+    const mintingFee = 20000000; /* TODO: @hejny User settable */
+    const ergsSendTogetherWithNFT = 100000000; /* TODO: @hejny User settable */
     const ergsFeeForSigmaStampService = 100000000; /* Our fee */
     //TODO: @nitram147 -> @hejny move harcoded values into some config file
     const sigmaStampProviderAddress =
@@ -54,7 +54,7 @@ export async function createSigmaStampNFT({
     const returnTransactionFee = 10000000;
 
     /**
-     * TODO: !!! unhardcode address
+     * TODO: !!! @hejny unhardcode address
      */
     // TODO: @nitram147 -> @hejny move it also to some configuration...
     const sigmaStampAssemblerNodeAddr =
@@ -79,7 +79,7 @@ export async function createSigmaStampNFT({
     const { script } = await createScript({
         script: '/scripts/sigmastamp-nft.scala',
 
-        // TODO: Better names for variabiles below (replace everywhere in scala script + here):
+        // TODO: @hejny Better names for variabiles below (replace everywhere in scala script + here):
         ergsSendTogetherWithNFT,
         userAddress,
         ergsFeeForSigmaStampService,

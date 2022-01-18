@@ -44,7 +44,7 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
             ).map(async (oracle) => {
                 try {
                     return {
-                        data: await oracle.getData(/* TODO: Auto refresh */),
+                        data: await oracle.getData(/* TODO: @hejny Auto refresh */),
                         error: null,
                     };
                 } catch (error) {
@@ -83,8 +83,8 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                         )}
                         <Button
                             onClick={async () => {
-                                // TODO: Download logic into separate util
-                                // TODO: setPayment should not be in IFirstCertificatePdfPageProps
+                                // TODO: @hejny Download logic into separate util
+                                // TODO: @hejny setPayment should not be in IFirstCertificatePdfPageProps
 
                                 const certificateFile = new File(
                                     [await createPdf()],
@@ -92,7 +92,7 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                                     'certificate1.pdf' /* TODO: Maybe add current {lastModified: 1534584790000}*/,
                                 );
 
-                                // TODO: !!! Add files into certificate
+                                // TODO: !!! @hejny Add files into certificate
 
                                 //saveAs(certificateFile);
                                 const zip = new JSZip();
@@ -114,7 +114,7 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
 
                                 saveAs(
                                     zipBlob,
-                                    // TODO: Encorporate filename into certificate filename
+                                    // TODO: @hejny Encorporate filename into certificate filename
                                     `certificate1.${zipHash.substring(
                                         0,
                                         5,
@@ -149,13 +149,13 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
             }}
         >
             <PreviewWithLogo>
-                {/* TODO: Analyze topleft side of the preview and choose light or dark logo according to it */}
+                {/* TODO: @hejny Analyze topleft side of the preview and choose light or dark logo according to it */}
                 <Float>
                     <LogoComponent isWatermark />
                 </Float>
                 <MultipleFilesPreview {...{ files }} />
             </PreviewWithLogo>
-            {/* TODO: Here is weird space between preview and data */}
+            {/* TODO: @hejny Here is weird space between preview and data */}
             <Data>
                 {data.map((dataGroup, index) => (
                     <div className="data-cell" key={index}>
@@ -296,6 +296,6 @@ const Data = styled.div`
 `;
 
 /**
- * TODO: GET param for passing file
- * TODO: Integration with Collboard
+ * TODO: @hejny GET param for passing file
+ * TODO: @hejny Integration with Collboard
  */

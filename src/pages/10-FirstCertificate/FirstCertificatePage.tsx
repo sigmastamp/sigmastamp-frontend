@@ -80,5 +80,5 @@ export const FirstAndSecondCertificatePageDiv = styled.div`
 `;
 
 /**
- * TODO: When the user is in the middle of the process, prevent unloading of the page (or the component) by "unsubmitted form" feature of the browser
+ * TODO: @hejny When the user is in the middle of the process, prevent unloading of the page (or the component) by "unsubmitted form" feature of the browser
  */

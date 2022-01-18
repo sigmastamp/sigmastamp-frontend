@@ -51,7 +51,7 @@ export function AsyncContentComponent({
         })();
 
         return () => {
-            /* TODO: Can here be some reasonable teardown logic? */
+            /* TODO: @hejny Can here be some reasonable teardown logic? */
         };
     }, [content]);
 

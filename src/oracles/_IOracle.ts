@@ -49,7 +49,6 @@ export interface IOracleData {
 }
 
 /**
- * TODO:
- * - Maybe in source> You can provide multiple links to different sources to gain redundancy
- * - Automatical tests that source URL is working and returns valid data
+ * TODO: @hejny Maybe in source> You can provide multiple links to different sources to gain redundancy
+ * TODO: @hejny Automatical tests that source URL is working and returns valid data
  */

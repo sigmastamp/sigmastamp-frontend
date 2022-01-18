@@ -4,7 +4,7 @@ import { IOracle } from './_IOracle';
 
 export class FakeFileOracle implements IOracle {
     public readonly name = `FILE${
-        this.file.name.toUpperCase() /* TODO: Normalize to uppercase */
+        this.file.name.toUpperCase() /* TODO: @hejny Normalize to uppercase */
     }`;
     public readonly ttl = -1;
 

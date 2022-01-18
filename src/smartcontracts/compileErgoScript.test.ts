@@ -12,7 +12,7 @@ import { createScript } from './createScript';
 jest.useRealTimers();
 
 describe('how compiling of ergo script works', () => {
-    // TODO: DRY beforeEach+afterEach
+    // TODO: @hejny DRY beforeEach+afterEach
     const PORT = randomPort();
     let server: Server;
 
@@ -96,7 +96,7 @@ describe('how compiling of ergo script works', () => {
 });
 
 /*
-TODO: There is an error in output which is not fatal but maybe worth investigating:
+TODO: @hejny There is an error in output which is not fatal but maybe worth investigating:
 
  console.error
       Error: Cross origin http://localhost forbidden

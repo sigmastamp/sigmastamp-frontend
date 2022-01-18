@@ -32,7 +32,7 @@ export class NytimesOracle implements IOracle {
                 value: firstItem.title,
                 source: new URL(firstItem.link),
                 /*
-                TODO: Maybe implement this:
+                TODO: @hejny Maybe implement this:
                 getShortenValue(length: number) {
                     return firstTitle.substr(0, length);
                 },
@@ -43,6 +43,6 @@ export class NytimesOracle implements IOracle {
 }
 
 /**
- * TODO: More news sources
+ * TODO: @hejny Add more news sources
  * @see https://medium.com/rakuten-rapidapi/top-10-best-news-apis-google-news-bloomberg-bing-news-and-more-bbf3e6e46af6
  */

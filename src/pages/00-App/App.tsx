@@ -140,5 +140,5 @@ const AppDiv = styled.div`
 `;
 
 /**
- * TODO: Document title should be set according to current page
+ * TODO: @hejny Document title should be set according to current page
  */

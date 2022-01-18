@@ -1,6 +1,6 @@
 import { blake2b256 } from '../hash/blake2b256';
 
-//TODO: rename function below
+//TODO: @hejny rename function below
 export async function validateFirstCertificate(firstCertificate: File) {
 
     const hash = await blake2b256(firstCertificate);

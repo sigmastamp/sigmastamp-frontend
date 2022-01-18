@@ -20,7 +20,6 @@ export const GlobalStyle = createGlobalStyle`
 `;
 
 /**
- * TODO:
- * - Dark/light theme from system
- * - Dark/light theme toggle
+ * TODO: @hejny Dark/light theme from system
+ * TODO: @hejny Dark/light theme toggle
  */

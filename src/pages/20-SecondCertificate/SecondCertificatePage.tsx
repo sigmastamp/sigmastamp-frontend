@@ -35,8 +35,8 @@ export function SecondCertificatePage() {
                                 `Your 1st certificate is still not validated through Ergo blockchain.`,
                             );
                             // TODO: @nitram147 -> @hejny see comments bellow
-                            // TODO: - consider skipping the rest because extraction of transactionId from null in
-                            // the following statements will result in error
+                            //       consider skipping the rest because extraction of transactionId from null in
+                            //       the following statements will result in error
                         }
 
                         const { transactionId } = droppedFileVerification;
@@ -44,10 +44,10 @@ export function SecondCertificatePage() {
                         const { timestamp, tokenId } = await getTransactionTime(
                             transactionId,
                         );
-                        //TODO: @nitram147 -> @nitram147 -> @hejny handle null in case that there isn't asset holder
-                        //this could happen when somebody burned NFT token
-                        //(we know that the corresponding NFT has already existed based on validateFirstCertificate function)
-                        //(but we don't know whether it still exists...)
+                        // TODO: @nitram147 -> @nitram147 -> @hejny handle null in case that there isn't asset holder
+                        // this could happen when somebody burned NFT token
+                        // (we know that the corresponding NFT has already existed based on validateFirstCertificate function)
+                        // (but we don't know whether it still exists...)
                         const currentHolder = await getNFTHolderAddress(
                             tokenId,
                         );
@@ -127,5 +127,5 @@ export function SecondCertificatePage() {
 }
 
 /**
- * TODO: When the user is in the middle of the process, prevent unloading of the page (or the component) by "unsubmitted form" feature of the browser
+ * TODO: @hejny When the user is in the middle of the process, prevent unloading of the page (or the component) by "unsubmitted form" feature of the browser
  */

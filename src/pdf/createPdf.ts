@@ -7,12 +7,12 @@ import { findDeepestChild } from '../utils/findDeepestChild';
 
 export async function createPdf(containerElement: HTMLElement): Promise<Blob> {
     const pdfDocument = new jsPDF('p', 'mm', PAGE_SIZE.toArray2D());
-    // TODO: Add metadata to PDF
+    // TODO: @hejny Add metadata to PDF
 
     await forAllImagesInElement(containerElement);
 
     const canvas = await html2canvas(containerElement, {
-        scale: 3 /* TODO: What is the ideal quality */,
+        scale: 3 /* TODO: @hejny What is the ideal quality */,
         backgroundColor: 'trasparent',
         allowTaint: true,
         // removeContainer: true,
@@ -38,7 +38,7 @@ export async function createPdf(containerElement: HTMLElement): Promise<Blob> {
     }
 
     pdfDocument.addImage(
-        // TODO: Compression of the image
+        // TODO: @hejny Compression of the image
         image,
         'JPEG',
         0,
@@ -57,7 +57,7 @@ export async function createPdf(containerElement: HTMLElement): Promise<Blob> {
     ]);
 
     pdfDocument.addFont('Times New Roman', 'Times', 'serif');
-    // TODO: Remove unnessesary fonts from the document
+    // TODO: @hejny Remove unnessesary fonts from the document
     //   console.log(pdfDocument.getFontList());
 
     for (const textElement of Array.from(
@@ -105,7 +105,7 @@ export async function createPdf(containerElement: HTMLElement): Promise<Blob> {
 
     if (PAGE_DEBUG) {
         pdfDocument.save('test.pdf');
-        // TODO: Maybe debug throught new tab> console.log(pdfDocument.output('datauri'));
+        // TODO: @hejny Maybe debug throught new tab> console.log(pdfDocument.output('datauri'));
         await forEver();
     }
 

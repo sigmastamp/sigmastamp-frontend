@@ -9,7 +9,7 @@ interface ICreateCertificateOptions {
 // TODO: @hejny & @nitram147 - decide about graphical hash representation
 // TODO: @hejny & @nitram147 - decide what to include in certificates...
 
-// TODO: Maybe should return Blob
+// TODO: @hejny Maybe should return Blob
 export function createCertificate({
     certificateFilename,
     hash,

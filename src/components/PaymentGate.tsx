@@ -58,14 +58,14 @@ export function PaymentGate({
                                     <br />
                                     until{' '}
                                     {
-                                        dueDate.toUTCString() /* TODO: Some smarter component to show date and time - maybe use moment.js */
+                                        dueDate.toUTCString() /* TODO: @hejny Some smarter component to show date and time - maybe use moment.js */
                                     }
                                     <hr />
                                     <Loader /> Waiting for payment
                                     <br />
                                     Last checked at{' '}
                                     {
-                                        checkedDate.toUTCString() /* TODO: Some smarter component to show date and time - maybe use moment.js */
+                                        checkedDate.toUTCString() /* TODO: @hejny Some smarter component to show date and time - maybe use moment.js */
                                     }
                                 </>
                             ) : (

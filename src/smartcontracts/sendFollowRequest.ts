@@ -12,7 +12,7 @@ import { hexToErgoFormat } from './ergoFormat/hex/hexToErgoFormat';
 import { urlToErgoFormat } from './ergoFormat/url/urlToErgoFormat';
 
 /**
- * TODO: Probbably rename to something like followPaymentRequest
+ * TODO: @hejny Probbably rename to something like followPaymentRequest
  */
 export async function sendFollowRequest({
     compiledSmartContractAddress,
@@ -59,8 +59,8 @@ export async function sendFollowRequest({
                         R7: '0e0201de',
                         R8: hexToErgoFormat(documentHashInHex),
                         R9: urlToErgoFormat(
-                            // TODO: decide about address format + move it into config ???
-                            // @nitram147 -> @nitram147 -> @hejny decide about URL path to use
+                            // TODO: @hejny decide about address format + move it into config ???
+                            // @nitram147 -> @hejny decide about URL path to use
                             `http://sigmastamp.ml/#/verify?hash=${documentHashInHex}`,
                         ),
                     },
@@ -89,7 +89,7 @@ export async function sendFollowRequest({
 
     const dueDate = new Date(new Date().getTime() + dueTime * 1000);
 
-    // TODO: Probbably split creation of paymentStatus into new function
+    // TODO: @hejny Probbably split creation of paymentStatus into new function
     const paymentStatus = new BehaviorSubject({
         checkedDate:
             new Date(/* TODO: Taking user date can be dangerous, use some remote time. */),
@@ -140,7 +140,7 @@ export async function sendFollowRequest({
 
             paymentStatus.next({
                 checkedDate:
-                    new Date(/* TODO: Taking user date can be dangerous, use some remote time. */),
+                    new Date(/* TODO: @hejny Taking user date can be dangerous, use some remote time. */),
                 isPayed: false,
             });
         }

@@ -16,5 +16,5 @@ export class AudioFilePreview implements IFilePreviewer {
 
 
 /**
- * TODO: Generate better preview for audio files
+ * TODO: @hejny Generate better preview for audio files
  */

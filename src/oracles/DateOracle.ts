@@ -7,7 +7,7 @@ export class DateOracle implements IOracle {
 
     public getData() {
         const date =
-            new Date(/* TODO: Taking user date can be dangerous, use some remote time. */);
+            new Date(/* TODO: @hejny Taking user date can be dangerous, use some remote time. */);
 
         return [
             {

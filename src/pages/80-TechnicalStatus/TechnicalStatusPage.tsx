@@ -47,7 +47,7 @@ export function TechnicalStatusPage() {
 
 /**
  *
- * TODO: Link to source code
- * TODO: @nitram147 -> @hejny There should be some way how to determine if the server is working propperly
- * TODO: do not allow to send payment if the server is not synced)
+ * TODO: @hejny Link to source code
+ * TODO: @nitram147 <- @hejny There should be some way how to determine if the server is working propperly
+ * TODO: @hejny do not allow to send payment if the server is not synced
  */

@@ -18,7 +18,7 @@ export function OraclesPage() {
                         content={async () => {
                             try {
                                 const data =
-                                    await oracle.getData(/* TODO: Auto refresh */);
+                                    await oracle.getData(/* TODO: @hejny Auto refresh */);
 
                                 return (
                                     <>
@@ -50,7 +50,7 @@ export function OraclesPage() {
                                             Error occured when getting data from{' '}
                                             {oracle.constructor.name}:<br />
                                             {error.message}
-                                            {/* TODO: Link to GitHub */}
+                                            {/* TODO: @hejny Link to GitHub */}
                                         </ErrorComponent>
                                     );
                                 } else {
@@ -68,5 +68,5 @@ export function OraclesPage() {
 const OraclesDiv = styled.div``;
 
 /**
- * TODO: Information how to add oracles (link to github)
+ * TODO: @hejny Information how to add oracles (link to github)
  */

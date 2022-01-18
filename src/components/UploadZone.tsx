@@ -70,7 +70,7 @@ export function UploadZone({
                 event.stopPropagation();
                 onFileOverWrapper(false);
 
-                const files = Array.from(event.dataTransfer.files); // TODO: Maybe there should be event.dataTransfer.items handler
+                const files = Array.from(event.dataTransfer.files); // TODO: @hejny Maybe there should be event.dataTransfer.items handler
                 onFiles(files);
             }}
         >
@@ -121,6 +121,7 @@ const UploadZoneDiv = styled.div`
 `;
 
 /**
- * TODO: Probbably when there is only one UploadZone rendered on entire page, expand invisible dropzone to full page
- * TODO: Do not allow to drop placeholder of SigmaStamp logo
+ * TODO: @hejny Probbably when there is only one UploadZone rendered on entire page, expand invisible dropzone to full page
+ * TODO: @hejny Do not allow to drop placeholder of SigmaStamp logo
+ * TODO: @hejny Allow to recieve item from Clipboard
  */

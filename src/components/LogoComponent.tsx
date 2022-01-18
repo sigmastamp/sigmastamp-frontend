@@ -50,5 +50,5 @@ const LogoElement = styled.div`
 `;
 
 /**
- * TODO: Text reacting to isDark property
+ * TODO: @hejny Text reacting to isDark property
  */

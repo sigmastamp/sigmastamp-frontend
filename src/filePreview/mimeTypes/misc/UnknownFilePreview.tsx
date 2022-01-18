@@ -16,5 +16,5 @@ export class UnknownFilePreview implements IFilePreviewer {
 }
 
 /**
- * TODO: Better preview for unknown files
+ * TODO: @hejny Better preview for unknown files
  */

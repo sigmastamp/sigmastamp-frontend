@@ -8,7 +8,7 @@ import { createScript } from './createScript';
 
 // tslint:disable:no-trailing-whitespace
 describe('how creating script works', () => {
-    // TODO: DRY beforeEach+afterEach
+    // TODO: @hejny DRY beforeEach+afterEach
     const PORT = randomPort();
     let server: Server;
 

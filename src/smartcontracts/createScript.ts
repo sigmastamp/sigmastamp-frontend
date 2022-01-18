@@ -21,7 +21,7 @@ export async function createScript<T extends { script: string_href }>(
         script = scriptArray.join(value);
     }
 
-    // TODO: Probbably extract function replaceParams
+    // TODO: @hejny Probbably extract function replaceParams
 
     const match = script.match(/\$[a-zA-Z0-9]+/g);
     if (match) {

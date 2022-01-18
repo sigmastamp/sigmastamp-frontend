@@ -45,5 +45,5 @@ const CodeFilePreviewDiv = styled.div`
 `;
 
 /**
- * TODO: Dynamically choose language
+ * TODO: @hejny Dynamically choose programming language
  */

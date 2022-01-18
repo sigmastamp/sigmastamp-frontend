@@ -14,7 +14,7 @@ export async function compileErgoScript({
     script: ergo_scala_script;
 }): Promise<{ address: ergo_script_address }> {
     const body = JSON.stringify(script.trim())
-        // TODO: Is this required?
+        // TODO: @hejny Is this required?
         .split('^\n')
         .join('\n')
         .split('\n\n')

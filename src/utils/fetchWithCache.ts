@@ -15,7 +15,7 @@ export async function fetchWithCache<T>(
     url: URL,
     ttl: number = -1,
 ): Promise<T> {
-    // TODO: Storage with validity to everstorage
+    // TODO: @hejny Storage with validity to everstorage
     const cacheItem = await cache.getItem(url.href);
 
     if (cacheItem) {
