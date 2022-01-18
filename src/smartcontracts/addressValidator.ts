@@ -14,6 +14,6 @@ export async function isUserAddressValid(
 export async function isProxyContractAddressValid(
     userAddress: ergo_wallet_address,
 ): Promise<boolean> {
-    // TODO: !!!  @nitram147 -> @hejny Implement, value is hardcoded
+    // TODO: !!!  @hejny <- @nitram147 Implement, value is hardcoded
     return true;
 }

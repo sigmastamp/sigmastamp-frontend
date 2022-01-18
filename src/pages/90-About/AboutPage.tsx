@@ -13,7 +13,7 @@ export function AboutPage() {
 
             <div className="authors">
                 <div className="author">
-                    {/* TODO: !!! @hejny -> @nitram147 Please write basic information about yourself */}
+                    {/* TODO: !!! @nitram147 <- @hejny Please write basic information about yourself */}
                     <a href="https://www.pavolhejny.com/">
                         <img alt="Pavol Hejný" src="./team/pavol-hejny.png" />
                     </a>
@@ -75,6 +75,6 @@ const AboutPageDiv = styled.div`
 `;
 
 /**
- * TODO: !!! @hejny -> @nitram147 Please write basic information about the sigmastamp
+ * TODO: !!! @nitram147 <- @hejny Please write basic information about the sigmastamp
  * TODO: This info should be also part of repository readme
  */

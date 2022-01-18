@@ -5,7 +5,7 @@ interface ICreateCertificateOptions {
     hash: string;
 }
 
-// TODO: @nitram147 -> @hejny design some better looking PDF format
+// TODO: @hejny <- @nitram147 design some better looking PDF format
 // TODO: @hejny & @nitram147 - decide about graphical hash representation
 // TODO: @hejny & @nitram147 - decide what to include in certificates...
 

@@ -6,7 +6,7 @@ import {
     ergo_script_address,
     ergo_wallet_address,
     nanoerg,
-    string_hex,
+    string_hex
 } from '../interfaces/stringTypes';
 import { hexToErgoFormat } from './ergoFormat/hex/hexToErgoFormat';
 import { urlToErgoFormat } from './ergoFormat/url/urlToErgoFormat';
@@ -26,7 +26,7 @@ export async function sendFollowRequest({
     compiledSmartContractAddress: ergo_script_address;
     userAddress: ergo_wallet_address;
     /**
-     * TODO: @hejny -> @nitram147 Is sigmaStampProviderAddress ergo_script_address OR ergo_wallet_address? Pick and commit one.
+     * TODO: @nitram147 <- @hejny Is sigmaStampProviderAddress ergo_script_address OR ergo_wallet_address? Pick and commit one.
      */
     sigmaStampProviderAddress: ergo_script_address;
     documentHashInHex: string_hex;
@@ -60,7 +60,7 @@ export async function sendFollowRequest({
                         R8: hexToErgoFormat(documentHashInHex),
                         R9: urlToErgoFormat(
                             // TODO: @hejny decide about address format + move it into config ???
-                            // @nitram147 -> @hejny decide about URL path to use
+                            // @hejny <- @nitram147 decide about URL path to use
                             `http://sigmastamp.ml/#/verify?hash=${documentHashInHex}`,
                         ),
                     },
