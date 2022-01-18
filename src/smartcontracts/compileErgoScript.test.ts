@@ -4,9 +4,9 @@ import { Server } from 'http';
 import path from 'path';
 import serveStatic from 'serve-static';
 import { randomPort } from '../utils/randomPort';
+import { isProxyContractAddressValid } from './addressValidator';
 import { compileErgoScript } from './compileErgoScript';
 import { createScript } from './createScript';
-import { isProxyContractAddressValid } from './addressValidator';
 
 //fix proposed by (https://github.com/facebook/jest/issues/11607)
 jest.useRealTimers();

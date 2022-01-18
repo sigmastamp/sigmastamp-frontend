@@ -1,5 +1,5 @@
 /**
- * Note: !!!
+ * Note: Routes are in separate javascript (not typescript) file to allow it import from postprocess-build script
  */
 
 export const ROUTES = {

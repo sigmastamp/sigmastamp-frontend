@@ -34,8 +34,8 @@ export function SecondCertificatePage() {
                             alert(
                                 `Your 1st certificate is still not validated through Ergo blockchain.`,
                             );
-                            // TODO @hejny - see comments bellow
-                            // TODO - consider skipping the rest because extraction of transactionId from null in
+                            // TODO: @nitram147 -> @hejny see comments bellow
+                            // TODO: - consider skipping the rest because extraction of transactionId from null in
                             // the following statements will result in error
                         }
 
@@ -44,7 +44,7 @@ export function SecondCertificatePage() {
                         const { timestamp, tokenId } = await getTransactionTime(
                             transactionId,
                         );
-                        //TODO @hejny @nitram147 - handle null in case that there isn't asset holder
+                        //TODO: @nitram147 -> @nitram147 -> @hejny handle null in case that there isn't asset holder
                         //this could happen when somebody burned NFT token
                         //(we know that the corresponding NFT has already existed based on validateFirstCertificate function)
                         //(but we don't know whether it still exists...)
@@ -85,10 +85,10 @@ export function SecondCertificatePage() {
 
                                 //saveAs(certificateFile);
 
-                                //TODO @hejny @nitram147 - design output format of verify PDF
+                                //TODO: @nitram147 -> @nitram147 -> @hejny design output format of verify PDF
                                 // also show somehow to user what amount of GPUs will be required to remine the chain to make
                                 // false proofs - this will be based on the block difficulty since the NFT mining block up to today
-                                // TODO @nitram147 - ask on discord whether there's some function on full node to find this difficulty value...
+                                // TODO: @nitram147 - ask on discord whether there's some function on full node to find this difficulty value...
                                 const zip = new JSZip();
                                 for (const file of files) {
                                     zip.file(file.name, file);

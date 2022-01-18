@@ -1,6 +1,6 @@
 import { blake2b256 } from '../hash/blake2b256';
 
-//TODO rename function below
+//TODO: rename function below
 export async function validateFirstCertificate(firstCertificate: File) {
 
     const hash = await blake2b256(firstCertificate);
@@ -36,7 +36,7 @@ export async function validateFirstCertificate(firstCertificate: File) {
     return null;
 }
 
-//TODO @nitram147 - function to check whether is hash already in blockchain
+//TODO: @nitram147 - function to check whether is hash already in blockchain
 //it would be similar to validateFirstCertificate function
 //maybe it would be great to extract the core functionality into one function and then only make wrapper for it (so validateFirstCertificate will be only a wrapper)
 

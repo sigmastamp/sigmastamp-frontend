@@ -7,7 +7,7 @@ import { findDeepestChild } from '../utils/findDeepestChild';
 
 export async function createPdf(containerElement: HTMLElement): Promise<Blob> {
     const pdfDocument = new jsPDF('p', 'mm', PAGE_SIZE.toArray2D());
-    // TODO: !!! Add metadata to PDF
+    // TODO: Add metadata to PDF
 
     await forAllImagesInElement(containerElement);
 
@@ -38,7 +38,7 @@ export async function createPdf(containerElement: HTMLElement): Promise<Blob> {
     }
 
     pdfDocument.addImage(
-        // TODO: !!! Conpression and metadata
+        // TODO: Compression of the image
         image,
         'JPEG',
         0,

@@ -39,9 +39,9 @@ export const PAGE_SIZE = new Vector(210, 297);
 
 const config = ConfigChecker.from(process.env);
 
-// TODO @hejny - see comments bellow
-// TODO - add testnet/mainnet switch
-// TODO - add config for ergo explorer url and subdomains for testnet/mainnet variant
+// TODO: @nitram147 -> @hejny see comments bellow
+// TODO: - add testnet/mainnet switch
+// TODO: - add config for ergo explorer url and subdomains for testnet/mainnet variant
 
 export const ERGO_ASSEMBLER_URL = config
     .get(

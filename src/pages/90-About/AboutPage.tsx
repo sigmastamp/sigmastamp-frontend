@@ -13,7 +13,7 @@ export function AboutPage() {
 
             <div className="authors">
                 <div className="author">
-                    {/* TODO: @nitram147 Please write basic information about yourself */}
+                    {/* TODO: !!! @hejny -> @nitram147 Please write basic information about yourself */}
                     <a href="https://www.pavolhejny.com/">
                         <img alt="Pavol Hejný" src="./team/pavol-hejny.png" />
                     </a>
@@ -33,12 +33,12 @@ export function AboutPage() {
             <h2>Logo</h2>
             <img
                 className="logo"
-                alt="sigmastamp logo"
+                alt="SigmaStamp logo"
                 src="./sigmastamp-logo.white.svg"
             />
             <img
                 className="logo"
-                alt="sigmastamp logo"
+                alt="SigmaStamp logo"
                 src="./sigmastamp-logo.black.svg"
             />
         </AboutPageDiv>
@@ -75,6 +75,6 @@ const AboutPageDiv = styled.div`
 `;
 
 /**
- * TODO: @nitram147 Please write basic information about the sigmastamp
+ * TODO: !!! @hejny -> @nitram147 Please write basic information about the sigmastamp
  * TODO: This info should be also part of repository readme
  */

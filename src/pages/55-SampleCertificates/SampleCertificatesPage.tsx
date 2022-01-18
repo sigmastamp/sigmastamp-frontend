@@ -88,7 +88,7 @@ export function SampleCertificatesPage() {
                 </div>
             </div>
             {/* TODO: <h2>Second certificate</h2> */}
-            {/* TODO: !!! */}
+
         </SampleCertificatesDiv>
     );
 }

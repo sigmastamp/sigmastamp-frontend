@@ -50,7 +50,7 @@ export function OraclesPage() {
                                             Error occured when getting data from{' '}
                                             {oracle.constructor.name}:<br />
                                             {error.message}
-                                            {/* TODO: !!! Link to GitHub */}
+                                            {/* TODO: Link to GitHub */}
                                         </ErrorComponent>
                                     );
                                 } else {
@@ -68,6 +68,5 @@ export function OraclesPage() {
 const OraclesDiv = styled.div``;
 
 /**
- * TODO:
- * - Information how to add oracles (link to github)
+ * TODO: Information how to add oracles (link to github)
  */

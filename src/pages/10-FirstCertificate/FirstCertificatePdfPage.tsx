@@ -83,7 +83,8 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                         )}
                         <Button
                             onClick={async () => {
-                                // TODO: !!! Download logic into separate util + setPayment should not be in IFirstCertificatePdfPageProps
+                                // TODO: Download logic into separate util
+                                // TODO: setPayment should not be in IFirstCertificatePdfPageProps
 
                                 const certificateFile = new File(
                                     [await createPdf()],
@@ -120,9 +121,9 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                                     )}.zip`,
                                 );
 
-                                // TODO @hejny - replace this with custom form (details mentioned in createSigmaStampNFT.ts)
-                                // TODO @hejny - also move proof of today function away, so user will be able to decide whether he want to stamp file or he will make special version of file via proof of today page and then he will stamp this proof of today generated zip file (certificate)
-                                // but it should be always opt-in, not opt-out !!!
+                                // TODO: @nitram147 -> @hejny replace this with custom form (details mentioned in createSigmaStampNFT.ts)
+                                // TODO: @nitram147 -> @hejny also move proof of today function away, so user will be able to decide whether he want to stamp file or he will make special version of file via proof of today page and then he will stamp this proof of today generated zip file (certificate)
+                                //                            but it should be always opt-in, not opt-out !!!
                                 const userAddress = await promptAsync(
                                     'Please fill your Ergo address',
                                     '3Ww7y6vi4NhFZ1ufsEF8vQNyGrvhNmeMmDWP9h3s4qSEFSMoGooV' /* !!! Unhardocde */,
@@ -131,7 +132,7 @@ export function FirstCertificatePdfPage(props: IFirstCertificatePdfPageProps) {
                                     return;
                                 }
 
-                                //TODO @hejny - include also page for "return" - this page will be used in case that ergo-assembler failed and users funds got stucked on proxy-smartcontract, see https://sigmausd.io/#/refund <-- we need to implement something like this or the exact "clone" of this...
+                                //TODO: @nitram147 -> @hejny include also page for "return" - this page will be used in case that ergo-assembler failed and users funds got stucked on proxy-smartcontract, see https://sigmausd.io/#/refund <-- we need to implement something like this or the exact "clone" of this...
                                 setPayment(
                                     await createSigmaStampNFT({
                                         userAddress,

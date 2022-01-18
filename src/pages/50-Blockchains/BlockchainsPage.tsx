@@ -10,7 +10,7 @@ export function BlockchainsPage() {
             <a href="https://ergoplatform.org/">
                 <img
                     className="logo"
-                    alt="sigmastamp logo"
+                    alt="SigmaStamp logo"
                     src="./blockchains/ergo.svg"
                 />
             </a>

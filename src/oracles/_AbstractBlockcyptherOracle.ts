@@ -5,12 +5,15 @@ import { IOracle } from './_IOracle';
 export abstract class AbstractBlockcyptherOracle implements IOracle {
     public abstract name: string;
     protected abstract titleOfCoin: string;
+
+    /**
+     * Time to live in seconds. When -1 provided, data will be valid until page is reloaded.
+     */
     protected abstract ttl: number;
 
     public async getData() {
         const apiUrl = new URL(
             `https://api.blockcypher.com/v1/${this.name.toLowerCase()}/main`,
-            // TODO: !!! Wouldn't there be a problem with limits;= is referrer in the request?
         );
 
         try {
@@ -44,3 +47,7 @@ export abstract class AbstractBlockcyptherOracle implements IOracle {
         }
     }
 }
+
+/**
+ * TODO: !!! @hejny There is problem with API call limits to api.blockcypher.com
+ */

@@ -12,7 +12,7 @@ import { hexToErgoFormat } from './ergoFormat/hex/hexToErgoFormat';
 import { urlToErgoFormat } from './ergoFormat/url/urlToErgoFormat';
 
 /**
- * TODO: !!! Probbably rename to something like followPaymentRequest
+ * TODO: Probbably rename to something like followPaymentRequest
  */
 export async function sendFollowRequest({
     compiledSmartContractAddress,
@@ -26,7 +26,7 @@ export async function sendFollowRequest({
     compiledSmartContractAddress: ergo_script_address;
     userAddress: ergo_wallet_address;
     /**
-     * TODO: !!! Is it ergo_script_address OR ergo_wallet_address
+     * TODO: @hejny -> @nitram147 Is sigmaStampProviderAddress ergo_script_address OR ergo_wallet_address? Pick and commit one.
      */
     sigmaStampProviderAddress: ergo_script_address;
     documentHashInHex: string_hex;
@@ -35,11 +35,6 @@ export async function sendFollowRequest({
     mintingFee: nanoerg;
 }): Promise<{
     amount: nanoerg;
-
-    /**
-     * TODO: is it really in seconds?!
-     * TODO: Make it absolute by Date
-     */
     dueDate: Date;
     paymentStatus: IPaymentStatus;
 }> {
@@ -65,7 +60,7 @@ export async function sendFollowRequest({
                         R8: hexToErgoFormat(documentHashInHex),
                         R9: urlToErgoFormat(
                             // TODO: decide about address format + move it into config ???
-                            // @hejny @nitram147 - decide about URL path to use
+                            // @nitram147 -> @nitram147 -> @hejny decide about URL path to use
                             `http://sigmastamp.ml/#/verify?hash=${documentHashInHex}`,
                         ),
                     },
@@ -125,14 +120,14 @@ export async function sendFollowRequest({
             );
             const watchResponseBody = await watchResponse.json();
             const {
-                /*id, */tx,
+                /*id, */ tx,
                 detail /* "pending", "returning", "mined", "success", "timeout", "return failed" */,
             } = watchResponseBody;
 
             console.log({ watchResponse, watchResponseBody, tx, detail });
 
             if (detail === 'success') {
-                // TODO: !!! And now take tx and create big certificate
+                // TODO: !!! @hejny And now take tx and create second certificate
 
                 paymentStatus.next({
                     checkedDate:

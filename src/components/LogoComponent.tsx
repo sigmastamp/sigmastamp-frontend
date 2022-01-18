@@ -9,10 +9,9 @@ interface ILogoComponentProps {
 export function LogoComponent({ isWatermark, isDark }: ILogoComponentProps) {
     return (
         <LogoElement>
-            {/* TODO: !!! Logo should be ONLY vectorized SVG/PNG image */}
             <img
                 className="logo"
-                alt="sigmastamp logo"
+                alt="SigmaStamp logo"
                 src={`./sigmastamp-logo.${isDark ? 'black' : 'white'}.svg`}
             />
 

@@ -10,5 +10,5 @@ export function HowItWorksPage() {
 }
 
 /**
- * TODO: @nitram147 Please write a description how the sigmastamp works
+ * TODO: !!! @hejny -> @nitram147 Please write a description how the sigmastamp works
  */

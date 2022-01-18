@@ -47,7 +47,7 @@ const PdfPageDiv = styled.div`
         background-color: white;
         color: black;
 
-        // Note: !!!
+        /* Note: It the printed certificate there is better to use serif font */
         font-family: 'Times New Roman', Times, serif;
     }
 
