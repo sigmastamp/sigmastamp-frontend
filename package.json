@@ -1,98 +1,98 @@
 {
-    "name": "sigmastamp-frontend",
-    "version": "0.16.3",
-    "private": false,
-    "homepage": "https://www.sigmastamp.ml/",
-    "license": "SEE LICENSE IN LICENSE",
-    "contributors": [
-        "Pavol Hejný <pavol@collboard.com> (https://pavolhejny.com)"
+  "name": "sigmastamp-frontend",
+  "version": "0.16.3",
+  "private": false,
+  "homepage": "https://www.sigmastamp.ml/",
+  "license": "SEE LICENSE IN LICENSE",
+  "contributors": [
+    "Pavol Hejný <pavol@collboard.com> (https://pavolhejny.com)"
+  ],
+  "scripts": {
+    "start": "npx react-scripts start",
+    "build": "rm -rf ./build && react-scripts build && echo \"www.sigmastamp.ml\" > ./build/CNAME && node ./scripts/postprocess-build/postprocess-build.mjs",
+    "test": "",
+    "test-TODO-AFTER-SERVER-WORKS-RELIABLY": "npx react-scripts test --watchAll=false",
+    "lint": "npx tslint -p tsconfig.json",
+    "preversion": "npm run lint && npm test",
+    "postversion": "git push && git push --tags"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
     ],
-    "scripts": {
-        "start": "npx react-scripts start",
-        "build": "rm -rf ./build && react-scripts build && echo \"www.sigmastamp.ml\" > ./build/CNAME && node ./scripts/postprocess-build/postprocess-build.mjs",
-        "test": "",
-        "test-TODO-AFTER-SERVER-WORKS-RELIABLY": "npx react-scripts test --watchAll=false",
-        "lint": "npx tslint -p tsconfig.json",
-        "preversion": "npm run lint && npm test",
-        "postversion": "git push && git push --tags"
-    },
-    "eslintConfig": {
-        "extends": [
-            "react-app",
-            "react-app/jest"
-        ]
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    },
-    "devDependencies": {
-        "@coinbarn/ergo-ts": "^0.3.0",
-        "@stablelib/blake2b": "^1.0.1",
-        "@stablelib/blake2s": "^1.0.1",
-        "@testing-library/jest-dom": "^5.15.0",
-        "@testing-library/react": "^12.1.2",
-        "@testing-library/user-event": "^13.5.0",
-        "@types/crypto-js": "^4.0.2",
-        "@types/express": "^4.17.13",
-        "@types/file-saver": "^2.0.4",
-        "@types/jest": "^27.0.2",
-        "@types/node": "^16.11.7",
-        "@types/qrcode": "^1.4.1",
-        "@types/react": "^17.0.35",
-        "@types/react-dom": "^17.0.11",
-        "@types/react-router-dom": "^5.3.2",
-        "@types/serve-static": "^1.13.10",
-        "@types/styled-components": "^5.1.15",
-        "blake2s-js": "^1.3.0",
-        "blakejs": "^1.1.1",
-        "chalk": "^5.0.0",
-        "configchecker": "^1.5.1",
-        "crypto-js": "^4.1.1",
-        "everstorage": "^1.10.1",
-        "express": "^4.17.1",
-        "file-saver": "^2.0.5",
-        "gh-pages": "^3.2.3",
-        "history": "^5.1.0",
-        "html2canvas": "^1.3.2",
-        "html2pdf.js": "^0.10.1",
-        "i": "^0.3.7",
-        "jspdf": "^2.4.0",
-        "jszip": "^3.7.1",
-        "npm": "^8.3.1",
-        "qrcode": "^1.5.0",
-        "react": "^17.0.2",
-        "react-countdown": "^2.3.2",
-        "react-dom": "^17.0.2",
-        "react-lorem-ipsum": "^1.4.9",
-        "react-router-dom": "^6.0.2",
-        "react-scripts": "4.0.3",
-        "react-textfit": "^1.1.1",
-        "rss-parser": "^3.12.0",
-        "rxjs": "^7.4.0",
-        "serve-static": "^1.14.1",
-        "spacetrim": "^0.6.0",
-        "styled-components": "^5.3.3",
-        "ts-node": "^10.4.0",
-        "tslint": "^6.1.3",
-        "type-fest": "^2.5.4",
-        "typescript": "^4.4.4",
-        "waitasecond": "^1.8.10",
-        "web-vitals": "^2.1.2",
-        "xyzt": "^4.7.0"
-    },
-    "dependencies": {
-        "@types/mime-types": "^2.1.1",
-        "@types/react-syntax-highlighter": "^13.5.2",
-        "mime-types": "^2.1.34",
-        "react-syntax-highlighter": "^15.4.5"
-    }
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@coinbarn/ergo-ts": "0.3.0",
+    "@stablelib/blake2b": "1.0.1",
+    "@stablelib/blake2s": "1.0.1",
+    "@testing-library/jest-dom": "5.15.0",
+    "@testing-library/react": "12.1.2",
+    "@testing-library/user-event": "13.5.0",
+    "@types/crypto-js": "4.0.2",
+    "@types/express": "4.17.13",
+    "@types/file-saver": "2.0.4",
+    "@types/jest": "27.0.2",
+    "@types/node": "16.11.7",
+    "@types/qrcode": "1.4.1",
+    "@types/react": "17.0.35",
+    "@types/react-dom": "17.0.11",
+    "@types/react-router-dom": "5.3.2",
+    "@types/serve-static": "1.13.10",
+    "@types/styled-components": "5.1.15",
+    "blake2s-js": "1.3.0",
+    "blakejs": "1.1.1",
+    "chalk": "5.0.0",
+    "configchecker": "1.5.1",
+    "crypto-js": "4.1.1",
+    "everstorage": "1.10.1",
+    "express": "4.17.1",
+    "file-saver": "2.0.5",
+    "gh-pages": "3.2.3",
+    "history": "5.1.0",
+    "html2canvas": "1.3.2",
+    "html2pdf.js": "0.10.1",
+    "i": "0.3.7",
+    "jspdf": "2.4.0",
+    "jszip": "3.7.1",
+    "npm": "8.3.1",
+    "qrcode": "1.5.0",
+    "react": "17.0.2",
+    "react-countdown": "2.3.2",
+    "react-dom": "17.0.2",
+    "react-lorem-ipsum": "1.4.9",
+    "react-router-dom": "6.0.2",
+    "react-scripts": "4.0.3",
+    "react-textfit": "1.1.1",
+    "rss-parser": "3.12.0",
+    "rxjs": "7.4.0",
+    "serve-static": "1.14.1",
+    "spacetrim": "0.6.0",
+    "styled-components": "5.3.3",
+    "ts-node": "10.4.0",
+    "tslint": "6.1.3",
+    "type-fest": "2.5.4",
+    "typescript": "4.4.4",
+    "waitasecond": "1.8.10",
+    "web-vitals": "2.1.2",
+    "xyzt": "4.7.0"
+  },
+  "dependencies": {
+    "@types/mime-types": "2.1.1",
+    "@types/react-syntax-highlighter": "13.5.2",
+    "mime-types": "2.1.34",
+    "react-syntax-highlighter": "15.4.5"
+  }
 }
