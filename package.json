@@ -94,5 +94,6 @@
     "@types/react-syntax-highlighter": "13.5.2",
     "mime-types": "2.1.34",
     "react-syntax-highlighter": "15.4.5"
-  }
+  },
+  "description": "Verify the time origin of your documents"
 }
