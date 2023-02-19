@@ -4,14 +4,14 @@ import { PAGE_MM_TO_PX_RATIO } from '../config';
 import { Center } from './Center';
 
 export type IUploadZoneProps = React.PropsWithChildren<{
-    clickable?: boolean;
+    isClickable?: boolean;
     onFilesOver?: (isFileOver: boolean) => void;
     onFiles: (droppedFiles: File[]) => void;
 }>;
 
 export function UploadZone({
     children,
-    clickable,
+    isClickable,
     onFilesOver,
     onFiles,
 }: IUploadZoneProps) {
@@ -31,7 +31,7 @@ export function UploadZone({
         <UploadZoneDiv
             className={isFilesOver ? 'files-over' : ''}
             onClick={() => {
-                if (clickable) {
+                if (isClickable) {
                     uploadClick();
                 }
             }}
@@ -76,6 +76,7 @@ export function UploadZone({
         >
             <input
                 type="file"
+                multiple
                 ref={(element) => {
                     if (element) {
                         uploadClick = () => {

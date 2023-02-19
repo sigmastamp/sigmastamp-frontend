@@ -49,7 +49,7 @@ export function FirstCertificatePage() {
                             saveAs(zipFile, 'certificate.zip');
                             */
                         }}
-                        clickable
+                        isClickable
                     >
                         <UploadZoneSigmastampContent>
                             Drop the files you want to timestamp here!

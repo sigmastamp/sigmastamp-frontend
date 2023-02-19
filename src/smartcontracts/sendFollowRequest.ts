@@ -6,12 +6,13 @@ import {
     ergo_script_address,
     ergo_wallet_address,
     nanoerg,
-    string_hex
+    string_hex,
 } from '../interfaces/stringTypes';
 import { hexToErgoFormat } from './ergoFormat/hex/hexToErgoFormat';
 import { urlToErgoFormat } from './ergoFormat/url/urlToErgoFormat';
 
 /**
+ * TODO: !!! @nitram147 Is it @deprecated
  * TODO: @hejny Probbably rename to something like followPaymentRequest
  */
 export async function sendFollowRequest({

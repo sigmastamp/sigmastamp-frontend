@@ -60,7 +60,7 @@ export function SecondCertificatePage() {
                         });
                         console.log(droppedFileVerification);
                     }}
-                    clickable
+                    isClickable
                 >
                     <UploadZoneSigmastampContent>
                         Drop your 1st certificate here!

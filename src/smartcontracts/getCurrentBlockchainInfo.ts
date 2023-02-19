@@ -1,3 +1,7 @@
+
+/**
+ * TODO: !!! @nitram147 Is it @deprecated
+ */
 export async function getCurrentBlockchainHeight(): Promise<number> {
     const response = await fetch(
         `https://api-testnet.ergoplatform.com/api/v1/info`,
@@ -8,7 +12,10 @@ export async function getCurrentBlockchainHeight(): Promise<number> {
     return body.height;
 }
 
-//TODO: - probably return raw fee costs, so we can use them in different ways later on
+/**
+ * TODO: !!! @nitram147 Is it @deprecated
+ * TODO: - probably return raw fee costs, so we can use them in different ways later on
+ */
 export async function getCurrentBlockchainMinFeeRequired(): Promise<number> {
     const response = await fetch(
         `https://api-testnet.ergoplatform.com/api/v1/info`,

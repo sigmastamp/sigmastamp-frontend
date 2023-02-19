@@ -1,8 +1,10 @@
 import { blake2b256 } from '../hash/blake2b256';
 
-//TODO: @hejny rename function below
+/**
+ * TODO: !!! @nitram147 Is it @deprecated
+ * TODO: @hejny rename function below
+ */
 export async function validateFirstCertificate(firstCertificate: File) {
-
     const hash = await blake2b256(firstCertificate);
 
     const tokensResponse = await fetch(
@@ -10,10 +12,9 @@ export async function validateFirstCertificate(firstCertificate: File) {
     );
     const tokensBody = await tokensResponse.json();
 
-    for(const item of tokensBody.items){
-
+    for (const item of tokensBody.items) {
         //skip non-NFTs
-        if(item.emissionAmount !== 1) continue;
+        if (item.emissionAmount !== 1) continue;
 
         const boxId = item.boxId;
 
@@ -26,9 +27,9 @@ export async function validateFirstCertificate(firstCertificate: File) {
         //skip non-SigmaStampNFT types
         //(0x01 specifies NFT category, 0xde specifies SigmaStampNFT subcategory)
         //see (https://github.com/ergoplatform/eips/blob/master/eip-0004.md) for more info
-        if(boxesBody.additionalRegisters.R7.renderedValue !== `01de`) continue;
+        if (boxesBody.additionalRegisters.R7.renderedValue !== `01de`) continue;
 
-        if(boxesBody.additionalRegisters.R8.renderedValue === `${hash}`){
+        if (boxesBody.additionalRegisters.R8.renderedValue === `${hash}`) {
             return boxesBody;
         }
     }
@@ -40,8 +41,10 @@ export async function validateFirstCertificate(firstCertificate: File) {
 //it would be similar to validateFirstCertificate function
 //maybe it would be great to extract the core functionality into one function and then only make wrapper for it (so validateFirstCertificate will be only a wrapper)
 
+/**
+ * TODO: !!! @nitram147 Is it @deprecated
+ */
 export async function getTransactionTime(txId: string) {
-
     const response = await fetch(
         `https://api-testnet.ergoplatform.com/api/v1/transactions/${txId}`,
     );
@@ -55,8 +58,10 @@ export async function getTransactionTime(txId: string) {
     return { timestamp, tokenId };
 }
 
+/**
+ * TODO: !!! @nitram147 Is it @deprecated
+ */
 export async function getNFTHolderAddress(tokenId: string) {
-
     const response = await fetch(
         `https://api-testnet.ergoplatform.com/api/v1/boxes/unspent/byTokenId/${tokenId}`,
     );
@@ -65,7 +70,7 @@ export async function getNFTHolderAddress(tokenId: string) {
     console.log('getNFTHolderAddress', body);
 
     //check that there is only one holder (it means that it is NFT and also that it exists)
-    if(body.total !== 1) return null;
+    if (body.total !== 1) return null;
 
     return body.items[0].address;
 }

@@ -5,7 +5,9 @@ import {
 } from '../interfaces/stringTypes';
 
 /**
+ * TODO: !!! @nitram147 Is it @deprecated
  * Copiles source in scala to Ergo3 adress format
+ *
  * @param source in scala
  */
 export async function compileErgoScript({
