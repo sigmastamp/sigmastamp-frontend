@@ -36,6 +36,7 @@
     },
     "devDependencies": {
         "@coinbarn/ergo-ts": "0.3.0",
+        "@nautilus-js/eip12-types": "^0.1.9",
         "@stablelib/blake2b": "1.0.1",
         "@stablelib/blake2s": "1.0.1",
         "@testing-library/jest-dom": "5.15.0",
@@ -86,14 +87,13 @@
         "typescript": "4.4.4",
         "waitasecond": "1.8.10",
         "web-vitals": "2.1.2",
-        "xyzt": "4.7.0"
-    },
-    "dependencies": {
+        "xyzt": "4.7.0",
         "@types/mime-types": "2.1.1",
         "@types/react-syntax-highlighter": "13.5.2",
         "mime-types": "2.1.34",
         "react-syntax-highlighter": "15.4.5"
     },
+    "dependencies": {},
     "description": "Verify the time origin of your documents",
     "repository": {
         "type": "git",

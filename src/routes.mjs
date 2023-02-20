@@ -12,4 +12,5 @@ export const ROUTES = {
     Faq: '/faq',
     TechnicalStatus: '/status',
     About: '/about',
+    Playground: '/playground',
 };

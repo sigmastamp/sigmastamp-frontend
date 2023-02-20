@@ -13,6 +13,7 @@ import { FaqPage } from '../75-Faq/FaqPage';
 import { TechnicalStatusPage } from '../80-TechnicalStatus/TechnicalStatusPage';
 import { AboutPage } from '../90-About/AboutPage';
 import { HeaderComponent } from './HeaderComponent';
+import { PlaygroundPage } from '../85-Playground/Playground';
 
 export function App() {
     return (
@@ -63,6 +64,11 @@ export function App() {
                                 <Route
                                     path={ROUTES.About}
                                     element={<AboutPage />}
+                                />
+
+<Route
+                                    path={ROUTES.Playground}
+                                    element={<PlaygroundPage />}
                                 />
                             </Routes>
                         </Center>

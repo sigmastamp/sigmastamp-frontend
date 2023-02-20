@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { ROUTES } from '../../routes';
@@ -39,6 +38,9 @@ export function MenuComponent() {
                     <NavLink to={ROUTES.TechnicalStatus}>
                         Technical status
                     </NavLink>
+                </li>
+                <li>
+                    <NavLink to={ROUTES.Playground}>Playground</NavLink>
                 </li>
                 <li>
                     <NavLink to={ROUTES.About}>About</NavLink>
