@@ -83,7 +83,7 @@ Sample text here...
 
 Syntax highlighting
 
-```js
+```javascript
 var foo = function (bar) {
     return bar++;
 };

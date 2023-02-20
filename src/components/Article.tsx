@@ -1,4 +1,5 @@
 import { Converter } from 'showdown';
+import showdownHighlight from 'showdown-highlight';
 import { spaceTrim } from 'spacetrim';
 import styled from 'styled-components';
 import { useAsyncMemo } from '../utils/useAsyncMemo';
@@ -51,7 +52,6 @@ export function Article({ src }: IArticleProps) {
     }
 
     const markdown = content;
-    const converter = new Converter();
     converter.setFlavor('github');
     const html = converter.makeHtml(markdown);
 
@@ -68,3 +68,14 @@ const ArticleDiv = styled.div`
         max-height: 50%;
     }
 `;
+
+const converter = new Converter({
+    extensions: [
+        showdownHighlight({
+            // Whether to add the classes to the <pre> tag, default is false
+            pre: true,
+            // Whether to use hljs' auto language detection, default is true
+            auto_detection: true,
+        }),
+    ],
+});
