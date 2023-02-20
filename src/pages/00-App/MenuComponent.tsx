@@ -27,9 +27,9 @@ export function MenuComponent() {
                         Sample certificates
                     </NavLink>
                 </li>*/}
-                {/*<li>
+                <li>
                     <NavLink to={ROUTES.HowItWorks}>How it works?</NavLink>
-                </li>*/}
+                </li>
                 {/* Note: This page is prepared for the future.
                 <li>
                     <NavLink to={ROUTES.Faq}>FAQ</NavLink>

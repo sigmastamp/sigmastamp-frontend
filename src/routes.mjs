@@ -2,9 +2,8 @@
  * Note: Routes are in separate javascript (not typescript) file to allow it import from postprocess-build script
  */
 
-//FirstCertificate: '/',
-
 export const ROUTES = {
+    // Currently used pages:
     VerificationPage: '/verify',
     Blockchains: '/blockchains',
     Oracles: '/oracles',
@@ -14,4 +13,7 @@ export const ROUTES = {
     TechnicalStatus: '/status',
     About: '/about',
     Playground: '/playground',
+
+    // Deprecated pages (but kept because they are still referenced somewhere):
+    FirstCertificate: '/',
 };

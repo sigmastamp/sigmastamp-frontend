@@ -1,19 +1,15 @@
-import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
+import articleHowItWorks from '../../articles/how-it-works.md';
+import { Article } from '../../components/Article';
 import { Center } from '../../components/Center';
 import { ROUTES } from '../../routes';
-import { FirstCertificatePage } from '../10-FirstCertificate/FirstCertificatePage';
 import { VerificationPage } from '../20-VerificationPage/VerificationPage';
-import { BlockchainsPage } from '../50-Blockchains/BlockchainsPage';
 import { OraclesPage } from '../53-Oracles/OraclesPage';
-import { SampleCertificatesPage } from '../55-SampleCertificates/SampleCertificatesPage';
-import { HowItWorksPage } from '../70-HowItWorks/HowItWorksPage';
-import { FaqPage } from '../75-Faq/FaqPage';
-import { TechnicalStatusPage } from '../80-TechnicalStatus/TechnicalStatusPage';
-import { AboutPage } from '../90-About/AboutPage';
-import { HeaderComponent } from './HeaderComponent';
 import { PlaygroundPage } from '../85-Playground/Playground';
+import { HeaderComponent } from './HeaderComponent';
+
+console.log({ articleHowItWorks });
 
 export function App() {
     return (
@@ -32,7 +28,7 @@ export function App() {
                                     element={<FirstCertificatePage />}
                                 />*/}
                                 <Route
-                                    path={"/"}
+                                    path={'/'}
                                     element={<PlaygroundPage />}
                                 />
                                 <Route
@@ -51,12 +47,14 @@ export function App() {
                                 {/*<Route
                                     path={ROUTES.SampleCertificates}
                                     element={<SampleCertificatesPage />}
-                                />
+                                />*/}
                                 <Route
                                     path={ROUTES.HowItWorks}
-                                    element={<HowItWorksPage />}
+                                    element={
+                                        <Article src={articleHowItWorks} />
+                                    }
                                 />
-                                <Route
+                                {/*<Route
                                     path={ROUTES.Faq}
                                     element={<FaqPage />}
                                 />
@@ -109,10 +107,16 @@ const AppDiv = styled.div`
         /*/
         border: 1px dashed red; /**/
 
+        position: absolute;
+        top: 0;
+        left: var(--menu-width);
+        right: 0;
+
         min-height: 100vh;
 
-        margin-left: var(--menu-width);
-        margin-bottom: 100px;
+        overflow-x: clip;
+        overflow-y: visible;
+
         padding: 20px;
         padding-left: 50px;
     }
@@ -143,7 +147,7 @@ const AppDiv = styled.div`
 
         .content-column {
             position: block;
-            margin-left: 0;
+            left: 0;
             padding-top: 200px;
         }
     }
