@@ -58,17 +58,6 @@ export function Article({ src }: IArticleProps) {
     return <ArticleDiv dangerouslySetInnerHTML={{ __html: html }} />;
 }
 
-const ArticleDiv = styled.div`
-    /*/
-    border: 1px dashed red;
-    /**/
-
-    img {
-        max-width: 50%;
-        max-height: 50%;
-    }
-`;
-
 const converter = new Converter({
     extensions: [
         showdownHighlight({
@@ -79,3 +68,40 @@ const converter = new Converter({
         }),
     ],
 });
+
+const ArticleDiv = styled.div`
+    /*/
+    border: 1px dashed red;
+    /**/
+
+    img {
+        max-width: 50%;
+        max-height: 50%;
+    }
+
+    /*
+    table {
+        border-collapse: collapse;
+    }
+    */
+
+    table,
+    th,
+    td {
+        border: none;
+    }
+
+    table tr:nth-child(even) {
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    table th {
+        background-color: rgba(255, 255, 255, 0.1);
+        text-align: center;
+    }
+
+    table th,
+    table td {
+        padding: 5px;
+    }
+`;
