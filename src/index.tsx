@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { BUILD_DATE, BUILD_DETAILS_URL, VERSION } from './config';
 import { GlobalStyle } from './globalStyle';
 import { App } from './pages/00-App/App';
-import './playground/ergo-lib-wasm';
+import './playground/ergo-lib-usage';
 
 console.info(
     `%c📜 Sigmastamp version ${VERSION}` +
