@@ -1,7 +1,8 @@
 import { blake2b256 } from '../hash/blake2b256';
 
 /**
- * TODO: !!! @nitram147 Is it @deprecated
+ * TODO: @hejny <- @nitram147 Unhardcode API URL move it to the config file
+ * also make name of token (currently SigmaStampNFT) configurable not hardcoded (again in config file)
  * TODO: @hejny rename function below
  */
 export async function validateFirstCertificate(firstCertificate: File) {
@@ -24,6 +25,8 @@ export async function validateFirstCertificate(firstCertificate: File) {
 
         const boxesBody = await boxesResponse.json();
 
+        //// TODO @hejny <- @nitram147 Unhardcode SigmaStampNFT type (01de) and make it configurable
+
         //skip non-SigmaStampNFT types
         //(0x01 specifies NFT category, 0xde specifies SigmaStampNFT subcategory)
         //see (https://github.com/ergoplatform/eips/blob/master/eip-0004.md) for more info
@@ -41,9 +44,7 @@ export async function validateFirstCertificate(firstCertificate: File) {
 //it would be similar to validateFirstCertificate function
 //maybe it would be great to extract the core functionality into one function and then only make wrapper for it (so validateFirstCertificate will be only a wrapper)
 
-/**
- * TODO: !!! @nitram147 Is it @deprecated
- */
+// TODO @hejny <- @nitram147 Unhardcode API URL move it to the config file
 export async function getTransactionTime(txId: string) {
     const response = await fetch(
         `https://api-testnet.ergoplatform.com/api/v1/transactions/${txId}`,
@@ -58,9 +59,7 @@ export async function getTransactionTime(txId: string) {
     return { timestamp, tokenId };
 }
 
-/**
- * TODO: !!! @nitram147 Is it @deprecated
- */
+// TODO @hejny <- @nitram147 Unhardcode API URL move it to the config file
 export async function getNFTHolderAddress(tokenId: string) {
     const response = await fetch(
         `https://api-testnet.ergoplatform.com/api/v1/boxes/unspent/byTokenId/${tokenId}`,
