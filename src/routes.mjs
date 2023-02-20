@@ -2,8 +2,9 @@
  * Note: Routes are in separate javascript (not typescript) file to allow it import from postprocess-build script
  */
 
+//FirstCertificate: '/',
+
 export const ROUTES = {
-    FirstCertificate: '/',
     VerificationPage: '/verify',
     Blockchains: '/blockchains',
     Oracles: '/oracles',

@@ -27,24 +27,28 @@ export function App() {
                     <main>
                         <Center>
                             <Routes>
-                                <Route
+                                {/*<Route
                                     path={ROUTES.FirstCertificate}
                                     element={<FirstCertificatePage />}
+                                />*/}
+                                <Route
+                                    path={"/"}
+                                    element={<PlaygroundPage />}
                                 />
                                 <Route
                                     path={ROUTES.VerificationPage}
                                     element={<VerificationPage />}
                                 />
 
-                                <Route
+                                {/*<Route
                                     path={ROUTES.Blockchains}
                                     element={<BlockchainsPage />}
-                                />
+                                />*/}
                                 <Route
                                     path={ROUTES.Oracles}
                                     element={<OraclesPage />}
                                 />
-                                <Route
+                                {/*<Route
                                     path={ROUTES.SampleCertificates}
                                     element={<SampleCertificatesPage />}
                                 />
@@ -64,9 +68,9 @@ export function App() {
                                 <Route
                                     path={ROUTES.About}
                                     element={<AboutPage />}
-                                />
+                                />*/}
 
-<Route
+                                <Route
                                     path={ROUTES.Playground}
                                     element={<PlaygroundPage />}
                                 />
