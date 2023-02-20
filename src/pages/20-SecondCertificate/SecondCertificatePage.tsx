@@ -12,7 +12,7 @@ import {
     getNFTHolderAddress,
     getTransactionTime,
     validateFirstCertificate,
-} from '../../smartcontracts/validateFirstCertificate';
+} from '../../scripts/validateFirstCertificate';
 import { FirstAndSecondCertificatePageDiv } from '../10-FirstCertificate/FirstCertificatePage';
 
 export function SecondCertificatePage() {

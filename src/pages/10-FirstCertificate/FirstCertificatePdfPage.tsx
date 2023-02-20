@@ -20,7 +20,7 @@ import { string_base64, string_hex } from '../../interfaces/stringTypes';
 import { FakeFileOracle } from '../../oracles/FakeFileOracle';
 import { IOracle, IOracleData } from '../../oracles/_IOracle';
 import { ROUTES } from '../../routes';
-import { createSigmaStampNFT } from '../../smartcontracts/createSigmaStampNFT';
+import { createSigmaStampNFT } from '../../scripts/createSigmaStampNFT';
 import { hexToBase64 } from '../../utils/hexToBase64';
 import { promptAsync } from '../../utils/promptAsync';
 

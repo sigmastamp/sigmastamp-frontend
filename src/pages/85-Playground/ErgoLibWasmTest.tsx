@@ -12,7 +12,7 @@ export function ErgoLibWasmTest() {
                 console.log(result);
             }}
         >
-            Connect to Nautilus wallet
+            Test WASM functionality
         </button>
     );
 }
