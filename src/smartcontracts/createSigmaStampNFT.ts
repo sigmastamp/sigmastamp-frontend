@@ -1,3 +1,4 @@
+import { forEver } from 'waitasecond';
 import { IPaymentStatus } from '../interfaces/IPaymentStatus';
 import {
     ergo_script_address,
@@ -5,10 +6,8 @@ import {
     nanoerg,
 } from '../interfaces/stringTypes';
 import { isUserAddressValid } from './addressValidator';
-import { compileErgoScript } from './compileErgoScript';
-import { createScript } from './createScript';
-import { getCurrentBlockchainHeight } from './getCurrentBlockchainInfo';
-import { sendFollowRequest } from './sendFollowRequest';
+
+// @ts-nocheck
 
 interface ICreateSigmaStampNFT {
     documentHashInBase64: string;
@@ -30,6 +29,13 @@ export async function createSigmaStampNFT({
         throw new Error(`User address "${userAddress}" is not correct.`);
     }
 
+    await forEver();
+    return {} as any;
+
+    /*
+    This code is @deprecated or/and uses @deprecated utils
+
+
     //TODO: @hejny <- @nitram147 validate whether hash already exists in blockchain (same way as in the verification phase)
     //if hash exists there, show user warning that this file was already stamped via sigmastamp and cannot be done more times
     //[of couse somebody can stamp this file again on its own, however will we be taking into account only the first occurence of this hash in blockchain - so the guy who stamped it first is the original owner of the file]
@@ -43,9 +49,9 @@ export async function createSigmaStampNFT({
     //     a.) setup of custom amount of ERG to send together with NFT token (so user will be able to transfer NFT in future ERG amount sent together with NFT will be used to cover transaction fees on ergo network)
     //         there should be also tooltip (like question mark icon) which will include explanation text (which will explain what this ERG amount mean...)
     //TODO: @nitram147 -> @hejny <- @nitram147 think about stamping service fee... (whether to make it stable or based on current erg price etc.)
-    const mintingFee = 20000000; /* TODO: @hejny User settable */
-    const ergsSendTogetherWithNFT = 100000000; /* TODO: @hejny User settable */
-    const ergsFeeForSigmaStampService = 100000000; /* Our fee */
+    const mintingFee = 20000000; /* TODO: @hejny User settable * /
+    const ergsSendTogetherWithNFT = 100000000; /* TODO: @hejny User settable * /
+    const ergsFeeForSigmaStampService = 100000000; /* Our fee * /
     //TODO: @hejny <- @nitram147 move harcoded values into some config file
     const sigmaStampProviderAddress =
         '3Ww7y6vi4NhFZ1ufsEF8vQNyGrvhNmeMmDWP9h3s4qSEFSMoGooV';
@@ -55,7 +61,7 @@ export async function createSigmaStampNFT({
 
     /**
      * TODO: !!! @hejny unhardcode address
-     */
+     * /
     // TODO: @hejny <- @nitram147 move it also to some configuration...
     const sigmaStampAssemblerNodeAddr =
         '3Ww7y6vi4NhFZ1ufsEF8vQNyGrvhNmeMmDWP9h3s4qSEFSMoGooV';
@@ -111,4 +117,5 @@ export async function createSigmaStampNFT({
         dueDate,
         paymentStatus,
     };
+    */
 }
