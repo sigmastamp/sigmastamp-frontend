@@ -1,32 +1,17 @@
 import styled from 'styled-components';
+import { ErgoConnectorButton } from './ErgoConnectorButton';
+import { ErgoLibWasmTest } from './ErgoLibWasmTest';
 
 export function PlaygroundPage() {
     return (
         <PlaygroundPageDiv>
             <h2>Playground</h2>
             <h2>@nautilus</h2>
+            <ErgoConnectorButton />
 
-            <button
-                onClick={async () => {
-                    if (!ergoConnector || !ergoConnector.nautilus) {
-                        // TODO: Link to better more explainable page
-                        alert(
-                            `You need to install Nautilus Wallet first\n https://chrome.google.com/webstore/detail/nautilus-wallet/gjlmehlldlphhljhpnlddaodbjjcchai/related`,
-                        );
-                        return;
-                    }
-
-                    const isConnected = await ergoConnector.nautilus.connect({
-                        createErgoObject: false,
-                    });
-
-                    if (isConnected) {
-                        alert(`Sucessfully connected!`);
-                    }
-                }}
-            >
-                Connect to Nautilus wallet
-            </button>
+            <h2>ergo-lib-wasm-browser</h2>
+            <ErgoLibWasmTest />
+            
         </PlaygroundPageDiv>
     );
 }
