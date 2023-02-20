@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+let ergolib = import("ergo-lib-wasm-browser");
+
+async function test_it(){
+    let wasm = (await ergolib);
+    console.log(wasm.TokenId.from_str("65e3b680cb88cb4609a0414757b1586749071cc8a4954de6c914911f63265f68").to_str());
+}
+
 export function PlaygroundPage() {
     return (
         <PlaygroundPageDiv>
@@ -26,6 +33,10 @@ export function PlaygroundPage() {
                 }}
             >
                 Connect to Nautilus wallet
+            </button>
+
+            <button
+                onClick ={async () => {test_it();}}>Test
             </button>
         </PlaygroundPageDiv>
     );
