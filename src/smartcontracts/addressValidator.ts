@@ -11,9 +11,10 @@ export async function isUserAddressValid(
     }
 }
 
-export async function isProxyContractAddressValid(
-    userAddress: ergo_wallet_address,
-): Promise<boolean> {
-    // TODO: !!!  @hejny <- @nitram147 Implement, value is hardcoded
-    return true;
-}
+// Deprecated !!! (was not even needed in previous version)
+// export async function isProxyContractAddressValid(
+//     userAddress: ergo_wallet_address,
+// ): Promise<boolean> {
+//     // TODO: !!!  @hejny <- @nitram147 Implement, value is hardcoded
+//     return true;
+// }
