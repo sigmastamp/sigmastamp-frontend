@@ -1,15 +1,15 @@
 export const USE_MAINNET = true;
 
-// export const NANO_ERGS_IN_ONE_ERG: number = 1000000000;
+export const NANO_ERGS_IN_ONE_ERG: number = 1000000000;
 
-// export const MIN_NANO_ERGS_IN_BOX: number = 1000000;
+export const MIN_NANO_ERGS_IN_BOX: number = 1000000;
 
 // export const MAINNET_BLOCK_TIME_SECONDS: number = 120;
 // export const TESTNET_BLOCK_TIME_SECONDS: number = 5;
 // export const BLOCK_TIME_SECONDS: number =
 // 	USE_MAINNET ? MAINNET_BLOCK_TIME_SECONDS : TESTNET_BLOCK_TIME_SECONDS;
 
-//todo creation transaction miner fee value
+export const NFT_CREATION_TRANSACTION_MINER_FEE: number = 1000000;
 
 // export const ADDRESS_NETWORK_TYPE_MAINNET: number = 0x00;
 // export const ADDRESS_NETWORK_TYPE_TESTNET: number = 0x10;
