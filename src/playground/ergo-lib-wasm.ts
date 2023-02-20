@@ -1,4 +1,4 @@
-import * as ergolib from 'ergo-lib-wasm-browser/ergo_lib_wasm_bg';
+import * as ergolib from 'ergo-lib-wasm-nodejs';
 
 ergolib.TokenId.from_str('SemDasHexValueNejakehoHashu256bitoveho').to_str();
 
