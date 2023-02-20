@@ -6,45 +6,45 @@ export function MenuComponent() {
     return (
         <MenuElement>
             <ul>
-                <li>
+                {/*<li>
                     <NavLink to={ROUTES.FirstCertificate}>
                         First certificate
                     </NavLink>
-                </li>
+                </li>*/}
                 <li>
-                    <NavLink to={ROUTES.SecondCertificate}>
-                        Second certificate
+                    <NavLink to={ROUTES.VerificationPage}>
+                        Verification page(RENAME)
                     </NavLink>
                 </li>
-                <li>
+                {/*<li>
                     <NavLink to={ROUTES.Blockchains}>Blockchains</NavLink>
-                </li>
+                </li>*/}
                 <li>
                     <NavLink to={ROUTES.Oracles}>Oracles</NavLink>
                 </li>
-                <li>
+                {/*<li>
                     <NavLink to={ROUTES.SampleCertificates}>
                         Sample certificates
                     </NavLink>
-                </li>
-                <li>
+                </li>*/}
+                {/*<li>
                     <NavLink to={ROUTES.HowItWorks}>How it works?</NavLink>
-                </li>
+                </li>*/}
                 {/* Note: This page is prepared for the future.
                 <li>
                     <NavLink to={ROUTES.Faq}>FAQ</NavLink>
                 </li> */}
-                <li>
+                {/*<li>
                     <NavLink to={ROUTES.TechnicalStatus}>
                         Technical status
                     </NavLink>
-                </li>
+                </li>*/}
                 <li>
                     <NavLink to={ROUTES.Playground}>Playground</NavLink>
                 </li>
-                <li>
+                {/*<li>
                     <NavLink to={ROUTES.About}>About</NavLink>
-                </li>
+                </li>*/}
             </ul>
         </MenuElement>
     );

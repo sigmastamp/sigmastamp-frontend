@@ -15,7 +15,7 @@ import {
 } from '../../scripts/validateFirstCertificate';
 import { FirstAndSecondCertificatePageDiv } from '../10-FirstCertificate/FirstCertificatePage';
 
-export function SecondCertificatePage() {
+export function VerificationPage() {
     const [files, setFiles] = React.useState<any>([]);
     const [verification, setVerification] = React.useState<any>(null);
 

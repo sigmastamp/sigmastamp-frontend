@@ -4,7 +4,7 @@
 
 export const ROUTES = {
     FirstCertificate: '/',
-    SecondCertificate: '/verify',
+    VerificationPage: '/verify',
     Blockchains: '/blockchains',
     Oracles: '/oracles',
     SampleCertificates: '/sample-certificates',

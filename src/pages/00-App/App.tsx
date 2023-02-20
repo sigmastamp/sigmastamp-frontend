@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Center } from '../../components/Center';
 import { ROUTES } from '../../routes';
 import { FirstCertificatePage } from '../10-FirstCertificate/FirstCertificatePage';
-import { SecondCertificatePage } from '../20-SecondCertificate/SecondCertificatePage';
+import { VerificationPage } from '../20-VerificationPage/VerificationPage';
 import { BlockchainsPage } from '../50-Blockchains/BlockchainsPage';
 import { OraclesPage } from '../53-Oracles/OraclesPage';
 import { SampleCertificatesPage } from '../55-SampleCertificates/SampleCertificatesPage';
@@ -32,8 +32,8 @@ export function App() {
                                     element={<FirstCertificatePage />}
                                 />
                                 <Route
-                                    path={ROUTES.SecondCertificate}
-                                    element={<SecondCertificatePage />}
+                                    path={ROUTES.VerificationPage}
+                                    element={<VerificationPage />}
                                 />
 
                                 <Route
