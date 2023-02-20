@@ -1,0 +1,99 @@
+[🍚]
+
+injector.js:1 [Nautilus] Access methods injected.
+DevTools failed to load source map: Could not load content for chrome-extension://gighmmpiobklfepjocnamgkkbiglidom/browser-polyfill.js.map: System error: net::ERR_FILE_NOT_FOUND
+log.js:24 [HMR] Waiting for update signal from WDS...
+App.tsx:12 {articleHowItWorks: '/static/media/how-it-works.c9510223.md'}
+index.tsx:7 📜 Sigmastamp version 0.16.3
+webpackHotDevClient.js:138 ./node_modules/ergo-lib-wasm-browser/ergo_lib_wasm_bg.js
+Critical dependency: the request of a dependency is an expression
+printWarnings @ webpackHotDevClient.js:138
+handleWarnings @ webpackHotDevClient.js:143
+push../node_modules/react-dev-utils/webpackHotDevClient.js.connection.onmessage @ webpackHotDevClient.js:210
+webpackHotDevClient.js:138 src\pages\85-Playground\Playground.tsx
+  Line 4:10:   'ErgoLibWasmTest' is defined but never used                @typescript-eslint/no-unused-vars
+  Line 13:10:  'SIGMASTAMP_SERVICE_FEE_AMOUNT' is defined but never used  @typescript-eslint/no-unused-vars
+
+src\scripts\transactionBuilder.ts
+  Line 176:3:  Expected an error object to be thrown  no-throw-literal
+printWarnings @ webpackHotDevClient.js:138
+handleWarnings @ webpackHotDevClient.js:143
+push../node_modules/react-dev-utils/webpackHotDevClient.js.connection.onmessage @ webpackHotDevClient.js:210
+DevTools failed to load source map: Could not load content for chrome-extension://lggdbpblkekjjbobadliahffoaobaknh/content.765a215d.js.map: System error: net::ERR_BLOCKED_BY_CLIENT
+content.js:2          POST https://o104379.ingest.sentry.io/api/5495040/envelope/?sentry_key=5be7bb2583284b3ca5221379bc5517b8&sentry_version=7&sentry_client=sentry.javascript.react%2F7.28.1 403
+(anonymous) @ content.js:2
+(anonymous) @ content.js:2
+add @ content.js:2
+send @ content.js:2
+_sendEnvelope @ content.js:2
+sendSession @ content.js:2
+captureSession @ content.js:2
+_sendSessionUpdate @ content.js:2
+captureSession @ content.js:2
+st @ content.js:2
+(anonymous) @ content.js:65
+(anonymous) @ content.js:65
+(anonymous) @ content.js:65
+(anonymous) @ content.js:65
+(anonymous) @ content.js:65
+(anonymous) @ content.js:65
+injector.js:1 [Nautilus] Ergo API injected.
+VM10376:80 {"type":"rpc/connector-response","requestId":1,"function":"getChangeAddress","return":{"isSuccess":true,"data":"9gwLhs2317e23NdKK9Hzo81jpnbBLeUtNCgy88RnTdAY1tLcZtj"}}
+VM10376:80 {"type":"rpc/connector-response","params":["ERG"],"requestId":2,"function":"getBalance","return":{"isSuccess":true,"data":"200000000"}}
+VerificationPage.tsx:44 Uncaught (in promise) TypeError: Cannot destructure property 'transactionId' of 'droppedFileVerification' as it is null.
+    at onFiles (VerificationPage.tsx:44:1)
+onFiles @ VerificationPage.tsx:44
+await in onFiles (async)
+onDrop @ UploadZone.tsx:74
+callCallback @ react-dom.development.js:3945
+invokeGuardedCallbackDev @ react-dom.development.js:3994
+invokeGuardedCallback @ react-dom.development.js:4056
+invokeGuardedCallbackAndCatchFirstError @ react-dom.development.js:4070
+executeDispatch @ react-dom.development.js:8243
+processDispatchQueueItemsInOrder @ react-dom.development.js:8275
+processDispatchQueue @ react-dom.development.js:8288
+dispatchEventsForPlugins @ react-dom.development.js:8299
+(anonymous) @ react-dom.development.js:8508
+batchedEventUpdates$1 @ react-dom.development.js:22396
+batchedEventUpdates @ react-dom.development.js:3745
+dispatchEventForPluginEventSystem @ react-dom.development.js:8507
+attemptToDispatchEvent @ react-dom.development.js:6005
+dispatchEvent @ react-dom.development.js:5924
+unstable_runWithPriority @ scheduler.development.js:468
+runWithPriority$1 @ react-dom.development.js:11276
+discreteUpdates$1 @ react-dom.development.js:22413
+discreteUpdates @ react-dom.development.js:3756
+dispatchDiscreteEvent @ react-dom.development.js:5889
+DevTools failed to load source map: Could not load content for chrome-extension://gighmmpiobklfepjocnamgkkbiglidom/browser-polyfill.js.map: System error: net::ERR_FILE_NOT_FOUND
+DevTools failed to load source map: Could not load content for chrome-extension://lggdbpblkekjjbobadliahffoaobaknh/content.765a215d.js.map: System error: net::ERR_BLOCKED_BY_CLIENT
+VerificationPage.tsx:44 Uncaught (in promise) TypeError: Cannot destructure property 'transactionId' of 'droppedFileVerification' as it is null.
+    at onFiles (VerificationPage.tsx:44:1)
+onFiles @ VerificationPage.tsx:44
+await in onFiles (async)
+onDrop @ UploadZone.tsx:74
+callCallback @ react-dom.development.js:3945
+invokeGuardedCallbackDev @ react-dom.development.js:3994
+invokeGuardedCallback @ react-dom.development.js:4056
+invokeGuardedCallbackAndCatchFirstError @ react-dom.development.js:4070
+executeDispatch @ react-dom.development.js:8243
+processDispatchQueueItemsInOrder @ react-dom.development.js:8275
+processDispatchQueue @ react-dom.development.js:8288
+dispatchEventsForPlugins @ react-dom.development.js:8299
+(anonymous) @ react-dom.development.js:8508
+batchedEventUpdates$1 @ react-dom.development.js:22396
+batchedEventUpdates @ react-dom.development.js:3745
+dispatchEventForPluginEventSystem @ react-dom.development.js:8507
+attemptToDispatchEvent @ react-dom.development.js:6005
+dispatchEvent @ react-dom.development.js:5924
+unstable_runWithPriority @ scheduler.development.js:468
+runWithPriority$1 @ react-dom.development.js:11276
+discreteUpdates$1 @ react-dom.development.js:22413
+discreteUpdates @ react-dom.development.js:3756
+dispatchDiscreteEvent @ react-dom.development.js:5889
+DevTools failed to load source map: Could not load content for chrome-extension://gighmmpiobklfepjocnamgkkbiglidom/browser-polyfill.js.map: System error: net::ERR_FILE_NOT_FOUND
+DevTools failed to load source map: Could not load content for chrome-extension://lggdbpblkekjjbobadliahffoaobaknh/content.765a215d.js.map: System error: net::ERR_BLOCKED_BY_CLIENT
+VM10376:80 {"type":"rpc/connector-response","requestId":3,"function":"getChangeAddress","return":{"isSuccess":true,"data":"9gwLhs2317e23NdKK9Hzo81jpnbBLeUtNCgy88RnTdAY1tLcZtj"}}
+VM10376:80 {"type":"rpc/connector-response","params":["ERG"],"requestId":4,"function":"getBalance","return":{"isSuccess":true,"data":"200000000"}}
+VM10376:80 {"type":"rpc/connector-response","params":[null,"ERG",null],"requestId":5,"function":"getBoxes","return":{"isSuccess":true,"data":[{"boxId":"051ecc427d030c2af5d876b986ef4e15b5e18ee731b324092f77425387948abd","value":"200000000","ergoTree":"0008cd033e855d5bcacb1ebf553bee599dc97a8b3581eeb31e9fdd6fda9f690fb6405b1a","creationHeight":944730,"assets":[],"additionalRegisters":{},"transactionId":"0bdc3e83a2af0ae567f83085791fd8f324dd188b61f0ea3baf9400e7e474406a","index":0,"confirmed":true}]}}
+VM10376:80 {"type":"rpc/connector-response","params":[{"inputs":[{"boxId":"051ecc427d030c2af5d876b986ef4e15b5e18ee731b324092f77425387948abd","value":"200000000","ergoTree":"0008cd033e855d5bcacb1ebf553bee599dc97a8b3581eeb31e9fdd6fda9f690fb6405b1a","creationHeight":944730,"assets":[],"additionalRegisters":{},"transactionId":"0bdc3e83a2af0ae567f83085791fd8f324dd188b61f0ea3baf9400e7e474406a","index":0,"confirmed":true,"extension":{}}],"dataInputs":[],"outputs":[{"value":"1000000","ergoTree":"0008cd033e855d5bcacb1ebf553bee599dc97a8b3581eeb31e9fdd6fda9f690fb6405b1a","assets":[{"tokenId":"051ecc427d030c2af5d876b986ef4e15b5e18ee731b324092f77425387948abd","amount":"1"}],"additionalRegisters":{"R8":"0e2079cb254085ad6c4f2106259e76df9d09fd3e5e7c1d500ee8597e4487be656eca","R4":"0e11546573745374616d704e4654416c706861","R5":"0e6f50726f6f66206f66206578697374656e6365206f6620646f63756d656e74207769746820426c616b6532622d32353620686173682073706563696669656420696e20523820726567697374657220647572696e67206d696e74696e67206f662074686973204e465420746f6b656e2e","R6":"0e0130","R7":"0e020173"},"creationHeight":944733},{"value":"10000000","ergoTree":"0008cd03d4285904698936192d2e4d52d8b5e0f888923b316741c81c227038aa6f9545af","assets":[],"additionalRegisters":{},"creationHeight":944733},{"value":"188000000","ergoTree":"0008cd033e855d5bcacb1ebf553bee599dc97a8b3581eeb31e9fdd6fda9f690fb6405b1a","assets":[],"additionalRegisters":{},"creationHeight":944733},{"value":"1000000","ergoTree":"1005040004000e36100204a00b08cd0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798ea02d192a39a8cc7a701730073011001020402d19683030193a38cc7b2a57300000193c2b2a57301007473027303830108cdeeac93b1a57304","assets":[],"additionalRegisters":{},"creationHeight":944733}]}],"requestId":6,"function":"signTx","return":{"isSuccess":true,"data":{"id":"d06fb7239d92f575f83a7f9ea51e5c055acefd848cec2b41f7b11591030af2b6","inputs":[{"boxId":"051ecc427d030c2af5d876b986ef4e15b5e18ee731b324092f77425387948abd","spendingProof":{"proofBytes":"d704ab9301dbd48db1e85354b1bf7b2e7c939a25d142431b95bcb458459debe8ff951a9c1899c5ebf7f4ba155fc40f6d7f25b963dd7d5714","extension":{}}}],"dataInputs":[],"outputs":[{"boxId":"c8609d9b406b5924b5a50b3cf3d672b3f8bba2fe250318e97788891cef7ca96c","value":"1000000","ergoTree":"0008cd033e855d5bcacb1ebf553bee599dc97a8b3581eeb31e9fdd6fda9f690fb6405b1a","creationHeight":944733,"index":0,"transactionId":"d06fb7239d92f575f83a7f9ea51e5c055acefd848cec2b41f7b11591030af2b6","assets":[{"tokenId":"051ecc427d030c2af5d876b986ef4e15b5e18ee731b324092f77425387948abd","amount":"1"}],"additionalRegisters":{"R7":"0e020173","R4":"0e11546573745374616d704e4654416c706861","R8":"0e2079cb254085ad6c4f2106259e76df9d09fd3e5e7c1d500ee8597e4487be656eca","R6":"0e0130","R5":"0e6f50726f6f66206f66206578697374656e6365206f6620646f63756d656e74207769746820426c616b6532622d32353620686173682073706563696669656420696e20523820726567697374657220647572696e67206d696e74696e67206f662074686973204e465420746f6b656e2e"}},{"boxId":"4b169d79cf5792b80fc3e3300e25f97e885437bc1a2760b7fe6faf8549c55b8c","value":"10000000","ergoTree":"0008cd03d4285904698936192d2e4d52d8b5e0f888923b316741c81c227038aa6f9545af","creationHeight":944733,"index":1,"transactionId":"d06fb7239d92f575f83a7f9ea51e5c055acefd848cec2b41f7b11591030af2b6","assets":[],"additionalRegisters":{}},{"boxId":"e56a02c458c6ef5b1b3c4dc5dfa393cb04d9f41dd13ef4884e3e0801daa8fe75","value":"188000000","ergoTree":"0008cd033e855d5bcacb1ebf553bee599dc97a8b3581eeb31e9fdd6fda9f690fb6405b1a","creationHeight":944733,"index":2,"transactionId":"d06fb7239d92f575f83a7f9ea51e5c055acefd848cec2b41f7b11591030af2b6","assets":[],"additionalRegisters":{}},{"boxId":"cf275e800bf9b2f6737d1bf68e68caa5649850b654856e719d9222bb0ac1efad","value":"1000000","ergoTree":"1005040004000e36100204a00b08cd0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798ea02d192a39a8cc7a701730073011001020402d19683030193a38cc7b2a57300000193c2b2a57301007473027303830108cdeeac93b1a57304","creationHeight":944733,"index":3,"transactionId":"d06fb7239d92f575f83a7f9ea51e5c055acefd848cec2b41f7b11591030af2b6","assets":[],"additionalRegisters":{}}]}}}
+VM10376:80 {"type":"rpc/connector-response","params":[{"id":"d06fb7239d92f575f83a7f9ea51e5c055acefd848cec2b41f7b11591030af2b6","inputs":[{"boxId":"051ecc427d030c2af5d876b986ef4e15b5e18ee731b324092f77425387948abd","spendingProof":{"proofBytes":"d704ab9301dbd48db1e85354b1bf7b2e7c939a25d142431b95bcb458459debe8ff951a9c1899c5ebf7f4ba155fc40f6d7f25b963dd7d5714","extension":{}}}],"dataInputs":[],"outputs":[{"boxId":"c8609d9b406b5924b5a50b3cf3d672b3f8bba2fe250318e97788891cef7ca96c","value":"1000000","ergoTree":"0008cd033e855d5bcacb1ebf553bee599dc97a8b3581eeb31e9fdd6fda9f690fb6405b1a","creationHeight":944733,"index":0,"transactionId":"d06fb7239d92f575f83a7f9ea51e5c055acefd848cec2b41f7b11591030af2b6","assets":[{"tokenId":"051ecc427d030c2af5d876b986ef4e15b5e18ee731b324092f77425387948abd","amount":"1"}],"additionalRegisters":{"R7":"0e020173","R4":"0e11546573745374616d704e4654416c706861","R8":"0e2079cb254085ad6c4f2106259e76df9d09fd3e5e7c1d500ee8597e4487be656eca","R6":"0e0130","R5":"0e6f50726f6f66206f66206578697374656e6365206f6620646f63756d656e74207769746820426c616b6532622d32353620686173682073706563696669656420696e20523820726567697374657220647572696e67206d696e74696e67206f662074686973204e465420746f6b656e2e"}},{"boxId":"4b169d79cf5792b80fc3e3300e25f97e885437bc1a2760b7fe6faf8549c55b8c","value":"10000000","ergoTree":"0008cd03d4285904698936192d2e4d52d8b5e0f888923b316741c81c227038aa6f9545af","creationHeight":944733,"index":1,"transactionId":"d06fb7239d92f575f83a7f9ea51e5c055acefd848cec2b41f7b11591030af2b6","assets":[],"additionalRegisters":{}},{"boxId":"e56a02c458c6ef5b1b3c4dc5dfa393cb04d9f41dd13ef4884e3e0801daa8fe75","value":"188000000","ergoTree":"0008cd033e855d5bcacb1ebf553bee599dc97a8b3581eeb31e9fdd6fda9f690fb6405b1a","creationHeight":944733,"index":2,"transactionId":"d06fb7239d92f575f83a7f9ea51e5c055acefd848cec2b41f7b11591030af2b6","assets":[],"additionalRegisters":{}},{"boxId":"cf275e800bf9b2f6737d1bf68e68caa5649850b654856e719d9222bb0ac1efad","value":"1000000","ergoTree":"1005040004000e36100204a00b08cd0279be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798ea02d192a39a8cc7a701730073011001020402d19683030193a38cc7b2a57300000193c2b2a57301007473027303830108cdeeac93b1a57304","creationHeight":944733,"index":3,"transactionId":"d06fb7239d92f575f83a7f9ea51e5c055acefd848cec2b41f7b11591030af2b6","assets":[],"additionalRegisters":{}}]}],"requestId":7,"function":"submitTx","return":{"isSuccess":true,"data":"d06fb7239d92f575f83a7f9ea51e5c055acefd848cec2b41f7b11591030af2b6"}}
