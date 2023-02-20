@@ -1,15 +1,26 @@
 import { blake2b256 } from '../hash/blake2b256';
 
+import {
+    EXPLORER_URL,
+    EXPLORER_BOX_INFO_PREFIX,
+    EXPLORER_TOKEN_SEARCH_PREFIX,
+    EXPLORER_TRANSACTION_INFO_PREFIX,
+    EXPLORER_UNSPENT_BOXES_BY_TOKEN_ID_PREFIX
+} from "../configs/blockchainParameters";
+
+import {
+    SIGMASTAMP_NFT_NAME,
+    SIGMASTAMP_ASSET_TYPE
+} from "../configs/SigmaStampConfig";
+
 /**
- * TODO: @hejny <- @nitram147 Unhardcode API URL move it to the config file
- * also make name of token (currently SigmaStampNFT) configurable not hardcoded (again in config file)
- * TODO: @hejny rename function below
+ * TODO: rename function below
  */
 export async function validateFirstCertificate(firstCertificate: File) {
     const hash = await blake2b256(firstCertificate);
 
     const tokensResponse = await fetch(
-        `https://api-testnet.ergoplatform.com/api/v1/tokens/search?query=SigmaStampNFT`,
+        EXPLORER_URL + EXPLORER_TOKEN_SEARCH_PREFIX + SIGMASTAMP_NFT_NAME,
     );
     const tokensBody = await tokensResponse.json();
 
@@ -20,17 +31,13 @@ export async function validateFirstCertificate(firstCertificate: File) {
         const boxId = item.boxId;
 
         const boxesResponse = await fetch(
-            `https://api-testnet.ergoplatform.com/api/v1/boxes/${boxId}`,
+            EXPLORER_URL + EXPLORER_BOX_INFO_PREFIX + `${boxId}`,
         );
 
         const boxesBody = await boxesResponse.json();
 
-        //// TODO @hejny <- @nitram147 Unhardcode SigmaStampNFT type (01de) and make it configurable
-
         //skip non-SigmaStampNFT types
-        //(0x01 specifies NFT category, 0xde specifies SigmaStampNFT subcategory)
-        //see (https://github.com/ergoplatform/eips/blob/master/eip-0004.md) for more info
-        if (boxesBody.additionalRegisters.R7.renderedValue !== `01de`) continue;
+        if (boxesBody.additionalRegisters.R7.renderedValue !== SIGMASTAMP_ASSET_TYPE) continue;
 
         if (boxesBody.additionalRegisters.R8.renderedValue === `${hash}`) {
             return boxesBody;
@@ -44,10 +51,9 @@ export async function validateFirstCertificate(firstCertificate: File) {
 //it would be similar to validateFirstCertificate function
 //maybe it would be great to extract the core functionality into one function and then only make wrapper for it (so validateFirstCertificate will be only a wrapper)
 
-// TODO @hejny <- @nitram147 Unhardcode API URL move it to the config file
 export async function getTransactionTime(txId: string) {
     const response = await fetch(
-        `https://api-testnet.ergoplatform.com/api/v1/transactions/${txId}`,
+        EXPLORER_URL + EXPLORER_TRANSACTION_INFO_PREFIX + `${txId}`,
     );
     const body = await response.json();
 
@@ -62,7 +68,7 @@ export async function getTransactionTime(txId: string) {
 // TODO @hejny <- @nitram147 Unhardcode API URL move it to the config file
 export async function getNFTHolderAddress(tokenId: string) {
     const response = await fetch(
-        `https://api-testnet.ergoplatform.com/api/v1/boxes/unspent/byTokenId/${tokenId}`,
+        EXPLORER_URL + EXPLORER_UNSPENT_BOXES_BY_TOKEN_ID_PREFIX + `${tokenId}`,
     );
     const body = await response.json();
 

@@ -5,7 +5,7 @@ import {
     ergo_wallet_address,
     nanoerg,
 } from '../interfaces/stringTypes';
-import { isUserAddressValid } from './addressValidator';
+//import { isUserAddressValid } from './addressValidator';
 
 // @ts-nocheck
 
@@ -25,9 +25,9 @@ export async function createSigmaStampNFT({
     dueDate: Date;
     paymentStatus: IPaymentStatus;
 }> {
-    if (!(await isUserAddressValid(userAddress))) {
-        throw new Error(`User address "${userAddress}" is not correct.`);
-    }
+    // if (!(await isUserAddressValid(userAddress))) {
+    //     throw new Error(`User address "${userAddress}" is not correct.`);
+    // }
 
     await forEver();
     return {} as any;
