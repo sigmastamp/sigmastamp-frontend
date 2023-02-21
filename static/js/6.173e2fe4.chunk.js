@@ -1,0 +1,2 @@
+(this["webpackJsonpsigmastamp-frontend"]=this["webpackJsonpsigmastamp-frontend"]||[]).push([[6],{934:function(n,o){function t(n){var o=new Error("Cannot find module '"+n+"'");throw o.code="MODULE_NOT_FOUND",o}t.keys=function(){return[]},t.resolve=t,n.exports=t,t.id=934}}]);
+//# sourceMappingURL=6.173e2fe4.chunk.js.map
