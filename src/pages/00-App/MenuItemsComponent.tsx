@@ -13,7 +13,7 @@ export function MenuItemsComponent() {
                 </li>*/}
                 <li>
                     <NavLink to={ROUTES.VerificationPage}>
-                        Verification page(RENAME)
+                        Verification page <i>(RENAME)</i>
                     </NavLink>
                 </li>
                 {/*<li>

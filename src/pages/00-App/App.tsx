@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import articleHowItWorks from '../../articles/how-it-works.md';
 import articleMobileDevice from '../../articles/mobile-device.md';
@@ -9,9 +9,15 @@ import { LogoComponent } from '../../components/LogoComponent';
 import { Notifications } from '../../components/Notifications';
 import { VERSION } from '../../config';
 import { ROUTES } from '../../routes';
+import { FirstCertificatePage } from '../10-FirstCertificate/FirstCertificatePage';
 import { VerificationPage } from '../20-VerificationPage/VerificationPage';
+import { BlockchainsPage } from '../50-Blockchains/BlockchainsPage';
 import { OraclesPage } from '../53-Oracles/OraclesPage';
+import { SampleCertificatesPage } from '../55-SampleCertificates/SampleCertificatesPage';
+import { FaqPage } from '../75-Faq/FaqPage';
+import { TechnicalStatusPage } from '../80-TechnicalStatus/TechnicalStatusPage';
 import { PlaygroundPage } from '../85-Playground/Playground';
+import { AboutPage } from '../90-About/AboutPage';
 import { MenuComponent } from './MenuComponent';
 
 console.log({ articleHowItWorks });
@@ -44,13 +50,18 @@ export function App() {
 
                 <main>
                     <Routes>
-                        {/*<Route
-                                    path={ROUTES.FirstCertificate}
-                                    element={<FirstCertificatePage />}
-                                />*/}
+                        {/* Note: Some of the pages are not shown in the menu BUT ALL should be listed here */}
                         <Route
-                            path={'/'}
-                            element={<PlaygroundPage wallet={wallet} />}
+                            path={ROUTES.FirstCertificate}
+                            element={<FirstCertificatePage />}
+                        />
+                        <Route
+                            path={ROUTES.Root}
+                            element={
+                                <PlaygroundPage
+                                    wallet={wallet}
+                                /> /* <- TODO: Obviously playgorund will not be as a starting page in the future BUT for development it is OK */
+                            }
                         />
                         <Route
                             path={ROUTES.VerificationPage}
@@ -61,18 +72,18 @@ export function App() {
                             }
                         />
 
-                        {/*<Route
-                                    path={ROUTES.Blockchains}
-                                    element={<BlockchainsPage />}
-                                />*/}
+                        <Route
+                            path={ROUTES.Blockchains}
+                            element={<BlockchainsPage />}
+                        />
                         <Route
                             path={ROUTES.Oracles}
                             element={<OraclesPage />}
                         />
-                        {/*<Route
-                                    path={ROUTES.SampleCertificates}
-                                    element={<SampleCertificatesPage />}
-                                />*/}
+                        <Route
+                            path={ROUTES.SampleCertificates}
+                            element={<SampleCertificatesPage />}
+                        />
                         <Route
                             path={ROUTES.HowItWorks}
                             element={<Article src={articleHowItWorks} />}
@@ -82,23 +93,34 @@ export function App() {
                             path={ROUTES.Mobile}
                             element={<Article src={articleMobileDevice} />}
                         />
-                        {/*<Route
-                                    path={ROUTES.Faq}
-                                    element={<FaqPage />}
-                                />
-                                <Route
-                                    path={ROUTES.TechnicalStatus}
-                                    element={<TechnicalStatusPage />}
-                                />
+                        <Route path={ROUTES.Faq} element={<FaqPage />} />
+                        <Route
+                            path={ROUTES.TechnicalStatus}
+                            element={<TechnicalStatusPage />}
+                        />
 
-                                <Route
-                                    path={ROUTES.About}
-                                    element={<AboutPage />}
-                                />*/}
+                        <Route path={ROUTES.About} element={<AboutPage />} />
 
                         <Route
                             path={ROUTES.Playground}
                             element={<PlaygroundPage wallet={wallet} />}
+                        />
+
+                        <Route
+                            path={ROUTES.Routes}
+                            element={
+                                <ul>
+                                    {Object.entries(ROUTES).map(
+                                        ([name, path]) => (
+                                            <li key={path as string}>
+                                                <Link to={path as string}>
+                                                    <b>{name}</b> {path}
+                                                </Link>
+                                            </li>
+                                        ),
+                                    )}
+                                </ul>
+                            }
                         />
                     </Routes>
                 </main>

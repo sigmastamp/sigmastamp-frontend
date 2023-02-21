@@ -4,6 +4,7 @@
 
 export const ROUTES = {
     // Currently used pages:
+    Root: '/',
     VerificationPage: '/verify',
     Blockchains: '/blockchains',
     Oracles: '/oracles',
@@ -12,9 +13,10 @@ export const ROUTES = {
     Playground: '/playground',
     TechnicalStatus: '/status',
     About: '/about',
+    Routes: '/routes',
     HowItWorks: '/manual',
     Mobile: '/mobile-device',
 
     // Deprecated pages (but kept because they are still referenced somewhere):
-    FirstCertificate: '/',
+    FirstCertificate: '/first-certificate',
 };
