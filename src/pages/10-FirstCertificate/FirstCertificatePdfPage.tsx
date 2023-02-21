@@ -233,7 +233,7 @@ const Data = styled.div`
 
     .data-cell {
         /*/
-        border: 1px dotted red; /**/
+        outline: 1px dotted red; /**/
 
         //box-shadow: #5e97ccb7 0px 0px 50px;
 
@@ -265,7 +265,7 @@ const Data = styled.div`
 
         .data-cell-group {
             /*/
-            border: 1px dotted red; /**/
+            outline: 1px dotted red; /**/
         }
 
         .key,

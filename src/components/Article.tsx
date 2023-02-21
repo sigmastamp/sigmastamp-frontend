@@ -71,7 +71,7 @@ const converter = new Converter({
 
 const ArticleDiv = styled.div`
     /*/
-    border: 1px dashed red;
+    outline: 1px dashed red;
     /**/
 
     img {

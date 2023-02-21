@@ -117,7 +117,7 @@ export function App() {
 
 const AppDiv = styled.div`
     /*/
-    border: 1px dashed green; /**/
+    outline: 1px dashed green; /**/
 
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
         'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
@@ -170,7 +170,7 @@ const AppDiv = styled.div`
 
     nav {
         /*/
-        border: 1px dashed red; /**/
+        outline: 1px dashed red; /**/
 
         grid-area: 🟦;
         /* TODO: !!! box-shadow: #00000047 0px 0px 10px;*/
@@ -179,7 +179,7 @@ const AppDiv = styled.div`
 
     main {
         /*/
-        border: 1px dashed red; /**/
+        outline: 1px dashed red; /**/
 
         z-index: 5;
 

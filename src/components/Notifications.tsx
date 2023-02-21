@@ -37,7 +37,7 @@ export function Notifications() {
 
 const NotificationsDiv = styled.div`
     /*/
-    border: 1px dashed green; /**/
+    outline: 1px dashed green; /**/
 
     pointer-events: none;
     z-index: 10010;
@@ -60,7 +60,7 @@ const NotificationsDiv = styled.div`
 
 const NotificationDiv = styled.div`
     /*/
-    border: 1px dashed red; /**/
+    outline: 1px dashed red; /**/
 
     pointer-events: all;
 

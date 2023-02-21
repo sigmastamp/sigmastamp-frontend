@@ -21,7 +21,7 @@ export function MenuComponent(props: {
 }
 const MenuElement = styled.div`
     /*/
-    border: 1px dashed red; /**/
+    outline: 1px dashed red; /**/
 
     @media (max-width: 850px) {
         display: flex;
@@ -29,7 +29,7 @@ const MenuElement = styled.div`
         align-content: flex-start;
 
         & > * {
-            border: 1px dashed transparent;
+            outline: 1px dashed transparent;
         }
 
         ul {

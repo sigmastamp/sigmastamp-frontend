@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 export function AboutPage() {
@@ -47,7 +46,7 @@ export function AboutPage() {
 
 const AboutPageDiv = styled.div`
     /*/
-    border: 1px dashed red; /**/
+    outline: 1px dashed red; /**/
 
     .authors {
         display: flex;

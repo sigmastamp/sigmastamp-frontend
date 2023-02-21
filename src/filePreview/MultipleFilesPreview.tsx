@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { SingleFilePreview } from './SingleFilePreview';
 
@@ -31,7 +30,7 @@ const MultipleFilesPreviewDiv = styled.div<{ filesCount: number }>`
 
     .file-mask {
         /*/
-        border: 1px dashed red; /**/
+        outline: 1px dashed red; /**/
 
         overflow: hidden;
         width: ${({ filesCount }) => 100 / filesCount}%;
@@ -40,7 +39,7 @@ const MultipleFilesPreviewDiv = styled.div<{ filesCount: number }>`
 
     .file-container {
         /*/
-        border: 1px dashed red; /**/
+        outline: 1px dashed red; /**/
 
         align-self: stretch;
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
 export function Center({
     children,
     isFlexed,
@@ -21,10 +20,10 @@ export function Center({
 const CenterDiv = styled.div`
     /*/
 
-    border: 1px dashed red;
+    outline: 1px dashed red;
 
     & > * {
-        border: 1px dashed yellow;
+        outline: 1px dashed yellow;
     }
 
     /**/

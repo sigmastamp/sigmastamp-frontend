@@ -28,7 +28,7 @@ export function LogoComponent({ isWatermark }: ILogoComponentProps) {
 }
 const LogoElement = styled.div`
     /*/
-    border: 1px dashed red; /**/
+    outline: 1px dashed red; /**/
 
     display: flex;
     font-family: 'Oswald', sans-serif;

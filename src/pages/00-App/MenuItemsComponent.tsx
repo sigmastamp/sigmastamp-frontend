@@ -51,7 +51,7 @@ export function MenuItemsComponent() {
 }
 const MenuElement = styled.menu`
     /*/
-    border: 1px dashed red; /**/
+    outline: 1px dashed red; /**/
 
     padding-left: 0px;
     padding-left: 10px;
