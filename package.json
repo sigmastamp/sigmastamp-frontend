@@ -9,7 +9,7 @@
     ],
     "scripts": {
         "start": "craco start",
-        "build": "rm -rf ./build && craco build && echo \"www.sigmastamp.ml\" > ./build/CNAME && node ./scripts/postprocess-build/postprocess-build.mjs",
+        "build": "rm -rf ./build && craco build && echo \"www.sigmastamp.ml\" > ./build/CNAME && echo > ./build/.nojekyll && node ./scripts/postprocess-build/postprocess-build.mjs",
         "test": "",
         "test-TODO-AFTER-SERVER-WORKS-RELIABLY": "npx react-scripts test --watchAll=false",
         "lint": "",
