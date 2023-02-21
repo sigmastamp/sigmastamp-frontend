@@ -37,7 +37,7 @@
     },
     "devDependencies": {
         "@coinbarn/ergo-ts": "0.3.0",
-        "@craco/craco": "6.4.3",
+        "@craco/craco": "7.0.0",
         "@nautilus-js/eip12-types": "^0.1.9",
         "@stablelib/blake2b": "1.0.1",
         "@stablelib/blake2s": "1.0.1",
@@ -81,7 +81,7 @@
         "react-dom": "17.0.2",
         "react-lorem-ipsum": "1.4.9",
         "react-router-dom": "6.0.2",
-        "react-scripts": "4.0.3",
+        "react-scripts": "5.0.1",
         "react-syntax-highlighter": "15.4.5",
         "rss-parser": "3.12.0",
         "rxjs": "7.4.0",
