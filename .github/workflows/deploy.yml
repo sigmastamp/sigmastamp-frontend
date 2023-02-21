@@ -41,6 +41,7 @@ jobs:
             - name: Build
               run: npm run build
               env:
+                  CI: false # <- Note: This is just to bypass error "./node_modules/ergo-lib-wasm-browser/ergo_lib_wasm_bg.js; Critical dependency: the request of a dependency is an expression"
                   NODE_OPTIONS: --openssl-legacy-provider
 
             - name: Configurate GIT
