@@ -1,5 +1,3 @@
-import { IWallet } from '../00-App/App';
-
 export function ErgoConnectorButton(props: {
     wallet: IWallet;
     setWallet: React.Dispatch<React.SetStateAction<IWallet>>;
@@ -26,8 +24,8 @@ export function ErgoConnectorButton(props: {
                 props.setWallet((prev: IWallet) => ({
                     ...prev,
                     connected: true,
-                    address: address,
-                    balance: balance,
+                    address,
+                    balance,
                 }));
             }
         } else {
