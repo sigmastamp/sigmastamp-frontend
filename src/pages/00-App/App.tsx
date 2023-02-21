@@ -4,11 +4,13 @@ import styled from 'styled-components';
 import articleHowItWorks from '../../articles/how-it-works.md';
 import { Article } from '../../components/Article';
 import { Center } from '../../components/Center';
+import { LogoComponent } from '../../components/LogoComponent';
+import { VERSION } from '../../config';
 import { ROUTES } from '../../routes';
 import { VerificationPage } from '../20-VerificationPage/VerificationPage';
 import { OraclesPage } from '../53-Oracles/OraclesPage';
 import { PlaygroundPage } from '../85-Playground/Playground';
-import { HeaderComponent } from './HeaderComponent';
+import { MenuComponent } from './MenuComponent';
 
 console.log({ articleHowItWorks });
 
@@ -30,48 +32,50 @@ export function App() {
     return (
         <AppDiv>
             <BrowserRouter>
-                <div className="menu-section">
-                    <HeaderComponent wallet={wallet} setWallet={setWallet} />
-                </div>
+                <header className="darkmode-ignore">
+                    <LogoComponent />
+                </header>
 
-                <div className="content-section">
-                    <main>
-                        <Center>
-                            <Routes>
-                                {/*<Route
+                <nav className="darkmode-ignore">
+                    <MenuComponent wallet={wallet} setWallet={setWallet} />
+                </nav>
+
+                <main>
+                    <Routes>
+                        {/*<Route
                                     path={ROUTES.FirstCertificate}
                                     element={<FirstCertificatePage />}
                                 />*/}
-                                <Route
-                                    path={'/'}
-                                    element={<PlaygroundPage wallet={wallet} />}
-                                />
-                                <Route
-                                    path={ROUTES.VerificationPage}
-                                    element={
-                                        <VerificationPage wallet={wallet} />
-                                    }
-                                />
+                        <Route
+                            path={'/'}
+                            element={<PlaygroundPage wallet={wallet} />}
+                        />
+                        <Route
+                            path={ROUTES.VerificationPage}
+                            element={
+                                <Center>
+                                    <VerificationPage wallet={wallet} />
+                                </Center>
+                            }
+                        />
 
-                                {/*<Route
+                        {/*<Route
                                     path={ROUTES.Blockchains}
                                     element={<BlockchainsPage />}
                                 />*/}
-                                <Route
-                                    path={ROUTES.Oracles}
-                                    element={<OraclesPage />}
-                                />
-                                {/*<Route
+                        <Route
+                            path={ROUTES.Oracles}
+                            element={<OraclesPage />}
+                        />
+                        {/*<Route
                                     path={ROUTES.SampleCertificates}
                                     element={<SampleCertificatesPage />}
                                 />*/}
-                                <Route
-                                    path={ROUTES.HowItWorks}
-                                    element={
-                                        <Article src={articleHowItWorks} />
-                                    }
-                                />
-                                {/*<Route
+                        <Route
+                            path={ROUTES.HowItWorks}
+                            element={<Article src={articleHowItWorks} />}
+                        />
+                        {/*<Route
                                     path={ROUTES.Faq}
                                     element={<FaqPage />}
                                 />
@@ -85,83 +89,115 @@ export function App() {
                                     element={<AboutPage />}
                                 />*/}
 
-                                <Route
-                                    path={ROUTES.Playground}
-                                    element={<PlaygroundPage wallet={wallet} />}
-                                />
-                            </Routes>
-                        </Center>
-                    </main>
-                </div>
+                        <Route
+                            path={ROUTES.Playground}
+                            element={<PlaygroundPage wallet={wallet} />}
+                        />
+                    </Routes>
+                </main>
 
-                {/*
-                <div className="footer-section">
+                <footer className="darkmode-ignore">
                     <a href="https://github.com/hejny/rapid-prototyping-wizard/">
                         {VERSION}
                     </a>
-                </div>
-                */}
+                </footer>
             </BrowserRouter>
         </AppDiv>
     );
 }
 
 const AppDiv = styled.div`
-    --menu-width: calc(20vw + 100px);
-
     /*/
     border: 1px dashed green; /**/
 
-    .menu-section {
-        /*/
-        border: 1px dashed red; /**/
+    width: 100%;
+    height: 100vh;
 
-        position: fixed;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        width: calc(var(--menu-width) - 20px - 20px);
-        padding: 20px;
+    display: grid;
 
-        background-color: hsl(224, 15%, 15%);
-        box-shadow: #00000047 0px 0px 10px;
-        overflow: hidden;
-    }
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 100px 1fr 50px;
+    grid-template-areas:
+        '🟥 ⬜'
+        '🟦 ⬜'
+        '⬛ ⬜';
 
-    .content-section {
-        /*/
-        border: 1px dashed red; /**/
+    align-items: stretch;
+    justify-content: stretch;
 
-        position: absolute;
-        top: 0;
-        left: var(--menu-width);
-        right: 0;
-
+    @media (max-width: 850px) {
+        height: auto;
         min-height: 100vh;
 
+        grid-template-columns: 250px 1fr;
+        grid-template-rows: 150px min-content 50px;
+        grid-template-areas:
+            '🟥 🟦'
+            '⬜ ⬜'
+            '⬛ ⬛';
+    }
+
+    header {
+        grid-area: 🟥;
+    }
+
+    header,
+    nav,
+    footer {
+        background-color: hsl(224, 15%, 15%);
+        padding: 10px;
+    }
+
+    head,
+    nav,
+    footer :is(a) {
+        color: #eee;
+    }
+
+    nav {
+        /*/
+        border: 1px dashed red; /**/
+
+        grid-area: 🟦;
+        /* TODO: !!! box-shadow: #00000047 0px 0px 10px;*/
+        /* TODO: !!!  overflow: hidden; */
+    }
+
+    main {
+        /*/
+        border: 1px dashed red; /**/
+
+        grid-area: ⬜;
+
         overflow-x: clip;
-        overflow-y: visible;
+        overflow-y: scroll;
 
         padding: 20px;
         padding-left: 50px;
     }
 
-    .content-section a {
-        color: #eee;
-    }
-
-    .content-section h1,
-    .content-section h2,
-    .content-section h3,
-    .content-section h4,
-    .content-section h5,
-    .content-section h6 {
+    main h1,
+    main h2,
+    main h3,
+    main h4,
+    main h5,
+    main h6 {
         margin-top: 40px;
         border-bottom: 1px solid #444;
     }
 
+    footer {
+        grid-area: ⬛;
+
+        display: flex;
+        align-items: end;
+        justify-content: end;
+    }
+
+    /*
+    !!! Remove
     @media (max-width: 850px) {
-        .menu-section {
+        nav {
             position: block;
             z-index: 1;
 
@@ -170,12 +206,13 @@ const AppDiv = styled.div`
             padding: 20px;
         }
 
-        .content-section {
+        main {
             position: block;
             left: 0;
             padding-top: 200px;
         }
     }
+    */
 `;
 
 /**
