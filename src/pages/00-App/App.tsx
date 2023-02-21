@@ -32,7 +32,7 @@ export function App() {
         <AppDiv>
             <BrowserRouter>
                 <div className="menu-column">
-                    <HeaderComponent />
+                    <HeaderComponent wallet={wallet} setWallet={setWallet} />
                 </div>
 
                 <div className="content-column">
@@ -45,11 +45,11 @@ export function App() {
                                 />*/}
                                 <Route
                                     path={'/'}
-                                    element={<PlaygroundPage wallet={wallet} setWallet={setWallet} />}
+                                    element={<PlaygroundPage wallet={wallet} />}
                                 />
                                 <Route
                                     path={ROUTES.VerificationPage}
-                                    element={<VerificationPage />}
+                                    element={<VerificationPage  wallet={wallet} />}
                                 />
 
                                 {/*<Route
@@ -86,7 +86,7 @@ export function App() {
 
                                 <Route
                                     path={ROUTES.Playground}
-                                    element={<PlaygroundPage wallet={wallet} setWallet={setWallet} />}
+                                    element={<PlaygroundPage wallet={wallet} />}
                                 />
                             </Routes>
                         </Center>

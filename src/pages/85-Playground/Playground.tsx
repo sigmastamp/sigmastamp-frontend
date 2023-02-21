@@ -18,10 +18,9 @@ function check_whether_there_is_enough_balance(balance: number): boolean {
 }
 
 export function PlaygroundPage(props: {
-    wallet: IWallet;
-    setWallet: React.Dispatch<React.SetStateAction<IWallet>>;
+    wallet: IWallet
 }) {
-    
+
     const [file, setFile] = useState<any>(null);
     const [sentTXHash, setSentTXHash] = useState<string>('');
 
@@ -49,8 +48,7 @@ export function PlaygroundPage(props: {
     return (
         <PlaygroundPageDiv>
             <h2>Playground</h2>
-            <ErgoConnectorButton wallet={props.wallet} setWallet={props.setWallet} />
-
+            
             {!props.wallet.connected ? (
                 <p>Please connect the wallet first</p>
             ) : !check_whether_there_is_enough_balance(props.wallet.balance) ? (

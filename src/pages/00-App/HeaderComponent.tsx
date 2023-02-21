@@ -2,12 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import { LogoComponent } from '../../components/LogoComponent';
 import { MenuComponent } from './MenuComponent';
+import { ErgoConnectorButton } from "../../components/ErgoConnectorButton";
 
-export function HeaderComponent() {
+import { IWallet } from "../00-App/App";
+
+export function HeaderComponent(props: {
+    wallet: IWallet,
+    setWallet: React.Dispatch<React.SetStateAction<IWallet>>;
+}) {
     return (
         <HeaderElement>
             <LogoComponent />
             <MenuComponent />
+            <ErgoConnectorButton wallet={props.wallet} setWallet={props.setWallet} />
         </HeaderElement>
     );
 }
