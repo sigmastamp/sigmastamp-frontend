@@ -18,7 +18,7 @@ for (const path of Object.values(ROUTES)) {
     }
 
     const filePath = join(process.cwd(), 'build', basename(path) + '.html');
-    console.log(`Writing ${filePath}`);
+    console.log(`Make route prerendered file ${filePath}`);
     await writeFile(filePath, indexContent);
 }
 
