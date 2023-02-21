@@ -59,9 +59,9 @@ export function PlaygroundPage(props: {
             ) : file === null ? (
                 <UploadZone
                     onFiles={async (files) => {
-                        const file = files[0];
-                        const hash = await blake2b256(file);
-                        setFile({ file, hash });
+                        const firstFile = files[0];
+                        const hash = await blake2b256(firstFile);
+                        setFile({ file: firstFile, hash });
                     }}
                     isClickable
                 >
