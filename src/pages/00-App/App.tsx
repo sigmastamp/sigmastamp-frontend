@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import articleHowItWorks from '../../articles/how-it-works.md';
@@ -11,7 +12,22 @@ import { HeaderComponent } from './HeaderComponent';
 
 console.log({ articleHowItWorks });
 
+export interface IWallet {
+    connected: boolean;
+    address: string;
+    balance: number;
+}
+
+const DEFAULT_WALLET_STATE: IWallet = {
+    connected: false,
+    address: '',
+    balance: 0,
+};
+
 export function App() {
+
+    const [wallet, setWallet] = useState<IWallet>(DEFAULT_WALLET_STATE);
+
     return (
         <AppDiv>
             <BrowserRouter>
@@ -29,7 +45,7 @@ export function App() {
                                 />*/}
                                 <Route
                                     path={'/'}
-                                    element={<PlaygroundPage />}
+                                    element={<PlaygroundPage wallet={wallet} setWallet={setWallet} />}
                                 />
                                 <Route
                                     path={ROUTES.VerificationPage}
@@ -70,7 +86,7 @@ export function App() {
 
                                 <Route
                                     path={ROUTES.Playground}
-                                    element={<PlaygroundPage />}
+                                    element={<PlaygroundPage wallet={wallet} setWallet={setWallet} />}
                                 />
                             </Routes>
                         </Center>

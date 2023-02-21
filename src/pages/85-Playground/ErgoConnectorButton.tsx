@@ -1,4 +1,4 @@
-import { IWallet } from './Playground';
+import { IWallet } from '../00-App/App';
 
 export function ErgoConnectorButton(props: {
     wallet: IWallet;

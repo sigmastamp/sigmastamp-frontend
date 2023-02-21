@@ -11,31 +11,23 @@ import {
     submit_tx,
 } from '../../scripts/transactionBuilder';
 import { ErgoConnectorButton } from './ErgoConnectorButton';
-
-export interface IWallet {
-    connected: boolean;
-    address: string;
-    balance: number;
-}
-
-const DEFAULT_WALLET_STATE: IWallet = {
-    connected: false,
-    address: '',
-    balance: 0,
-};
+import { IWallet } from "../00-App/App";
 
 function check_whether_there_is_enough_balance(balance: number): boolean {
     return balance > get_minimum_required_balance();
 }
 
-export function PlaygroundPage() {
-    const [wallet, setWallet] = useState<IWallet>(DEFAULT_WALLET_STATE);
+export function PlaygroundPage(props: {
+    wallet: IWallet;
+    setWallet: React.Dispatch<React.SetStateAction<IWallet>>;
+}) {
+    
     const [file, setFile] = useState<any>(null);
     const [sentTXHash, setSentTXHash] = useState<string>('');
 
     function stampItButtonHandler() {
         if (file === null) return;
-        create_transaction(wallet.address, file.hash).then((tx: any) => {
+        create_transaction(props.wallet.address, file.hash).then((tx: any) => {
             sign_tx(tx).then((stx) => {
                 if (stx === null) {
                     alert('Problem during transaction signing, try again!');
@@ -57,11 +49,11 @@ export function PlaygroundPage() {
     return (
         <PlaygroundPageDiv>
             <h2>Playground</h2>
-            <ErgoConnectorButton wallet={wallet} setWallet={setWallet} />
+            <ErgoConnectorButton wallet={props.wallet} setWallet={props.setWallet} />
 
-            {!wallet.connected ? (
+            {!props.wallet.connected ? (
                 <p>Please connect the wallet first</p>
-            ) : !check_whether_there_is_enough_balance(wallet.balance) ? (
+            ) : !check_whether_there_is_enough_balance(props.wallet.balance) ? (
                 <p>
                     There is not enough balance for stamping process in your
                     wallet. Required amount is at least{' '}
@@ -85,7 +77,7 @@ export function PlaygroundPage() {
                     <p>{file.file.name}</p>
                     <p>{file.hash}</p>
                     Stamp your file and receive SigmaStampNFT to your address:{' '}
-                    {wallet.address} by pressing following button:
+                    {props.wallet.address} by pressing following button:
                     <br />
                     <button onClick={stampItButtonHandler}>Stamp it!</button>
                 </div>
