@@ -1,3 +1,8 @@
+import { IWallet } from '../00-App/App';
+
+//todo same check for mainnet/testnet as in babelergs
+//todo same modal as in babelergs
+
 export function ErgoConnectorButton(props: {
     wallet: IWallet;
     setWallet: React.Dispatch<React.SetStateAction<IWallet>>;

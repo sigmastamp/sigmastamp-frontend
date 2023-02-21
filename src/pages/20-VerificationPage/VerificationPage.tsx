@@ -14,10 +14,14 @@ import {
     validateFirstCertificate,
 } from '../../scripts/validateFirstCertificate';
 import { FirstAndSecondCertificatePageDiv } from '../10-FirstCertificate/FirstCertificatePage';
+import { IWallet } from "../00-App/App";
+import { MessageSigner } from "../../components/MessageSigner";
 
 //todo not only current holder but also show minter address!!!
 
-export function VerificationPage() {
+export function VerificationPage(props: {
+    wallet: IWallet
+}) {
     const [files, setFiles] = React.useState<any>([]);
     const [verification, setVerification] = React.useState<any>(null);
 
@@ -65,65 +69,69 @@ export function VerificationPage() {
                     isClickable
                 >
                     <UploadZoneSigmastampContent>
-                        Drop your 1st certificate here!
+                        Drop your file here to verify it.
                     </UploadZoneSigmastampContent>
                 </UploadZone>
-                <Link to={ROUTES.FirstCertificate}>
-                    Or create your 1st certificate.
+                <Link to={ROUTES.Playground}>
+                    Or stamp your file here.
                 </Link>
             </FirstAndSecondCertificatePageDiv>
         );
     } else {
         return (
-            <PdfPage
-                renderUi={({ createPdf }) => {
-                    return (
-                        <Button
-                            onClick={async () => {
-                                const certificateFile = new File(
-                                    [await createPdf()],
-                                    'certificate2.pdf' /* TODO: Maybe add current {lastModified: 1534584790000}*/,
-                                );
+            <div>
+                <PdfPage
+                    renderUi={({ createPdf }) => {
+                        return (
+                            <Button
+                                onClick={async () => {
+                                    const certificateFile = new File(
+                                        [await createPdf()],
+                                        'certificate2.pdf' /* TODO: Maybe add current {lastModified: 1534584790000}*/,
+                                    );
 
-                                //saveAs(certificateFile);
+                                    //saveAs(certificateFile);
 
-                                //TODO: @nitram147 -> @hejny <- @nitram147 design output format of verify PDF
-                                // also show somehow to user what amount of GPUs will be required to remine the chain to make
-                                // false proofs - this will be based on the block difficulty since the NFT mining block up to today
-                                // TODO: @nitram147 - ask on discord whether there's some function on full node to find this difficulty value...
-                                const zip = new JSZip();
-                                for (const file of files) {
-                                    zip.file(file.name, file);
-                                }
-                                zip.file(certificateFile.name, certificateFile);
+                                    //TODO: @nitram147 -> @hejny <- @nitram147 design output format of verify PDF
+                                    // also show somehow to user what amount of GPUs will be required to remine the chain to make
+                                    // false proofs - this will be based on the block difficulty since the NFT mining block up to today
+                                    // TODO: @nitram147 - ask on discord whether there's some function on full node to find this difficulty value...
+                                    const zip = new JSZip();
+                                    for (const file of files) {
+                                        zip.file(file.name, file);
+                                    }
+                                    zip.file(certificateFile.name, certificateFile);
 
-                                const zipBlob = await zip.generateAsync({
-                                    type: 'blob',
-                                });
+                                    const zipBlob = await zip.generateAsync({
+                                        type: 'blob',
+                                    });
 
-                                const zipHash = await blake2b256(zipBlob);
-                                saveAs(
-                                    zipBlob,
-                                    `certificate2.${zipHash.substring(
-                                        0,
-                                        5,
-                                    )}.zip`,
-                                );
-                            }}
-                        >
-                            Download 2nd certificate
-                        </Button>
-                    );
-                }}
-            >
-                <b>transactionId:</b> {verification.transactionId}
-                <br />
-                <b>timestamp:</b> {verification.timestamp}
-                <br />
-                <b>tokenId:</b> {verification.tokenId}
-                <br />
-                <b>current holder:</b> {verification.currentHolder}
-            </PdfPage>
+                                    const zipHash = await blake2b256(zipBlob);
+                                    saveAs(
+                                        zipBlob,
+                                        `certificate2.${zipHash.substring(
+                                            0,
+                                            5,
+                                        )}.zip`,
+                                    );
+                                }}
+                            >
+                                Download 2nd certificate
+                            </Button>
+                        );
+                    }}
+                >
+                    <b>transactionId:</b> {verification.transactionId}
+                    <br />
+                    <b>timestamp:</b> {verification.timestamp}
+                    <br />
+                    <b>tokenId:</b> {verification.tokenId}
+                    <br />
+                    <b>current holder:</b> {verification.currentHolder}
+                    <br />
+                </PdfPage>
+                <MessageSigner wallet={props.wallet} stamperAddress={verification.currentHolder} holderAddress={verification.currentHolder} />
+            </div>
         );
     }
 }
