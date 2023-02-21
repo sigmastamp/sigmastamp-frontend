@@ -21,6 +21,8 @@ const UploadZoneContentDiv = styled.div`
     opacity: 0.5;
     text-align: center;
 
+    color: #888;
+
     img.logo {
         display: block;
         width: 230px;
