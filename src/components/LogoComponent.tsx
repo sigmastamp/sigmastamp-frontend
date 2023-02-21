@@ -1,18 +1,16 @@
-import React from 'react';
 import styled from 'styled-components';
 
 interface ILogoComponentProps {
     isWatermark?: boolean;
-    isDark?: boolean;
 }
 
-export function LogoComponent({ isWatermark, isDark }: ILogoComponentProps) {
+export function LogoComponent({ isWatermark }: ILogoComponentProps) {
     return (
         <LogoElement>
             <img
                 className="logo"
                 alt="SigmaStamp logo"
-                src={`./sigmastamp-logo.${isDark ? 'black' : 'white'}.svg`}
+                src={`./sigmastamp-logo.grey.svg`}
             />
 
             {!isWatermark && (
@@ -48,7 +46,3 @@ const LogoElement = styled.div`
         margin: 0;
     }
 `;
-
-/**
- * TODO: @hejny Text reacting to isDark property
- */

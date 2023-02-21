@@ -1,82 +1,49 @@
-import { NavLink } from 'react-router-dom';
+import React from 'react';
 import styled from 'styled-components';
-import { ROUTES } from '../../routes';
+import { ErgoConnectorButton } from '../../components/ErgoConnectorButton';
+import { MenuItemsComponent } from './MenuItemsComponent';
 
-export function MenuComponent() {
+import { IWallet } from './App';
+
+export function MenuComponent(props: {
+    wallet: IWallet;
+    setWallet: React.Dispatch<React.SetStateAction<IWallet>>;
+}) {
     return (
         <MenuElement>
-            <ul>
-                {/*<li>
-                    <NavLink to={ROUTES.FirstCertificate}>
-                        First certificate
-                    </NavLink>
-                </li>*/}
-                <li>
-                    <NavLink to={ROUTES.VerificationPage}>
-                        Verification page(RENAME)
-                    </NavLink>
-                </li>
-                {/*<li>
-                    <NavLink to={ROUTES.Blockchains}>Blockchains</NavLink>
-                </li>*/}
-                <li>
-                    <NavLink to={ROUTES.Oracles}>Oracles</NavLink>
-                </li>
-                {/*<li>
-                    <NavLink to={ROUTES.SampleCertificates}>
-                        Sample certificates
-                    </NavLink>
-                </li>*/}
-                <li>
-                    <NavLink to={ROUTES.HowItWorks}>How it works?</NavLink>
-                </li>
-                {/* Note: This page is prepared for the future.
-                <li>
-                    <NavLink to={ROUTES.Faq}>FAQ</NavLink>
-                </li> */}
-                {/*<li>
-                    <NavLink to={ROUTES.TechnicalStatus}>
-                        Technical status
-                    </NavLink>
-                </li>*/}
-                <li>
-                    <NavLink to={ROUTES.Playground}>Playground</NavLink>
-                </li>
-                {/*<li>
-                    <NavLink to={ROUTES.About}>About</NavLink>
-                </li>*/}
-            </ul>
+            <MenuItemsComponent />
+            <ErgoConnectorButton
+                wallet={props.wallet}
+                setWallet={props.setWallet}
+            />
         </MenuElement>
     );
 }
-const MenuElement = styled.menu`
+const MenuElement = styled.div`
     /*/
     border: 1px dashed red; /**/
 
-    padding-left: 0px;
-    padding-left: 10px;
-
-    ul {
-        list-style: none;
-        padding: 0;
-    }
-
-    li {
-        margin: 0;
-        font-size: 1.5em;
-    }
-
-    a {
-        color: #7e7d7d;
-        font-size: 0.7em;
-        text-decoration: none;
-    }
-
-    a.active {
-        color: #d3d3d3;
-        font-size: 0.7em;
-    }
-
     @media (max-width: 850px) {
+        display: flex;
+        align-items: flex-start;
+        align-content: flex-start;
+
+        & > * {
+            border: 1px dashed transparent;
+        }
+
+        ul {
+            margin: 0;
+            display: flex;
+        }
+
+        ul li {
+            border-right: 1px solid #ccc;
+            padding: 10px;
+        }
     }
 `;
+
+/**
+ * TODO: @hejny <HeaderComponent is stupid name - name it as MenuComponent and MenuComponent rename to MenuItemsComponent
+ */

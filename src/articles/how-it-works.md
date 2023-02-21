@@ -10,14 +10,6 @@
 
 ###### h6 Heading
 
-## Horizontal Rules
-
----
-
----
-
----
-
 ## Emphasis
 
 **This is bold text**
