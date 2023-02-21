@@ -18,6 +18,20 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
     }
 
+
+    button {
+        border: solid 1.5px rgb(78, 78, 78);
+        background-color: rgb(242, 242, 242);
+        color: rgb(78, 78, 78);
+        border-radius: 6px;
+        padding: 7px 18px;
+        font-size: 0.9em;
+        margin: 0 5px;
+        cursor: pointer;
+        display: inline-block;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+    }
 `;
 
 /**
