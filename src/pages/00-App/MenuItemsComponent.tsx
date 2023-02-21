@@ -67,14 +67,16 @@ const MenuElement = styled.menu`
     }
 
     a {
-        color: #7e7d7d;
+        color: #aaaaaa !important;
         font-size: 0.7em;
         text-decoration: none;
+
+        transition: color 0.2s ease-in-out;
     }
 
-    a.active {
-        color: #d3d3d3;
-        font-size: 0.7em;
+    a.active,
+    a:hover {
+        color: #eeeded !important;
     }
 
     @media (max-width: 850px) {
