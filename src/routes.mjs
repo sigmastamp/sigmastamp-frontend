@@ -8,11 +8,12 @@ export const ROUTES = {
     Blockchains: '/blockchains',
     Oracles: '/oracles',
     SampleCertificates: '/sample-certificates',
-    HowItWorks: '/manual',
     Faq: '/faq',
+    Playground: '/playground',
     TechnicalStatus: '/status',
     About: '/about',
-    Playground: '/playground',
+    HowItWorks: '/manual',
+    Mobile: '/mobile-device',
 
     // Deprecated pages (but kept because they are still referenced somewhere):
     FirstCertificate: '/',

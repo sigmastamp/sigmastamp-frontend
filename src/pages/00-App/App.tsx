@@ -2,9 +2,11 @@ import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import articleHowItWorks from '../../articles/how-it-works.md';
+import articleMobileDevice from '../../articles/mobile-device.md';
 import { Article } from '../../components/Article';
 import { Center } from '../../components/Center';
 import { LogoComponent } from '../../components/LogoComponent';
+import { Notifications } from '../../components/Notifications';
 import { VERSION } from '../../config';
 import { ROUTES } from '../../routes';
 import { VerificationPage } from '../20-VerificationPage/VerificationPage';
@@ -75,6 +77,11 @@ export function App() {
                             path={ROUTES.HowItWorks}
                             element={<Article src={articleHowItWorks} />}
                         />
+
+                        <Route
+                            path={ROUTES.Mobile}
+                            element={<Article src={articleMobileDevice} />}
+                        />
                         {/*<Route
                                     path={ROUTES.Faq}
                                     element={<FaqPage />}
@@ -101,6 +108,8 @@ export function App() {
                         {VERSION}
                     </a>
                 </footer>
+
+                <Notifications />
             </BrowserRouter>
         </AppDiv>
     );
@@ -109,6 +118,12 @@ export function App() {
 const AppDiv = styled.div`
     /*/
     border: 1px dashed green; /**/
+
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+        'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+        'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 
     width: 100%;
     height: 100vh;
@@ -199,26 +214,6 @@ const AppDiv = styled.div`
         align-items: end;
         justify-content: end;
     }
-
-    /*
-    !!! Remove
-    @media (max-width: 850px) {
-        nav {
-            position: block;
-            z-index: 1;
-
-            width: 100%;
-            height: 100px;
-            padding: 20px;
-        }
-
-        main {
-            position: block;
-            left: 0;
-            padding-top: 200px;
-        }
-    }
-    */
 `;
 
 /**
