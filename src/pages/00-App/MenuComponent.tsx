@@ -10,16 +10,16 @@ export function MenuComponent(props: {
     setWallet: React.Dispatch<React.SetStateAction<IWallet>>;
 }) {
     return (
-        <HeaderElement>
+        <MenuElement>
             <MenuItemsComponent />
             <ErgoConnectorButton
                 wallet={props.wallet}
                 setWallet={props.setWallet}
             />
-        </HeaderElement>
+        </MenuElement>
     );
 }
-const HeaderElement = styled.header`
+const MenuElement = styled.div`
     /*/
     border: 1px dashed red; /**/
 

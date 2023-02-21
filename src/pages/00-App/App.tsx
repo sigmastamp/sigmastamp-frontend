@@ -137,10 +137,6 @@ const AppDiv = styled.div`
             '⬛ ⬛';
     }
 
-    header {
-        grid-area: 🟥;
-    }
-
     header,
     nav,
     footer {
@@ -152,6 +148,14 @@ const AppDiv = styled.div`
     nav,
     footer :is(a) {
         color: #eee;
+    }
+
+    header {
+        grid-area: 🟥;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     nav {
