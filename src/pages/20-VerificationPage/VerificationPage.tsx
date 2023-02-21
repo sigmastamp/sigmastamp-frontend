@@ -46,6 +46,7 @@ export function VerificationPage(props: {
                         }
 
                         const { transactionId } = droppedFileVerification;
+                        const stamperAddress: string = droppedFileVerification.address;
 
                         const { timestamp, tokenId } = await getTransactionTime(
                             transactionId,
@@ -62,6 +63,7 @@ export function VerificationPage(props: {
                             ...droppedFileVerification,
                             timestamp,
                             tokenId,
+                            stamperAddress,
                             currentHolder,
                         });
                         console.log(droppedFileVerification);
@@ -127,10 +129,12 @@ export function VerificationPage(props: {
                     <br />
                     <b>tokenId:</b> {verification.tokenId}
                     <br />
+                    <b>stamper address:</b> {verification.stamperAddress}
+                    <br />
                     <b>current holder:</b> {verification.currentHolder}
                     <br />
                 </PdfPage>
-                <MessageSigner wallet={props.wallet} stamperAddress={verification.currentHolder} holderAddress={verification.currentHolder} />
+                <MessageSigner wallet={props.wallet} stamperAddress={verification.stamperAddress} holderAddress={verification.currentHolder} />
             </div>
         );
     }
