@@ -29,5 +29,27 @@
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
         <div id="root"></div>
+
+        <!-- 🌓 Dark/Light mode -->
+        <!-- Note: This script is consciously not async or defer and it it on the end of the body: -->
+        <!-- TODO: Maybe import as propper module -->
+        <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+        <script>
+            function addDarkmodeWidget() {
+                new Darkmode({
+                    // @see https://darkmodejs.learn.uno/#%EF%B8%8F-options
+                    label: '🌓',
+                    autoMatchOsTheme: true,
+                }).showWidget();
+            }
+            window.addEventListener('load', addDarkmodeWidget);
+            //addDarkmodeWidget();
+        </script>
+        <style>
+            .darkmode-toggle {
+                z-index: 99999;
+            }
+        </style>
+        <!-- End of 🌓 Dark/Light mode -->
     </body>
 </html>
