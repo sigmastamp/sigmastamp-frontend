@@ -9,6 +9,7 @@ import { LogoComponent } from '../../components/LogoComponent';
 import { Notifications } from '../../components/Notifications';
 import { VERSION } from '../../config';
 import { ROUTES } from '../../routes';
+import { NotFoundPage } from '../00-NotFound/NotFound';
 import { FirstCertificatePage } from '../10-FirstCertificate/FirstCertificatePage';
 import { VerificationPage } from '../20-VerificationPage/VerificationPage';
 import { BlockchainsPage } from '../50-Blockchains/BlockchainsPage';
@@ -122,6 +123,8 @@ export function App() {
                                 </ul>
                             }
                         />
+
+                        <Route path="*" element={<NotFoundPage />} />
                     </Routes>
                 </main>
 

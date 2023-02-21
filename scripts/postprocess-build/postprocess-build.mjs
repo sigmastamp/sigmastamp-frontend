@@ -12,7 +12,7 @@ const indexContent = await readFile(
     'utf8',
 );
 
-for (const path of Object.values(ROUTES)) {
+for (const path of [...Object.values(ROUTES), '/404']) {
     if (path === '/') {
         continue;
     }
