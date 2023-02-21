@@ -16,7 +16,11 @@ export function LogoComponent({ isWatermark }: ILogoComponentProps) {
             {!isWatermark && (
                 <div>
                     <h1 className="name">SigmaStamp</h1>
-                    <p className="claim">Timestamp your documents</p>
+                    <p className="claim">
+                        Timestamp your
+                        <br />
+                        <b>documents</b>
+                    </p>
                 </div>
             )}
         </LogoElement>
@@ -31,7 +35,7 @@ const LogoElement = styled.div`
     color: white;
 
     img.logo {
-        width: 4rem;
+        width: 5rem;
     }
 
     h1.name {

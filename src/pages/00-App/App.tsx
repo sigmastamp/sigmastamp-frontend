@@ -129,8 +129,8 @@ const AppDiv = styled.div`
         height: auto;
         min-height: 100vh;
 
-        grid-template-columns: 250px 1fr;
-        grid-template-rows: 150px min-content 50px;
+        grid-template-columns: min-content 1fr;
+        grid-template-rows: min-content min-content 50px;
         grid-template-areas:
             '🟥 🟦'
             '⬜ ⬜'
@@ -155,7 +155,7 @@ const AppDiv = styled.div`
 
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
     }
 
     nav {
@@ -170,6 +170,8 @@ const AppDiv = styled.div`
     main {
         /*/
         border: 1px dashed red; /**/
+
+        min-height: 90vh;
 
         grid-area: ⬜;
 

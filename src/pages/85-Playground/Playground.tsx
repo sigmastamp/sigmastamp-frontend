@@ -10,17 +10,14 @@ import {
     sign_tx,
     submit_tx,
 } from '../../scripts/transactionBuilder';
-import { ErgoConnectorButton } from './ErgoConnectorButton';
-import { IWallet } from "../00-App/App";
+// import { ErgoConnectorButton } from './ErgoConnectorButton';
+import { IWallet } from '../00-App/App';
 
 function check_whether_there_is_enough_balance(balance: number): boolean {
     return balance > get_minimum_required_balance();
 }
 
-export function PlaygroundPage(props: {
-    wallet: IWallet
-}) {
-
+export function PlaygroundPage(props: { wallet: IWallet }) {
     const [file, setFile] = useState<any>(null);
     const [sentTXHash, setSentTXHash] = useState<string>('');
 
