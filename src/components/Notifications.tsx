@@ -1,11 +1,12 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { ROUTES } from '../routes.mjs';
 import { isRunningOnMobileDevice } from '../utils/isRunningOnMobileDevice';
+import { usePersistentState } from '../utils/usePersistentState';
 
 export function Notifications() {
-    const [isMobileDeviceWarning, setMobileDeviceWarning] = useState(
+    const [isMobileDeviceWarning, setMobileDeviceWarning] = usePersistentState(
+        'isMobileDeviceWarning',
         isRunningOnMobileDevice(),
     );
 
