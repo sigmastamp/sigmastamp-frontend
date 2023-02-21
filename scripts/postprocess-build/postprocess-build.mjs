@@ -23,5 +23,5 @@ for (const path of Object.values(ROUTES)) {
 }
 
 /**
- * TODO: @hejny Make full server-render
+ * TODO: @hejny Make full server-render - OR just migrate to Next
  */
