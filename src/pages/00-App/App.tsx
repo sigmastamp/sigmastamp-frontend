@@ -125,8 +125,11 @@ const AppDiv = styled.div`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
-    width: 100%;
-    height: 100vh;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 
     display: grid;
 
@@ -141,11 +144,8 @@ const AppDiv = styled.div`
     justify-content: stretch;
 
     @media (max-width: 850px) {
-        height: auto;
-        min-height: 100vh;
-
         grid-template-columns: min-content 1fr;
-        grid-template-rows: min-content min-content 50px;
+        grid-template-rows: min-content 1fr 50px;
         grid-template-areas:
             '🟥 🟦'
             '⬜ ⬜'
@@ -157,12 +157,7 @@ const AppDiv = styled.div`
     footer {
         background-color: hsl(224, 15%, 15%);
         padding: 10px;
-    }
-
-    head,
-    nav,
-    footer :is(a) {
-        color: #eee;
+        z-index: 20;
     }
 
     header {
@@ -186,7 +181,7 @@ const AppDiv = styled.div`
         /*/
         border: 1px dashed red; /**/
 
-        min-height: 90vh;
+        z-index: 5;
 
         grid-area: ⬜;
 
