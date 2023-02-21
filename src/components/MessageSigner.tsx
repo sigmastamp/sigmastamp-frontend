@@ -77,13 +77,19 @@ export function MessageSigner(props: {
 				(!userIsOwner.ownerOfStamperAddress && !userIsOwner.ownerOfHolderAddress) ?
 				<h3>Unfortunately, you are not owner of any of addresses associated with this NFT</h3> :
 				<div>
-					<select>
+					<label for="address_select">Select address:</label>
+					<br />
+					<select id="address_select">
 						{userIsOwner.availableIntersectingAddresses.map((addr: string) =>
 							<option value={addr} key={addr}>{addr}</option>)
 						}
 					</select>
+					<br />
 					<textarea name="message" placeholder="Fill your message here"></textarea>
-					<button onClick={signButtonClickHandler}>Sign message</button>
+					<br />
+					<span style={{color: "red"}}>Message signing is currently still not implemented in Nautilus Wallet :-(</span>
+					<br />
+					<button onClick={signButtonClickHandler} disabled={true}>Sign message</button>
 				</div>
 			}
 		</div>
