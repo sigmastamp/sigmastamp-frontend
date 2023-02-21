@@ -18,9 +18,6 @@ export function HeaderComponent(props: {
                 wallet={props.wallet}
                 setWallet={props.setWallet}
             />
-
-
-            
         </HeaderElement>
     );
 }
