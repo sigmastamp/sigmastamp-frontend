@@ -48,7 +48,6 @@ export function PlaygroundPage(props: {
     return (
         <PlaygroundPageDiv>
             <h2>Playground</h2>
-            
             {!props.wallet.connected ? (
                 <p>Please connect the wallet first</p>
             ) : !check_whether_there_is_enough_balance(props.wallet.balance) ? (
@@ -62,7 +61,7 @@ export function PlaygroundPage(props: {
                     onFiles={async (files) => {
                         const file = files[0];
                         const hash = await blake2b256(file);
-                        setFile({ file: file, hash: hash });
+                        setFile({ file, hash });
                     }}
                     isClickable
                 >
