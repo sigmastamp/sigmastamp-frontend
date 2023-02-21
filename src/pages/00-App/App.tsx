@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import articleHowItWorks from '../../articles/how-it-works.md';
@@ -25,17 +25,16 @@ const DEFAULT_WALLET_STATE: IWallet = {
 };
 
 export function App() {
-
     const [wallet, setWallet] = useState<IWallet>(DEFAULT_WALLET_STATE);
 
     return (
         <AppDiv>
             <BrowserRouter>
-                <div className="menu-column">
+                <div className="menu-section">
                     <HeaderComponent wallet={wallet} setWallet={setWallet} />
                 </div>
 
-                <div className="content-column">
+                <div className="content-section">
                     <main>
                         <Center>
                             <Routes>
@@ -49,7 +48,9 @@ export function App() {
                                 />
                                 <Route
                                     path={ROUTES.VerificationPage}
-                                    element={<VerificationPage  wallet={wallet} />}
+                                    element={
+                                        <VerificationPage wallet={wallet} />
+                                    }
                                 />
 
                                 {/*<Route
@@ -92,6 +93,14 @@ export function App() {
                         </Center>
                     </main>
                 </div>
+
+                {/*
+                <div className="footer-section">
+                    <a href="https://github.com/hejny/rapid-prototyping-wizard/">
+                        {VERSION}
+                    </a>
+                </div>
+                */}
             </BrowserRouter>
         </AppDiv>
     );
@@ -103,7 +112,7 @@ const AppDiv = styled.div`
     /*/
     border: 1px dashed green; /**/
 
-    .menu-column {
+    .menu-section {
         /*/
         border: 1px dashed red; /**/
 
@@ -119,7 +128,7 @@ const AppDiv = styled.div`
         overflow: hidden;
     }
 
-    .content-column {
+    .content-section {
         /*/
         border: 1px dashed red; /**/
 
@@ -137,22 +146,22 @@ const AppDiv = styled.div`
         padding-left: 50px;
     }
 
-    .content-column a {
+    .content-section a {
         color: #eee;
     }
 
-    .content-column h1,
-    .content-column h2,
-    .content-column h3,
-    .content-column h4,
-    .content-column h5,
-    .content-column h6 {
+    .content-section h1,
+    .content-section h2,
+    .content-section h3,
+    .content-section h4,
+    .content-section h5,
+    .content-section h6 {
         margin-top: 40px;
         border-bottom: 1px solid #444;
     }
 
     @media (max-width: 850px) {
-        .menu-column {
+        .menu-section {
             position: block;
             z-index: 1;
 
@@ -161,7 +170,7 @@ const AppDiv = styled.div`
             padding: 20px;
         }
 
-        .content-column {
+        .content-section {
             position: block;
             left: 0;
             padding-top: 200px;

@@ -1,8 +1,11 @@
+<<<<<<< HEAD
 import { IWallet } from '../00-App/App';
 
 //todo same check for mainnet/testnet as in babelergs
 //todo same modal as in babelergs
 
+=======
+>>>>>>> 862a6caba8a8f146c670bc9484494500d715c544
 export function ErgoConnectorButton(props: {
     wallet: IWallet;
     setWallet: React.Dispatch<React.SetStateAction<IWallet>>;
@@ -29,8 +32,8 @@ export function ErgoConnectorButton(props: {
                 props.setWallet((prev: IWallet) => ({
                     ...prev,
                     connected: true,
-                    address: address,
-                    balance: balance,
+                    address,
+                    balance,
                 }));
             }
         } else {

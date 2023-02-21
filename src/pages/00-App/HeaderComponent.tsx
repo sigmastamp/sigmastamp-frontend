@@ -1,20 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
+import { ErgoConnectorButton } from '../../components/ErgoConnectorButton';
 import { LogoComponent } from '../../components/LogoComponent';
 import { MenuComponent } from './MenuComponent';
-import { ErgoConnectorButton } from "../../components/ErgoConnectorButton";
 
-import { IWallet } from "../00-App/App";
+import { IWallet } from '../00-App/App';
 
 export function HeaderComponent(props: {
-    wallet: IWallet,
+    wallet: IWallet;
     setWallet: React.Dispatch<React.SetStateAction<IWallet>>;
 }) {
     return (
         <HeaderElement>
             <LogoComponent />
             <MenuComponent />
-            <ErgoConnectorButton wallet={props.wallet} setWallet={props.setWallet} />
+            <ErgoConnectorButton
+                wallet={props.wallet}
+                setWallet={props.setWallet}
+            />
         </HeaderElement>
     );
 }
@@ -42,3 +45,7 @@ const HeaderElement = styled.header`
         }
     }
 `;
+
+/**
+ * TODO: @hejny <HeaderComponent is stupid name - name it as MenuComponent and MenuComponent rename to MenuItemsComponent
+ */
