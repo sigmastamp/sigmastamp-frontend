@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from 'react-router-dom';
 import { getAggregatedDifficultySinceBlock } from "../scripts/getCurrentBlockchainInfo";
 
 interface IFalseProofHardness {
@@ -82,6 +83,6 @@ export function FalseProofsHardnessEstiminator(props: {
 	}
 
 	return (
-		<div>To falsify this stamping, it would be required to spend {get_kWh_in_nice_format(kWh)} of electricty, while mining with the most energy efficient cards {single_card_name} for this purpose. This would mean that the falsification cost would be {get_usd_in_nice_format(calculate_electricity_price_for_kwh(kWh))}, assuming the price of {electricity_price_usd_per_kWh} $/kWh.</div>
+		<div>To falsify this stamping, it would be required to spend {get_kWh_in_nice_format(kWh)} of electricty, while mining with the most energy efficient cards {single_card_name} for this purpose. This would mean that the falsification cost would be {get_usd_in_nice_format(calculate_electricity_price_for_kwh(kWh))}, assuming the price of {electricity_price_usd_per_kWh} $/kWh. Click <Link to="/wiki#calculation-of-falsification-cost" target="_blank" rel="noopener noreferrer">here</Link> to see how its calculated.</div>
 	);
 }
