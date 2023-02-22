@@ -103,7 +103,7 @@ export function OraclesPage() {
                     />
                 </div>
             ))}
-            { !allOraclesDataLoaded(mappings) ? <p>Loading data from oracles....</p> : <p>Loaded</p> }
+            {/* !allOraclesDataLoaded(mappings) ? <p>Loading data from oracles....</p> : <p>Loaded</p> */}
         </OraclesDiv>
     );
 }
