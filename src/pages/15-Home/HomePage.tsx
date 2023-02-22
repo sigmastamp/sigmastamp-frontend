@@ -1,9 +1,9 @@
 import React from 'react';
 
-export function FaqPage() {
+export function HomePage() {
     return (
         <>
-            <h1>FAQ</h1>
+            <h1>TODO HomePage</h1>
         </>
     );
 }

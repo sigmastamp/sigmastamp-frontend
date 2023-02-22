@@ -45,7 +45,7 @@ export function PlaygroundPage(props: { wallet: IWallet }) {
 
     return (
         <PlaygroundPageDiv>
-            <h2>Playground</h2>
+            <h2>Stamp your document</h2>
             {!props.wallet.connected ? (
                 checkIfNautilusAvailable() ?
                 <p>Please connect the wallet first</p>

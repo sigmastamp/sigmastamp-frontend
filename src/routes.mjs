@@ -16,6 +16,7 @@ export const ROUTES = {
     Routes: '/routes',
     HowItWorks: '/manual',
     Mobile: '/mobile-device',
+    Wiki: 'wiki',
 
     // Deprecated pages (but kept because they are still referenced somewhere):
     FirstCertificate: '/first-certificate',

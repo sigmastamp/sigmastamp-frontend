@@ -19,7 +19,9 @@ export function MenuItemsComponent() {
                 <li>
                     <NavLink to={ROUTES.HowItWorks}>How it works?</NavLink>
                 </li>
-            {/* TODO FAQ*/}
+                <li>
+                    <NavLink to={ROUTES.Faq}>FAQ</NavLink>
+                </li>
                 <li>
                     <NavLink to={ROUTES.VerificationPage}>
                         Verify document
@@ -36,10 +38,6 @@ export function MenuItemsComponent() {
                         Sample certificates
                     </NavLink>
                 </li>*/}
-                {/* Note: This page is prepared for the future.
-                <li>
-                    <NavLink to={ROUTES.Faq}>FAQ</NavLink>
-                </li> */}
                 {/*<li>
                     <NavLink to={ROUTES.TechnicalStatus}>
                         Technical status
@@ -48,6 +46,9 @@ export function MenuItemsComponent() {
                 <li>
                     <NavLink to={ROUTES.Playground}>Stamp document</NavLink>
                 </li>
+                <li>
+                    <NavLink to={ROUTES.Wiki}>Wiki</NavLink>
+                </li>                
                 {/*<li>
                     <NavLink to={ROUTES.About}>About</NavLink>
                 </li>*/}
