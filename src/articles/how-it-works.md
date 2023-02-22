@@ -101,6 +101,10 @@ Right aligned columns
 
 ## Links
 
+[Internal link to emphasis](#emphasis)
+[Internal link to code](#code)
+[Internal link to images](#images)
+
 [link text](http://dev.nodeca.com)
 
 [link with title](http://nodeca.github.io/pica/demo/ 'title text!')

@@ -211,6 +211,7 @@ const AppDiv = styled.div`
 
         overflow-x: clip;
         overflow-y: scroll;
+        scroll-behavior: smooth;
 
         padding: 20px;
         padding-left: 50px;

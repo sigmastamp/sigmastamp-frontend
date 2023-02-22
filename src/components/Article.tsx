@@ -99,6 +99,15 @@ const ArticleDiv = styled.div`
     outline: 1px dashed red;
     /**/
 
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        scroll-margin-top: 2em;
+    }
+
     img {
         max-width: 50%;
         max-height: 50%;
