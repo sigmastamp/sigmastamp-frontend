@@ -17,6 +17,7 @@ import { FirstAndSecondCertificatePageDiv } from '../10-FirstCertificate/FirstCe
 import { IWallet } from "../00-App/App";
 import { MessageSigner } from "../../components/MessageSigner";
 import { get_time_with_timezone_from_timestamp, get_local_date_from_timestamp } from "../../scripts/timeUtils";
+import { FalseProofsHardnessEstiminator } from "../../components/FalseProofsHardnessEstiminator";
 
 //todo not only current holder but also show minter address!!!
 
@@ -47,6 +48,7 @@ export function VerificationPage(props: {
                         }
 
                         const { transactionId } = droppedFileVerification;
+                        const { settlementHeight } = droppedFileVerification;
                         const stamperAddress: string = droppedFileVerification.address;
 
                         const { timestamp, tokenId } = await getTransactionTime(
@@ -66,6 +68,7 @@ export function VerificationPage(props: {
                             tokenId,
                             stamperAddress,
                             currentHolder,
+                            settlementHeight
                         });
                         console.log(droppedFileVerification);
                     }}
@@ -125,21 +128,24 @@ export function VerificationPage(props: {
                         );
                     }}
                 >
-                    <b>transactionId:</b> {verification.transactionId}
+                    <b>Stamped in transaction with ID:</b> {verification.transactionId}
                     <br />
-                    <b>stamping unixtimestamp:</b> {verification.timestamp}
+                    <b>Transaction was mined at height:</b> {verification.settlementHeight}
                     <br />
-                    <b>stamping date:</b> {get_local_date_from_timestamp(verification.timestamp)}
+                    <b>Mined at UnixTimestamp:</b> {verification.timestamp}
                     <br />
-                    <b>stamping time:</b> {get_time_with_timezone_from_timestamp(verification.timestamp)}
+                    <b>Mined at date:</b> {get_local_date_from_timestamp(verification.timestamp)}
                     <br />
-                    <b>tokenId:</b> {verification.tokenId}
+                    <b>Mined at time:</b> {get_time_with_timezone_from_timestamp(verification.timestamp)}
                     <br />
-                    <b>stamper address:</b> {verification.stamperAddress}
+                    <b>Stamping tokenId:</b> {verification.tokenId}
                     <br />
-                    <b>current holder:</b> {verification.currentHolder}
+                    <b>Stamper address:</b> {verification.stamperAddress}
+                    <br />
+                    <b>Current holder of stamping NFT token:</b> {verification.currentHolder}
                     <br />
                 </PdfPage>
+                <FalseProofsHardnessEstiminator stampingBlock={verification.settlementHeight} />
                 <MessageSigner wallet={props.wallet} stamperAddress={verification.stamperAddress} holderAddress={verification.currentHolder} />
             </div>
         );
