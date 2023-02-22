@@ -64,7 +64,7 @@
         "crypto-js": "4.1.1",
         "ergo-lib-wasm-browser": "0.16.1",
         "everstorage": "1.10.1",
-        "express": "4.17.1",
+        "express": "4.17.3",
         "file-saver": "2.0.5",
         "gh-pages": "3.2.3",
         "history": "5.1.0",
