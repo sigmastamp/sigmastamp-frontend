@@ -1,13 +1,5 @@
 import { IOracle } from './_IOracle';
-
-function get_timezone_str(date_arg: Date): string {
-    const userTime = date_arg.toLocaleTimeString('en-US', { timeZoneName: 'short', hour12: false });
-    const timeZoneName = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const timeZoneOffset = new Date().getTimezoneOffset();
-    const timeZoneAbbr = timeZoneOffset < 0 ? '+' : '-';
-    const timeZoneFormattedOffset = `${timeZoneAbbr}${Math.abs(Math.floor(timeZoneOffset / 60)).toString().padStart(2, '0')}:${Math.abs(timeZoneOffset % 60).toString().padStart(2, '0')}`;
-    return `${userTime} (UTC${timeZoneFormattedOffset} ${timeZoneName})`;
-}
+import { get_time_with_timezone } from "../scripts/timeUtils";
 
 export class DateOracle implements IOracle {
     public name = 'DATE';
@@ -38,7 +30,7 @@ export class DateOracle implements IOracle {
                 //     '0' + date.getUTCMinutes()
                 // ).slice(-2)}:${('0' + date.getUTCSeconds()).slice(-2)}`,
                 format: "24 hours format in user local timezone",
-                value: get_timezone_str(date)
+                value: get_time_with_timezone(date)
             },
         ];
     }
