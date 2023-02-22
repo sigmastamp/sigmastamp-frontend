@@ -74,4 +74,23 @@ When file is found to be stamped via SigmaStamp application, the costs of produc
 Any file you drop into SigmaStamp's stamping or verifying area is NOT being send anywhere. It's is processed offline in the browser in order to calculate file [hash](#hash) which is later uploaded (during [stamping](#stamping) phase) to blockchain or a search for file hash in blockchain is performed (during [verifying](#verifying) phase).
 
 # Examples of SigmaStamp usage
-todo
+In this section you can see example of mutliple usages of SigmaStamp.
+
+## Artist, writer, creator
+![artist](/home/artist.svg)
+As an artist, writer or creator, your can be many times stolen during the process. Imagine you composed a new song and send it to studio just to get rejected in response. Not only they reject you, but a few weeks later they produce a song with your text. If there was just a way how to easily and cheaply prove that you owned the text of the song weeks before you even contacted them. Have a look at [stamping](#stamping) feature of SigmaStamp.
+
+Download and try to [verify](#verifying) the example [Ergo Song](examples/ErgoSong.pdf) file in order to see how can you prove that you know the song text content earlier than the studio.
+
+## Landlord, tenant
+![landlord](/home/landlord.svg)
+Are you afraid to rent your real-estate property because the tenant can damage it and later refuse the responsibility for damage? Or are you a tenant and are you afraid of the opposite - that the landlord will accuse you of damaging his property?
+
+Take a photo of the property state at specific time and prove the creation time of this photo later on. Photo can be also used to capture the state of electricity/water/gas consumption meter at some time in past to prove that state later on in the future. Have a look at the [present time proof](#present-time-proof) section.
+
+## Proof of being at specific location
+Or maybe you want to proof that you have been at specific location at some time. Just take a special selfie and that is it, for more informations have a look at the [present time proof](#present-time-proof) section.
+
+## Proof of time of device installation
+![deviceinstallation](/home/other_use_cases.svg)
+Does the device manufactures requires proof of device installation at some specific time in order for you to be compliant with his warranty rules? Take a video of installation process and prove its creation time, see [present time proof](#present-time-proof) for more informations.
