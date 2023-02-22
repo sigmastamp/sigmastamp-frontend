@@ -126,7 +126,7 @@ export function VerificationPage(props: {
                 >
                     <b>transactionId:</b> {verification.transactionId}
                     <br />
-                    <b>stamping timestamp:</b> {verification.timestamp}
+                    <b>stamping unixtimestamp:</b> {verification.timestamp}
                     <br />
                     <b>stamping date:</b> {get_local_date_from_timestamp(verification.timestamp)}
                     <br />

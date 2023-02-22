@@ -11,7 +11,7 @@ import { VERSION } from '../../config';
 import { ROUTES } from '../../routes';
 import { addTooltipToLinks } from '../../utils/addTooltipToLinks';
 import { NotFoundPage } from '../00-NotFound/NotFound';
-import { FirstCertificatePage } from '../10-FirstCertificate/FirstCertificatePage';
+// import { FirstCertificatePage } from '../10-FirstCertificate/FirstCertificatePage';
 import { VerificationPage } from '../20-VerificationPage/VerificationPage';
 import { BlockchainsPage } from '../50-Blockchains/BlockchainsPage';
 import { OraclesPage } from '../53-Oracles/OraclesPage';
@@ -59,10 +59,10 @@ export function App() {
                 >
                     <Routes>
                         {/* Note: Some of the pages are not shown in the menu BUT ALL should be listed here */}
-                        <Route
+                        {/*<Route
                             path={ROUTES.FirstCertificate}
                             element={<FirstCertificatePage />}
-                        />
+                        />*/}
                         <Route
                             path={ROUTES.Root}
                             element={
