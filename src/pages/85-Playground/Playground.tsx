@@ -82,7 +82,7 @@ export function PlaygroundPage(props: { wallet: IWallet }) {
                     <button onClick={stampItButtonHandler}>Stamp it!</button>
                 </div>
             ) : (
-                <p>Stamping TX with id {sentTXHash} was successfuly sent!</p>
+                <p>Stamping TX with id {sentTXHash} was successfuly sent! Please wait until it will be mined, only then it can be verified by the SigmaStamp.</p>
             )}
         </PlaygroundPageDiv>
     );

@@ -27,10 +27,11 @@ export function VerificationPage(props: {
     // const [files, setFiles] = React.useState<any>([]);
     const [verification, setVerification] = React.useState<any>(null);
 
-    if (!verification) {
+    if (!verification || (typeof verification.verificationFailed !== "undefined" )) {
         return (
             <div><span>(Everything will be executed <Link to="/wiki#everything-is-executed-localy" target="_blank" rel="noopener noreferrer">localy</Link>, file is not being send anywhere ;-))</span>
             <br /><br />
+            { (verification !== null && typeof verification.verificationFailed !== "undefined") ? <span style={{color: "red"}}>Examined file was not validated (stamped) via SigmaStamp.</span>  : <span></span> }
             <FirstAndSecondCertificatePageDiv>
                 <UploadZone
                     onFiles={async (droppedFiles) => {
@@ -42,11 +43,13 @@ export function VerificationPage(props: {
 
                         if (!droppedFileVerification) {
                             alert(
-                                `Your 1st certificate is still not validated through Ergo blockchain.`,
+                                `Examined file was not validated (stamped) via SigmaStamp.`,
                             );
                             // TODO: @hejny <- @nitram147 see comments bellow
                             //       consider skipping the rest because extraction of transactionId from null in
                             //       the following statements will result in error
+                            setVerification({verificationFailed: true});
+                            return;
                         }
 
                         const { transactionId } = droppedFileVerification;

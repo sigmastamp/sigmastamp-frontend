@@ -13,8 +13,11 @@ todo
 ## Proof of Work
 todo
 
-## Stamping
+## NFT Non Fungible Token
 todo
+
+## Stamping
+During stamping phase, a [hash](#hash) of the file to be stamped is calculated and then this hash is inserted into the Ergo blockchain via special transaction creating a [NFT](#nft-non-fungible-token) which is send to the stamper address. The process of stamping is used to prove that the stamper know a hash of this file at the moment of stamping or even earlier, thus introducing a time boundary of (beginning of universe; stamping date) for the knowledge of file hash by the stamper.
 
 ## Verifying
 During verifying phase, a [hash](#hash) of the examined file is calculated and then the Ergo blockchain is searched whether it contains this hash or not. In case a file with this hash was stamped via SigmaStamp application, it will be found and stamping results are shown - in case multiple people tried to stamp the same file, only the earliest stamping data will be shown, because we assumed that stamper who stamped it first is the original author of examined file.
@@ -32,7 +35,9 @@ It does not mean that the stamper (a man who performed [stamping](#stamping) pro
 It can be deduced, that the stamper having access to wallet with address shown as "Stamper address" know the hash of the examined file in the moment of stamping. Also, it can be deduced what would be the lowest falsifying cost estimination for somebody who wants to produce fake stamping, meaning he want to falsify that some stamping happened in the past which does not happen in reality. This cost calcuation is explained [here](#calculation-of-falsification-cost).
 
 ## Time limits
-todo
+In case of simple [stamping](#stamping) process, it means that the file submitted for stamping (meaning transaction was send from the wallet) will be stamped at time when block which will include this transaction will be mined. This means, that if you perfor a stamping process at 12:10, but there is a lot of transactions waiting to be included in the blockchain, your transaction can be included several blocks later meaning introduction of delay in amount of block times 120 seconds (average time to mine a block). In our example it can mean that our file can be stamped at 12:16 in case it was included approximately 3 blocks later (since the stamping).
+
+In case of combined use-case where you use both ["present time proof"](#present-time-proof) and [stamping](#stamping) itself, it means that you are able to proof that e.g. the creation time of the picture you are trying to prove, is withing limit of time based on latest information (either one of the hashes of blockchains (BTC, ETH, LTC) headers, or the newspaper headline) from "present time proof", up to the stamping approval time (inclusion of stamping transaction in the Ergo blockchain).
 
 ## Present time proof
 Imagine a situation when you are holding today's newspaper and you read its heading. Any time during today or even in the future, anybody will be able to tell the heading of today's newspaper, however one week ago, probably nobody would be able to do so, because nobody has a crystal ball and not having any "insider info" from the newspaper producer, its almost unpossible to be guess it.

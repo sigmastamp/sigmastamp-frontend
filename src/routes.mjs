@@ -10,7 +10,7 @@ export const ROUTES = {
     Oracles: '/oracles',
     SampleCertificates: '/sample-certificates',
     Faq: '/faq',
-    Playground: '/playground',
+    Playground: '/stamp',
     TechnicalStatus: '/status',
     About: '/about',
     Routes: '/routes',

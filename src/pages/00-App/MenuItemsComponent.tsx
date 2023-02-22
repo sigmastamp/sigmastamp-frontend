@@ -16,9 +16,9 @@ export function MenuItemsComponent() {
                         Home
                     </NavLink>
                 </li>
-                <li>
+                {/*<li>
                     <NavLink to={ROUTES.HowItWorks}>How it works?</NavLink>
-                </li>
+                </li>*/}
                 <li>
                     <NavLink to={ROUTES.Faq}>FAQ</NavLink>
                 </li>
