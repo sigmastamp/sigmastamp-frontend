@@ -12,7 +12,7 @@ import { BitcoinOracle } from './oracles/BitcoinOracle';
 import { DateOracle } from './oracles/DateOracle';
 import { EthereumOracle } from './oracles/EthereumOracle';
 import { LitecoinOracle } from './oracles/LitecoinOracle';
-import { NytimesOracle } from './oracles/NytimesOracle';
+import { RssFeedOracle } from './oracles/RssFeedOracle';
 import { IOracle } from './oracles/_IOracle';
 
 export const VERSION = version;
@@ -22,7 +22,40 @@ export const ORACLES: IOracle[] = [
     new EthereumOracle(),
     new LitecoinOracle(),
     new DateOracle(),
+
+    /*
+    Note: Not working CORS in Firefox
     new NytimesOracle(),
+    */
+
+    /*
+    Note: Not working CORS in Chrome and Firefox
+    new RssFeedOracle(
+        'TechCrunch',
+        'Front page title',
+        'https://techcrunch.com/feed/',
+    ),
+    */
+
+    /*
+    Note: Not working CORS in Chrome and Firefox
+    new RssFeedOracle(
+        'Huffington post',
+        'Front page title',
+        'https://chaski.huffpost.com/us/auto',
+    ),
+    */
+
+    new RssFeedOracle(
+        'Washington  post',
+        'Front page title',
+        'https://feeds.washingtonpost.com/rss/world',
+    ),
+
+    /**
+     * TODO: @hejny Add more news sources
+     * @see https://medium.com/rakuten-rapidapi/top-10-best-news-apis-google-news-bloomberg-bing-news-and-more-bbf3e6e46af6
+     */
 ];
 
 export const FILE_PREVIEWERS: IFilePreviewer[] = [

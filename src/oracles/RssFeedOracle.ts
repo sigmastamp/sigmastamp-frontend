@@ -1,15 +1,22 @@
 import RssParser from 'rss-parser';
 import { IOracle } from './_IOracle';
 
-export class NytimesOracle implements IOracle {
+export class RssFeedOracle implements IOracle {
+    constructor(
+        private readonly title: string,
+        private readonly format: string,
+        private readonly url: string,
+    ) {}
+
     public name = 'NYTIMES';
     public ttl = -1;
 
     public async getData() {
         const rssParser = new RssParser();
-        const feed = await rssParser.parseURL(
-            `https://rss.nytimes.com/services/xml/rss/nyt/World.xml`,
-        );
+
+        const response = await fetch(this.url /*  { mode: 'no-cors' }*/);
+        const feedText = await response.text();
+        const feed = await rssParser.parseString(feedText);
 
         // console.log({ feed });
 
@@ -27,8 +34,8 @@ export class NytimesOracle implements IOracle {
 
         return [
             {
-                title: 'The\nNew York Times',
-                format: 'Front page title',
+                title: this.title,
+                format: this.format,
                 value: firstItem.title,
                 source: new URL(firstItem.link),
                 /*
@@ -41,8 +48,3 @@ export class NytimesOracle implements IOracle {
         ];
     }
 }
-
-
-/**
- * TODO: !!! Just use RssFeedOracle
- */
