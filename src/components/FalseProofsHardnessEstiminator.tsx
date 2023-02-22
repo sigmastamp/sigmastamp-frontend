@@ -36,13 +36,28 @@ function calculate_electricity_price_to_achieve_target_difficulty(target_diff: n
 }
 
 function get_kWh_in_nice_format(kWh: number): string {
-	//todo fix me...
-	return kWh.toString() + " kWh";
+	if (kWh <= 1000) return kWh.toFixed(2) + " kWh";
+	else if (kWh <= 1000000) return (kWh / 1000).toFixed(2) + " MWh";
+	else if (kWh <= 1000000000) return (kWh / 1000000).toFixed(2) + " GWh";
+	else return (kWh / 1000000000).toFixed(2) + " TWh";
 }
 
-function get_usd_in_nice_format(usd: number): string{
-	//todo fix me
-	return usd.toString() + " $";
+function get_usd_in_approximated_magnitude_format(usd: number): string {
+	if (usd >= 1000000) {
+		return "$" + (usd / 1000000).toFixed(2) + " million";
+	} else if (usd >= 1000) {
+		return "$" + (usd / 1000).toFixed(2) + " thousand";
+	} else {
+		return "$" + usd.toFixed(2);
+	}
+}
+
+function get_usd_in_nice_format(usd: number): string {
+	let result: string = "$" + usd.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, "$&,");
+	result += " (";
+	result += get_usd_in_approximated_magnitude_format(usd);
+	result += ")";
+	return result;
 }
 
 export function FalseProofsHardnessEstiminator(props: {
