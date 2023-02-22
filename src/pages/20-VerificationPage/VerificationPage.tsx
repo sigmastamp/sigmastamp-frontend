@@ -1,12 +1,12 @@
-import { saveAs } from 'file-saver';
-import JSZip from 'jszip';
+// import { saveAs } from 'file-saver';
+// import JSZip from 'jszip';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '../../components/Button';
+// import { Button } from '../../components/Button';
 import { PdfPage } from '../../components/PdfPage';
 import { UploadZone } from '../../components/UploadZone';
 import { UploadZoneSigmastampContent } from '../../components/UploadZoneSigmastampContent';
-import { blake2b256 } from '../../hash/blake2b256';
+// import { blake2b256 } from '../../hash/blake2b256';
 import { ROUTES } from '../../routes';
 import {
     getNFTHolderAddress,
@@ -23,7 +23,7 @@ import { get_time_with_timezone_from_timestamp, get_local_date_from_timestamp } 
 export function VerificationPage(props: {
     wallet: IWallet
 }) {
-    const [files, setFiles] = React.useState<any>([]);
+    // const [files, setFiles] = React.useState<any>([]);
     const [verification, setVerification] = React.useState<any>(null);
 
     if (!verification) {
@@ -32,7 +32,7 @@ export function VerificationPage(props: {
                 <UploadZone
                     onFiles={async (droppedFiles) => {
                         const firstCertificate = droppedFiles[0];
-                        setFiles([droppedFiles[0]]);
+                        // setFiles([droppedFiles[0]]);
 
                         const droppedFileVerification =
                             await validateFirstCertificate(firstCertificate);
@@ -86,11 +86,11 @@ export function VerificationPage(props: {
                 <PdfPage
                     renderUi={({ createPdf }) => {
                         return (
-                            <Button
+                            /*<Button
                                 onClick={async () => {
                                     const certificateFile = new File(
                                         [await createPdf()],
-                                        'certificate2.pdf' /* TODO: Maybe add current {lastModified: 1534584790000}*/,
+                                        'certificate2.pdf', // TODO: Maybe add current {lastModified: 1534584790000},
                                     );
 
                                     //saveAs(certificateFile);
@@ -120,7 +120,8 @@ export function VerificationPage(props: {
                                 }}
                             >
                                 Download 2nd certificate
-                            </Button>
+                            </Button>*/
+                            <span></span>//just dummy span
                         );
                     }}
                 >

@@ -23,7 +23,7 @@ export async function getTotalDifficultyForBlock(block: number): Promise<number>
 }
 
 export async function getAggregatedDifficultyBetween(stampingBlock: number, currentBlock: number): Promise<number> {
-	if (stampingBlock > currentBlock) throw "Stamping block cannot be higher number than current block."
+	if (stampingBlock > currentBlock) return 0;//throw "Stamping block cannot be higher number than current block."
 	const stampingBlockTotalDiff = await getTotalDifficultyForBlock(stampingBlock);
 	const currentBlockTotalDiff = await getTotalDifficultyForBlock(currentBlock);
 	return currentBlockTotalDiff - stampingBlockTotalDiff;
