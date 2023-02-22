@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { AsyncContentComponent } from '../../components/AsyncContentComponent';
 import { ErrorComponent } from '../../components/ErrorComponent';
@@ -50,8 +51,7 @@ export function OraclesPage() {
         <OraclesDiv>
             <h1>Oracles</h1>
             <p>
-                Theese are information from external world that will be
-                incorporated into your first certificate:
+                Here are information from external world which can be used in some of the SigmaStamp use-cases. Look <Link to="/wiki#present-time-proof"  target="_blank" rel="noopener noreferrer">here</Link> to find more information.
             </p>
             {ORACLES.map((oracle) => (
                 <div key={oracle.name}>
