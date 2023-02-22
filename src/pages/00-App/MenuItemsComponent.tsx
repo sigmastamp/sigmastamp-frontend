@@ -12,24 +12,30 @@ export function MenuItemsComponent() {
                     </NavLink>
                 </li>*/}
                 <li>
+                    <NavLink to={"/"}>
+                        Home
+                    </NavLink>
+                </li>
+                <li>
+                    <NavLink to={ROUTES.HowItWorks}>How it works?</NavLink>
+                </li>
+            {/* TODO FAQ*/}
+                <li>
                     <NavLink to={ROUTES.VerificationPage}>
-                        Verification page <i>(RENAME)</i>
+                        Verify document
                     </NavLink>
                 </li>
                 {/*<li>
                     <NavLink to={ROUTES.Blockchains}>Blockchains</NavLink>
                 </li>*/}
                 <li>
-                    <NavLink to={ROUTES.Oracles}>Oracles</NavLink>
+                    <NavLink to={ROUTES.Oracles}>Present time proof</NavLink>
                 </li>
                 {/*<li>
                     <NavLink to={ROUTES.SampleCertificates}>
                         Sample certificates
                     </NavLink>
                 </li>*/}
-                <li>
-                    <NavLink to={ROUTES.HowItWorks}>How it works?</NavLink>
-                </li>
                 {/* Note: This page is prepared for the future.
                 <li>
                     <NavLink to={ROUTES.Faq}>FAQ</NavLink>
@@ -40,7 +46,7 @@ export function MenuItemsComponent() {
                     </NavLink>
                 </li>*/}
                 <li>
-                    <NavLink to={ROUTES.Playground}>Playground</NavLink>
+                    <NavLink to={ROUTES.Playground}>Stamp document</NavLink>
                 </li>
                 {/*<li>
                     <NavLink to={ROUTES.About}>About</NavLink>

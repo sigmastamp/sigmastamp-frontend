@@ -66,9 +66,9 @@ export function App() {
                         <Route
                             path={ROUTES.Root}
                             element={
-                                <PlaygroundPage
-                                    wallet={wallet}
-                                /> /* <- TODO: Obviously playgorund will not be as a starting page in the future BUT for development it is OK */
+                                <Center>
+                                    <PlaygroundPage wallet={wallet} />
+                                </Center>
                             }
                         />
                         <Route
@@ -111,7 +111,11 @@ export function App() {
 
                         <Route
                             path={ROUTES.Playground}
-                            element={<PlaygroundPage wallet={wallet} />}
+                            element={
+                                <Center>
+                                    <PlaygroundPage wallet={wallet} />
+                                </Center>
+                            }
                         />
 
                         <Route

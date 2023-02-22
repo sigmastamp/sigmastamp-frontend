@@ -12,6 +12,7 @@ import {
 } from '../../scripts/transactionBuilder';
 // import { ErgoConnectorButton } from './ErgoConnectorButton';
 import { IWallet } from '../00-App/App';
+import { checkIfNautilusAvailable } from "../../components/ErgoConnectorButton";
 
 function check_whether_there_is_enough_balance(balance: number): boolean {
     return balance > get_minimum_required_balance();
@@ -46,7 +47,9 @@ export function PlaygroundPage(props: { wallet: IWallet }) {
         <PlaygroundPageDiv>
             <h2>Playground</h2>
             {!props.wallet.connected ? (
+                checkIfNautilusAvailable() ?
                 <p>Please connect the wallet first</p>
+                : <p>Please install Nautilus wallet which is required for this section to work</p>
             ) : !check_whether_there_is_enough_balance(props.wallet.balance) ? (
                 <p>
                     There is not enough balance for stamping process in your
