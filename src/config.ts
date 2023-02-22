@@ -72,28 +72,6 @@ export const PAGE_SIZE = new Vector(210, 297);
 
 const config = ConfigChecker.from(process.env);
 
-// @deprecated TODO: @hejny <- @nitram147 see comments bellow
-// @deprecated TODO: - add testnet/mainnet switch
-// @deprecated TODO: - add config for ergo explorer url and subdomains for testnet/mainnet variant
-
-/**
- * @deprecated
- */
-export const ERGO_ASSEMBLER_URL = new URL(
-    `https://assembler.sigmastamp.ml:14747`,
-); /* <- Just a temporary fake value */
-
-/*config
-    .get(
-        'REACT_APP_ERGO_ASSEMBLER_URL' /* TODO: @hejny configchecker can ignore prefxes in ConfigChecker.from * /,
-    )
-    .url()
-    // TODO: @hejny .checkHttps()
-    // TODO: @hejny .checkNativePort()
-    // TODO: @hejny universal .check() in configchecker
-    .required().value!;
-  */
-
 export const BUILD_DETAILS_URL = config
     .get(
         'REACT_APP_BUILD_DETAILS_URL' /* TODO: @hejny configchecker can ignore prefxes in ConfigChecker.from */,
