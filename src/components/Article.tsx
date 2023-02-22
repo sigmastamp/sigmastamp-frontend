@@ -3,6 +3,7 @@ import showdownHighlight from 'showdown-highlight';
 import { spaceTrim } from 'spacetrim';
 import styled from 'styled-components';
 import { useAsyncMemo } from '../utils/useAsyncMemo';
+import { useHash } from '../utils/useHash';
 
 interface IArticleProps {
     /**
@@ -12,6 +13,7 @@ interface IArticleProps {
 }
 
 export function Article({ src }: IArticleProps) {
+    const hash = useHash();
     const { error, content } = useAsyncMemo<{
         content: string | null;
         error: Error | null;
@@ -55,7 +57,30 @@ export function Article({ src }: IArticleProps) {
     converter.setFlavor('github');
     const html = converter.makeHtml(markdown);
 
-    return <ArticleDiv dangerouslySetInnerHTML={{ __html: html }} />;
+    const currentSubsection = hash.substring(1);
+
+    return (
+        <>
+            <ArticleDiv dangerouslySetInnerHTML={{ __html: html }} />
+            <style>
+                {!currentSubsection
+                    ? ``
+                    : `
+                        #${currentSubsection}{
+                          color: #1b73f7;
+                        }
+
+                        /*
+                        TODO: Also all items to the next heading
+                        #${currentSubsection} + * {
+                          color: red;
+                        }
+                        */
+
+              `}
+            </style>
+        </>
+    );
 }
 
 const converter = new Converter({

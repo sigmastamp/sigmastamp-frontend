@@ -21,7 +21,6 @@ import { PlaygroundPage } from '../85-Playground/Playground';
 import { AboutPage } from '../90-About/AboutPage';
 import { MenuComponent } from './MenuComponent';
 
-console.log({ articleHowItWorks });
 
 export interface IWallet {
     connected: boolean;
