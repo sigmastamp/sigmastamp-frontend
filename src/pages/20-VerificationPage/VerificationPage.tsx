@@ -29,6 +29,8 @@ export function VerificationPage(props: {
 
     if (!verification) {
         return (
+            <div><span>(Everything will be executed <Link to="/wiki#everything-is-executed-localy" target="_blank" rel="noopener noreferrer">localy</Link>, file is not being send anywhere ;-))</span>
+            <br /><br />
             <FirstAndSecondCertificatePageDiv>
                 <UploadZone
                     onFiles={async (droppedFiles) => {
@@ -81,7 +83,7 @@ export function VerificationPage(props: {
                 <Link to={ROUTES.Playground}>
                     Or stamp your file here.
                 </Link>
-            </FirstAndSecondCertificatePageDiv>
+            </FirstAndSecondCertificatePageDiv></div>
         );
     } else {
         return (
