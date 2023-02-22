@@ -16,6 +16,7 @@ import {
 import { FirstAndSecondCertificatePageDiv } from '../10-FirstCertificate/FirstCertificatePage';
 import { IWallet } from "../00-App/App";
 import { MessageSigner } from "../../components/MessageSigner";
+import { get_time_with_timezone_from_timestamp, get_local_date_from_timestamp } from "../../scripts/timeUtils";
 
 //todo not only current holder but also show minter address!!!
 
@@ -125,7 +126,11 @@ export function VerificationPage(props: {
                 >
                     <b>transactionId:</b> {verification.transactionId}
                     <br />
-                    <b>timestamp:</b> {verification.timestamp}
+                    <b>stamping timestamp:</b> {verification.timestamp}
+                    <br />
+                    <b>stamping date:</b> {get_local_date_from_timestamp(verification.timestamp)}
+                    <br />
+                    <b>stamping time:</b> {get_time_with_timezone_from_timestamp(verification.timestamp)}
                     <br />
                     <b>tokenId:</b> {verification.tokenId}
                     <br />

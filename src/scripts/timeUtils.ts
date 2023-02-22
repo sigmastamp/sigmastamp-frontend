@@ -12,8 +12,12 @@ export function get_time_with_timezone_from_timestamp(unixtimestamp: number): st
 	return get_time_with_timezone(new Date(unixtimestamp * 1000));
 }
 
+export function get_local_date(date_arg: Date): string{
+	return `${date_arg.getFullYear()}-${('0' + date_arg.getMonth()).slice(-2)}-${('0' + date_arg.getDate()).slice(-2)}`;
+}
+
 //unixtimestamp in seconds not in miliseconds as is default timestamp in js
-export function get_local_date_from_timestamp(unixtimestamp: number): string{
-	const date = new Date(unixtimestamp * 1000);
-	return `${date.getFullYear()}-${('0' + date.getMonth()).slice(-2)}-${('0' + date.getDate()).slice(-2)}`;
+export function get_local_date_from_timestamp(unixtimestamp: number): string {
+	const date = new Date(unixtimestamp * 1000);
+	return get_local_date(date);
 }

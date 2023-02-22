@@ -1,5 +1,5 @@
 import { IOracle } from './_IOracle';
-import { get_time_with_timezone, get_local_date_from_timestamp } from "../scripts/timeUtils";
+import { get_time_with_timezone, get_local_date } from "../scripts/timeUtils";
 
 export class DateOracle implements IOracle {
     public name = 'DATE';
@@ -19,7 +19,7 @@ export class DateOracle implements IOracle {
             {
                 title: 'Date',
                 format: 'YYYY-MM-DD',
-                value: get_local_date_from_timestamp(Math.floor(date.getTime() / 1000)),
+                value: get_local_date(date),
             },
             {
                 title: 'Time',
