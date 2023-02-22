@@ -2,6 +2,7 @@ import { Converter } from 'showdown';
 import showdownHighlight from 'showdown-highlight';
 import { spaceTrim } from 'spacetrim';
 import styled from 'styled-components';
+import { addTooltipToLinks } from '../utils/addTooltipToLinks';
 import { useAsyncMemo } from '../utils/useAsyncMemo';
 import { useHash } from '../utils/useHash';
 
@@ -61,7 +62,26 @@ export function Article({ src }: IArticleProps) {
 
     return (
         <>
-            <ArticleDiv dangerouslySetInnerHTML={{ __html: html }} />
+            <ArticleDiv
+                dangerouslySetInnerHTML={{ __html: html }}
+                ref={(element) => {
+                    if (!element) {
+                        return;
+                    }
+
+                    if (currentSubsection) {
+                        const section = element.querySelector(
+                            `#${currentSubsection}`,
+                        );
+
+                        if (section) {
+                            section.scrollIntoView(true);
+                        }
+                    }
+
+                    addTooltipToLinks(element);
+                }}
+            />
             <style>
                 {!currentSubsection
                     ? ``
@@ -99,13 +119,14 @@ const ArticleDiv = styled.div`
     outline: 1px dashed red;
     /**/
 
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
+    * {
         scroll-margin-top: 2em;
+    }
+
+    @media (max-width: 350px) and (max-width: 300px) {
+        * {
+            scroll-margin-top: 0;
+        }
     }
 
     img {

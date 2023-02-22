@@ -2,6 +2,10 @@
 
 ## h2 Heading
 
+[Internal link to emphasis](#emphasis)
+[Internal link to code](#code)
+[Internal link to images](#images)
+
 ### h3 Heading
 
 #### h4 Heading

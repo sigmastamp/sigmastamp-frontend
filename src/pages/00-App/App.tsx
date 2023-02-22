@@ -9,6 +9,7 @@ import { LogoComponent } from '../../components/LogoComponent';
 import { Notifications } from '../../components/Notifications';
 import { VERSION } from '../../config';
 import { ROUTES } from '../../routes';
+import { addTooltipToLinks } from '../../utils/addTooltipToLinks';
 import { NotFoundPage } from '../00-NotFound/NotFound';
 import { FirstCertificatePage } from '../10-FirstCertificate/FirstCertificatePage';
 import { VerificationPage } from '../20-VerificationPage/VerificationPage';
@@ -20,7 +21,6 @@ import { TechnicalStatusPage } from '../80-TechnicalStatus/TechnicalStatusPage';
 import { PlaygroundPage } from '../85-Playground/Playground';
 import { AboutPage } from '../90-About/AboutPage';
 import { MenuComponent } from './MenuComponent';
-
 
 export interface IWallet {
     connected: boolean;
@@ -48,7 +48,15 @@ export function App() {
                     <MenuComponent wallet={wallet} setWallet={setWallet} />
                 </nav>
 
-                <main>
+                <main
+                    ref={(element) => {
+                        if (!element) {
+                            return;
+                        }
+
+                        addTooltipToLinks(element);
+                    }}
+                >
                     <Routes>
                         {/* Note: Some of the pages are not shown in the menu BUT ALL should be listed here */}
                         <Route
@@ -174,6 +182,27 @@ const AppDiv = styled.div`
             '🟥 🟦'
             '⬜ ⬜'
             '⬛ ⬛';
+    }
+
+    @media (max-width: 350px) and (max-width: 300px) {
+        grid-template-columns: auto;
+        grid-template-rows: auto;
+        grid-template-areas: '⬜';
+
+        header,
+        nav,
+        footer {
+            display: none !important;
+        }
+
+        main {
+            padding: 5px !important;
+            scroll-behavior: auto !important;
+        }
+
+        main h1 {
+            margin-top: 0 !important;
+        }
     }
 
     header,
