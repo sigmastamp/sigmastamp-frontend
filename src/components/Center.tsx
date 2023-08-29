@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
+/**
+ * Centers the content in both directions
+ */
 export function Center({
     children,
     isFlexed,
