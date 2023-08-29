@@ -1,12 +1,12 @@
-import { saveAs } from 'file-saver';
-import JSZip from 'jszip';
+// import { saveAs } from 'file-saver';
+// import JSZip from 'jszip';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from '../../components/Button';
+// import { Button } from '../../components/Button';
 import { PdfPage } from '../../components/PdfPage';
 import { UploadZone } from '../../components/UploadZone';
 import { UploadZoneSigmastampContent } from '../../components/UploadZoneSigmastampContent';
-import { blake2b256 } from '../../hash/blake2b256';
+// import { blake2b256 } from '../../hash/blake2b256';
 import { ROUTES } from '../../routes';
 import {
     getNFTHolderAddress,
@@ -16,36 +16,44 @@ import {
 import { FirstAndSecondCertificatePageDiv } from '../10-FirstCertificate/FirstCertificatePage';
 import { IWallet } from "../00-App/App";
 import { MessageSigner } from "../../components/MessageSigner";
+import { get_time_with_timezone_from_timestamp, get_local_date_from_timestamp } from "../../scripts/timeUtils";
+import { FalseProofsHardnessEstiminator } from "../../components/FalseProofsHardnessEstiminator";
 
 //todo not only current holder but also show minter address!!!
 
 export function VerificationPage(props: {
     wallet: IWallet
 }) {
-    const [files, setFiles] = React.useState<any>([]);
+    // const [files, setFiles] = React.useState<any>([]);
     const [verification, setVerification] = React.useState<any>(null);
 
-    if (!verification) {
+    if (!verification || (typeof verification.verificationFailed !== "undefined" )) {
         return (
+            <div><span>(Everything will be executed <Link to="/wiki#everything-is-executed-localy" target="_blank" rel="noopener noreferrer">localy</Link>, file is not being send anywhere ;-))</span>
+            <br /><br />
+            { (verification !== null && typeof verification.verificationFailed !== "undefined") ? <span style={{color: "red"}}>Examined file was not validated (stamped) via SigmaStamp.</span>  : <span></span> }
             <FirstAndSecondCertificatePageDiv>
                 <UploadZone
                     onFiles={async (droppedFiles) => {
                         const firstCertificate = droppedFiles[0];
-                        setFiles([droppedFiles[0]]);
+                        // setFiles([droppedFiles[0]]);
 
                         const droppedFileVerification =
                             await validateFirstCertificate(firstCertificate);
 
                         if (!droppedFileVerification) {
                             alert(
-                                `Your 1st certificate is still not validated through Ergo blockchain.`,
+                                `Examined file was not validated (stamped) via SigmaStamp.`,
                             );
                             // TODO: @hejny <- @nitram147 see comments bellow
                             //       consider skipping the rest because extraction of transactionId from null in
                             //       the following statements will result in error
+                            setVerification({verificationFailed: true});
+                            return;
                         }
 
                         const { transactionId } = droppedFileVerification;
+                        const { settlementHeight } = droppedFileVerification;
                         const stamperAddress: string = droppedFileVerification.address;
 
                         const { timestamp, tokenId } = await getTransactionTime(
@@ -65,6 +73,7 @@ export function VerificationPage(props: {
                             tokenId,
                             stamperAddress,
                             currentHolder,
+                            settlementHeight
                         });
                         console.log(droppedFileVerification);
                     }}
@@ -77,7 +86,7 @@ export function VerificationPage(props: {
                 <Link to={ROUTES.Playground}>
                     Or stamp your file here.
                 </Link>
-            </FirstAndSecondCertificatePageDiv>
+            </FirstAndSecondCertificatePageDiv></div>
         );
     } else {
         return (
@@ -85,11 +94,11 @@ export function VerificationPage(props: {
                 <PdfPage
                     renderUi={({ createPdf }) => {
                         return (
-                            <Button
+                            /*<Button
                                 onClick={async () => {
                                     const certificateFile = new File(
                                         [await createPdf()],
-                                        'certificate2.pdf' /* TODO: Maybe add current {lastModified: 1534584790000}*/,
+                                        'certificate2.pdf', // TODO: Maybe add current {lastModified: 1534584790000},
                                     );
 
                                     //saveAs(certificateFile);
@@ -119,21 +128,29 @@ export function VerificationPage(props: {
                                 }}
                             >
                                 Download 2nd certificate
-                            </Button>
+                            </Button>*/
+                            <span></span>//just dummy span
                         );
                     }}
                 >
-                    <b>transactionId:</b> {verification.transactionId}
+                    <b>Stamped in transaction with ID:</b> {verification.transactionId}
                     <br />
-                    <b>timestamp:</b> {verification.timestamp}
+                    <b>Transaction was mined at height:</b> {verification.settlementHeight}
                     <br />
-                    <b>tokenId:</b> {verification.tokenId}
+                    <b>Mined at UnixTimestamp:</b> {verification.timestamp}
                     <br />
-                    <b>stamper address:</b> {verification.stamperAddress}
+                    <b>Mined at date:</b> {get_local_date_from_timestamp(verification.timestamp)}
                     <br />
-                    <b>current holder:</b> {verification.currentHolder}
+                    <b>Mined at time:</b> {get_time_with_timezone_from_timestamp(verification.timestamp)}
+                    <br />
+                    <b>Stamping tokenId:</b> {verification.tokenId}
+                    <br />
+                    <b>Stamper address:</b> {verification.stamperAddress}
+                    <br />
+                    <b>Current holder of stamping NFT token:</b> {verification.currentHolder}
                     <br />
                 </PdfPage>
+                <FalseProofsHardnessEstiminator stampingBlock={verification.settlementHeight} />
                 <MessageSigner wallet={props.wallet} stamperAddress={verification.stamperAddress} holderAddress={verification.currentHolder} />
             </div>
         );

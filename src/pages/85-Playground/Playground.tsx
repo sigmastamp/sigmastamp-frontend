@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { UploadZone } from '../../components/UploadZone';
 import { UploadZoneSigmastampContent } from '../../components/UploadZoneSigmastampContent';
@@ -12,6 +13,7 @@ import {
 } from '../../scripts/transactionBuilder';
 // import { ErgoConnectorButton } from './ErgoConnectorButton';
 import { IWallet } from '../00-App/App';
+import { checkIfNautilusAvailable } from "../../components/ErgoConnectorButton";
 
 function check_whether_there_is_enough_balance(balance: number): boolean {
     return balance > get_minimum_required_balance();
@@ -44,9 +46,11 @@ export function PlaygroundPage(props: { wallet: IWallet }) {
 
     return (
         <PlaygroundPageDiv>
-            <h2>Playground</h2>
+            <h2>Stamp your document</h2>
             {!props.wallet.connected ? (
-                <p>Please connect the wallet first</p>
+                checkIfNautilusAvailable() ?
+                    <p>Please connect the wallet first</p>
+                    : <p>Please install Nautilus wallet which is required for this section to work</p>
             ) : !check_whether_there_is_enough_balance(props.wallet.balance) ? (
                 <p>
                     There is not enough balance for stamping process in your
@@ -54,18 +58,20 @@ export function PlaygroundPage(props: { wallet: IWallet }) {
                     {get_minimum_required_balance_ergs()} ERGs.
                 </p>
             ) : file === null ? (
-                <UploadZone
-                    onFiles={async (files) => {
-                        const firstFile = files[0];
-                        const hash = await blake2b256(firstFile);
-                        setFile({ file: firstFile, hash });
-                    }}
-                    isClickable
-                >
-                    <UploadZoneSigmastampContent>
-                        Drop the files you want to timestamp here!
-                    </UploadZoneSigmastampContent>
-                </UploadZone>
+                <div><span>(Everything will be executed <Link to="/wiki#everything-is-executed-localy" target="_blank" rel="noopener noreferrer">localy</Link>, file is not being send anywhere ;-))</span>
+                    <br /><br />
+                    <UploadZone
+                        onFiles={async (files) => {
+                            const firstFile = files[0];
+                            const hash = await blake2b256(firstFile);
+                            setFile({ file: firstFile, hash });
+                        }}
+                        isClickable
+                    >
+                        <UploadZoneSigmastampContent>
+                            Drop the files you want to timestamp here!
+                        </UploadZoneSigmastampContent>
+                    </UploadZone></div>
             ) : sentTXHash === '' ? (
                 <div>
                     <p>{file.file.name}</p>
@@ -76,7 +82,7 @@ export function PlaygroundPage(props: { wallet: IWallet }) {
                     <button onClick={stampItButtonHandler}>Stamp it!</button>
                 </div>
             ) : (
-                <p>Stamping TX with id {sentTXHash} was successfuly sent!</p>
+                <p>Stamping TX with id {sentTXHash} was successfuly sent! Please wait until it will be mined, only then it can be verified by the SigmaStamp.</p>
             )}
         </PlaygroundPageDiv>
     );

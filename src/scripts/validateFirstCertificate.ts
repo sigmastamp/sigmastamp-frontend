@@ -59,7 +59,8 @@ export async function getTransactionTime(txId: string) {
 
     console.log('getTransactionTime', body);
 
-    const timestamp = body.timestamp;
+    //api is returning timestamp in miliseconds !!!
+    const timestamp = Math.floor(body.timestamp / 1000);
     const tokenId = body.outputs[0].assets[0].tokenId;
 
     return { timestamp, tokenId };

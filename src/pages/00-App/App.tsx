@@ -3,6 +3,8 @@ import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
 import articleHowItWorks from '../../articles/how-it-works.md';
 import articleMobileDevice from '../../articles/mobile-device.md';
+import articleFAQ from "../../articles/FAQ.md";
+import articleWiki from "../../articles/wiki.md";
 import { Article } from '../../components/Article';
 import { Center } from '../../components/Center';
 import { LogoComponent } from '../../components/LogoComponent';
@@ -11,12 +13,12 @@ import { VERSION } from '../../config';
 import { ROUTES } from '../../routes';
 import { addTooltipToLinks } from '../../utils/addTooltipToLinks';
 import { NotFoundPage } from '../00-NotFound/NotFound';
-import { FirstCertificatePage } from '../10-FirstCertificate/FirstCertificatePage';
+// import { FirstCertificatePage } from '../10-FirstCertificate/FirstCertificatePage';
+import { HomePage } from "../15-Home/HomePage";
 import { VerificationPage } from '../20-VerificationPage/VerificationPage';
 import { BlockchainsPage } from '../50-Blockchains/BlockchainsPage';
 import { OraclesPage } from '../53-Oracles/OraclesPage';
 import { SampleCertificatesPage } from '../55-SampleCertificates/SampleCertificatesPage';
-import { FaqPage } from '../75-Faq/FaqPage';
 import { TechnicalStatusPage } from '../80-TechnicalStatus/TechnicalStatusPage';
 import { PlaygroundPage } from '../85-Playground/Playground';
 import { AboutPage } from '../90-About/AboutPage';
@@ -59,16 +61,16 @@ export function App() {
                 >
                     <Routes>
                         {/* Note: Some of the pages are not shown in the menu BUT ALL should be listed here */}
-                        <Route
+                        {/*<Route
                             path={ROUTES.FirstCertificate}
                             element={<FirstCertificatePage />}
-                        />
+                        />*/}
                         <Route
                             path={ROUTES.Root}
                             element={
-                                <PlaygroundPage
-                                    wallet={wallet}
-                                /> /* <- TODO: Obviously playgorund will not be as a starting page in the future BUT for development it is OK */
+                                <Center>
+                                    <HomePage />
+                                </Center>
                             }
                         />
                         <Route
@@ -101,7 +103,11 @@ export function App() {
                             path={ROUTES.Mobile}
                             element={<Article src={articleMobileDevice} />}
                         />
-                        <Route path={ROUTES.Faq} element={<FaqPage />} />
+                        <Route
+                            path={ROUTES.Wiki}
+                            element={<Article src={articleWiki} />}
+                        />                        
+                        <Route path={ROUTES.Faq} element={<Article src={articleFAQ} />} />
                         <Route
                             path={ROUTES.TechnicalStatus}
                             element={<TechnicalStatusPage />}
@@ -111,7 +117,11 @@ export function App() {
 
                         <Route
                             path={ROUTES.Playground}
-                            element={<PlaygroundPage wallet={wallet} />}
+                            element={
+                                <Center>
+                                    <PlaygroundPage wallet={wallet} />
+                                </Center>
+                            }
                         />
 
                         <Route
