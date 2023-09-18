@@ -1,3 +1,7 @@
+> ⚠️ **Warning: Our domain (sigmastamp.ml) has expired, and our domain registrator has suspended new domain registrations until further notice. As a result, you'll need to clone this repository and run SigmaStamp locally. Please note that all previously generated certificates are safely stored on the Ergo blockchain and remain valid.**
+
+> 🔍 Since SigmaStamp is currently non-profit project, we are unable to purchase a new domain for it. However, if anyone is willing to contribute and provide a domain, we would greatly appreciate it. This will allow us to move SigmaStamp to a new domain. Thank you for your understanding.
+
 # 📜 SigmaStamp
 
 <!--Badges-->
