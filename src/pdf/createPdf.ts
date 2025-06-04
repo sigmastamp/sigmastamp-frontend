@@ -13,7 +13,7 @@ export async function createPdf(containerElement: HTMLElement): Promise<Blob> {
 
     const canvas = await html2canvas(containerElement, {
         scale: 3 /* TODO: @hejny What is the ideal quality */,
-        backgroundColor: 'trasparent',
+        backgroundColor: 'transparent',
         allowTaint: true,
         // removeContainer: true,
         ignoreElements: (element) => {
